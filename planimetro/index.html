@@ -50,11 +50,9 @@ input[type=range]:disabled{opacity:.4}
 .btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .consts{color:var(--muted);font-size:12.5px;line-height:1.55;margin:0}
 .consts b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
-.readout{position:absolute;top:12px;right:12px;width:258px;background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.readout h3{margin:0 0 6px;font-size:13px;font-weight:600}
 .big{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1}
 .big small{font-size:12.5px;font-weight:400;color:var(--muted);margin-left:4px}
-.kv{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin-top:8px;font-size:13px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:3px 10px;margin-top:10px;font-size:13px}
 .kv span:nth-child(odd){color:var(--muted)}
 .kv span:nth-child(even){font-variant-numeric:tabular-nums;text-align:right}
 .kv .err{color:var(--accent-ink);font-weight:500}
@@ -70,7 +68,6 @@ input[type=range]:disabled{opacity:.4}
   .app{grid-template-columns:1fr;grid-template-rows:62vh auto;height:auto}
   .side{order:2;border-right:0;border-top:1px solid var(--line)}
   .stage{order:1;height:62vh}
-  .readout{width:212px;padding:10px 12px}
   .big{font-size:20px}
 }
 </style>
@@ -140,6 +137,23 @@ input[type=range]:disabled{opacity:.4}
     </section>
 
     <section class="grp">
+      <h2>Lectura del contador</h2>
+      <div class="big"><span id="nOut">0.000</span><small>vueltas de la polea</small></div>
+      <div class="kv">
+        <span>Puntero</span><span id="n8Out">0.000 vueltas</span>
+        <span>Carátula (1 in² por división)</span><span id="dialOut">0.0 div</span>
+        <span>Área medida</span><span id="AmOut">0.000 in²</span>
+        <span>Área de la figura</span><span id="ArOut">—</span>
+        <span>Error respecto a la figura</span><span class="err" id="errOut">—</span>
+        <span id="ApLbl" style="display:none">Área del recorrido</span><span id="ApOut" style="display:none">—</span>
+        <span id="ckLbl" style="display:none">Lectura − recorrido</span><span id="ckOut" style="display:none">—</span>
+        <span>Progreso</span><span id="progOut">0 %</span>
+        <span class="note" id="mapNote" style="display:none"></span>
+      </div>
+      <div class="bar"><i id="bar"></i></div>
+    </section>
+
+    <section class="grp">
       <h2>Mecanismo y medidas del modelo</h2>
       <p class="consts">
         El bastidor negro con el brazo gira alrededor del eje vertical de los dos conectores amarillos (pin gris abajo, pin rojo arriba). Los pines de cabeza redonda de las vigas azul y blanca detienen el bastidor a <b>±27°</b> (el conector amarillo de la esquina toca la cabeza del pin a 27,25°), con lo que el estilete alcanza <b>±3,36 in</b> del centro, un poco antes de los bordes largos de la hoja. En la dirección de rodaje el recorrido se limita a los bordes cortos de la hoja. El aparato apoya en las ruedas y en la punta del estilete, por lo que va inclinado <b>1,0°</b> hacia delante.<br><br>
@@ -155,22 +169,6 @@ input[type=range]:disabled{opacity:.4}
     <canvas id="c" aria-label="Escena 3D del planímetro"></canvas>
     <div class="loading" id="loading">Cargando las 255 piezas…</div>
     <div class="hint" id="hint"></div>
-    <div class="readout">
-      <h3>Lectura del contador</h3>
-      <div class="big"><span id="nOut">0.000</span><small>vueltas de la polea</small></div>
-      <div class="kv">
-        <span>Puntero</span><span id="n8Out">0.000 vueltas</span>
-        <span>Carátula (1 in² por división)</span><span id="dialOut">0.0 div</span>
-        <span>Área medida</span><span id="AmOut">0.000 in²</span>
-        <span>Área de la figura</span><span id="ArOut">—</span>
-        <span>Error respecto a la figura</span><span class="err" id="errOut">—</span>
-        <span id="ApLbl" style="display:none">Área del recorrido</span><span id="ApOut" style="display:none">—</span>
-        <span id="ckLbl" style="display:none">Lectura − recorrido</span><span id="ckOut" style="display:none">—</span>
-        <span>Progreso</span><span id="progOut">0 %</span>
-        <span class="note" id="mapNote" style="display:none"></span>
-      </div>
-      <div class="bar"><i id="bar"></i></div>
-    </div>
     <div class="status" id="status"></div>
   </main>
 </div>
