@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">jquery[3.7.1];shiny-css[1.13.0];shiny-busy-indicators[1.13.0];shiny-javascript[1.13.0];bootstrap[3.4.1]</script>
+<script src="jquery-3.7.1/jquery.min.js"></script>
+<link href="shiny-css-1.13.0/shiny.min.css" rel="stylesheet" />
+<link href="shiny-busy-indicators-1.13.0/busy-indicators.css" rel="stylesheet" />
+<script src="shiny-javascript-1.13.0/shiny.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+<link href="bootstrap-3.4.1/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
+<script src="bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.4.1/accessibility/js/bootstrap-accessibility.min.js"></script>  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>*
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+        background: radial-gradient(circle at top, #f8fafc 0%, #e2e8f0 58%, #dbe4ef 100%);
+        color: #0f172a;
+      }
+      .app-shell {
+        max-width: 1260px;
+        margin: 0 auto;
+        padding: 18px;
+      }
+      .hero-card,
+      .board-card,
+      .graph-card,
+      .success-card,
+      .challenge-panel {
+        background: rgba(255,255,255,0.78);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.72);
+        border-radius: 30px;
+        box-shadow: 0 18px 45px rgba(15,23,42,0.10);
+      }
+      .hero-card { padding: 28px; }
+      .board-card, .graph-card { padding: 22px; }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        padding: 7px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      .hero-title {
+        margin: 14px 0 0;
+        max-width: 820px;
+        font-size: clamp(2rem, 4.2vw, 3.4rem);
+        line-height: 1.02;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: #020617;
+      }
+      .hero-subtitle {
+        margin: 14px 0 0;
+        max-width: 820px;
+        font-size: 16px;
+        line-height: 1.75;
+        color: #475569;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+      }
+      .stat-card {
+        border-radius: 24px;
+        border: 1px solid #e2e8f0;
+        background: rgba(255,255,255,0.9);
+        padding: 16px;
+        box-shadow: 0 4px 16px rgba(15,23,42,0.05);
+      }
+      .stat-label {
+        font-size: 13px;
+        color: #64748b;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .stat-value {
+        font-size: 31px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        color: #0f172a;
+      }
+      .stat-subvalue {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #64748b;
+      }
+      .play-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.22fr) minmax(320px, 0.78fr);
+        gap: 18px;
+        align-items: start;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .section-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        background: #0f172a;
+        color: #ffffff;
+        font-size: 18px;
+        box-shadow: 0 8px 18px rgba(15,23,42,0.18);
+      }
+      .section-title {
+        margin: 0;
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .section-subtitle {
+        margin: 5px 0 0;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #64748b;
+      }
+      .controls-grid {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 12px;
+        align-items: end;
+        margin-bottom: 16px;
+      }
+      .control-box {
+        border-radius: 22px;
+        border: 1px solid #e2e8f0;
+        background: rgba(255,255,255,0.9);
+        padding: 14px 16px;
+      }
+      .control-label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #334155;
+      }
+      .control-select {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 14px;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+        background: #ffffff;
+      }
+      .control-button {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 14px 18px;
+        font-size: 14px;
+        font-weight: 800;
+        color: #334155;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+        transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      }
+      .control-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(15,23,42,0.09);
+        background: #f8fafc;
+      }
+      .switch-card {
+        min-width: 188px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .switch-label-text {
+        font-size: 14px;
+        font-weight: 800;
+        color: #0f172a;
+      }
+      .switch-subtext {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #64748b;
+        line-height: 1.5;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 54px;
+        height: 30px;
+        flex: 0 0 auto;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider-switch {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background: #cbd5e1;
+        transition: .2s;
+        border-radius: 999px;
+      }
+      .slider-switch:before {
+        position: absolute;
+        content: '';
+        height: 24px;
+        width: 24px;
+        left: 3px;
+        top: 3px;
+        background: white;
+        transition: .2s;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(15,23,42,0.16);
+      }
+      .switch input:checked + .slider-switch {
+        background: #7c3aed;
+      }
+      .switch input:checked + .slider-switch:before {
+        transform: translateX(24px);
+      }
+      .message-box {
+        margin-bottom: 14px;
+        border-radius: 18px;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #334155;
+      }
+      .challenge-panel {
+        display: none;
+        margin-bottom: 14px;
+        padding: 16px;
+        border-radius: 22px;
+        border: 1px solid #ddd6fe;
+        background: linear-gradient(180deg, #faf5ff 0%, #f5f3ff 100%);
+      }
+      .challenge-grid {
+        display: grid;
+        grid-template-columns: 1fr 190px;
+        gap: 14px;
+        align-items: center;
+      }
+      .challenge-title {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 900;
+        color: #581c87;
+      }
+      .challenge-text {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.65;
+        color: #5b21b6;
+      }
+      .challenge-hint {
+        margin-top: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        border: 1px solid #ddd6fe;
+        background: #ffffff;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #6d28d9;
+      }
+      .challenge-actions {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .mini-board-wrap {
+        border-radius: 20px;
+        border: 1px solid #e9d5ff;
+        background: #ffffff;
+        padding: 10px;
+        box-shadow: 0 4px 12px rgba(91,33,182,0.08);
+      }
+      .mini-board-title {
+        margin-bottom: 8px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-weight: 900;
+        color: #7c3aed;
+      }
+      .mini-board {
+        position: relative;
+        height: 122px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .mini-peg {
+        position: relative;
+        border-radius: 16px;
+        border: 1px solid #ede9fe;
+        background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+        overflow: hidden;
+      }
+      .mini-base {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        height: 8px;
+        background: #d8b4fe;
+        border-radius: 999px;
+      }
+      .mini-pole {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        width: 8px;
+        height: 78px;
+        transform: translateX(-50%);
+        background: #d8b4fe;
+        border-radius: 999px;
+      }
+      .mini-disk {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.6);
+      }
+      .board-wrap {
+        position: relative;
+        touch-action: none;
+        border-radius: 30px;
+        border: 1px solid #cbd5e1;
+        background: linear-gradient(180deg, #f1f5f9 0%, #dbe4ef 100%);
+        padding: 14px;
+        overflow: hidden;
+      }
+      .board-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .peg {
+        position: relative;
+        touch-action: none;
+        min-height: 330px;
+        border-radius: 28px;
+        border: 1px solid #dbe4ef;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+        cursor: pointer;
+        overflow: hidden;
+      }
+      .peg-topbar {
+        position: absolute;
+        top: 14px;
+        left: 16px;
+        right: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.20em;
+        color: #94a3b8;
+        pointer-events: none;
+      }
+      .peg-base {
+        position: absolute;
+        left: 26px;
+        right: 26px;
+        bottom: 20px;
+        height: 12px;
+        background: #cbd5e1;
+        border-radius: 999px;
+      }
+      .peg-pole {
+        position: absolute;
+        left: 50%;
+        bottom: 32px;
+        width: 12px;
+        height: 226px;
+        transform: translateX(-50%);
+        background: #cbd5e1;
+        border-radius: 999px;
+      }
+      .disk {
+        position: absolute;
+        left: 50%;
+        height: 24px;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.45);
+        box-shadow: 0 10px 24px rgba(15,23,42,0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 11px;
+        font-weight: 800;
+        user-select: none;
+      }
+      .disk.top-disk { cursor: grab; touch-action: none; }
+      .disk.drag-hidden { opacity: 0; }
+      .disk.selected { box-shadow: 0 0 0 4px rgba(148,163,184,0.46), 0 10px 24px rgba(15,23,42,0.16); }
+      .disk-1 { background: linear-gradient(90deg, #fb7185 0%, #ec4899 100%); }
+      .disk-2 { background: linear-gradient(90deg, #fb923c 0%, #f59e0b 100%); }
+      .disk-3 { background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%); }
+      .disk-4 { background: linear-gradient(90deg, #38bdf8 0%, #06b6d4 100%); }
+      .disk-5 { background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%); }
+      .disk-6 { background: linear-gradient(90deg, #f472b6 0%, #ec4899 100%); }
+      .floating-disk {
+        position: absolute;
+        height: 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.45);
+        box-shadow: 0 16px 30px rgba(15,23,42,0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 11px;
+        font-weight: 800;
+        pointer-events: none;
+        z-index: 25;
+        transform: translate(-50%, -50%);
+      }
+      .graph-shell {
+        border-radius: 26px;
+        border: 1px solid #dbe4ef;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        padding: 14px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      }
+      .graph-meta {
+        margin-bottom: 10px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: #475569;
+      }
+      .graph-box {
+        border-radius: 22px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        min-height: 420px;
+        overflow: hidden;
+      }
+      .graph-box svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .legend-row {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 12px;
+        color: #64748b;
+      }
+      .legend-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+      }
+      .legend-dot { width: 10px; height: 10px; border-radius: 999px; }
+      .success-card { margin-top: 16px; padding: 16px 18px; }
+      .success-card.gold {
+        border: 1px solid #f5d76e;
+        background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+        color: #92400e;
+      }
+      .success-card.silver {
+        border: 1px solid #cbd5e1;
+        background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+        color: #334155;
+      }
+      .success-card.bronze {
+        border: 1px solid #d6b08a;
+        background: linear-gradient(180deg, #fff7ed 0%, #f7e3d2 100%);
+        color: #7c2d12;
+      }
+      .success-title {
+        margin: 0 0 6px;
+        font-size: 20px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cup-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        font-size: 20px;
+        box-shadow: 0 6px 18px rgba(15,23,42,0.10);
+        background: rgba(255,255,255,0.78);
+      }
+      .cup-icon.gold { color: #d97706; }
+      .cup-icon.silver { color: #94a3b8; }
+      .cup-icon.bronze { color: #b45309; }
+      .success-text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      @media (max-width: 1060px) { .play-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 950px) {
+        .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .controls-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 760px) {
+        .app-shell { padding: 12px; }
+        .hero-card, .board-card, .graph-card { padding: 18px; border-radius: 24px; }
+        .board-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+        .peg { min-height: 220px; border-radius: 20px; }
+        .peg-pole { height: 145px; width: 10px; bottom: 26px; }
+        .peg-base { left: 14px; right: 14px; bottom: 14px; height: 10px; }
+        .peg-topbar { top: 10px; left: 10px; right: 10px; font-size: 9px; letter-spacing: 0.12em; }
+        .disk { height: 18px; font-size: 9px; }
+        .graph-box { min-height: 320px; }
+        .challenge-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  <script>document.addEventListener('DOMContentLoaded', function () {
+      const app = document.getElementById('hanoi-app');
+      if (!app) return;
+
+      const els = {
+        diskSelect: document.getElementById('disk-select'),
+        resetBtn: document.getElementById('reset-game'),
+        challengeToggle: document.getElementById('challenge-toggle'),
+        challengePanel: document.getElementById('challenge-panel'),
+        challengeGoalBoard: document.getElementById('challenge-goal-board'),
+        challengeText: document.getElementById('challenge-text'),
+        challengeHint: document.getElementById('challenge-hint'),
+        routeBtn: document.getElementById('toggle-route'),
+        graphRouteBtn: document.getElementById('graph-route-btn'),
+        message: document.getElementById('message-box'),
+        board: document.getElementById('board-grid'),
+        boardWrap: document.getElementById('board-wrap'),
+        floatingLayer: document.getElementById('floating-layer'),
+        graphBox: document.getElementById('graph-box'),
+        graphMeta: document.getElementById('graph-meta'),
+        statMoves: document.getElementById('stat-moves'),
+        statMovesSub: document.getElementById('stat-moves-sub'),
+        statTime: document.getElementById('stat-time'),
+        statTimeSub: document.getElementById('stat-time-sub'),
+        statState: document.getElementById('stat-state'),
+        statStateSub: document.getElementById('stat-state-sub'),
+        success: document.getElementById('success-card'),
+        successTitle: document.getElementById('success-title'),
+        successText: document.getElementById('success-text')
+      };
+
+      const letters = ['1', '2', '3'];
+      const graphCache = {};
+      let timerId = null;
+
+      const state = {
+        numDisks: 3,
+        pegs: [],
+        moves: 0,
+        seconds: 0,
+        timerOrigin: null,
+        running: false,
+        solved: false,
+        selected: null,
+        dragging: null,
+        suppressClick: false,
+        pathStates: [],
+        challengeMode: false,
+        challengeStartLabel: null,
+        challengeGoalLabel: null,
+        showOptimalGraphPath: false,
+        optimalPathCache: null
+      };
+
+      function buildInitialPegs(n) {
+        return [Array.from({ length: n }, (_, i) => n - i), [], []];
+      }
+
+      function labelToPegs(label) {
+        const pegs = [[], [], []];
+        for (let i = 0; i < label.length; i += 1) {
+          const disk = label.length - i;
+          const peg = parseInt(label[i], 10) - 1;
+          pegs[peg].push(disk);
+        }
+        return pegs;
+      }
+
+      function stateStringFromPegs() {
+        const positions = Array(state.numDisks + 1).fill('1');
+        state.pegs.forEach((peg, pegIndex) => {
+          peg.forEach((disk) => {
+            positions[disk] = letters[pegIndex];
+          });
+        });
+        const out = [];
+        for (let disk = state.numDisks; disk >= 1; disk -= 1) out.push(positions[disk]);
+        return out.join('');
+      }
+
+      function currentGoalLabel() {
+        return state.challengeMode ? state.challengeGoalLabel : '3'.repeat(state.numDisks);
+      }
+
+      function currentStartLabel() {
+        return state.challengeMode ? state.challengeStartLabel : '1'.repeat(state.numDisks);
+      }
+
+      function minMovesNormal() {
+        return Math.pow(2, state.numDisks) - 1;
+      }
+
+      function diskWidthPercent(disk, numDisks) {
+        if (numDisks <= 1) return 84;
+        const min = 38;
+        const max = 88;
+        return min + ((disk - 1) * (max - min)) / (numDisks - 1);
+      }
+
+      function formatTime(seconds) {
+        const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const s = String(Math.floor(seconds % 60)).padStart(2, '0');
+        return `${m}:${s}`;
+      }
+
+      function setMessage(text) {
+        els.message.textContent = text;
+      }
+
+      function startTimer() {
+        if (state.running) return;
+        state.running = true;
+        state.timerOrigin = Date.now() - state.seconds * 1000;
+        if (timerId) window.clearInterval(timerId);
+        timerId = window.setInterval(function () {
+          if (!state.running || state.timerOrigin === null) return;
+          state.seconds = Math.floor((Date.now() - state.timerOrigin) / 1000);
+          renderStats();
+        }, 250);
+        renderStats();
+      }
+
+      function stopTimer() {
+        if (state.running && state.timerOrigin !== null) {
+          state.seconds = Math.floor((Date.now() - state.timerOrigin) / 1000);
+        }
+        state.running = false;
+        state.timerOrigin = null;
+        if (timerId) {
+          window.clearInterval(timerId);
+          timerId = null;
+        }
+        renderStats();
+      }
+
+      function getTopDisk(peg) {
+        return peg[peg.length - 1];
+      }
+
+      function canMove(from, to) {
+        if (state.solved) return false;
+        if (from === to) return false;
+        const fromPeg = state.pegs[from];
+        const toPeg = state.pegs[to];
+        if (!fromPeg.length) return false;
+        if (!toPeg.length) return true;
+        return getTopDisk(fromPeg) < getTopDisk(toPeg);
+      }
+
+      function thirdPeg(a, b) {
+        return String(6 - parseInt(a, 10) - parseInt(b, 10));
+      }
+
+      function shortestPath(a, b) {
+        const key = `${a}|${b}`;
+        if (state.optimalPathCache && state.optimalPathCache[key]) return state.optimalPathCache[key].slice();
+        let result;
+        if (a === b) {
+          result = [a];
+        } else if (a.length === 0) {
+          result = [''];
+        } else {
+          let r = -1;
+          for (let i = 0; i < a.length; i += 1) {
+            if (a[i] !== b[i]) {
+              r = i;
+              break;
+            }
+          }
+          const common = a.slice(0, r);
+          const leftPeg = a[r];
+          const rightPeg = b[r];
+          const c = thirdPeg(leftPeg, rightPeg);
+          const tailLen = a.length - r - 1;
+          const towerC = c.repeat(tailLen);
+          const leftTail = shortestPath(a.slice(r + 1), towerC);
+          const rightTail = shortestPath(towerC, b.slice(r + 1));
+          const leftStates = leftTail.map((s) => common + leftPeg + s);
+          const rightStates = rightTail.map((s) => common + rightPeg + s);
+          result = leftStates.concat(rightStates);
+        }
+        if (!state.optimalPathCache) state.optimalPathCache = {};
+        state.optimalPathCache[key] = result.slice();
+        return result;
+      }
+
+      function currentOptimalPath() {
+        return shortestPath(currentStartLabel(), currentGoalLabel());
+      }
+
+      function currentOptimalMoves() {
+        return currentOptimalPath().length - 1;
+      }
+
+      function randomLabel(n) {
+        let s = '';
+        for (let i = 0; i < n; i += 1) s += String(1 + Math.floor(Math.random() * 3));
+        return s;
+      }
+
+      function makeChallenge(n) {
+        let start = randomLabel(n);
+        let goal = randomLabel(n);
+        while (goal === start) goal = randomLabel(n);
+        let path = shortestPath(start, goal);
+        let tries = 0;
+        while (path.length - 1 < Math.max(3, n) && tries < 40) {
+          start = randomLabel(n);
+          goal = randomLabel(n);
+          while (goal === start) goal = randomLabel(n);
+          path = shortestPath(start, goal);
+          tries += 1;
+        }
+        state.challengeStartLabel = start;
+        state.challengeGoalLabel = goal;
+        state.optimalPathCache = {};
+      }
+
+      function medalInfo() {
+        const over = state.moves - currentOptimalMoves();
+        if (over <= 0) {
+          return {
+            tier: 'gold',
+            icon: `<span class='cup-icon gold'>🏆</span>`,
+            title: 'Torre completada · Copa de oro',
+            text: `Terminaste en <strong>${state.moves}</strong> movimientos. ¡Resolución óptima!`
+          };
+        }
+        if (over <= 5) {
+          return {
+            tier: 'silver',
+            icon: `<span class='cup-icon silver'>🏆</span>`,
+            title: 'Torre completada · Copa de plata',
+            text: `Terminaste en <strong>${state.moves}</strong> movimientos. Eso es ${over} por encima del mínimo.`
+          };
+        }
+        return {
+          tier: 'bronze',
+          icon: `<span class='cup-icon bronze'>🏆</span>`,
+          title: 'Torre completada · Copa de bronce',
+          text: `Terminaste en <strong>${state.moves}</strong> movimientos. Eso es ${over} por encima del mínimo.`
+        };
+      }
+
+      function miniBoardHTML(label) {
+        const pegs = labelToPegs(label);
+        let html = `<div class='mini-board'>`;
+        pegs.forEach(function (peg) {
+          html += `<div class='mini-peg'><div class='mini-base'></div><div class='mini-pole'></div>`;
+          peg.forEach(function (disk, idx) {
+            html += `<div class='mini-disk disk-${((disk - 1) % 6) + 1}' style='width:${diskWidthPercent(disk, label.length)}%; bottom:${10 + idx * 13}px;'></div>`;
+          });
+          html += `</div>`;
+        });
+        html += `</div>`;
+        return html;
+      }
+
+      function renderChallengePanel() {
+        if (!state.challengeMode) {
+          els.challengePanel.style.display = 'none';
+          return;
+        }
+        els.challengePanel.style.display = 'block';
+        els.challengeGoalBoard.innerHTML = `<div class='mini-board-title'>Meta</div><div class='mini-board-wrap'>${miniBoardHTML(state.challengeGoalLabel)}</div>`;
+        els.challengeText.innerHTML = `Comienza en <strong>${state.challengeStartLabel}</strong> y llega a <strong>${state.challengeGoalLabel}</strong> usando la menor cantidad de movimientos posible.`;
+        els.challengeHint.innerHTML = `💡 Mínimo conocido: <strong>${currentOptimalMoves()}</strong> movimientos.`;
+        const routeText = state.showOptimalGraphPath ? 'Ocultar una ruta óptima' : 'Mostrar una ruta óptima';
+        els.routeBtn.textContent = routeText;
+        els.graphRouteBtn.textContent = routeText;
+      }
+
+      function renderStats() {
+        els.statMoves.textContent = String(state.moves);
+        els.statMovesSub.textContent = state.challengeMode ? `reto óptimo: ${currentOptimalMoves()}` : `mínimo: ${minMovesNormal()}`;
+        els.statTime.textContent = formatTime(state.seconds);
+        els.statTimeSub.textContent = state.running ? 'cronómetro activo' : 'en pausa';
+        els.statState.textContent = stateStringFromPegs();
+        els.statStateSub.textContent = `meta: ${currentGoalLabel()}`;
+      }
+
+      function makeDisk(pegIndex, disk, idx) {
+        const diskEl = document.createElement('div');
+        const isTop = idx === state.pegs[pegIndex].length - 1;
+        const isSelected = state.selected && state.selected.peg === pegIndex && state.selected.disk === disk;
+        const isHidden = state.dragging && state.dragging.fromPeg === pegIndex && state.dragging.disk === disk;
+        diskEl.className = `disk disk-${((disk - 1) % 6) + 1}`;
+        if (isTop) diskEl.classList.add('top-disk');
+        if (isSelected) diskEl.classList.add('selected');
+        if (isHidden) diskEl.classList.add('drag-hidden');
+        diskEl.style.width = `${diskWidthPercent(disk, state.numDisks)}%`;
+        diskEl.style.bottom = `${32 + idx * 26}px`;
+        diskEl.textContent = String(disk);
+        if (isTop) {
+          diskEl.addEventListener('pointerdown', function (e) {
+            if (state.solved) return;
+            e.preventDefault();
+            const boardRect = els.boardWrap.getBoundingClientRect();
+            const rect = diskEl.getBoundingClientRect();
+            state.dragging = {
+              disk,
+              fromPeg: pegIndex,
+              moved: false,
+              width: rect.width,
+              pointerX: e.clientX - boardRect.left,
+              pointerY: e.clientY - boardRect.top,
+              startX: e.clientX,
+              startY: e.clientY
+            };
+            renderBoard();
+            renderFloating();
+          });
+        }
+        return diskEl;
+      }
+
+      function renderFloating() {
+        els.floatingLayer.innerHTML = '';
+        if (!state.dragging) return;
+        const floater = document.createElement('div');
+        floater.className = `floating-disk disk-${((state.dragging.disk - 1) % 6) + 1}`;
+        floater.style.width = `${state.dragging.width}px`;
+        floater.style.left = `${state.dragging.pointerX}px`;
+        floater.style.top = `${state.dragging.pointerY}px`;
+        floater.textContent = String(state.dragging.disk);
+        els.floatingLayer.appendChild(floater);
+      }
+
+      function renderBoard() {
+        els.board.innerHTML = '';
+        state.pegs.forEach(function (peg, pegIndex) {
+          const pegEl = document.createElement('div');
+          pegEl.className = 'peg';
+          const topBar = document.createElement('div');
+          topBar.className = 'peg-topbar';
+          topBar.innerHTML = `<span>Poste ${letters[pegIndex]}</span><span>${peg.length} disco${peg.length === 1 ? '' : 's'}</span>`;
+          const base = document.createElement('div');
+          base.className = 'peg-base';
+          const pole = document.createElement('div');
+          pole.className = 'peg-pole';
+          pegEl.appendChild(topBar);
+          pegEl.appendChild(base);
+          pegEl.appendChild(pole);
+          peg.forEach(function (disk, idx) {
+            pegEl.appendChild(makeDisk(pegIndex, disk, idx));
+          });
+          pegEl.addEventListener('click', function () {
+            if (state.solved) return;
+            if (state.dragging || state.suppressClick) return;
+            if (state.selected) applyMove(state.selected.peg, pegIndex);
+          });
+          els.board.appendChild(pegEl);
+        });
+      }
+
+      function generateGraph(n) {
+        if (graphCache[n]) return graphCache[n];
+        const states = [];
+        function enumerate(prefix, depth) {
+          if (depth === n) {
+            states.push(prefix);
+            return;
+          }
+          ['1','2','3'].forEach(function (d) { enumerate(prefix + d, depth + 1); });
+        }
+        enumerate('', 0);
+        const pos = {};
+        function lerp(P, Q, t) { return { x: P.x + t * (Q.x - P.x), y: P.y + t * (Q.y - P.y) }; }
+        function placeRec(level, prefix, orient, T, L, R, alpha) {
+          if (level === 1) {
+            pos[prefix + orient[0]] = T;
+            pos[prefix + orient[1]] = L;
+            pos[prefix + orient[2]] = R;
+            return;
+          }
+          const Tt = T;
+          const Lt = lerp(T, L, alpha);
+          const Rt = lerp(T, R, alpha);
+          const Tl = lerp(L, T, alpha);
+          const Ll = L;
+          const Rl = lerp(L, R, alpha);
+          const Tr = lerp(R, T, alpha);
+          const Lr = lerp(R, L, alpha);
+          const Rr = R;
+          const a = orient[0], b = orient[1], c = orient[2];
+          placeRec(level - 1, prefix + a, [a, c, b], Tt, Lt, Rt, alpha);
+          placeRec(level - 1, prefix + b, [c, b, a], Tl, Ll, Rl, alpha);
+          placeRec(level - 1, prefix + c, [b, a, c], Tr, Lr, Rr, alpha);
+        }
+        const side = n <= 4 ? 100 : (n === 5 ? 114 : 126);
+        const h = Math.sqrt(3) / 2 * side;
+        placeRec(n, '', ['1','2','3'], { x: 0, y: h }, { x: -side / 2, y: 0 }, { x: side / 2, y: 0 }, 0.44);
+        function neighbors(label) {
+          const top = [null, null, null];
+          for (let i = 0; i < label.length; i += 1) top[parseInt(label[i], 10) - 1] = i;
+          const out = [];
+          for (let from = 0; from < 3; from += 1) {
+            const diskIdx = top[from];
+            if (diskIdx === null) continue;
+            for (let to = 0; to < 3; to += 1) {
+              if (from === to) continue;
+              const targetIdx = top[to];
+              if (targetIdx === null || diskIdx > targetIdx) {
+                const chars = label.split('');
+                chars[diskIdx] = String(to + 1);
+                out.push(chars.join(''));
+              }
+            }
+          }
+          return out;
+        }
+        const edgeSet = new Set();
+        const edges = [];
+        states.forEach(function (label) {
+          neighbors(label).forEach(function (nb) {
+            const key = label < nb ? `${label}|${nb}` : `${nb}|${label}`;
+            if (!edgeSet.has(key)) {
+              edgeSet.add(key);
+              edges.push({ from: label, to: nb, key: key });
+            }
+          });
+        });
+        const xs = Object.values(pos).map(function (p) { return p.x; });
+        const ys = Object.values(pos).map(function (p) { return p.y; });
+        graphCache[n] = {
+          nodes: states.map(function (label) { return { label: label, x: pos[label].x, y: pos[label].y }; }),
+          edges: edges,
+          xmin: Math.min.apply(null, xs),
+          xmax: Math.max.apply(null, xs),
+          ymin: Math.min.apply(null, ys),
+          ymax: Math.max.apply(null, ys)
+        };
+        return graphCache[n];
+      }
+
+      function renderGraph() {
+        const graph = generateGraph(state.numDisks);
+        const width = 500;
+        const height = 500;
+        const pad = 22;
+        const sx = (width - 2 * pad) / (graph.xmax - graph.xmin || 1);
+        const sy = (height - 2 * pad) / (graph.ymax - graph.ymin || 1);
+        const mapX = function (x) { return pad + (x - graph.xmin) * sx; };
+        const mapY = function (y) { return height - pad - (y - graph.ymin) * sy; };
+        const currentState = state.pathStates[state.pathStates.length - 1] || stateStringFromPegs();
+        const startState = currentStartLabel();
+        const goalState = currentGoalLabel();
+        const playerPath = state.pathStates.slice();
+        const optimalPath = state.showOptimalGraphPath ? currentOptimalPath() : [];
+        const nodeRadius = state.numDisks <= 4 ? 2.6 : (state.numDisks === 5 ? 1.6 : 1.15);
+        const currentRadius = nodeRadius + 1.4;
+        const nodeMap = new Map(graph.nodes.map(function (n) { return [n.label, n]; }));
+        const parts = [];
+        parts.push(`<svg viewBox='0 0 ${width} ${height}' aria-label='Grafo del juego'>`);
+        parts.push(`<rect x='0' y='0' width='100%' height='100%' fill='#ffffff'></rect>`);
+        graph.edges.forEach(function (edge) {
+          const from = nodeMap.get(edge.from);
+          const to = nodeMap.get(edge.to);
+          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#cbd5e1' stroke-width='1.15'></line>`);
+        });
+        for (let i = 1; i < optimalPath.length; i += 1) {
+          const from = nodeMap.get(optimalPath[i - 1]);
+          const to = nodeMap.get(optimalPath[i]);
+          if (!from || !to) continue;
+          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#f59e0b' stroke-width='6.2' stroke-linecap='round' opacity='0.96'></line>`);
+        }
+        for (let i = 1; i < playerPath.length; i += 1) {
+          const from = nodeMap.get(playerPath[i - 1]);
+          const to = nodeMap.get(playerPath[i]);
+          if (!from || !to) continue;
+          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#7c3aed' stroke-width='3.6' stroke-linecap='round'></line>`);
+        }
+        graph.nodes.forEach(function (node) {
+          const cx = mapX(node.x);
+          const cy = mapY(node.y);
+          parts.push(`<circle cx='${cx}' cy='${cy}' r='${nodeRadius}' fill='#ffffff' stroke='#334155' stroke-width='1.1'></circle>`);
+          if (node.label === startState) {
+            parts.push(`<circle cx='${cx}' cy='${cy}' r='${currentRadius}' fill='#16a34a' stroke='#16a34a' stroke-width='1.8'></circle>`);
+          }
+          if (node.label === goalState) {
+            const r = currentRadius;
+            const p1 = `${cx},${cy - r}`;
+            const p2 = `${cx - 0.92 * r},${cy + 0.68 * r}`;
+            const p3 = `${cx + 0.92 * r},${cy + 0.68 * r}`;
+            parts.push(`<polygon points='${p1} ${p2} ${p3}' fill='#ef4444' stroke='#ef4444' stroke-width='1.7'></polygon>`);
+          }
+          if (node.label === currentState) {
+            parts.push(`<circle cx='${cx}' cy='${cy}' r='${currentRadius}' fill='#0f172a' stroke='#0f172a' stroke-width='2'></circle>`);
+          }
+        });
+        parts.push(`</svg>`);
+        els.graphBox.innerHTML = parts.join('');
+        els.graphMeta.innerHTML = state.challengeMode
+          ? `Grafo <strong>H(${state.numDisks},3)</strong> · inicio <strong>${startState}</strong> · meta <strong>${goalState}</strong> · recorrido del jugador <strong>${Math.max(state.pathStates.length - 1, 0)}</strong> arista(s) · una ruta óptima ${state.showOptimalGraphPath ? '<strong>visible</strong>' : '<strong>oculta</strong>'}.`
+          : `Grafo <strong>H(${state.numDisks},3)</strong> · inicio <strong>${startState}</strong> · meta <strong>${goalState}</strong> · recorrido del jugador <strong>${Math.max(state.pathStates.length - 1, 0)}</strong> arista(s) · ruta óptima ${state.showOptimalGraphPath ? '<strong>visible</strong>' : '<strong>oculta</strong>'}.`;
+      }
+
+      function renderSuccess() {
+        if (!state.solved) {
+          els.success.style.display = 'none';
+          els.success.classList.remove('gold', 'silver', 'bronze');
+          return;
+        }
+        const info = medalInfo();
+        els.success.style.display = 'block';
+        els.success.classList.remove('gold', 'silver', 'bronze');
+        els.success.classList.add(info.tier);
+        els.successTitle.innerHTML = `${info.icon}<span>${info.title}</span>`;
+        els.successText.innerHTML = `${info.text} La referencia óptima para este juego es <strong>${currentOptimalMoves()}</strong>.`;
+      }
+
+      function render() {
+        els.diskSelect.value = String(state.numDisks);
+        els.challengeToggle.checked = state.challengeMode;
+        renderStats();
+        renderChallengePanel();
+        renderBoard();
+        renderFloating();
+        renderGraph();
+        renderSuccess();
+      }
+
+      function startNormalGame(nextDisks) {
+        state.numDisks = nextDisks;
+        state.pegs = buildInitialPegs(nextDisks);
+        state.moves = 0;
+        state.seconds = 0;
+        state.timerOrigin = null;
+        state.running = false;
+        state.solved = false;
+        state.selected = null;
+        state.dragging = null;
+        state.suppressClick = false;
+        state.challengeMode = false;
+        state.challengeStartLabel = '1'.repeat(nextDisks);
+        state.challengeGoalLabel = '3'.repeat(nextDisks);
+        state.showOptimalGraphPath = false;
+        state.optimalPathCache = {};
+        state.pathStates = [state.challengeStartLabel];
+        if (timerId) { window.clearInterval(timerId); timerId = null; }
+        setMessage('Arrastra el disco superior o tócala y luego elige el poste de destino.');
+        render();
+      }
+
+      function startChallengeGame(nextDisks) {
+        state.numDisks = nextDisks;
+        state.challengeMode = true;
+        state.showOptimalGraphPath = false;
+        state.optimalPathCache = {};
+        makeChallenge(nextDisks);
+        state.pegs = labelToPegs(state.challengeStartLabel);
+        state.moves = 0;
+        state.seconds = 0;
+        state.timerOrigin = null;
+        state.running = false;
+        state.solved = false;
+        state.selected = null;
+        state.dragging = null;
+        state.suppressClick = false;
+        state.pathStates = [state.challengeStartLabel];
+        if (timerId) { window.clearInterval(timerId); timerId = null; }
+        setMessage(`Modo reto activo: parte de ${state.challengeStartLabel} y llega a ${state.challengeGoalLabel}.`);
+        render();
+      }
+
+      function resetCurrentGame() {
+        if (state.challengeMode) {
+          startChallengeGame(state.numDisks);
+        } else {
+          startNormalGame(state.numDisks);
+        }
+      }
+
+      function applyMove(from, to) {
+        if (!canMove(from, to)) {
+          setMessage('Movimiento no permitido: un disco grande no puede ir sobre uno pequeño.');
+          render();
+          return false;
+        }
+        const disk = state.pegs[from].pop();
+        state.pegs[to].push(disk);
+        state.moves += 1;
+        state.selected = null;
+        startTimer();
+        state.pathStates.push(stateStringFromPegs());
+        if (stateStringFromPegs() === currentGoalLabel()) {
+          state.solved = true;
+          stopTimer();
+          setMessage(`¡Lo lograste! Llegaste a ${currentGoalLabel()}.`);
+        } else {
+          setMessage(`Movimiento válido de ${letters[from]} a ${letters[to]}.`);
+        }
+        render();
+        return true;
+      }
+
+      document.addEventListener('pointermove', function (e) {
+        if (!state.dragging) return;
+        const boardRect = els.boardWrap.getBoundingClientRect();
+        state.dragging.pointerX = e.clientX - boardRect.left;
+        state.dragging.pointerY = e.clientY - boardRect.top;
+        if (!state.dragging.moved) {
+          const dx = e.clientX - state.dragging.startX;
+          const dy = e.clientY - state.dragging.startY;
+          if (Math.hypot(dx, dy) > 6) state.dragging.moved = true;
+        }
+        renderFloating();
+      });
+
+      document.addEventListener('pointerup', function (e) {
+        if (!state.dragging) return;
+        const drag = { ...state.dragging };
+        state.dragging = null;
+        renderFloating();
+        const boardRect = els.boardWrap.getBoundingClientRect();
+        const insideBoard = e.clientX >= boardRect.left && e.clientX <= boardRect.right && e.clientY >= boardRect.top && e.clientY <= boardRect.bottom;
+        if (drag.moved && insideBoard && !state.solved) {
+          const pegEls = Array.from(els.board.querySelectorAll('.peg'));
+          let targetPeg = null;
+          pegEls.forEach(function (pegEl, idx) {
+            const rect = pegEl.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) targetPeg = idx;
+          });
+          if (targetPeg !== null) {
+            state.suppressClick = true;
+            window.setTimeout(function () { state.suppressClick = false; }, 0);
+            applyMove(drag.fromPeg, targetPeg);
+            return;
+          }
+        }
+        if (!drag.moved && !state.solved) {
+          if (state.selected && state.selected.peg === drag.fromPeg && state.selected.disk === drag.disk) {
+            state.selected = null;
+          } else {
+            state.selected = { peg: drag.fromPeg, disk: drag.disk };
+            setMessage(`Disco ${drag.disk} seleccionado. Ahora toca el poste de destino.`);
+          }
+        }
+        render();
+      });
+
+      els.diskSelect.addEventListener('change', function () {
+        const n = parseInt(this.value, 10);
+        if (state.challengeMode) startChallengeGame(n); else startNormalGame(n);
+      });
+
+      els.challengeToggle.addEventListener('change', function () {
+        const n = parseInt(els.diskSelect.value, 10);
+        if (this.checked) startChallengeGame(n); else startNormalGame(n);
+      });
+
+      els.resetBtn.addEventListener('click', function () {
+        resetCurrentGame();
+      });
+
+      function toggleOptimalRoute() {
+        state.showOptimalGraphPath = !state.showOptimalGraphPath;
+        render();
+      }
+
+      els.routeBtn.addEventListener('click', toggleOptimalRoute);
+      els.graphRouteBtn.addEventListener('click', toggleOptimalRoute);
+
+      startNormalGame(3);
+    });</script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div id="hanoi-app" class="app-shell">
+      <div class="hero-card">
+        <div class="badge">&#10022; Torres de Hanoi interactivo</div>
+        <h1 class="hero-title">El Juego de las Torres de Hanoi</h1>
+        <p class="hero-subtitle">Juega con arrastrar y soltar, mide tus movimientos y sigue el recorrido de tus jugadas sobre el grafo asociado del rompecabezas. También puedes activar un modo reto con inicio y meta aleatorios.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Movimientos</div>
+            <div id="stat-moves" class="stat-value">0</div>
+            <div id="stat-moves-sub" class="stat-subvalue">mínimo: 3</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Tiempo</div>
+            <div id="stat-time" class="stat-value">00:00</div>
+            <div id="stat-time-sub" class="stat-subvalue">en pausa</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Estado actual</div>
+            <div id="stat-state" class="stat-value">11</div>
+            <div id="stat-state-sub" class="stat-subvalue">meta: 33</div>
+          </div>
+        </div>
+      </div>
+      <div style="height: 16px;"></div>
+      <div class="play-grid">
+        <div class="board-card">
+          <div class="section-head">
+            <div class="section-icon">&#127918;</div>
+            <div>
+              <h2 class="section-title">Tablero de juego</h2>
+              <p class="section-subtitle">Usa el selector para elegir el número de discos. También puedes activar el modo reto para resolver una configuración aleatoria hacia una meta concreta en la menor cantidad posible de movimientos.</p>
+            </div>
+          </div>
+          <div class="controls-grid">
+            <div class="control-box">
+              <label class="control-label" for="disk-select">Número de discos</label>
+              <select id="disk-select" class="control-select">
+                <option value="3" selected="selected">3 discos</option>
+                <option value="3">3 discos</option>
+                <option value="4">4 discos</option>
+                <option value="5">5 discos</option>
+                <option value="6">6 discos</option>
+              </select>
+            </div>
+            <div class="control-box switch-card">
+              <div class="switch-row">
+                <div>
+                  <div class="switch-label-text">Modo reto</div>
+                  <div class="switch-subtext">Inicio y meta aleatorios</div>
+                </div>
+                <label class="switch">
+                  <input id="challenge-toggle" type="checkbox"/>
+                  <span class="slider-switch"></span>
+                </label>
+              </div>
+            </div>
+            <button id="reset-game" class="control-button">&#8635; Reiniciar</button>
+          </div>
+          <div id="challenge-panel" class="challenge-panel">
+            <div class="challenge-grid">
+              <div>
+                <h3 class="challenge-title">Reto activo</h3>
+                <p id="challenge-text" class="challenge-text"></p>
+                <div id="challenge-hint" class="challenge-hint"></div>
+                <div class="challenge-actions">
+                  <button id="toggle-route" class="control-button">Mostrar una ruta óptima en el grafo</button>
+                </div>
+              </div>
+              <div id="challenge-goal-board"></div>
+            </div>
+          </div>
+          <div id="message-box" class="message-box">Arrastra el disco superior o tócala y luego elige el poste de destino.</div>
+          <div id="board-wrap" class="board-wrap">
+            <div id="board-grid" class="board-grid"></div>
+            <div id="floating-layer"></div>
+          </div>
+          <div id="success-card" class="success-card" style="display:none;">
+            <h3 id="success-title" class="success-title"></h3>
+            <p id="success-text" class="success-text"></p>
+          </div>
+        </div>
+        <div class="graph-card">
+          <div class="section-head">
+            <div class="section-icon">&#128279;</div>
+            <div>
+              <h2 class="section-title">Grafo del juego</h2>
+              <p class="section-subtitle">El caminito violeta muestra tus jugadas. En modo reto puedes superponer también una ruta óptima sobre el grafo.</p>
+            </div>
+          </div>
+          <div class="graph-shell">
+            <div class="challenge-actions" style="margin-top:0; margin-bottom:10px;">
+              <button id="graph-route-btn" class="control-button">Mostrar una ruta óptima</button>
+            </div>
+            <div id="graph-meta" class="graph-meta"></div>
+            <div id="graph-box" class="graph-box"></div>
+            <div class="legend-row">
+              <div class="legend-chip">
+                <span class="legend-dot" style="background:#7c3aed;"></span>
+                camino del jugador
+              </div>
+              <div class="legend-chip">
+                <span class="legend-dot" style="background:#f59e0b;"></span>
+                ruta óptima
+              </div>
+              <div class="legend-chip">
+                <span class="legend-dot" style="background:#0f172a;"></span>
+                posición actual
+              </div>
+              <div class="legend-chip">
+                <span class="legend-dot" style="background:#16a34a; border:1px solid #16a34a;"></span>
+                inicio
+              </div>
+              <div class="legend-chip">
+                <span class="legend-dot" style="background:#ef4444; border:1px solid #ef4444; clip-path:polygon(50% 0%, 0% 100%, 100% 100%);"></span>
+                meta
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
