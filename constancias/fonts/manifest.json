@@ -2,32 +2,2059 @@
   "version": 1,
   "fonts": [
     {
+      "file": "fonts/3 Times Recycled Old Newspaper.ttf",
+      "label": "3 Times Recycled Old Newspaper",
+      "size": 160116
+    },
+    {
+      "file": "fonts/Aaaeugenio.ttf",
+      "label": "Aaaeugenio",
+      "size": 14608
+    },
+    {
+      "file": "fonts/Adelle_Bold.otf",
+      "label": "Adelle Bold",
+      "size": 174764
+    },
+    {
+      "file": "fonts/Adelle_BoldItalic.otf",
+      "label": "Adelle BoldItalic",
+      "size": 162412
+    },
+    {
+      "file": "fonts/Adelle_ExtraBold.otf",
+      "label": "Adelle ExtraBold",
+      "size": 177036
+    },
+    {
+      "file": "fonts/Adelle_ExtraBoldItalic.otf",
+      "label": "Adelle ExtraBoldItalic",
+      "size": 161572
+    },
+    {
+      "file": "fonts/Adelle_Heavy.otf",
+      "label": "Adelle Heavy",
+      "size": 177220
+    },
+    {
+      "file": "fonts/Adelle_HeavyItalic.otf",
+      "label": "Adelle HeavyItalic",
+      "size": 159608
+    },
+    {
+      "file": "fonts/Adelle_Italic.otf",
+      "label": "Adelle Italic",
+      "size": 160608
+    },
+    {
+      "file": "fonts/Adelle_light.otf",
+      "label": "Adelle light",
+      "size": 167444
+    },
+    {
+      "file": "fonts/Adelle_LightItalic.otf",
+      "label": "Adelle LightItalic",
+      "size": 159336
+    },
+    {
+      "file": "fonts/Adelle_Reg.otf",
+      "label": "Adelle Reg",
+      "size": 176380
+    },
+    {
+      "file": "fonts/Adelle_Semibold.otf",
+      "label": "Adelle Semibold",
+      "size": 177460
+    },
+    {
+      "file": "fonts/Adelle_SemiBoldItalic.otf",
+      "label": "Adelle SemiBoldItalic",
+      "size": 161432
+    },
+    {
+      "file": "fonts/AGENCYB.TTF",
+      "label": "AGENCYB",
+      "size": 60656
+    },
+    {
+      "file": "fonts/AGENCYR.TTF",
+      "label": "AGENCYR",
+      "size": 58920
+    },
+    {
+      "file": "fonts/ALGER.TTF",
+      "label": "ALGER",
+      "size": 76588
+    },
+    {
+      "file": "fonts/Alternate Gothic No2 D Regular.ttf",
+      "label": "Alternate Gothic No2 D Regular",
+      "size": 67920
+    },
+    {
+      "file": "fonts/ANTQUAB.TTF",
+      "label": "ANTQUAB",
+      "size": 151000
+    },
+    {
+      "file": "fonts/ANTQUABI.TTF",
+      "label": "ANTQUABI",
+      "size": 150416
+    },
+    {
+      "file": "fonts/ANTQUAI.TTF",
+      "label": "ANTQUAI",
+      "size": 149092
+    },
+    {
+      "file": "fonts/arial.ttf",
+      "label": "arial",
+      "size": 1045960
+    },
+    {
+      "file": "fonts/arialbd.ttf",
+      "label": "arialbd",
+      "size": 990208
+    },
+    {
+      "file": "fonts/arialbi.ttf",
+      "label": "arialbi",
+      "size": 730804
+    },
+    {
+      "file": "fonts/ariali.ttf",
+      "label": "ariali",
+      "size": 727152
+    },
+    {
+      "file": "fonts/ARIALN.TTF",
+      "label": "ARIALN",
+      "size": 175956
+    },
+    {
+      "file": "fonts/ARIALNB.TTF",
+      "label": "ARIALNB",
+      "size": 180740
+    },
+    {
+      "file": "fonts/ARIALNBI.TTF",
+      "label": "ARIALNBI",
+      "size": 180084
+    },
+    {
+      "file": "fonts/ARIALNI.TTF",
+      "label": "ARIALNI",
+      "size": 181124
+    },
+    {
+      "file": "fonts/ariblk.ttf",
+      "label": "ariblk",
+      "size": 167592
+    },
+    {
+      "file": "fonts/arizonia.regular.ttf",
+      "label": "arizonia.regular",
+      "size": 50736
+    },
+    {
+      "file": "fonts/ARLRDBD.TTF",
+      "label": "ARLRDBD",
+      "size": 45260
+    },
+    {
+      "file": "fonts/Autumn in November.ttf",
+      "label": "Autumn in November",
+      "size": 118200
+    },
+    {
+      "file": "fonts/bahnschrift.ttf",
+      "label": "bahnschrift",
+      "size": 338468
+    },
+    {
+      "file": "fonts/Baloo-Regular.ttf",
+      "label": "Baloo Regular",
+      "size": 680508
+    },
+    {
+      "file": "fonts/BASKVILL.TTF",
+      "label": "BASKVILL",
+      "size": 54976
+    },
+    {
+      "file": "fonts/BAUHS93.TTF",
+      "label": "BAUHS93",
+      "size": 47644
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Bold.otf",
+      "label": "Bebas Neue Pro Bold",
+      "size": 126220
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Bold Italic.otf",
+      "label": "Bebas Neue Pro Bold Italic",
+      "size": 129228
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Book.otf",
+      "label": "Bebas Neue Pro Book",
+      "size": 124948
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Book Italic.otf",
+      "label": "Bebas Neue Pro Book Italic",
+      "size": 129292
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Italic.otf",
+      "label": "Bebas Neue Pro Italic",
+      "size": 130156
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Light.otf",
+      "label": "Bebas Neue Pro Light",
+      "size": 126172
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Light Italic.otf",
+      "label": "Bebas Neue Pro Light Italic",
+      "size": 130736
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Regular.otf",
+      "label": "Bebas Neue Pro Regular",
+      "size": 126148
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Thin.otf",
+      "label": "Bebas Neue Pro Thin",
+      "size": 123708
+    },
+    {
+      "file": "fonts/Bebas Neue Pro Thin Italic.otf",
+      "label": "Bebas Neue Pro Thin Italic",
+      "size": 127076
+    },
+    {
+      "file": "fonts/BebasNeue-Regular.ttf",
+      "label": "BebasNeue Regular",
+      "size": 57676
+    },
+    {
+      "file": "fonts/BELL.TTF",
+      "label": "BELL",
+      "size": 84840
+    },
+    {
+      "file": "fonts/BELLB.TTF",
+      "label": "BELLB",
+      "size": 82580
+    },
+    {
+      "file": "fonts/BELLI.TTF",
+      "label": "BELLI",
+      "size": 82192
+    },
+    {
+      "file": "fonts/BERNHC.TTF",
+      "label": "BERNHC",
+      "size": 70656
+    },
+    {
+      "file": "fonts/BKANT.TTF",
+      "label": "BKANT",
+      "size": 155528
+    },
+    {
+      "file": "fonts/BlissPro-Heavy.otf",
+      "label": "BlissPro Heavy",
+      "size": 72732
+    },
+    {
+      "file": "fonts/BOD_B.TTF",
+      "label": "BOD B",
+      "size": 74440
+    },
+    {
+      "file": "fonts/BOD_BI.TTF",
+      "label": "BOD BI",
+      "size": 85308
+    },
+    {
+      "file": "fonts/BOD_BLAI.TTF",
+      "label": "BOD BLAI",
+      "size": 83816
+    },
+    {
+      "file": "fonts/BOD_BLAR.TTF",
+      "label": "BOD BLAR",
+      "size": 73616
+    },
+    {
+      "file": "fonts/BOD_CB.TTF",
+      "label": "BOD CB",
+      "size": 74092
+    },
+    {
+      "file": "fonts/BOD_CBI.TTF",
+      "label": "BOD CBI",
+      "size": 81072
+    },
+    {
+      "file": "fonts/BOD_CI.TTF",
+      "label": "BOD CI",
+      "size": 80536
+    },
+    {
+      "file": "fonts/BOD_CR.TTF",
+      "label": "BOD CR",
+      "size": 80580
+    },
+    {
+      "file": "fonts/BOD_I.TTF",
+      "label": "BOD I",
+      "size": 89940
+    },
+    {
+      "file": "fonts/BOD_PSTC.TTF",
+      "label": "BOD PSTC",
+      "size": 91592
+    },
+    {
+      "file": "fonts/BOD_R.TTF",
+      "label": "BOD R",
+      "size": 77884
+    },
+    {
+      "file": "fonts/BOOKOS.TTF",
+      "label": "BOOKOS",
+      "size": 160940
+    },
+    {
+      "file": "fonts/BOOKOSB.TTF",
+      "label": "BOOKOSB",
+      "size": 154576
+    },
+    {
+      "file": "fonts/BOOKOSBI.TTF",
+      "label": "BOOKOSBI",
+      "size": 162460
+    },
+    {
+      "file": "fonts/BOOKOSI.TTF",
+      "label": "BOOKOSI",
+      "size": 161020
+    },
+    {
+      "file": "fonts/BRADHITC.TTF",
+      "label": "BRADHITC",
+      "size": 105296
+    },
+    {
+      "file": "fonts/BRITANIC.TTF",
+      "label": "BRITANIC",
+      "size": 40728
+    },
+    {
+      "file": "fonts/BRLNSB.TTF",
+      "label": "BRLNSB",
+      "size": 96880
+    },
+    {
+      "file": "fonts/BRLNSDB.TTF",
+      "label": "BRLNSDB",
+      "size": 96852
+    },
+    {
+      "file": "fonts/BRLNSR.TTF",
+      "label": "BRLNSR",
+      "size": 97284
+    },
+    {
+      "file": "fonts/BROADW.TTF",
+      "label": "BROADW",
+      "size": 60372
+    },
+    {
+      "file": "fonts/BRUSHSCI.TTF",
+      "label": "BRUSHSCI",
+      "size": 53456
+    },
+    {
+      "file": "fonts/BSSYM7.TTF",
+      "label": "BSSYM7",
+      "size": 54412
+    },
+    {
+      "file": "fonts/calibri.ttf",
+      "label": "calibri",
+      "size": 1681220
+    },
+    {
+      "file": "fonts/calibrib.ttf",
+      "label": "calibrib",
+      "size": 1647428
+    },
+    {
+      "file": "fonts/calibrii.ttf",
+      "label": "calibrii",
+      "size": 1228564
+    },
+    {
+      "file": "fonts/calibril.ttf",
+      "label": "calibril",
+      "size": 1471248
+    },
+    {
+      "file": "fonts/calibrili.ttf",
+      "label": "calibrili",
+      "size": 1092612
+    },
+    {
+      "file": "fonts/calibriz.ttf",
+      "label": "calibriz",
+      "size": 1190004
+    },
+    {
+      "file": "fonts/CALIFB.TTF",
+      "label": "CALIFB",
+      "size": 80620
+    },
+    {
+      "file": "fonts/CALIFI.TTF",
+      "label": "CALIFI",
+      "size": 98748
+    },
+    {
+      "file": "fonts/CALIFR.TTF",
+      "label": "CALIFR",
+      "size": 105300
+    },
+    {
+      "file": "fonts/CALIST.TTF",
+      "label": "CALIST",
+      "size": 80148
+    },
+    {
+      "file": "fonts/CALISTB.TTF",
+      "label": "CALISTB",
+      "size": 85080
+    },
+    {
+      "file": "fonts/CALISTBI.TTF",
+      "label": "CALISTBI",
+      "size": 84960
+    },
+    {
+      "file": "fonts/CALISTI.TTF",
+      "label": "CALISTI",
+      "size": 59372
+    },
+    {
+      "file": "fonts/cambriab.ttf",
+      "label": "cambriab",
+      "size": 841440
+    },
+    {
+      "file": "fonts/cambriai.ttf",
+      "label": "cambriai",
+      "size": 892620
+    },
+    {
+      "file": "fonts/cambriaz.ttf",
+      "label": "cambriaz",
+      "size": 856672
+    },
+    {
+      "file": "fonts/Candara.ttf",
+      "label": "Candara",
+      "size": 219532
+    },
+    {
+      "file": "fonts/Candarab.ttf",
+      "label": "Candarab",
+      "size": 227604
+    },
+    {
+      "file": "fonts/Candarai.ttf",
+      "label": "Candarai",
+      "size": 227648
+    },
+    {
+      "file": "fonts/Candaral.ttf",
+      "label": "Candaral",
+      "size": 122132
+    },
+    {
+      "file": "fonts/Candarali.ttf",
+      "label": "Candarali",
+      "size": 120996
+    },
+    {
+      "file": "fonts/Candaraz.ttf",
+      "label": "Candaraz",
+      "size": 229364
+    },
+    {
+      "file": "fonts/CASTELAR.TTF",
+      "label": "CASTELAR",
+      "size": 48252
+    },
+    {
+      "file": "fonts/CENSCBK.TTF",
+      "label": "CENSCBK",
+      "size": 162380
+    },
+    {
+      "file": "fonts/CENTAUR.TTF",
+      "label": "CENTAUR",
+      "size": 82760
+    },
+    {
+      "file": "fonts/CENTURY.TTF",
+      "label": "CENTURY",
+      "size": 165248
+    },
+    {
+      "file": "fonts/CHILLER.TTF",
+      "label": "CHILLER",
+      "size": 96452
+    },
+    {
+      "file": "fonts/COLONNA.TTF",
+      "label": "COLONNA",
+      "size": 54952
+    },
+    {
+      "file": "fonts/comic.ttf",
+      "label": "comic",
+      "size": 245600
+    },
+    {
+      "file": "fonts/comicbd.ttf",
+      "label": "comicbd",
+      "size": 229408
+    },
+    {
+      "file": "fonts/comici.ttf",
+      "label": "comici",
+      "size": 226708
+    },
+    {
+      "file": "fonts/comicz.ttf",
+      "label": "comicz",
+      "size": 224252
+    },
+    {
+      "file": "fonts/consola.ttf",
+      "label": "consola",
+      "size": 459180
+    },
+    {
+      "file": "fonts/consolab.ttf",
+      "label": "consolab",
+      "size": 397896
+    },
+    {
+      "file": "fonts/consolai.ttf",
+      "label": "consolai",
+      "size": 467584
+    },
+    {
+      "file": "fonts/consolaz.ttf",
+      "label": "consolaz",
+      "size": 407956
+    },
+    {
+      "file": "fonts/constan.ttf",
+      "label": "constan",
+      "size": 448376
+    },
+    {
+      "file": "fonts/constanb.ttf",
+      "label": "constanb",
+      "size": 451824
+    },
+    {
+      "file": "fonts/constani.ttf",
+      "label": "constani",
+      "size": 448748
+    },
+    {
+      "file": "fonts/constanz.ttf",
+      "label": "constanz",
+      "size": 455564
+    },
+    {
+      "file": "fonts/COOPBL.TTF",
+      "label": "COOPBL",
+      "size": 80388
+    },
+    {
+      "file": "fonts/COPRGTB.TTF",
+      "label": "COPRGTB",
+      "size": 61552
+    },
+    {
+      "file": "fonts/COPRGTL.TTF",
+      "label": "COPRGTL",
+      "size": 62716
+    },
+    {
+      "file": "fonts/corbel.ttf",
+      "label": "corbel",
+      "size": 277168
+    },
+    {
+      "file": "fonts/corbelb.ttf",
+      "label": "corbelb",
+      "size": 290908
+    },
+    {
+      "file": "fonts/corbeli.ttf",
+      "label": "corbeli",
+      "size": 284690
+    },
+    {
+      "file": "fonts/corbell.ttf",
+      "label": "corbell",
+      "size": 172256
+    },
+    {
+      "file": "fonts/corbelli.ttf",
+      "label": "corbelli",
+      "size": 169228
+    },
+    {
+      "file": "fonts/corbelz.ttf",
+      "label": "corbelz",
+      "size": 294692
+    },
+    {
+      "file": "fonts/cour.ttf",
+      "label": "cour",
+      "size": 806504
+    },
+    {
+      "file": "fonts/courbd.ttf",
+      "label": "courbd",
+      "size": 805244
+    },
+    {
+      "file": "fonts/courbi.ttf",
+      "label": "courbi",
+      "size": 577488
+    },
+    {
+      "file": "fonts/couri.ttf",
+      "label": "couri",
+      "size": 667440
+    },
+    {
+      "file": "fonts/CURLZ___.TTF",
+      "label": "CURLZ ",
+      "size": 69480
+    },
+    {
       "file": "fonts/DejaVuSans.ttf",
-      "label": "DejaVuSans"
+      "label": "DejaVuSans",
+      "size": 759720
     },
     {
       "file": "fonts/DejaVuSans-Bold.ttf",
-      "label": "DejaVuSans Bold"
+      "label": "DejaVuSans Bold",
+      "size": 708920
     },
     {
       "file": "fonts/DejaVuSansMono.ttf",
-      "label": "DejaVuSansMono"
+      "label": "DejaVuSansMono",
+      "size": 343140
     },
     {
       "file": "fonts/DejaVuSansMono-Bold.ttf",
-      "label": "DejaVuSansMono Bold"
+      "label": "DejaVuSansMono Bold",
+      "size": 334268
     },
     {
       "file": "fonts/DejaVuSansMono-Oblique.ttf",
-      "label": "DejaVuSansMono Oblique"
+      "label": "DejaVuSansMono Oblique",
+      "size": 253448
     },
     {
       "file": "fonts/DejaVuSerif.ttf",
-      "label": "DejaVuSerif"
+      "label": "DejaVuSerif",
+      "size": 380660
     },
     {
       "file": "fonts/DejaVuSerif-Bold.ttf",
-      "label": "DejaVuSerif Bold"
+      "label": "DejaVuSerif Bold",
+      "size": 356668
+    },
+    {
+      "file": "fonts/DUBAI-BOLD.TTF",
+      "label": "DUBAI BOLD",
+      "size": 179268
+    },
+    {
+      "file": "fonts/DUBAI-LIGHT.TTF",
+      "label": "DUBAI LIGHT",
+      "size": 179648
+    },
+    {
+      "file": "fonts/DUBAI-MEDIUM.TTF",
+      "label": "DUBAI MEDIUM",
+      "size": 179432
+    },
+    {
+      "file": "fonts/DUBAI-REGULAR.TTF",
+      "label": "DUBAI REGULAR",
+      "size": 181484
+    },
+    {
+      "file": "fonts/EastvilleSquareUS-Regular.ttf",
+      "label": "EastvilleSquareUS Regular",
+      "size": 126684
+    },
+    {
+      "file": "fonts/ebrima.ttf",
+      "label": "ebrima",
+      "size": 921480
+    },
+    {
+      "file": "fonts/ebrimabd.ttf",
+      "label": "ebrimabd",
+      "size": 929968
+    },
+    {
+      "file": "fonts/ELEPHNT.TTF",
+      "label": "ELEPHNT",
+      "size": 51652
+    },
+    {
+      "file": "fonts/ELEPHNTI.TTF",
+      "label": "ELEPHNTI",
+      "size": 54324
+    },
+    {
+      "file": "fonts/ENGR.TTF",
+      "label": "ENGR",
+      "size": 49768
+    },
+    {
+      "file": "fonts/ERASBD.TTF",
+      "label": "ERASBD",
+      "size": 57508
+    },
+    {
+      "file": "fonts/ERASDEMI.TTF",
+      "label": "ERASDEMI",
+      "size": 59996
+    },
+    {
+      "file": "fonts/ERASLGHT.TTF",
+      "label": "ERASLGHT",
+      "size": 68656
+    },
+    {
+      "file": "fonts/ERASMD.TTF",
+      "label": "ERASMD",
+      "size": 60772
+    },
+    {
+      "file": "fonts/FELIXTI.TTF",
+      "label": "FELIXTI",
+      "size": 45952
+    },
+    {
+      "file": "fonts/FORTE.TTF",
+      "label": "FORTE",
+      "size": 61776
+    },
+    {
+      "file": "fonts/FRABK.TTF",
+      "label": "FRABK",
+      "size": 152700
+    },
+    {
+      "file": "fonts/FRABKIT.TTF",
+      "label": "FRABKIT",
+      "size": 169620
+    },
+    {
+      "file": "fonts/FRADM.TTF",
+      "label": "FRADM",
+      "size": 142932
+    },
+    {
+      "file": "fonts/FRADMCN.TTF",
+      "label": "FRADMCN",
+      "size": 116940
+    },
+    {
+      "file": "fonts/FRADMIT.TTF",
+      "label": "FRADMIT",
+      "size": 135904
+    },
+    {
+      "file": "fonts/FRAHV.TTF",
+      "label": "FRAHV",
+      "size": 139400
+    },
+    {
+      "file": "fonts/FRAHVIT.TTF",
+      "label": "FRAHVIT",
+      "size": 152700
+    },
+    {
+      "file": "fonts/FrakturShadowed.ttf",
+      "label": "FrakturShadowed",
+      "size": 120284
+    },
+    {
+      "file": "fonts/framd.ttf",
+      "label": "framd",
+      "size": 133632
+    },
+    {
+      "file": "fonts/FRAMDCN.TTF",
+      "label": "FRAMDCN",
+      "size": 132516
+    },
+    {
+      "file": "fonts/framdit.ttf",
+      "label": "framdit",
+      "size": 148728
+    },
+    {
+      "file": "fonts/FREESCPT.TTF",
+      "label": "FREESCPT",
+      "size": 69876
+    },
+    {
+      "file": "fonts/FRSCRIPT.TTF",
+      "label": "FRSCRIPT",
+      "size": 58580
+    },
+    {
+      "file": "fonts/FTLTLT.TTF",
+      "label": "FTLTLT",
+      "size": 83580
+    },
+    {
+      "file": "fonts/Gabriola.ttf",
+      "label": "Gabriola",
+      "size": 1806004
+    },
+    {
+      "file": "fonts/gadugi.ttf",
+      "label": "gadugi",
+      "size": 242684
+    },
+    {
+      "file": "fonts/gadugib.ttf",
+      "label": "gadugib",
+      "size": 249236
+    },
+    {
+      "file": "fonts/GARA.TTF",
+      "label": "GARA",
+      "size": 198072
+    },
+    {
+      "file": "fonts/GARABD.TTF",
+      "label": "GARABD",
+      "size": 199772
+    },
+    {
+      "file": "fonts/GARAIT.TTF",
+      "label": "GARAIT",
+      "size": 189464
+    },
+    {
+      "file": "fonts/georgia.ttf",
+      "label": "georgia",
+      "size": 219712
+    },
+    {
+      "file": "fonts/georgiab.ttf",
+      "label": "georgiab",
+      "size": 207476
+    },
+    {
+      "file": "fonts/georgiai.ttf",
+      "label": "georgiai",
+      "size": 208444
+    },
+    {
+      "file": "fonts/georgiaz.ttf",
+      "label": "georgiaz",
+      "size": 211780
+    },
+    {
+      "file": "fonts/GIGI.TTF",
+      "label": "GIGI",
+      "size": 142072
+    },
+    {
+      "file": "fonts/GIL_____.TTF",
+      "label": "GIL ",
+      "size": 67416
+    },
+    {
+      "file": "fonts/GILB____.TTF",
+      "label": "GILB ",
+      "size": 68304
+    },
+    {
+      "file": "fonts/GILBI___.TTF",
+      "label": "GILBI ",
+      "size": 71496
+    },
+    {
+      "file": "fonts/GILC____.TTF",
+      "label": "GILC ",
+      "size": 60320
+    },
+    {
+      "file": "fonts/GILI____.TTF",
+      "label": "GILI ",
+      "size": 69436
+    },
+    {
+      "file": "fonts/GILLUBCD.TTF",
+      "label": "GILLUBCD",
+      "size": 72408
+    },
+    {
+      "file": "fonts/GILSANUB.TTF",
+      "label": "GILSANUB",
+      "size": 73136
+    },
+    {
+      "file": "fonts/GLECB.TTF",
+      "label": "GLECB",
+      "size": 72676
+    },
+    {
+      "file": "fonts/GLSNECB.TTF",
+      "label": "GLSNECB",
+      "size": 84668
+    },
+    {
+      "file": "fonts/GOTHIC.TTF",
+      "label": "GOTHIC",
+      "size": 137568
+    },
+    {
+      "file": "fonts/GOTHICB.TTF",
+      "label": "GOTHICB",
+      "size": 129676
+    },
+    {
+      "file": "fonts/GOTHICBI.TTF",
+      "label": "GOTHICBI",
+      "size": 139084
+    },
+    {
+      "file": "fonts/GOTHICI.TTF",
+      "label": "GOTHICI",
+      "size": 148520
+    },
+    {
+      "file": "fonts/GOUDOS.TTF",
+      "label": "GOUDOS",
+      "size": 81376
+    },
+    {
+      "file": "fonts/GOUDOSB.TTF",
+      "label": "GOUDOSB",
+      "size": 82796
+    },
+    {
+      "file": "fonts/GOUDOSI.TTF",
+      "label": "GOUDOSI",
+      "size": 80280
+    },
+    {
+      "file": "fonts/Goudy Old Style Bold.ttf",
+      "label": "Goudy Old Style Bold",
+      "size": 76052
+    },
+    {
+      "file": "fonts/Goudy Old Style Italic.ttf",
+      "label": "Goudy Old Style Italic",
+      "size": 73640
+    },
+    {
+      "file": "fonts/GOUDYSTO.TTF",
+      "label": "GOUDYSTO",
+      "size": 55956
+    },
+    {
+      "file": "fonts/gsdefsym.ttf",
+      "label": "gsdefsym",
+      "size": 14536
+    },
+    {
+      "file": "fonts/GSDidger1.ttf",
+      "label": "GSDidger1",
+      "size": 5056
+    },
+    {
+      "file": "fonts/GSGeol1.ttf",
+      "label": "GSGeol1",
+      "size": 15708
+    },
+    {
+      "file": "fonts/GSMap1.ttf",
+      "label": "GSMap1",
+      "size": 6672
+    },
+    {
+      "file": "fonts/GSNArrow.ttf",
+      "label": "GSNArrow",
+      "size": 7960
+    },
+    {
+      "file": "fonts/GSOandG1.ttf",
+      "label": "GSOandG1",
+      "size": 31628
+    },
+    {
+      "file": "fonts/GSWBarb1.ttf",
+      "label": "GSWBarb1",
+      "size": 7516
+    },
+    {
+      "file": "fonts/GSWeath1.ttf",
+      "label": "GSWeath1",
+      "size": 23536
+    },
+    {
+      "file": "fonts/HARLOWSI.TTF",
+      "label": "HARLOWSI",
+      "size": 56596
+    },
+    {
+      "file": "fonts/HARNGTON.TTF",
+      "label": "HARNGTON",
+      "size": 70440
+    },
+    {
+      "file": "fonts/HATTEN.TTF",
+      "label": "HATTEN",
+      "size": 108664
+    },
+    {
+      "file": "fonts/Hello Jones Free Trial.ttf",
+      "label": "Hello Jones Free Trial",
+      "size": 188092
+    },
+    {
+      "file": "fonts/High Tide.ttf",
+      "label": "High Tide",
+      "size": 119252
+    },
+    {
+      "file": "fonts/himalaya.ttf",
+      "label": "himalaya",
+      "size": 572776
+    },
+    {
+      "file": "fonts/holomdl2.ttf",
+      "label": "holomdl2",
+      "size": 40264
+    },
+    {
+      "file": "fonts/HTOWERT.TTF",
+      "label": "HTOWERT",
+      "size": 92736
+    },
+    {
+      "file": "fonts/HTOWERTI.TTF",
+      "label": "HTOWERTI",
+      "size": 74712
+    },
+    {
+      "file": "fonts/Hughs.otf",
+      "label": "Hughs",
+      "size": 62292
+    },
+    {
+      "file": "fonts/impact.ttf",
+      "label": "impact",
+      "size": 206784
+    },
+    {
+      "file": "fonts/IMPRISHA.TTF",
+      "label": "IMPRISHA",
+      "size": 60488
+    },
+    {
+      "file": "fonts/INFROMAN.TTF",
+      "label": "INFROMAN",
+      "size": 74968
+    },
+    {
+      "file": "fonts/Inkfree.ttf",
+      "label": "Inkfree",
+      "size": 198972
+    },
+    {
+      "file": "fonts/ITCBLKAD.TTF",
+      "label": "ITCBLKAD",
+      "size": 132372
+    },
+    {
+      "file": "fonts/ITCEDSCR.TTF",
+      "label": "ITCEDSCR",
+      "size": 64056
+    },
+    {
+      "file": "fonts/ITCKRIST.TTF",
+      "label": "ITCKRIST",
+      "size": 59712
+    },
+    {
+      "file": "fonts/javatext.ttf",
+      "label": "javatext",
+      "size": 305448
+    },
+    {
+      "file": "fonts/JOKERMAN.TTF",
+      "label": "JOKERMAN",
+      "size": 69752
+    },
+    {
+      "file": "fonts/JUICE___.TTF",
+      "label": "JUICE ",
+      "size": 62884
+    },
+    {
+      "file": "fonts/KUNSTLER.TTF",
+      "label": "KUNSTLER",
+      "size": 63392
+    },
+    {
+      "file": "fonts/l_10646.ttf",
+      "label": "l 10646",
+      "size": 309516
+    },
+    {
+      "file": "fonts/LATINWD.TTF",
+      "label": "LATINWD",
+      "size": 44824
+    },
+    {
+      "file": "fonts/LBRITE.TTF",
+      "label": "LBRITE",
+      "size": 70748
+    },
+    {
+      "file": "fonts/LBRITED.TTF",
+      "label": "LBRITED",
+      "size": 66724
+    },
+    {
+      "file": "fonts/LBRITEDI.TTF",
+      "label": "LBRITEDI",
+      "size": 71456
+    },
+    {
+      "file": "fonts/LBRITEI.TTF",
+      "label": "LBRITEI",
+      "size": 71000
+    },
+    {
+      "file": "fonts/LCALLIG.TTF",
+      "label": "LCALLIG",
+      "size": 55464
+    },
+    {
+      "file": "fonts/LeelaUIb.ttf",
+      "label": "LeelaUIb",
+      "size": 327420
+    },
+    {
+      "file": "fonts/LEELAWAD.TTF",
+      "label": "LEELAWAD",
+      "size": 94064
+    },
+    {
+      "file": "fonts/LEELAWDB.TTF",
+      "label": "LEELAWDB",
+      "size": 93836
+    },
+    {
+      "file": "fonts/LeelawUI.ttf",
+      "label": "LeelawUI",
+      "size": 393764
+    },
+    {
+      "file": "fonts/LeelUIsl.ttf",
+      "label": "LeelUIsl",
+      "size": 386264
+    },
+    {
+      "file": "fonts/Legothick.ttf",
+      "label": "Legothick",
+      "size": 23092
+    },
+    {
+      "file": "fonts/LFAX.TTF",
+      "label": "LFAX",
+      "size": 61912
+    },
+    {
+      "file": "fonts/LFAXD.TTF",
+      "label": "LFAXD",
+      "size": 62100
+    },
+    {
+      "file": "fonts/LFAXDI.TTF",
+      "label": "LFAXDI",
+      "size": 71472
+    },
+    {
+      "file": "fonts/LFAXI.TTF",
+      "label": "LFAXI",
+      "size": 67420
+    },
+    {
+      "file": "fonts/LHANDW.TTF",
+      "label": "LHANDW",
+      "size": 62484
+    },
+    {
+      "file": "fonts/lmmono10-regular.otf",
+      "label": "lmmono10 regular",
+      "size": 64684
+    },
+    {
+      "file": "fonts/lmmono8-regular.otf",
+      "label": "lmmono8 regular",
+      "size": 66268
+    },
+    {
+      "file": "fonts/lmmonocaps10-regular.otf",
+      "label": "lmmonocaps10 regular",
+      "size": 63228
+    },
+    {
+      "file": "fonts/lmmonolt10-bold.otf",
+      "label": "lmmonolt10 bold",
+      "size": 66332
+    },
+    {
+      "file": "fonts/lmroman10-bold.otf",
+      "label": "lmroman10 bold",
+      "size": 107780
+    },
+    {
+      "file": "fonts/lmroman10-bolditalic.otf",
+      "label": "lmroman10 bolditalic",
+      "size": 114140
+    },
+    {
+      "file": "fonts/lmroman10-italic.otf",
+      "label": "lmroman10 italic",
+      "size": 115244
+    },
+    {
+      "file": "fonts/lmroman10-regular.otf",
+      "label": "lmroman10 regular",
+      "size": 107188
+    },
+    {
+      "file": "fonts/lmroman12-bold.otf",
+      "label": "lmroman12 bold",
+      "size": 110496
+    },
+    {
+      "file": "fonts/lmroman12-regular.otf",
+      "label": "lmroman12 regular",
+      "size": 110400
+    },
+    {
+      "file": "fonts/lmroman5-regular.otf",
+      "label": "lmroman5 regular",
+      "size": 111872
+    },
+    {
+      "file": "fonts/lmroman6-regular.otf",
+      "label": "lmroman6 regular",
+      "size": 112212
+    },
+    {
+      "file": "fonts/lmroman7-regular.otf",
+      "label": "lmroman7 regular",
+      "size": 110792
+    },
+    {
+      "file": "fonts/lmroman8-regular.otf",
+      "label": "lmroman8 regular",
+      "size": 111948
+    },
+    {
+      "file": "fonts/lmroman9-regular.otf",
+      "label": "lmroman9 regular",
+      "size": 112680
+    },
+    {
+      "file": "fonts/lmromancaps10-oblique.otf",
+      "label": "lmromancaps10 oblique",
+      "size": 116564
+    },
+    {
+      "file": "fonts/lmromancaps10-regular.otf",
+      "label": "lmromancaps10 regular",
+      "size": 108740
+    },
+    {
+      "file": "fonts/lmsans10-regular.otf",
+      "label": "lmsans10 regular",
+      "size": 95128
+    },
+    {
+      "file": "fonts/lmsans12-oblique.otf",
+      "label": "lmsans12 oblique",
+      "size": 102056
+    },
+    {
+      "file": "fonts/lmsansdemicond10-oblique.otf",
+      "label": "lmsansdemicond10 oblique",
+      "size": 114848
+    },
+    {
+      "file": "fonts/LSANS.TTF",
+      "label": "LSANS",
+      "size": 64608
+    },
+    {
+      "file": "fonts/LSANSD.TTF",
+      "label": "LSANSD",
+      "size": 59976
+    },
+    {
+      "file": "fonts/LSANSDI.TTF",
+      "label": "LSANSDI",
+      "size": 66320
+    },
+    {
+      "file": "fonts/LSANSI.TTF",
+      "label": "LSANSI",
+      "size": 65412
+    },
+    {
+      "file": "fonts/LTYPE.TTF",
+      "label": "LTYPE",
+      "size": 55984
+    },
+    {
+      "file": "fonts/LTYPEB.TTF",
+      "label": "LTYPEB",
+      "size": 52868
+    },
+    {
+      "file": "fonts/LTYPEBO.TTF",
+      "label": "LTYPEBO",
+      "size": 54620
+    },
+    {
+      "file": "fonts/LTYPEO.TTF",
+      "label": "LTYPEO",
+      "size": 65412
+    },
+    {
+      "file": "fonts/lucon.ttf",
+      "label": "lucon",
+      "size": 111108
+    },
+    {
+      "file": "fonts/MAGNETOB.TTF",
+      "label": "MAGNETOB",
+      "size": 65284
+    },
+    {
+      "file": "fonts/MAIAN.TTF",
+      "label": "MAIAN",
+      "size": 61384
+    },
+    {
+      "file": "fonts/malgun.ttf",
+      "label": "malgun",
+      "size": 13457164
+    },
+    {
+      "file": "fonts/malgunbd.ttf",
+      "label": "malgunbd",
+      "size": 12598360
+    },
+    {
+      "file": "fonts/malgunsl.ttf",
+      "label": "malgunsl",
+      "size": 5083156
+    },
+    {
+      "file": "fonts/marlett.ttf",
+      "label": "marlett",
+      "size": 27724
+    },
+    {
+      "file": "fonts/MATURASC.TTF",
+      "label": "MATURASC",
+      "size": 51296
+    },
+    {
+      "file": "fonts/micross.ttf",
+      "label": "micross",
+      "size": 888236
+    },
+    {
+      "file": "fonts/MISTRAL.TTF",
+      "label": "MISTRAL",
+      "size": 191716
+    },
+    {
+      "file": "fonts/mmrtext.ttf",
+      "label": "mmrtext",
+      "size": 354468
+    },
+    {
+      "file": "fonts/mmrtextb.ttf",
+      "label": "mmrtextb",
+      "size": 336328
+    },
+    {
+      "file": "fonts/MOD20.TTF",
+      "label": "MOD20",
+      "size": 62612
+    },
+    {
+      "file": "fonts/monbaiti.ttf",
+      "label": "monbaiti",
+      "size": 289052
+    },
+    {
+      "file": "fonts/Montserrat-Bold.otf",
+      "label": "Montserrat Bold",
+      "size": 235192
+    },
+    {
+      "file": "fonts/Montserrat-Regular.otf",
+      "label": "Montserrat Regular",
+      "size": 228620
+    },
+    {
+      "file": "fonts/Montserrat-SemiBold.otf",
+      "label": "Montserrat SemiBold",
+      "size": 234056
+    },
+    {
+      "file": "fonts/MSUIGHUB.TTF",
+      "label": "MSUIGHUB",
+      "size": 230220
+    },
+    {
+      "file": "fonts/MSUIGHUR.TTF",
+      "label": "MSUIGHUR",
+      "size": 222632
+    },
+    {
+      "file": "fonts/msyi.ttf",
+      "label": "msyi",
+      "size": 301180
+    },
+    {
+      "file": "fonts/MTCORSVA.TTF",
+      "label": "MTCORSVA",
+      "size": 157360
+    },
+    {
+      "file": "fonts/MTEXTRA.TTF",
+      "label": "MTEXTRA",
+      "size": 7656
+    },
+    {
+      "file": "fonts/mvboli.ttf",
+      "label": "mvboli",
+      "size": 79320
+    },
+    {
+      "file": "fonts/NIAGENG.TTF",
+      "label": "NIAGENG",
+      "size": 95904
+    },
+    {
+      "file": "fonts/NIAGSOL.TTF",
+      "label": "NIAGSOL",
+      "size": 74012
+    },
+    {
+      "file": "fonts/Nirmala.ttf",
+      "label": "Nirmala",
+      "size": 1535692
+    },
+    {
+      "file": "fonts/NirmalaB.ttf",
+      "label": "NirmalaB",
+      "size": 1490236
+    },
+    {
+      "file": "fonts/NirmalaS.ttf",
+      "label": "NirmalaS",
+      "size": 1568068
+    },
+    {
+      "file": "fonts/ntailu.ttf",
+      "label": "ntailu",
+      "size": 74464
+    },
+    {
+      "file": "fonts/ntailub.ttf",
+      "label": "ntailub",
+      "size": 67168
+    },
+    {
+      "file": "fonts/OCRAEXT.TTF",
+      "label": "OCRAEXT",
+      "size": 55400
+    },
+    {
+      "file": "fonts/OldeEnglish.ttf",
+      "label": "OldeEnglish",
+      "size": 51160
+    },
+    {
+      "file": "fonts/OLDENGL.TTF",
+      "label": "OLDENGL",
+      "size": 93068
+    },
+    {
+      "file": "fonts/ONYX.TTF",
+      "label": "ONYX",
+      "size": 81044
+    },
+    {
+      "file": "fonts/OUTLOOK.TTF",
+      "label": "OUTLOOK",
+      "size": 17672
+    },
+    {
+      "file": "fonts/P052-Bold.otf",
+      "label": "P052 Bold",
+      "size": 110860
+    },
+    {
+      "file": "fonts/P052-Bold.ttf",
+      "label": "P052 Bold",
+      "size": 243736
+    },
+    {
+      "file": "fonts/P052-BoldItalic.otf",
+      "label": "P052 BoldItalic",
+      "size": 110784
+    },
+    {
+      "file": "fonts/P052-Italic.otf",
+      "label": "P052 Italic",
+      "size": 109652
+    },
+    {
+      "file": "fonts/P052-Roman.otf",
+      "label": "P052 Roman",
+      "size": 110032
+    },
+    {
+      "file": "fonts/pala.ttf",
+      "label": "pala",
+      "size": 472284
+    },
+    {
+      "file": "fonts/palab.ttf",
+      "label": "palab",
+      "size": 419932
+    },
+    {
+      "file": "fonts/palabi.ttf",
+      "label": "palabi",
+      "size": 335292
+    },
+    {
+      "file": "fonts/palai.ttf",
+      "label": "palai",
+      "size": 413708
+    },
+    {
+      "file": "fonts/PALSCRI.TTF",
+      "label": "PALSCRI",
+      "size": 51404
+    },
+    {
+      "file": "fonts/PAPYRUS.TTF",
+      "label": "PAPYRUS",
+      "size": 163476
+    },
+    {
+      "file": "fonts/PARCHM.TTF",
+      "label": "PARCHM",
+      "size": 151256
+    },
+    {
+      "file": "fonts/PER_____.TTF",
+      "label": "PER ",
+      "size": 60216
+    },
+    {
+      "file": "fonts/PERB____.TTF",
+      "label": "PERB ",
+      "size": 58512
+    },
+    {
+      "file": "fonts/PERBI___.TTF",
+      "label": "PERBI ",
+      "size": 75620
+    },
+    {
+      "file": "fonts/PERI____.TTF",
+      "label": "PERI ",
+      "size": 76080
+    },
+    {
+      "file": "fonts/PERTIBD.TTF",
+      "label": "PERTIBD",
+      "size": 48320
+    },
+    {
+      "file": "fonts/PERTILI.TTF",
+      "label": "PERTILI",
+      "size": 43800
+    },
+    {
+      "file": "fonts/phagspa.ttf",
+      "label": "phagspa",
+      "size": 93720
+    },
+    {
+      "file": "fonts/phagspab.ttf",
+      "label": "phagspab",
+      "size": 97476
+    },
+    {
+      "file": "fonts/PLAYBILL.TTF",
+      "label": "PLAYBILL",
+      "size": 46164
+    },
+    {
+      "file": "fonts/POORICH.TTF",
+      "label": "POORICH",
+      "size": 76588
+    },
+    {
+      "file": "fonts/pricedown bl.otf",
+      "label": "pricedown bl",
+      "size": 58640
+    },
+    {
+      "file": "fonts/PRISTINA.TTF",
+      "label": "PRISTINA",
+      "size": 82680
+    },
+    {
+      "file": "fonts/RAGE.TTF",
+      "label": "RAGE",
+      "size": 132600
+    },
+    {
+      "file": "fonts/RAVIE.TTF",
+      "label": "RAVIE",
+      "size": 74416
+    },
+    {
+      "file": "fonts/REFSAN.TTF",
+      "label": "REFSAN",
+      "size": 220172
+    },
+    {
+      "file": "fonts/REFSPCL.TTF",
+      "label": "REFSPCL",
+      "size": 53288
+    },
+    {
+      "file": "fonts/ROCC____.TTF",
+      "label": "ROCC ",
+      "size": 55824
+    },
+    {
+      "file": "fonts/ROCCB___.TTF",
+      "label": "ROCCB ",
+      "size": 59444
+    },
+    {
+      "file": "fonts/ROCK.TTF",
+      "label": "ROCK",
+      "size": 72272
+    },
+    {
+      "file": "fonts/ROCKB.TTF",
+      "label": "ROCKB",
+      "size": 68780
+    },
+    {
+      "file": "fonts/ROCKBI.TTF",
+      "label": "ROCKBI",
+      "size": 73700
+    },
+    {
+      "file": "fonts/ROCKEB.TTF",
+      "label": "ROCKEB",
+      "size": 49168
+    },
+    {
+      "file": "fonts/ROCKI.TTF",
+      "label": "ROCKI",
+      "size": 76756
+    },
+    {
+      "file": "fonts/SansSerifCollection.ttf",
+      "label": "SansSerifCollection",
+      "size": 1336432
+    },
+    {
+      "file": "fonts/SCHLBKB.TTF",
+      "label": "SCHLBKB",
+      "size": 168756
+    },
+    {
+      "file": "fonts/SCHLBKBI.TTF",
+      "label": "SCHLBKBI",
+      "size": 160964
+    },
+    {
+      "file": "fonts/SCHLBKI.TTF",
+      "label": "SCHLBKI",
+      "size": 163164
+    },
+    {
+      "file": "fonts/SCRIPTBL.TTF",
+      "label": "SCRIPTBL",
+      "size": 55500
+    },
+    {
+      "file": "fonts/segmdl2.ttf",
+      "label": "segmdl2",
+      "size": 283820
+    },
+    {
+      "file": "fonts/SegoeIcons.ttf",
+      "label": "SegoeIcons",
+      "size": 452344
+    },
+    {
+      "file": "fonts/segoepr.ttf",
+      "label": "segoepr",
+      "size": 168404
+    },
+    {
+      "file": "fonts/segoeprb.ttf",
+      "label": "segoeprb",
+      "size": 167800
+    },
+    {
+      "file": "fonts/segoesc.ttf",
+      "label": "segoesc",
+      "size": 597476
+    },
+    {
+      "file": "fonts/segoescb.ttf",
+      "label": "segoescb",
+      "size": 593028
+    },
+    {
+      "file": "fonts/segoeui.ttf",
+      "label": "segoeui",
+      "size": 975088
+    },
+    {
+      "file": "fonts/segoeuib.ttf",
+      "label": "segoeuib",
+      "size": 964768
+    },
+    {
+      "file": "fonts/segoeuii.ttf",
+      "label": "segoeuii",
+      "size": 532220
+    },
+    {
+      "file": "fonts/segoeuil.ttf",
+      "label": "segoeuil",
+      "size": 925552
+    },
+    {
+      "file": "fonts/segoeuisl.ttf",
+      "label": "segoeuisl",
+      "size": 863836
+    },
+    {
+      "file": "fonts/segoeuiz.ttf",
+      "label": "segoeuiz",
+      "size": 544004
+    },
+    {
+      "file": "fonts/seguibl.ttf",
+      "label": "seguibl",
+      "size": 324260
+    },
+    {
+      "file": "fonts/seguibli.ttf",
+      "label": "seguibli",
+      "size": 356008
+    },
+    {
+      "file": "fonts/seguiemj.ttf",
+      "label": "seguiemj",
+      "size": 12417712
+    },
+    {
+      "file": "fonts/seguihis.ttf",
+      "label": "seguihis",
+      "size": 1606568
+    },
+    {
+      "file": "fonts/seguili.ttf",
+      "label": "seguili",
+      "size": 461608
+    },
+    {
+      "file": "fonts/seguisb.ttf",
+      "label": "seguisb",
+      "size": 991152
+    },
+    {
+      "file": "fonts/seguisbi.ttf",
+      "label": "seguisbi",
+      "size": 458708
+    },
+    {
+      "file": "fonts/seguisli.ttf",
+      "label": "seguisli",
+      "size": 438896
+    },
+    {
+      "file": "fonts/seguisym.ttf",
+      "label": "seguisym",
+      "size": 2454728
+    },
+    {
+      "file": "fonts/SegUIVar.ttf",
+      "label": "SegUIVar",
+      "size": 1851000
+    },
+    {
+      "file": "fonts/SHOWG.TTF",
+      "label": "SHOWG",
+      "size": 52316
+    },
+    {
+      "file": "fonts/simsunb.ttf",
+      "label": "simsunb",
+      "size": 21877944
+    },
+    {
+      "file": "fonts/SimsunExtG.ttf",
+      "label": "SimsunExtG",
+      "size": 3558996
+    },
+    {
+      "file": "fonts/SitkaVF.ttf",
+      "label": "SitkaVF",
+      "size": 517100
+    },
+    {
+      "file": "fonts/SitkaVF-Italic.ttf",
+      "label": "SitkaVF Italic",
+      "size": 558964
+    },
+    {
+      "file": "fonts/SNAP____.TTF",
+      "label": "SNAP ",
+      "size": 63196
+    },
+    {
+      "file": "fonts/STENCIL.TTF",
+      "label": "STENCIL",
+      "size": 55596
+    },
+    {
+      "file": "fonts/sylfaen.ttf",
+      "label": "sylfaen",
+      "size": 259980
+    },
+    {
+      "file": "fonts/symbol.ttf",
+      "label": "symbol",
+      "size": 69036
+    },
+    {
+      "file": "fonts/tahoma.ttf",
+      "label": "tahoma",
+      "size": 951868
+    },
+    {
+      "file": "fonts/tahomabd.ttf",
+      "label": "tahomabd",
+      "size": 880644
+    },
+    {
+      "file": "fonts/taile.ttf",
+      "label": "taile",
+      "size": 67568
+    },
+    {
+      "file": "fonts/taileb.ttf",
+      "label": "taileb",
+      "size": 58532
+    },
+    {
+      "file": "fonts/TCB_____.TTF",
+      "label": "TCB ",
+      "size": 74656
+    },
+    {
+      "file": "fonts/TCBI____.TTF",
+      "label": "TCBI ",
+      "size": 73856
+    },
+    {
+      "file": "fonts/TCCB____.TTF",
+      "label": "TCCB ",
+      "size": 66020
+    },
+    {
+      "file": "fonts/TCCEB.TTF",
+      "label": "TCCEB",
+      "size": 74708
+    },
+    {
+      "file": "fonts/TCCM____.TTF",
+      "label": "TCCM ",
+      "size": 66804
+    },
+    {
+      "file": "fonts/TCM_____.TTF",
+      "label": "TCM ",
+      "size": 76252
+    },
+    {
+      "file": "fonts/TCMI____.TTF",
+      "label": "TCMI ",
+      "size": 78236
+    },
+    {
+      "file": "fonts/TEMPSITC.TTF",
+      "label": "TEMPSITC",
+      "size": 76100
+    },
+    {
+      "file": "fonts/times.ttf",
+      "label": "times",
+      "size": 1206884
+    },
+    {
+      "file": "fonts/timesbd.ttf",
+      "label": "timesbd",
+      "size": 1185876
+    },
+    {
+      "file": "fonts/timesbi.ttf",
+      "label": "timesbi",
+      "size": 918940
+    },
+    {
+      "file": "fonts/timesi.ttf",
+      "label": "timesi",
+      "size": 977892
+    },
+    {
+      "file": "fonts/trebuc.ttf",
+      "label": "trebuc",
+      "size": 254396
+    },
+    {
+      "file": "fonts/trebucbd.ttf",
+      "label": "trebucbd",
+      "size": 244124
+    },
+    {
+      "file": "fonts/trebucbi.ttf",
+      "label": "trebucbi",
+      "size": 225868
+    },
+    {
+      "file": "fonts/trebucit.ttf",
+      "label": "trebucit",
+      "size": 252224
+    },
+    {
+      "file": "fonts/VarsityTeam-Bold.otf",
+      "label": "VarsityTeam Bold",
+      "size": 19724
+    },
+    {
+      "file": "fonts/verdana.ttf",
+      "label": "verdana",
+      "size": 243304
+    },
+    {
+      "file": "fonts/verdanab.ttf",
+      "label": "verdanab",
+      "size": 211260
+    },
+    {
+      "file": "fonts/verdanai.ttf",
+      "label": "verdanai",
+      "size": 223268
+    },
+    {
+      "file": "fonts/verdanaz.ttf",
+      "label": "verdanaz",
+      "size": 229800
+    },
+    {
+      "file": "fonts/VINERITC.TTF",
+      "label": "VINERITC",
+      "size": 104372
+    },
+    {
+      "file": "fonts/VIVALDII.TTF",
+      "label": "VIVALDII",
+      "size": 66696
+    },
+    {
+      "file": "fonts/VLADIMIR.TTF",
+      "label": "VLADIMIR",
+      "size": 54308
+    },
+    {
+      "file": "fonts/webdings.ttf",
+      "label": "webdings",
+      "size": 120560
+    },
+    {
+      "file": "fonts/wingding.ttf",
+      "label": "wingding",
+      "size": 82180
+    },
+    {
+      "file": "fonts/WINGDNG2.TTF",
+      "label": "WINGDNG2",
+      "size": 65788
+    },
+    {
+      "file": "fonts/WINGDNG3.TTF",
+      "label": "WINGDNG3",
+      "size": 35328
     }
   ]
 }

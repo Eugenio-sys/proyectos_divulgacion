@@ -46,7 +46,7 @@ La plantilla de ejemplo es un fondo neutro de prueba. Sustitúyela por tu diseñ
 
 Se incluyen variantes de DejaVu. Las fuentes Adelle de la aplicación original no venían adjuntas al archivo R: puedes cargar tus archivos `.ttf` o `.otf` para usarlas en este editor.
 
-Puedes agregar varias fuentes o cargar una carpeta completa desde los controles del editor. En GitHub Pages también se buscan las fuentes TTF/OTF que hayas añadido a las carpetas `fonts` o `font`. Pulsa **Actualizar fuentes de la carpeta** para volver a buscarlas después de publicar archivos nuevos. En otros alojamientos, ejecuta `python actualizar_fuentes.py` antes de subir la aplicación para actualizar su catálogo. Consulta `FUENTES.md` para los detalles. Las fuentes adicionales se cargan al seleccionarlas y se incluyen en el diseño guardado si las utilizas.
+Puedes agregar varias fuentes o cargar una carpeta completa desde los controles del editor. El selector permite buscar por nombre y muestra una muestra real de cada fuente. Las vistas previas se cargan automáticamente cuando aparecen en la lista, sin descargar toda la colección al iniciar. En GitHub Pages se buscan las fuentes TTF/OTF añadidas a `fonts` o `font` al abrir la aplicación. También se vuelve a consultar al regresar a la pestaña o abrir el selector si pasó al menos un minuto desde la última revisión. Los archivos nuevos aparecen sin avisos de incorporación. **Actualizar fuentes de la carpeta** permite forzar la consulta. En otros alojamientos, ejecuta `python actualizar_fuentes.py` antes de subir la aplicación para actualizar su catálogo. Consulta `FUENTES.md` para los detalles. Las fuentes usadas se incluyen en el diseño guardado.
 
 Para la mayor fidelidad, revisa el diseño después de cargar tus fuentes originales. La composición del navegador puede diferir ligeramente de XeLaTeX. Nombre y talleres conservan controles independientes; el nombre comienza sin división automática de líneas y los talleres con división activada.
 
@@ -58,7 +58,7 @@ El tiempo y la memoria necesarios para generar un lote dependen del equipo y de 
 
 El ZIP utiliza los nombres `id_nombre.pdf`, eliminando tildes y caracteres no admitidos del nombre de la persona. El identificador se conserva; si está vacío, se usa solo el nombre. Se detectan identificadores con caracteres inválidos y nombres de archivo repetidos antes de exportar. Los campos `name`, `tallerpuno` y `tallerpdos` se tratan como texto.
 
-El editor acepta archivos XLSX de hasta 30 MB, plantillas PDF de hasta 50 MB, fuentes de hasta 10 MB y listas de hasta 10 000 personas. Esos límites no garantizan que cualquier dispositivo pueda procesar el lote completo: para lotes grandes conviene utilizar un equipo de escritorio.
+El editor acepta archivos XLSX de hasta 30 MB, plantillas PDF de hasta 50 MB, fuentes de hasta 25 MB, hasta 500 fuentes en el catálogo o por carga de carpeta y listas de hasta 10 000 personas. Los diseños JSON admiten hasta 110 MB para conservar hasta tres fuentes grandes. Esos límites no garantizan que cualquier dispositivo pueda procesar el lote completo: para lotes grandes conviene utilizar un equipo de escritorio.
 
 ## Publicar en GitHub Pages
 

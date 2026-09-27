@@ -1,0 +1,30 @@
+.font-picker{position:relative;width:100%;margin-top:7px}
+.font-picker__trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:70px;padding:10px 11px;border:1px solid #cfd6df;border-radius:7px;background:#fff;text-align:left;cursor:pointer;color:var(--ink,#20262e);font-family:Arial,sans-serif}
+.font-picker__trigger:hover{border-color:var(--wine,#65263b);background:#fdfafb}
+.font-picker__trigger[aria-expanded=true]{border-color:var(--wine,#65263b);box-shadow:0 0 0 2px #65263b12}
+.font-picker__trigger:disabled{cursor:not-allowed;opacity:.5}
+.font-picker__trigger-text{min-width:0;display:flex;flex-direction:column;gap:7px}
+.font-picker__name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 13px/1.35 Arial,sans-serif;color:var(--ink,#20262e)}
+.font-picker__trigger-sample{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 11px/1.3 Arial,sans-serif;color:var(--muted,#606b78)}
+.font-picker__trigger-sample.is-ready{font-size:19px;color:var(--ink,#20262e)}
+.font-picker__chevron{flex:none;font:22px/1 Arial,sans-serif;color:var(--muted,#606b78);margin-top:-6px}
+.font-picker__popup{position:fixed;z-index:1000;padding:0;box-sizing:border-box;background:#fff;border:1px solid #d4dae2;border-radius:9px;box-shadow:0 10px 35px #18273824;overflow:hidden;font-family:Arial,sans-serif;color:var(--ink,#20262e)}
+.font-picker__search-box{display:flex;align-items:center;gap:9px;padding:12px;border-bottom:1px solid #e5e8ec;background:#fafbfd}
+.font-picker__search{min-width:0;width:100%;height:36px;border:1px solid #cfd6df;border-radius:6px;padding:7px 9px;background:#fff;color:var(--ink,#20262e);font:400 13px/1.35 Arial,sans-serif}
+.font-picker__search::placeholder{color:#78828e}
+.font-picker__count{flex:none;color:var(--muted,#606b78);font:400 11px/1.3 Arial,sans-serif;white-space:nowrap}
+.font-picker__list{position:relative;overflow-y:auto;max-height:320px;padding:5px;overscroll-behavior:contain;scrollbar-gutter:stable}
+.font-picker__option{position:relative;min-height:79px;margin:1px 0;border:1px solid transparent;border-radius:6px;padding:10px 9px;cursor:pointer;user-select:none;overflow:hidden}
+.font-picker__option.is-active{background:#f5f0f3;border-color:#eadce3}
+.font-picker__option[aria-selected=true]{background:#f8f3f5;border-color:#ddc5cf}
+.font-picker__option[aria-selected=true].is-active{background:#f0e5ea;border-color:#ceb0bd}
+.font-picker__option-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.font-picker__option .font-picker__name{font-size:12px;flex:1;min-width:0}
+.font-picker__option-status{flex:none;max-width:48%;font:400 10px/1.35 Arial,sans-serif;text-align:right;color:var(--wine,#65263b)}
+.font-picker__sample{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#8a929d;font:400 11px/1.4 Arial,sans-serif;min-height:27px}
+.font-picker__sample.is-ready{color:var(--ink,#20262e);font-size:22px;line-height:1.4}
+.font-picker__sample.is-error,.font-picker__trigger-sample.is-error{color:#8f6065}
+.font-picker__option.is-applying{cursor:progress}
+.font-picker__empty{margin:0;padding:24px 15px;color:var(--muted,#606b78);font:400 13px/1.6 Arial,sans-serif;text-align:center}
+.font-picker__trigger:focus-visible,.font-picker__search:focus-visible{outline:3px solid #b86781;outline-offset:2px}
+@media(prefers-reduced-motion:no-preference){.font-picker__trigger{transition:border-color .15s,background .15s}}

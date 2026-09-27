@@ -1,9 +1,8 @@
 /* Optional font catalog for a static site: local manifest + public GitHub Pages discovery.
    Files are always loaded from this app's font/ or fonts/ directory, never API URLs. */
-const MAX_FONT_BYTES = 10 * 1024 * 1024;
-const MAX_FONTS = 200;
+export const MAX_FONT_BYTES = 25 * 1024 * 1024;
+export const MAX_FONTS = 500;
 const MAX_DEPTH = 2;
-const CACHE_MS = 30 * 60 * 1000;
 const MAX_API_REQUESTS = 32;
 const collator = new Intl.Collator('es', { numeric: true, sensitivity: 'base' });
 
@@ -47,7 +46,9 @@ async function getJson(url, { missingOK = false, api = false, force = false } = 
   try {
     const response = await fetch(url, {
       signal: controller.signal,
-      cache: force ? 'no-store' : 'default',
+      // Revalidate on every app opening: a previous successful lookup must not
+      // hide files that were added to the repository later.
+      cache: force ? 'no-store' : 'no-cache',
       ...(api ? { headers: { Accept: 'application/vnd.github+json' } } : {}),
     });
     if (missingOK && response.status === 404) return null;
@@ -76,16 +77,16 @@ async function githubFiles(base, force, warnings) {
   const candidates = githubCandidates(base);
   if (!candidates.length) return null;
   const cacheKey = `constancias-fonts-v1:${base.href}`;
-  if (!force) {
-    try {
-      const cached = JSON.parse(localStorage.getItem(cacheKey));
-      if (cached && Date.now() - cached.time >= 0 && Date.now() - cached.time < CACHE_MS && Array.isArray(cached.files)) return cached.files;
-    } catch { /* Storage may be disabled; discovery still works. */ }
-  }
+  let cachedFiles = [];
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey));
+    if (cached && Array.isArray(cached.files)) cachedFiles = cached.files.slice(0, MAX_FONTS);
+  } catch { /* Storage may be disabled; discovery still works. */ }
   let requests = 0;
   const files = [];
   let foundDirectory = false;
   let limited = false;
+  let fontLimitReached = false;
   let skipped = 0;
   let discoveryFailed = false;
   const readDirectory = async (candidate, relativePath) => {
@@ -114,7 +115,7 @@ async function githubFiles(base, force, warnings) {
       foundDirectory = true;
       // Breadth-first traversal gives both root directories a fair share of the limit.
       const queue = roots;
-      while (queue.length && files.length < MAX_FONTS) {
+      while (queue.length && !fontLimitReached) {
         const current = queue.shift();
         const listing = current.listing || await readDirectory(candidate, current.relative);
         if (!listing) continue;
@@ -122,25 +123,38 @@ async function githubFiles(base, force, warnings) {
           const name = entry?.name;
           if (typeof name !== 'string' || !name || name === '.' || name === '..' || /[/\\\u0000-\u001f\u007f]/u.test(name)) continue;
           const relative = `${current.relative}/${name}`;
-          if (entry.type === 'dir' && current.depth < MAX_DEPTH && queue.length < MAX_API_REQUESTS) queue.push({ relative, depth: current.depth + 1 });
+          if (entry.type === 'dir' && current.depth < MAX_DEPTH) {
+            if (queue.length < MAX_API_REQUESTS) queue.push({ relative, depth: current.depth + 1 });
+            else limited = true;
+          }
           if (entry.type !== 'file' || !safeFile(relative)) continue;
           if (!Number.isFinite(entry.size) || entry.size <= 0 || entry.size > MAX_FONT_BYTES) { skipped++; continue; }
+          if (files.length >= MAX_FONTS) { limited = true; fontLimitReached = true; break; }
           files.push({ file: relative, size: entry.size });
-          if (files.length >= MAX_FONTS) { limited = true; break; }
         }
       }
       break;
     }
   } catch (error) {
+    discoveryFailed = true;
     warnings.push(`${error.name === 'AbortError' ? 'La consulta de fuentes de GitHub tardó demasiado.' : error.message} Puedes seleccionar la carpeta de fuentes o actualizar fonts/manifest.json.`);
-    return files;
   }
-  if (limited) warnings.push('La búsqueda automática tiene un límite de 200 fuentes y 32 carpetas. Usa el catálogo o selecciona una carpeta para añadir más.');
-  if (skipped) warnings.push(`Se omitieron ${skipped} fuentes vacías o mayores de 10 MB.`);
+  if (limited) warnings.push(`La búsqueda automática tiene un límite de ${MAX_FONTS} fuentes y ${MAX_API_REQUESTS} carpetas.`);
+  if (skipped) warnings.push(`Se omitieron ${skipped} fuentes vacías o mayores de 25 MiB.`);
   if (!foundDirectory && !discoveryFailed) warnings.push('No se encontró la carpeta de fuentes en la rama predeterminada del repositorio. Usa fonts/manifest.json o selecciona la carpeta.');
   // A partial failure is not cached, so the next attempt can recover immediately.
   if (foundDirectory && !limited && !discoveryFailed) {
     try { localStorage.setItem(cacheKey, JSON.stringify({ time: Date.now(), files })); } catch { /* Optional cache. */ }
+  }
+  if (discoveryFailed && cachedFiles.length) {
+    // The persisted list is only a fallback after an actual network/API error;
+    // even an explicit refresh retains it until a successful lookup replaces it.
+    warnings.push('Se conserva el último listado de fuentes disponible; vuelve a intentar la actualización más tarde.');
+    const byFile = new Map(files.map(entry => [entry.file, entry]));
+    for (const entry of cachedFiles) {
+      if (entry && safeFile(entry.file) && !byFile.has(entry.file) && byFile.size < MAX_FONTS) byFile.set(entry.file, entry);
+    }
+    return [...byFile.values()];
   }
   return files;
 }
@@ -170,7 +184,7 @@ export async function discoverFonts({ baseUrl, force = false } = {}) {
       if (manifest.version !== 1 || !Array.isArray(manifest.fonts)) throw new Error('El archivo fonts/manifest.json debe tener version: 1 y una lista fonts.');
       hasManifest = true;
       manifest.fonts.slice(0, MAX_FONTS).forEach(add);
-      if (manifest.fonts.length > MAX_FONTS) warnings.push('El catálogo muestra las primeras 200 fuentes.');
+      if (manifest.fonts.length > MAX_FONTS) warnings.push(`El catálogo muestra las primeras ${MAX_FONTS} fuentes.`);
     }
   } catch (error) {
     warnings.push(error.name === 'AbortError' ? 'El catálogo de fuentes tardó demasiado en responder.' : `No se pudo leer fonts/manifest.json: ${error.message}`);
@@ -178,7 +192,7 @@ export async function discoverFonts({ baseUrl, force = false } = {}) {
   // Merge with GitHub even when the manifest exists: newly copied files then appear automatically.
   const hosted = await githubFiles(base, force, warnings);
   hosted?.forEach(add);
-  if (clipped) warnings.push('El catálogo combinado muestra las primeras 200 fuentes. Puedes seleccionar una carpeta para añadir otras.');
+  if (clipped) warnings.push(`El catálogo combinado muestra las primeras ${MAX_FONTS} fuentes.`);
   if (invalid) warnings.push(`Se omitieron ${invalid} entradas de fuentes no válidas.`);
   if (hosted === null && !hasManifest) warnings.push('Para detectar archivos copiados a font/ o fonts/, ejecuta actualizar_fuentes.py o selecciona la carpeta de fuentes desde la app.');
   return { fonts: [...byUrl.values()].sort((a, b) => collator.compare(a.label, b.label) || collator.compare(a.url, b.url)), warnings: [...new Set(warnings)] };

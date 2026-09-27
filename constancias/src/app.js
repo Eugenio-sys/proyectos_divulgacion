@@ -1,6 +1,7 @@
 import {readWorkbook, longestPreview, filenameFor} from './data.js';
 import {createEngine} from './engine.js';
-import {discoverFonts} from './font-library.js';
+import {discoverFonts, MAX_FONTS, MAX_FONT_BYTES} from './font-library.js';
+import {createFontPicker} from './font-picker.js';
 import * as pdfjs from '../vendor/pdf.min.mjs';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('../vendor/pdf.worker.min.mjs', import.meta.url).href;
@@ -20,7 +21,7 @@ const BASE_FONTS = [
 const state = {rows:[], engine:null, pdfPage:null, pdfDoc:null, selected:'name', mode:'check', person:0,
   fonts:new Map(), blocks:{}, width:841.89,height:595.28, zoom:null, scale:1, rendered:{},
   undo:[],redo:[],busy:false,abort:null,renderToken:0,templateToken:0,excelToken:0,fontCounter:0,renderError:false};
-let resizeTimer, renderTask, colorSnapshot=null, drag=null, fontsFinding=false;
+let resizeTimer, renderTask, colorSnapshot=null, drag=null, fontsFinding=false, fontPicker=null, lastFontScan=0;
 const fontSources=new Set(BASE_FONTS.map(([, ,file])=>new URL(`../fonts/${file}`,import.meta.url).href));
 const clone = value => JSON.parse(JSON.stringify(value));
 const clamp = (x,a,b) => Math.min(b,Math.max(a,x));
@@ -50,17 +51,36 @@ function currentBlock(){return state.blocks[state.selected];}
 function decoratedBlocks(){return KEYS.map(key=>{const font=state.fonts.get(state.blocks[key].fontId);return {...state.blocks[key],fontFamily:font?.family||'serif',fontBytes:font?.bytes};});}
 
 async function loadFont(id,label,bytes,custom=false,fileName=''){
-  const family=`CertFont${++state.fontCounter}`;
+  const font=state.fonts.get(id)||{};
   const fontBytes=bytes instanceof Uint8Array?bytes:new Uint8Array(bytes);
-  const face=new FontFace(family,fontBytes);await face.load();document.fonts.add(face);
-  state.fonts.set(id,{id,label,family,custom,fileName,bytes:fontBytes});
+  if(font.previewPending)try{await font.previewPending;}catch{}
+  let {family,face}=font;
+  if(!face||face.status!=='loaded'){
+    family=`CertFont${++state.fontCounter}`;face=new FontFace(family,fontBytes);await face.load();document.fonts.add(face);
+  }
+  Object.assign(font,{id,label,family,face,custom,fileName,bytes:fontBytes});state.fonts.set(id,font);
+}
+async function loadPreviewFont(id){
+  const font=state.fonts.get(id);if(!font)throw new Error('No se encontró la fuente.');
+  if(font.face?.status==='loaded')return font;
+  if(!font.previewPending)font.previewPending=(async()=>{
+    let objectUrl;
+    try{
+      const source=font.bytes||(font.file?(objectUrl=URL.createObjectURL(font.file)):font.url);
+      const family=`CertFont${++state.fontCounter}`;
+      const face=new FontFace(family,typeof source==='string'?`url(${JSON.stringify(source)})`:source);
+      await face.load();document.fonts.add(face);Object.assign(font,{family,face});return font;
+    }finally{if(objectUrl)URL.revokeObjectURL(objectUrl);}
+  })();
+  try{return await font.previewPending;}catch(error){font.previewPending=null;throw error;}
 }
 function refreshFontMenu(sync=true){
   const select=$('font-family');select.replaceChildren();
   for(const font of state.fonts.values()){
     const option=document.createElement('option');option.value=font.id;option.textContent=font.label;if(font.family)option.style.fontFamily=font.family;select.append(option);
   }
-  if(sync)syncControls();else select.value=currentBlock().fontId;
+  fontPicker?.refresh();
+  if(sync)syncControls();else{select.value=currentBlock().fontId;fontPicker?.sync();}
 }
 async function ensureFont(id){
   const font=state.fonts.get(id);if(!font)throw new Error('No se encontró la fuente seleccionada.');
@@ -69,7 +89,7 @@ async function ensureFont(id){
     let bytes;
     if(font.file)bytes=await font.file.arrayBuffer();
     else{const response=await fetch(font.url);if(!response.ok)throw new Error(`No se pudo cargar ${font.fileName}. Comprueba que el archivo siga en la carpeta de fuentes.`);bytes=await response.arrayBuffer();}
-    if(bytes.byteLength>10*1024*1024)throw new Error(`La fuente ${font.fileName} supera 10 MB.`);
+    if(bytes.byteLength>MAX_FONT_BYTES)throw new Error(`La fuente ${font.fileName} supera 25 MB.`);
     try{await loadFont(id,font.label,bytes,true,font.fileName);}catch{throw new Error(`No se pudo abrir ${font.fileName}. Usa una fuente TTF u OTF válida.`);}
     return state.fonts.get(id);
   })();
@@ -78,8 +98,8 @@ async function ensureFont(id){
 async function importFontFiles(files){
   const accepted=Array.from(files).filter(file=>/\.(ttf|otf)$/i.test(file.name));
   if(!accepted.length)throw new Error('No se encontraron fuentes TTF u OTF en la selección.');
-  if(accepted.length>200)throw new Error('Selecciona una carpeta con un máximo de 200 fuentes.');
-  for(const file of accepted)if(file.size>10*1024*1024)throw new Error(`La fuente ${file.name} supera 10 MB.`);
+  if(accepted.length>MAX_FONTS)throw new Error(`Selecciona una carpeta con un máximo de ${MAX_FONTS} fuentes.`);
+  for(const file of accepted)if(file.size>MAX_FONT_BYTES)throw new Error(`La fuente ${file.name} supera 25 MB.`);
   const ids=[];
   for(const file of accepted){
     const id=`local-${Date.now()}-${state.fonts.size}`;
@@ -87,26 +107,31 @@ async function importFontFiles(files){
   }
   try{await ensureFont(ids[0]);}catch(error){for(const id of ids)state.fonts.delete(id);throw error;}
   currentBlock().fontId=ids[0];
-  notify(`${ids.length} fuente${ids.length===1?' agregada':'s agregadas'} al selector. Se cargan al elegirlas y se guardan con el diseño si las utilizas.`,'success');
 }
 async function findAvailableFonts(force=false){
-  if(fontsFinding)return;fontsFinding=true;$('refresh-fonts').disabled=true;
-  const status=$('font-library-status');status.hidden=false;status.textContent='Buscando fuentes en las carpetas…';
+  if(fontsFinding)return;fontsFinding=true;lastFontScan=Date.now();$('refresh-fonts').disabled=true;
+  const status=$('font-library-status');status.hidden=true;status.textContent='';
   try{
-    const result=await discoverFonts({baseUrl:new URL('../',import.meta.url).href,force});let added=0;
+    const result=await discoverFonts({baseUrl:new URL('../',import.meta.url).href,force});
     for(const entry of result.fonts){
       const url=new URL(entry.url,new URL('../',import.meta.url)).href;if(fontSources.has(url))continue;
-      fontSources.add(url);state.fonts.set(entry.id,{...entry,url,custom:true});added++;
+      fontSources.add(url);state.fonts.set(entry.id,{...entry,url,custom:true});
     }
     refreshFontMenu(false);
-    const message=added?`${added} fuente${added===1?' nueva disponible':'s nuevas disponibles'} en el selector.`:'No se encontraron fuentes nuevas. Puedes cargar archivos o una carpeta completa.';
-    status.textContent=[message,...result.warnings].join(' ');
-  }catch(error){status.textContent='No se pudo consultar la carpeta. Puedes cargar tus fuentes con los controles de arriba.';}
+    status.textContent=result.warnings.join(' ');status.hidden=!result.warnings.length;
+  }catch(error){status.hidden=false;status.textContent='No se pudo consultar la carpeta. Puedes cargar tus fuentes con los controles de arriba.';}
   finally{fontsFinding=false;$('refresh-fonts').disabled=state.busy;}
+}
+function refreshFontsIfStale(){if(!state.busy&&Date.now()-lastFontScan>60000)findAvailableFonts();}
+async function selectFont(id){
+  if(state.busy)return false;const before=snapshot();busy(true);
+  try{await ensureFont(id);currentBlock().fontId=id;history(before);syncControls();scheduleText();return true;}
+  catch(error){syncControls();fail(error);return false;}finally{busy(false);}
 }
 function syncControls(){
   const b=currentBlock();
   $('font-family').value=b.fontId;$('font-size').value=b.size;$('font-color').value=b.color;
+  fontPicker?.sync();
   $('color-value').textContent=b.color.toUpperCase();$('text-align').value=b.align;
   $('line-height').value=Number(b.lineHeight.toFixed(2));$('block-width').value=Math.round(b.width/state.width*100);
   $('position-x').value=((b.x-state.width/2)/CM).toFixed(2);$('position-y').value=((b.y-state.height/2)/CM).toFixed(2);
@@ -251,6 +276,7 @@ function triggerDownload(bytes,type,name){
 }
 function busy(value){
   state.busy=value;document.body.classList.toggle('busy',value);updateReady();updateHistory();
+  fontPicker?.setDisabled(value);
   for(const id of ['excel-file','template-file','font-file','font-folder','save-design','load-design','demo-button','empty-demo','mode-check','mode-person','person-select','person-prev','person-next','longest-person'])$(id).disabled=value;
   $('refresh-fonts').disabled=value||fontsFinding;
   if(!value)updateReady();
@@ -282,13 +308,13 @@ async function saveDesign(){
   triggerDownload(JSON.stringify(design,null,2),'application/json','diseno_constancias.json');notify('Diseño guardado con sus ajustes y las fuentes personalizadas utilizadas.','success');
 }
 async function openDesign(file){
-  if(file.size>45*1024*1024)throw new Error('El diseño supera 45 MB.');
+  if(file.size>110*1024*1024)throw new Error('El diseño supera 110 MB.');
   const d=JSON.parse(await file.text());
   if(d.format!=='constancias-design'||d.version!==1||!d.blocks||!d.page)throw new Error('Este archivo no es un diseño compatible de Constancias.');
   const pw=Number(d.page.width),ph=Number(d.page.height);if(!(pw>0&&ph>0&&pw<15000&&ph<15000))throw new Error('El diseño tiene dimensiones no válidas.');
   const savedFonts=Array.isArray(d.fonts)?d.fonts:[];if(savedFonts.length>3)throw new Error('El diseño contiene demasiadas fuentes.');
   const remap=new Map();
-  for(const f of savedFonts){if(typeof f.data!=='string'||f.data.length>16000000)throw new Error('Fuente no válida en el diseño.');const id=`custom-${Date.now()}-${state.fontCounter}`;await loadFont(id,String(f.label||'Fuente importada').slice(0,100),base64ToBytes(f.data),true,String(f.fileName||''));remap.set(f.id,id);}
+  for(const f of savedFonts){if(typeof f.data!=='string'||f.data.length>Math.ceil(MAX_FONT_BYTES/3)*4)throw new Error('Fuente no válida en el diseño.');const fontBytes=base64ToBytes(f.data);if(fontBytes.byteLength>MAX_FONT_BYTES)throw new Error('Una fuente del diseño supera 25 MB.');const id=`custom-${Date.now()}-${state.fontCounter}`;await loadFont(id,String(f.label||'Fuente importada').slice(0,100),fontBytes,true,String(f.fileName||''));remap.set(f.id,id);}
   const next={};
   for(const key of KEYS){
     const b=d.blocks[key];if(!b||!['x','y','width','size','lineHeight'].every(k=>typeof b[k]==='number'&&Number.isFinite(b[k])))throw new Error('El diseño contiene posiciones o tamaños no válidos.');
@@ -309,13 +335,14 @@ async function demo(){
 }
 async function boot(){
   for(const [id,label,file]of BASE_FONTS){const response=await fetch(new URL(`../fonts/${file}`,import.meta.url));if(!response.ok)throw new Error(`No se pudo cargar la fuente ${label}. Revisa que la carpeta fonts esté junto a index.html.`);await loadFont(id,label,await response.arrayBuffer());}
+  fontPicker=createFontPicker({mount:$('font-picker'),getFonts:()=>[...state.fonts.values()],getSelected:()=>currentBlock().fontId,loadFont:loadPreviewFont,onSelect:selectFont,isBusy:()=>state.busy,onOpen:refreshFontsIfStale});
   refreshFontMenu();updateReady();
   $('excel-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;busy(true);try{if(!/\.xlsx$/i.test(file.name))throw new Error('Guarda el Excel como .xlsx. El formato antiguo .xls no es compatible.');if(file.size>30*1024*1024)throw new Error('El Excel supera 30 MB.');await loadExcel(await file.arrayBuffer(),file.name);}catch(error){fail(error);}finally{e.target.value='';busy(false);}});
   $('template-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;busy(true);try{if(file.size>50*1024*1024)throw new Error('La plantilla supera 50 MB. Reduce su tamaño antes de cargarla.');await loadTemplate(await file.arrayBuffer(),file.name);}catch(error){fail(error);}finally{e.target.value='';busy(false);}});
   for(const id of ['font-file','font-folder'])$(id).addEventListener('change',async e=>{if(!e.target.files.length)return;busy(true);const before=snapshot();try{await importFontFiles(e.target.files);history(before);refreshFontMenu();scheduleText();}catch(error){history(before);refreshFontMenu();fail(error);}finally{e.target.value='';busy(false);}});
   $('refresh-fonts').addEventListener('click',()=>findAvailableFonts(true));
   document.querySelectorAll('[data-field]').forEach(el=>el.addEventListener('click',()=>choose(el.dataset.field)));
-  $('font-family').addEventListener('change',async e=>{if(state.busy)return;const id=e.target.value,before=snapshot();busy(true);try{await ensureFont(id);currentBlock().fontId=id;history(before);syncControls();scheduleText();}catch(error){syncControls();fail(error);}finally{busy(false);}});
+  $('font-family').addEventListener('change',e=>selectFont(e.target.value));
   $('font-color').addEventListener('input',e=>{if(state.busy)return;if(!colorSnapshot)colorSnapshot=snapshot();currentBlock().color=e.target.value;$('color-value').textContent=e.target.value.toUpperCase();scheduleText();});
   $('font-color').addEventListener('change',()=>{if(colorSnapshot)history(colorSnapshot);colorSnapshot=null;});
   $('text-align').addEventListener('change',e=>modify(()=>{currentBlock().align=e.target.value;}));
@@ -338,6 +365,8 @@ async function boot(){
   busy(false);
   document.documentElement.dataset.ready='true';
   findAvailableFonts();
+  window.addEventListener('focus',refreshFontsIfStale);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refreshFontsIfStale();});
 }
 busy(true);
 boot().catch(error=>{fail(error);$('demo-button').disabled=true;$('empty-demo').disabled=true;});

@@ -4,8 +4,8 @@ import argparse
 import json
 from pathlib import Path
 
-MAX_BYTES = 10 * 1024 * 1024
-MAX_FONTS = 200
+MAX_BYTES = 25 * 1024 * 1024
+MAX_FONTS = 500
 MAX_DEPTH = 2
 
 
@@ -50,7 +50,7 @@ def main():
     print(f"Catálogo actualizado: {catalog}")
     print(f"Fuentes encontradas: {len(fonts)}. Sube este archivo junto con las fuentes.")
     for relative in skipped:
-        print(f"Omitida (vacía o mayor de 10 MB): {relative}")
+        print(f"Omitida (vacía o mayor de 25 MiB): {relative}")
 
 
 if __name__ == "__main__":

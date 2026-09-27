@@ -7,6 +7,7 @@
   <meta name="description" content="Diseña y genera constancias en PDF desde tu Excel, directamente en el navegador.">
   <title>Constancias · Editor</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./src/font-picker.css">
   <script src="./vendor/mathjax/constancias-font-data.js"></script>
   <script src="./src/math-config.js"></script>
   <script defer src="./vendor/pdf-lib.min.js"></script>
@@ -50,7 +51,7 @@
           <button data-field="tallerpuno" class="field-button" aria-pressed="false">Taller 1</button>
           <button data-field="tallerpdos" class="field-button" aria-pressed="false">Taller 2</button>
         </div>
-        <label class="control full">Fuente<select id="font-family" aria-label="Fuente del texto"></select></label>
+        <div class="control full"><span id="font-picker-label">Fuente</span><div id="font-picker"></div><select id="font-family" aria-label="Fuente del texto" hidden tabindex="-1"></select></div>
         <div id="font-sample" class="font-sample">Aa · Áj · Matemáticas</div>
         <label class="font-upload" for="font-file">+ Agregar fuentes TTF u OTF</label>
         <input id="font-file" class="file-input" type="file" accept=".ttf,.otf" multiple>
