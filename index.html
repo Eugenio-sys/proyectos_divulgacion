@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Proyectos de divulgación</title>
-<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;line-height:1.5}
-a.card{display:block;padding:16px 20px;border:1px solid #ccc;border-radius:10px;text-decoration:none;color:inherit;margin:12px 0}
-a.card:hover{border-color:#1F8A7A}</style></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyectos de divulgación matemática</title>
+<style>
+  :root{--bg:#E4DFD3;--card:#F6F3EC;--ink:#1E2A32;--muted:#5F6C76;--line:#D3CCBD;--accent:#1F8A7A}
+  @media (prefers-color-scheme:dark){:root{--bg:#14181D;--card:#1D242B;--ink:#E8E4DA;--muted:#98A3AC;--line:#33404A;--accent:#3EBBA6}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+  main{max-width:760px;margin:0 auto;padding:48px 20px 64px}
+  h1{font-size:28px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+  p.lead{color:var(--muted);margin:0 0 28px}
+  a.card{display:block;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:inherit;margin:14px 0}
+  a.card:hover{border-color:var(--accent)}
+  a.card strong{font-size:17px;font-weight:600}
+  a.card span{display:block;color:var(--muted);margin-top:4px}
+  footer{margin-top:40px;color:var(--muted);font-size:13px}
+</style>
+</head>
 <body>
-<h1>Proyectos de divulgación</h1>
-<a class="card" href="planimetro/"><strong>Planímetro ortogonal en LEGO</strong><br>
-Simulador 3D del integrador mecánico: teorema de Green en acción, con trazado automático y manual.</a>
-</body></html>
+<main>
+  <h1>Proyectos de divulgación matemática</h1>
+  <p class="lead">Simulaciones interactivas que acompañan a modelos físicos construidos para explicar ideas matemáticas.</p>
+
+  <a class="card" href="planimetro/">
+    <strong>Planímetro ortogonal en LEGO</strong>
+    <span>Simulador 3D de un integrador mecánico: el teorema de Green en acción, con trazado automático y manual sobre una hoja cuadriculada.</span>
+  </a>
+
+  <a class="card" href="epiciclos/">
+    <strong>Epiciclos de Fourier</strong>
+    <span>Dibuja una curva cerrada y obsérvala reconstruida como suma de vectores giratorios: transformada discreta de Fourier, espectro de radios y coeficientes.</span>
+  </a>
+
+  <footer>Eugenio Guerrero Ruiz · Departamento de Matemáticas, Universidad de Puerto Rico, Río Piedras</footer>
+</main>
+</body>
+</html>
