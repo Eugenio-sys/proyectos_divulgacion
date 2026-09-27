@@ -1,54 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Proyectos de divulgación matemática</title>
-<style>
-  :root{--bg:#E4DFD3;--card:#F6F3EC;--ink:#1E2A32;--muted:#5F6C76;--line:#D3CCBD;--accent:#1F8A7A}
-  @media (prefers-color-scheme:dark){:root{--bg:#14181D;--card:#1D242B;--ink:#E8E4DA;--muted:#98A3AC;--line:#33404A;--accent:#3EBBA6}}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
-  main{max-width:760px;margin:0 auto;padding:48px 20px 64px}
-  h1{font-size:28px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
-  p.lead{color:var(--muted);margin:0 0 28px}
-  a.card{display:block;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:inherit;margin:14px 0}
-  a.card:hover{border-color:var(--accent)}
-  a.card strong{font-size:17px;font-weight:600}
-  a.card span{display:block;color:var(--muted);margin-top:4px}
-  footer{margin-top:40px;color:var(--muted);font-size:13px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#65263b">
+  <meta name="description" content="Diseña y genera constancias en PDF desde tu Excel, directamente en el navegador.">
+  <title>Constancias · Editor</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script>window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableMenu:false},tex:{packages:['base','ams','newcommand','configmacros','color','bbox'],maxBuffer:20000,maxMacros:2000}};</script>
+  <script defer src="./vendor/pdf-lib.min.js"></script>
+  <script defer src="./vendor/jszip.min.js"></script>
+  <script defer src="./vendor/tex-svg-full.js"></script>
+  <script type="module" src="./src/app.js"></script>
 </head>
 <body>
-<main>
-  <h1>Proyectos de divulgación matemática</h1>
-  <p class="lead">Simulaciones interactivas que acompañan a modelos físicos construidos para explicar ideas matemáticas.</p>
+  <header class="app-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">C</span><div><h1>Constancias</h1><p>Editor de certificados</p></div></div>
+    <div class="header-actions">
+      <button id="undo" class="icon-button" title="Deshacer (Ctrl+Z)" aria-label="Deshacer" disabled>↶</button>
+      <button id="redo" class="icon-button" title="Rehacer (Ctrl+Mayús+Z)" aria-label="Rehacer" disabled>↷</button>
+      <span class="separator"></span>
+      <button id="load-design" class="button quiet">Abrir diseño</button>
+      <button id="save-design" class="button outline">Guardar diseño</button>
+      <input id="design-file" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
 
-  <a class="card" target="_blank" rel="noopener" href="planimetro/">
-    <strong>Planímetro ortogonal en LEGO</strong>
-    <span>Simulador 3D de un integrador mecánico: el teorema de Green en acción, con trazado automático y manual sobre una hoja cuadriculada.</span>
-  </a>
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Archivos y ajustes">
+      <section class="panel">
+        <div class="section-title"><span class="step">01</span><h2>Archivos</h2></div>
+        <label class="upload-card" for="excel-file"><span class="upload-icon" aria-hidden="true">▦</span><span><strong>Lista de personas</strong><small id="excel-label">Seleccionar archivo .xlsx</small></span><span class="upload-plus" aria-hidden="true">+</span></label>
+        <input id="excel-file" class="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <p class="schema-help">Primera hoja, con los encabezados <code>id</code>, <code>name</code>, <code>tallerpuno</code> y <code>tallerpdos</code>. Un nombre por fila. Los talleres pueden quedar vacíos.</p>
+        <div class="example-links"><a href="./examples/nombres.xlsx" download>Excel de ejemplo</a><a href="./examples/nombres_300.xlsx" download>300 personas</a></div>
+        <label class="upload-card" for="template-file"><span class="upload-icon" aria-hidden="true">▤</span><span><strong>Plantilla de la constancia</strong><small id="template-label">Seleccionar archivo PDF</small></span><span class="upload-plus" aria-hidden="true">+</span></label>
+        <input id="template-file" class="file-input" type="file" accept=".pdf,application/pdf">
+        <p class="small-note">Se utiliza la primera página del PDF.</p>
+        <button id="demo-button" class="text-button">Probar con archivos de ejemplo</button>
+      </section>
 
-  <a class="card" target="_blank" rel="noopener" href="epiciclos/">
-    <strong>Epiciclos de Fourier</strong>
-    <span>Dibuja una curva cerrada y obsérvala reconstruida como suma de vectores giratorios: transformada discreta de Fourier, espectro de radios y coeficientes.</span>
-  </a>
+      <section class="panel">
+        <div class="section-title"><span class="step">02</span><h2>Texto seleccionado</h2></div>
+        <div class="field-buttons" role="group" aria-label="Elegir texto">
+          <button data-field="name" class="field-button active" aria-pressed="true">Nombre</button>
+          <button data-field="tallerpuno" class="field-button" aria-pressed="false">Taller 1</button>
+          <button data-field="tallerpdos" class="field-button" aria-pressed="false">Taller 2</button>
+        </div>
+        <label class="control full">Fuente<select id="font-family" aria-label="Fuente del texto"></select></label>
+        <div id="font-sample" class="font-sample">Aa · Áj · Matemáticas</div>
+        <label class="font-upload" for="font-file">+ Agregar fuentes TTF u OTF</label>
+        <input id="font-file" class="file-input" type="file" accept=".ttf,.otf" multiple>
+        <div class="control-row">
+          <label class="control">Tamaño <span class="unit">pt</span><div class="stepper"><button id="size-down" aria-label="Reducir tamaño">−</button><input id="font-size" type="number" min="6" max="120" step="1" value="34"><button id="size-up" aria-label="Aumentar tamaño">+</button></div></label>
+          <label class="control">Color<div class="color-control"><input id="font-color" type="color" value="#ee293d"><span id="color-value">#EE293D</span></div></label>
+        </div>
+        <div class="control-row">
+          <label class="control">Alineación<select id="text-align"><option value="left">Izquierda</option><option value="center" selected>Centrada</option><option value="right">Derecha</option></select></label>
+          <label class="control">Interlineado<input id="line-height" type="number" min="1" max="4" step="0.1" value="1.3"></label>
+        </div>
+        <label class="control full">Ancho del bloque <span class="unit">% de página</span><input id="block-width" type="number" min="5" max="100" step="1" value="90"></label>
+        <label class="toggle-label wrap-label"><input id="text-wrap" type="checkbox"><span>Dividir el texto en varias líneas</span></label>
+        <div class="center-actions"><button id="center-x" class="button outline small">Centrar horizontal</button><button id="center-y" class="button outline small">Centrar vertical</button></div>
+        <details class="precise"><summary>Posición exacta</summary><p class="small-note">Centímetros desde el centro. X hacia la derecha; Y hacia arriba.</p><div class="control-row"><label class="control">X (cm)<input id="position-x" type="number" step="0.01"></label><label class="control">Y (cm)<input id="position-y" type="number" step="0.01"></label></div></details>
+      </section>
+      <section class="panel compact">
+        <label class="toggle-label"><input id="snap-enabled" type="checkbox" checked><span>Ajustar al centro al arrastrar</span></label>
+        <p class="small-note">Mantén Alt para mover sin atracción. Usa las flechas para ajustes finos.</p>
+      </section>
+      <p class="privacy-note">Tus archivos se procesan en este navegador.</p>
+    </aside>
 
-  <a class="card" target="_blank" rel="noopener" href="hanoi/">
-    <strong>Torres de Hanoi</strong>
-    <span>Juega arrastrando los discos, mide los movimientos y sigue el recorrido sobre el grafo del rompecabezas; modo reto con inicio y meta aleatorios y ruta óptima.</span>
-  </a>
-
-  <a class="card" target="_blank" rel="noopener" href="caminata/">
-    <strong>Caminata aleatoria simple</strong>
-    <span>Una realización de <i>S<sub>n</sub></i> = ξ<sub>1</sub> + ⋯ + ξ<sub><i>n</i></sub> con pasos ±1 equiprobables: elige el número de pasos, hasta mil, y genera nuevas trayectorias.</span>
-  </a>
-
-  <a class="card" target="_blank" rel="noopener" href="rubik/">
-    <strong>Cubo de Rubik 3D</strong>
-    <span>Cubo 3×3×3 en tres dimensiones: gira capas arrastrando las piezas, genera mezclas, resuelve por el historial y explora la combinatoria y la estructura de grupo del rompecabezas.</span>
-  </a>
-
-  <footer>Eugenio Guerrero Ruiz · Departamento de Matemáticas, Universidad de Puerto Rico, Río Piedras</footer>
-</main>
+    <section class="editor" aria-label="Vista previa y exportación">
+      <div class="preview-toolbar">
+        <div class="view-tabs" role="group" aria-label="Modo de vista previa"><button id="mode-check" class="active" aria-pressed="true">Comprobación</button><button id="mode-person" aria-pressed="false">Por persona</button></div>
+        <div class="zoom-control"><button id="zoom-out" class="icon-button" aria-label="Alejar">−</button><output id="zoom-value">Ajustar</output><button id="zoom-in" class="icon-button" aria-label="Acercar">+</button><button id="zoom-fit" class="text-button">Ajustar</button></div>
+      </div>
+      <div class="preview-context">
+        <p id="preview-explanation">El texto más largo de cada columna + <strong>Áj</strong>. El sufijo solo se usa en esta vista.</p>
+        <div id="person-controls" hidden><button id="person-prev" class="icon-button" aria-label="Persona anterior">‹</button><select id="person-select" aria-label="Persona de la vista previa"></select><button id="person-next" class="icon-button" aria-label="Persona siguiente">›</button><button id="longest-person" class="text-button">Nombre más largo</button></div>
+      </div>
+      <div id="canvas-viewport" class="canvas-viewport">
+        <div id="empty-state" class="empty-state"><div class="empty-sheet" aria-hidden="true">Aa</div><h2>Tu plantilla, lista para editar</h2><p>Carga un PDF y la lista de personas.<br>Después arrastra cada texto hasta su lugar.</p><button id="empty-demo" class="button outline">Abrir ejemplo</button></div>
+        <div id="page-shell" class="page-shell" hidden>
+          <canvas id="template-canvas" aria-label="Plantilla PDF"></canvas>
+          <div id="text-layer" class="text-layer"></div>
+          <div id="guide-x" class="guide vertical" hidden></div><div id="guide-y" class="guide horizontal" hidden></div>
+          <div id="snap-label" class="snap-label" hidden></div>
+        </div>
+      </div>
+      <div class="canvas-caption"><span id="page-size">Sin plantilla</span><span id="position-status">Selecciona un texto para editarlo</span></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="layout-warning" class="layout-warning" role="status" hidden></div>
+      <section class="export-bar">
+        <div><h2 id="export-title">Prepara tus constancias</h2><p id="export-detail">Carga el Excel y la plantilla para generar los PDF.</p></div>
+        <div class="export-actions"><button id="preview-pdf" class="button outline" disabled>Descargar PDF de prueba</button><button id="export-zip" class="button primary" disabled>Generar ZIP</button></div>
+      </section>
+      <section id="progress-panel" class="progress-panel" hidden aria-live="polite"><div><span id="progress-label">Preparando…</span><button id="cancel-export" class="text-button">Cancelar</button></div><progress id="export-progress" value="0" max="100"></progress></section>
+      <section class="data-panel"><details><summary><span>Datos del Excel</span><span id="record-count">0 personas</span></summary><div class="data-scroll"><table><thead><tr><th>id</th><th>name</th><th>tallerpuno</th><th>tallerpdos</th></tr></thead><tbody id="data-body"></tbody></table></div><p class="small-note">Se muestran los primeros 10 registros.</p></details></section>
+    </section>
+  </main>
+  <noscript>Activa JavaScript para utilizar el editor de constancias.</noscript>
 </body>
 </html>
