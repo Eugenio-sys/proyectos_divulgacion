@@ -13,7 +13,7 @@
 <link href="bootstrap-3.4.1/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
 <script src="bootstrap-3.4.1/js/bootstrap.min.js"></script>
 <script src="bootstrap-3.4.1/accessibility/js/bootstrap-accessibility.min.js"></script>  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <style>*
+  <style>
       * { box-sizing: border-box; }
       body {
         margin: 0;
@@ -1008,7 +1008,7 @@
         const goalState = currentGoalLabel();
         const playerPath = state.pathStates.slice();
         const optimalPath = state.showOptimalGraphPath ? currentOptimalPath() : [];
-        const nodeRadius = state.numDisks <= 4 ? 2.6 : (state.numDisks === 5 ? 1.6 : 1.15);
+        const nodeRadius = state.numDisks <= 2 ? 4.2 : (state.numDisks <= 4 ? 2.6 : (state.numDisks === 5 ? 1.6 : 1.15));
         const currentRadius = nodeRadius + 1.4;
         const nodeMap = new Map(graph.nodes.map(function (n) { return [n.label, n]; }));
         const parts = [];
@@ -1202,6 +1202,7 @@
 
       els.diskSelect.addEventListener('change', function () {
         const n = parseInt(this.value, 10);
+        if (!Number.isInteger(n) || n === state.numDisks) return;
         if (state.challengeMode) startChallengeGame(n); else startNormalGame(n);
       });
 
@@ -1264,8 +1265,8 @@
             <div class="control-box">
               <label class="control-label" for="disk-select">Número de discos</label>
               <select id="disk-select" class="control-select">
+                <option value="2">2 discos</option>
                 <option value="3" selected="selected">3 discos</option>
-                <option value="3">3 discos</option>
                 <option value="4">4 discos</option>
                 <option value="5">5 discos</option>
                 <option value="6">6 discos</option>
