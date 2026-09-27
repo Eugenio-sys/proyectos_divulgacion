@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "fonts": [
+    {
+      "file": "fonts/DejaVuSans.ttf",
+      "label": "DejaVuSans"
+    },
+    {
+      "file": "fonts/DejaVuSans-Bold.ttf",
+      "label": "DejaVuSans Bold"
+    },
+    {
+      "file": "fonts/DejaVuSansMono.ttf",
+      "label": "DejaVuSansMono"
+    },
+    {
+      "file": "fonts/DejaVuSansMono-Bold.ttf",
+      "label": "DejaVuSansMono Bold"
+    },
+    {
+      "file": "fonts/DejaVuSansMono-Oblique.ttf",
+      "label": "DejaVuSansMono Oblique"
+    },
+    {
+      "file": "fonts/DejaVuSerif.ttf",
+      "label": "DejaVuSerif"
+    },
+    {
+      "file": "fonts/DejaVuSerif-Bold.ttf",
+      "label": "DejaVuSerif Bold"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#65263b">
+  <meta name="description" content="Diseña y genera constancias en PDF desde tu Excel, directamente en el navegador.">
+  <title>Constancias · Editor</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./vendor/mathjax/constancias-font-data.js"></script>
+  <script src="./src/math-config.js"></script>
+  <script defer src="./vendor/pdf-lib.min.js"></script>
+  <script defer src="./vendor/fontkit.umd.min.js"></script>
+  <script defer src="./vendor/jszip.min.js"></script>
+  <script defer src="./vendor/mathjax/tex-svg.js"></script>
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">C</span><div><h1>Constancias</h1><p>Editor de certificados</p></div></div>
+    <div class="header-actions">
+      <button id="undo" class="icon-button" title="Deshacer (Ctrl+Z)" aria-label="Deshacer" disabled>↶</button>
+      <button id="redo" class="icon-button" title="Rehacer (Ctrl+Mayús+Z)" aria-label="Rehacer" disabled>↷</button>
+      <span class="separator"></span>
+      <button id="load-design" class="button quiet">Abrir diseño</button>
+      <button id="save-design" class="button outline">Guardar diseño</button>
+      <input id="design-file" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Archivos y ajustes">
+      <section class="panel">
+        <div class="section-title"><span class="step">01</span><h2>Archivos</h2></div>
+        <label class="upload-card" for="excel-file"><span class="upload-icon" aria-hidden="true">▦</span><span><strong>Lista de personas</strong><small id="excel-label">Seleccionar archivo .xlsx</small></span><span class="upload-plus" aria-hidden="true">+</span></label>
+        <input id="excel-file" class="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <p class="schema-help">Primera hoja, con los encabezados <code>id</code>, <code>name</code>, <code>tallerpuno</code> y <code>tallerpdos</code>. Un nombre por fila. Los talleres pueden quedar vacíos.</p>
+        <div class="example-links"><a href="./examples/nombres.xlsx" download>Excel de ejemplo</a><a href="./examples/nombres_300.xlsx" download>300 personas</a></div>
+        <details class="precise"><summary>Símbolos y fórmulas en el Excel</summary><p class="small-note">En los talleres, escribe <code>$...$</code> dentro del texto o <code>$$...$$</code> para una fórmula en su propia línea. Ejemplos: <code>\mathds{1}_A</code>, <code>\mathscr{F}</code>, <code>\bm{\alpha}</code>, <code>\oiint</code> y <code>\ding{51}</code>. Las extensiones ya están activadas.</p><a href="./MATEMATICAS.md" target="_blank" rel="noopener">Guía de símbolos y compatibilidad</a></details>
+        <label class="upload-card" for="template-file"><span class="upload-icon" aria-hidden="true">▤</span><span><strong>Plantilla de la constancia</strong><small id="template-label">Seleccionar archivo PDF</small></span><span class="upload-plus" aria-hidden="true">+</span></label>
+        <input id="template-file" class="file-input" type="file" accept=".pdf,application/pdf">
+        <p class="small-note">Se utiliza la primera página del PDF.</p>
+        <button id="demo-button" class="text-button">Probar con archivos de ejemplo</button>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><span class="step">02</span><h2>Texto seleccionado</h2></div>
+        <div class="field-buttons" role="group" aria-label="Elegir texto">
+          <button data-field="name" class="field-button active" aria-pressed="true">Nombre</button>
+          <button data-field="tallerpuno" class="field-button" aria-pressed="false">Taller 1</button>
+          <button data-field="tallerpdos" class="field-button" aria-pressed="false">Taller 2</button>
+        </div>
+        <label class="control full">Fuente<select id="font-family" aria-label="Fuente del texto"></select></label>
+        <div id="font-sample" class="font-sample">Aa · Áj · Matemáticas</div>
+        <label class="font-upload" for="font-file">+ Agregar fuentes TTF u OTF</label>
+        <input id="font-file" class="file-input" type="file" accept=".ttf,.otf" multiple>
+        <label class="font-upload" for="font-folder">+ Cargar carpeta de fuentes</label>
+        <input id="font-folder" type="file" multiple webkitdirectory directory hidden>
+        <button id="refresh-fonts" class="text-button">Actualizar fuentes de la carpeta</button>
+        <p id="font-library-status" class="small-note" role="status" hidden></p>
+        <div class="control-row">
+          <label class="control">Tamaño <span class="unit">pt</span><div class="stepper"><button id="size-down" aria-label="Reducir tamaño">−</button><input id="font-size" type="number" min="6" max="120" step="1" value="34"><button id="size-up" aria-label="Aumentar tamaño">+</button></div></label>
+          <label class="control">Color<div class="color-control"><input id="font-color" type="color" value="#ee293d"><span id="color-value">#EE293D</span></div></label>
+        </div>
+        <div class="control-row">
+          <label class="control">Alineación<select id="text-align"><option value="left">Izquierda</option><option value="center" selected>Centrada</option><option value="right">Derecha</option></select></label>
+          <label class="control">Interlineado<input id="line-height" type="number" min="1" max="4" step="0.1" value="1.3"></label>
+        </div>
+        <label class="control full">Ancho del bloque <span class="unit">% de página</span><input id="block-width" type="number" min="5" max="100" step="1" value="90"></label>
+        <label class="toggle-label wrap-label"><input id="text-wrap" type="checkbox"><span>Dividir el texto en varias líneas</span></label>
+        <div class="center-actions"><button id="center-x" class="button outline small">Centrar horizontal</button><button id="center-y" class="button outline small">Centrar vertical</button></div>
+        <details class="precise"><summary>Posición exacta</summary><p class="small-note">Centímetros desde el centro. X hacia la derecha; Y hacia arriba.</p><div class="control-row"><label class="control">X (cm)<input id="position-x" type="number" step="0.01"></label><label class="control">Y (cm)<input id="position-y" type="number" step="0.01"></label></div></details>
+      </section>
+      <section class="panel compact">
+        <label class="toggle-label"><input id="snap-enabled" type="checkbox" checked><span>Ajustar al centro al arrastrar</span></label>
+        <p class="small-note">Mantén Alt para mover sin atracción. Usa las flechas para ajustes finos.</p>
+      </section>
+      <p class="privacy-note">Tus archivos se procesan en este navegador.</p>
+    </aside>
+
+    <section class="editor" aria-label="Vista previa y exportación">
+      <div class="preview-toolbar">
+        <div class="view-tabs" role="group" aria-label="Modo de vista previa"><button id="mode-check" class="active" aria-pressed="true">Comprobación</button><button id="mode-person" aria-pressed="false">Por persona</button></div>
+        <div class="zoom-control"><button id="zoom-out" class="icon-button" aria-label="Alejar">−</button><output id="zoom-value">Ajustar</output><button id="zoom-in" class="icon-button" aria-label="Acercar">+</button><button id="zoom-fit" class="text-button">Ajustar</button></div>
+      </div>
+      <div class="preview-context">
+        <p id="preview-explanation">El texto más largo de cada columna + <strong>Áj</strong>. El sufijo solo se usa en esta vista.</p>
+        <div id="person-controls" hidden><button id="person-prev" class="icon-button" aria-label="Persona anterior">‹</button><select id="person-select" aria-label="Persona de la vista previa"></select><button id="person-next" class="icon-button" aria-label="Persona siguiente">›</button><button id="longest-person" class="text-button">Nombre más largo</button></div>
+      </div>
+      <div id="canvas-viewport" class="canvas-viewport">
+        <div id="empty-state" class="empty-state"><div class="empty-sheet" aria-hidden="true">Aa</div><h2>Tu plantilla, lista para editar</h2><p>Carga un PDF y la lista de personas.<br>Después arrastra cada texto hasta su lugar.</p><button id="empty-demo" class="button outline">Abrir ejemplo</button></div>
+        <div id="page-shell" class="page-shell" hidden>
+          <canvas id="template-canvas" aria-label="Plantilla PDF"></canvas>
+          <div id="text-layer" class="text-layer"></div>
+          <div id="guide-x" class="guide vertical" hidden></div><div id="guide-y" class="guide horizontal" hidden></div>
+          <div id="snap-label" class="snap-label" hidden></div>
+        </div>
+      </div>
+      <div class="canvas-caption"><span id="page-size">Sin plantilla</span><span id="position-status">Selecciona un texto para editarlo</span></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="layout-warning" class="layout-warning" role="status" hidden></div>
+      <section class="export-bar">
+        <div><h2 id="export-title">Prepara tus constancias</h2><p id="export-detail">Carga el Excel y la plantilla para generar los PDF.</p></div>
+        <div class="export-actions"><button id="preview-pdf" class="button outline" disabled>Descargar PDF de prueba</button><button id="export-zip" class="button primary" disabled>Generar ZIP</button></div>
+      </section>
+      <section id="progress-panel" class="progress-panel" hidden aria-live="polite"><div><span id="progress-label">Preparando…</span><button id="cancel-export" class="text-button">Cancelar</button></div><progress id="export-progress" value="0" max="100"></progress></section>
+      <section class="data-panel"><details><summary><span>Datos del Excel</span><span id="record-count">0 personas</span></summary><div class="data-scroll"><table><thead><tr><th>id</th><th>name</th><th>tallerpuno</th><th>tallerpdos</th></tr></thead><tbody id="data-body"></tbody></table></div><p class="small-note">Se muestran los primeros 10 registros.</p></details></section>
+    </section>
+  </main>
+  <noscript>Activa JavaScript para utilizar el editor de constancias.</noscript>
+</body>
+</html>
