@@ -46,11 +46,13 @@ La plantilla de ejemplo es un fondo neutro de prueba. Sustitúyela por tu diseñ
 
 Se incluyen variantes de DejaVu. Las fuentes Adelle de la aplicación original no venían adjuntas al archivo R: puedes cargar tus archivos `.ttf` o `.otf` para usarlas en este editor.
 
+Puedes agregar varias fuentes o cargar una carpeta completa desde los controles del editor. En GitHub Pages también se buscan las fuentes TTF/OTF que hayas añadido a las carpetas `fonts` o `font`. Pulsa **Actualizar fuentes de la carpeta** para volver a buscarlas después de publicar archivos nuevos. En otros alojamientos, ejecuta `python actualizar_fuentes.py` antes de subir la aplicación para actualizar su catálogo. Consulta `FUENTES.md` para los detalles. Las fuentes adicionales se cargan al seleccionarlas y se incluyen en el diseño guardado si las utilizas.
+
 Para la mayor fidelidad, revisa el diseño después de cargar tus fuentes originales. La composición del navegador puede diferir ligeramente de XeLaTeX. Nombre y talleres conservan controles independientes; el nombre comienza sin división automática de líneas y los talleres con división activada.
 
-Se admiten expresiones matemáticas delimitadas por `$...$` o `$$...$$`, mediante MathJax. Por ejemplo, `Introducción a $x^2+y^2=1$`. Este soporte no equivale a un compilador XeLaTeX: paquetes, comandos de diseño de página y macros personalizadas de LaTeX requieren adaptación.
+Se admiten expresiones matemáticas delimitadas por `$...$` o `$$...$$`, mediante MathJax. Por ejemplo, `Introducción a $x^2+y^2=1$`. La guía `MATEMATICAS.md` incluye los paquetes, fuentes, comandos y ejemplos disponibles, así como las equivalencias y límites de compatibilidad. Escribe las fórmulas directamente en los talleres del Excel; no necesitan un preámbulo ni instrucciones `\usepackage`. Este soporte no equivale a un compilador XeLaTeX completo.
 
-La exportación conserva como fondo la **primera página del PDF** original. Los textos variables se incorporan como imágenes transparentes de alta resolución, a 288 ppp, para mantener su aspecto entre la vista previa y la descarga. Por ello, esos textos no son seleccionables ni buscables en el PDF. No se modifica el archivo original.
+La exportación conserva como fondo la **primera página del PDF** original. Los nombres y textos de los talleres se incorporan como **texto PDF seleccionable, copiable y buscable**, con sus fuentes incrustadas. Las fórmulas se dibujan mediante trazados vectoriales: conservan su nitidez al ampliar, aunque sus símbolos no se seleccionan como texto. No se convierten los textos ni las fórmulas en imágenes. No se modifica el archivo original.
 
 El tiempo y la memoria necesarios para generar un lote dependen del equipo y de la complejidad del fondo. Mantén la pestaña abierta mientras se prepara el ZIP.
 
@@ -68,6 +70,8 @@ El editor acepta archivos XLSX de hasta 30 MB, plantillas PDF de hasta 50 MB, fu
 
 No necesitas escribir un flujo de GitHub Actions ni ejecutar una compilación. Si ya tienes un sitio, también puedes copiar la aplicación completa a una subcarpeta: las rutas de sus recursos son relativas. Mantén juntas las carpetas y los archivos del paquete.
 
-Para actualizarla, sustituye los archivos modificados en el repositorio y confirma los cambios. El paquete entregado no publica nada automáticamente en tu cuenta.
+Este paquete contiene más de 100 archivos por sus fuentes y símbolos matemáticos. La interfaz web de GitHub permite subir hasta 100 archivos por operación: puedes subirlos por partes, conservando sus carpetas, o copiar todo a tu repositorio local y publicar con GitHub Desktop. No omitas archivos de `vendor/mathjax`, aunque una fórmula sencilla funcione sin ellos. Referencia: [Subir archivos a un repositorio](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository).
+
+Para actualizar desde la primera versión, sustituye los archivos de la aplicación e incluye las nuevas carpetas y dependencias del paquete. Conserva tus fuentes personales. Después de publicar, recarga con Ctrl+F5. El paquete entregado no publica nada automáticamente en tu cuenta.
 
 Referencia: [Configurar la fuente de publicación de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).

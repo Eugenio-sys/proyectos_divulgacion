@@ -7,10 +7,12 @@
   <meta name="description" content="Diseña y genera constancias en PDF desde tu Excel, directamente en el navegador.">
   <title>Constancias · Editor</title>
   <link rel="stylesheet" href="./styles.css">
-  <script>window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableMenu:false},tex:{packages:['base','ams','newcommand','configmacros','color','bbox'],maxBuffer:20000,maxMacros:2000}};</script>
+  <script src="./vendor/mathjax/constancias-font-data.js"></script>
+  <script src="./src/math-config.js"></script>
   <script defer src="./vendor/pdf-lib.min.js"></script>
+  <script defer src="./vendor/fontkit.umd.min.js"></script>
   <script defer src="./vendor/jszip.min.js"></script>
-  <script defer src="./vendor/tex-svg-full.js"></script>
+  <script defer src="./vendor/mathjax/tex-svg.js"></script>
   <script type="module" src="./src/app.js"></script>
 </head>
 <body>
@@ -34,6 +36,7 @@
         <input id="excel-file" class="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
         <p class="schema-help">Primera hoja, con los encabezados <code>id</code>, <code>name</code>, <code>tallerpuno</code> y <code>tallerpdos</code>. Un nombre por fila. Los talleres pueden quedar vacíos.</p>
         <div class="example-links"><a href="./examples/nombres.xlsx" download>Excel de ejemplo</a><a href="./examples/nombres_300.xlsx" download>300 personas</a></div>
+        <details class="precise"><summary>Símbolos y fórmulas en el Excel</summary><p class="small-note">En los talleres, escribe <code>$...$</code> dentro del texto o <code>$$...$$</code> para una fórmula en su propia línea. Ejemplos: <code>\mathds{1}_A</code>, <code>\mathscr{F}</code>, <code>\bm{\alpha}</code>, <code>\oiint</code> y <code>\ding{51}</code>. Las extensiones ya están activadas.</p><a href="./MATEMATICAS.md" target="_blank" rel="noopener">Guía de símbolos y compatibilidad</a></details>
         <label class="upload-card" for="template-file"><span class="upload-icon" aria-hidden="true">▤</span><span><strong>Plantilla de la constancia</strong><small id="template-label">Seleccionar archivo PDF</small></span><span class="upload-plus" aria-hidden="true">+</span></label>
         <input id="template-file" class="file-input" type="file" accept=".pdf,application/pdf">
         <p class="small-note">Se utiliza la primera página del PDF.</p>
@@ -51,6 +54,10 @@
         <div id="font-sample" class="font-sample">Aa · Áj · Matemáticas</div>
         <label class="font-upload" for="font-file">+ Agregar fuentes TTF u OTF</label>
         <input id="font-file" class="file-input" type="file" accept=".ttf,.otf" multiple>
+        <label class="font-upload" for="font-folder">+ Cargar carpeta de fuentes</label>
+        <input id="font-folder" type="file" multiple webkitdirectory directory hidden>
+        <button id="refresh-fonts" class="text-button">Actualizar fuentes de la carpeta</button>
+        <p id="font-library-status" class="small-note" role="status" hidden></p>
         <div class="control-row">
           <label class="control">Tamaño <span class="unit">pt</span><div class="stepper"><button id="size-down" aria-label="Reducir tamaño">−</button><input id="font-size" type="number" min="6" max="120" step="1" value="34"><button id="size-up" aria-label="Aumentar tamaño">+</button></div></label>
           <label class="control">Color<div class="color-control"><input id="font-color" type="color" value="#ee293d"><span id="color-value">#EE293D</span></div></label>
