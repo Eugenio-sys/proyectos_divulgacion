@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head><base target="_top"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body>
+<p>Conexión del registro de asistencia. Abre la aplicación desde su página de GitHub.</p>
+<script>
+'use strict';
+const cfg = <?!= bridgeConfigJson ?>;
+const destination = window.top;
+let boundPeer = null, greetingCount = 0;
+const running = new Set();
+function greet() {
+  if (++greetingCount > 240) {clearInterval(greetingTimer);return;}
+  destination.postMessage({namespace: cfg.namespace, nonce: cfg.nonce, kind: 'ready'}, cfg.parentOrigin);
+}
+const greetingTimer = setInterval(greet, 500);
+window.addEventListener('message', event => {
+  const data = event.data;
+  if (event.origin !== cfg.parentOrigin || event.source !== destination || !data ||
+      data.namespace !== cfg.namespace || data.nonce !== cfg.nonce || data.kind !== 'request' ||
+      typeof data.id !== 'string' || !/^[A-Za-z0-9-]{1,80}$/.test(data.id)) return;
+  if (boundPeer && event.source !== boundPeer) return;
+  boundPeer = event.source;clearInterval(greetingTimer);
+  if (running.has(data.id)) return;
+  const send = result => {
+    running.delete(data.id);
+    event.source.postMessage({namespace: cfg.namespace, nonce: cfg.nonce, kind: 'response', id: data.id, result}, cfg.parentOrigin);
+  };
+  if (running.size >= 4) {send({ok:false,error:{code:'BUSY',message:'Espera a que termine la operación anterior.'}});return;}
+  if (!data.request || typeof data.request.action !== 'string' || JSON.stringify(data.request).length > 30000) return;
+  running.add(data.id);
+  google.script.run
+    .withSuccessHandler(send)
+    .withFailureHandler(() => send({ok:false,error:{code:'CONNECTION_ERROR',message:'Google no pudo completar la operación. Intenta de nuevo.'}}))
+    .api(data.request);
+});
+greet();
+</script>
+</body>
+</html>
