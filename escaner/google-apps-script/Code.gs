@@ -527,7 +527,7 @@ function publicError_(error) {
 }
 
 /** Ejecutar manualmente desde el editor. Solo lectura; no imprime datos personales. */
-function verificarConfiguracion_() {
+function verificarConfiguracion() {
   try {
     var properties = PropertiesService.getScriptProperties().getProperties();
     authSecret_('operator', properties);
