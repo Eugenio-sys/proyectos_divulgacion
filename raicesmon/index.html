@@ -36,25 +36,31 @@ h1 svg{display:none;width:22px;height:22px;flex:0 0 auto}
 input[type=range]{width:100%;accent-color:var(--accent)}
 .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg label{flex:1;text-align:center;padding:6px 4px;cursor:pointer;color:var(--muted);font-size:13px;position:relative}
-.seg label:has(input:checked){background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
+.seg label.sel{background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
 .seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .btn{font:inherit;font-size:13px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:6px;padding:7px 11px;cursor:pointer}
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:550}
 .btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line)}
+.btn.primary:disabled:hover{border-color:var(--accent)}
 .btn:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .chk{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:13px;cursor:pointer}
 .chk input{accent-color:var(--accent);width:16px;height:16px;margin:0;flex:0 0 auto}
 .txt{color:var(--muted);font-size:12.5px;line-height:1.55;margin:0 0 8px}
 .txt b{color:var(--ink);font-weight:550}
 .big{font-size:22px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.15;margin-top:10px}
-.big small{font-size:12.5px;font-weight:400;color:var(--muted);margin-left:5px}
+.big small{font-size:12.5px;font-weight:400;color:var(--muted);margin-left:5px;letter-spacing:0}
+.estado{margin-top:8px;font-size:12.5px;color:var(--accent-ink);font-weight:550;min-height:1em}
 .monedas{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.moneda{width:38px;height:38px;border-radius:50%;border:2px solid rgba(0,0,0,.18);background:radial-gradient(circle at 35% 30%, #FFF3C4, var(--moneda) 60%, #A8892F);color:var(--moneda-ink);font:600 13px/1 var(--font);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .45s ease;font-variant-numeric:tabular-nums;padding:0}
+.moneda{width:38px;height:38px;border-radius:50%;border:2px solid rgba(0,0,0,.18);background:radial-gradient(circle at 35% 30%, #FFF3C4, var(--moneda) 60%, #A8892F);color:var(--moneda-ink);font:600 13px/1 var(--font);display:flex;align-items:center;justify-content:center;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}
 .moneda.cruz{background:radial-gradient(circle at 35% 30%, #F2F2F2, #B9BEC4 60%, #7C838B);color:#22282E}
 .moneda.fija{opacity:.6;cursor:default}
-.moneda.gira{transform:rotateY(720deg)}
+.moneda.gira{animation:giro .45s ease}
+@keyframes giro{from{transform:rotateY(0)}to{transform:rotateY(720deg)}}
 .poli{margin-top:10px;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);word-break:break-word;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 10px}
 .hud{position:absolute;left:14px;top:14px;background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:9px 13px;max-width:min(92%,460px);pointer-events:none;z-index:3}
 .hud .t{font-size:15px;font-weight:650}
@@ -67,13 +73,22 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .pista{position:absolute;right:14px;bottom:14px;background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;color:var(--muted);z-index:2;pointer-events:none}
 .zoombtns{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:3}
 .zoombtns .btn{background:var(--glass);width:36px;height:36px;padding:0;font-size:18px;line-height:1}
-@media (max-width:880px){
+@media (max-width:880px) and (orientation:portrait){
   .app{grid-template-columns:1fr;height:auto}
-  .side{order:2;border-right:0;border-top:1px solid var(--line)}
+  .side{order:2;border-right:0;border-top:1px solid var(--line);overflow:visible}
   .stage{order:1;height:70vh}
   .dragon{width:44%}
   .dragon .d{display:none}
   .hud{max-width:calc(100% - 78px)}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .hud{left:8px;top:8px;padding:5px 9px;max-width:calc(100% - 70px)}
+  .hud .t{font-size:13px}
+  .hud .d{font-size:12px}
+  .zoombtns{right:8px;top:8px}
+  .dragon{right:8px;bottom:8px;width:min(38%,220px);padding:6px}
+  .dragon .d{display:none}
+  .pista{right:8px;bottom:8px}
 }
 </style>
 </head>
@@ -86,8 +101,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     <section class="grp">
       <h2>Coeficientes</h2>
       <div class="seg">
-        <label><input type="radio" name="modo" value="pm" checked>1 y −1</label>
-        <label><input type="radio" name="modo" value="01">0 y 1</label>
+        <label><input type="radio" name="modo" value="pm" checked autocomplete="off">1 y −1</label>
+        <label><input type="radio" name="modo" value="01" autocomplete="off">0 y 1</label>
       </div>
       <p class="txt" id="modoTxt" style="margin-top:10px"></p>
     </section>
@@ -95,18 +110,19 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     <section class="grp">
       <h2>Lluvia de raíces</h2>
       <div class="row"><label for="grado">Grado de los polinomios</label><output id="gradoOut">18</output></div>
-      <input id="grado" type="range" min="3" max="24" step="1" value="18">
+      <input id="grado" type="range" min="3" max="24" step="1" value="18" autocomplete="off">
       <div class="btns"><button class="btn primary" id="pausa">Pausa</button><button class="btn" id="reiniciar">Reiniciar</button></div>
-      <div class="big"><span id="nPol">0</span><small>polinomios</small></div>
-      <div class="big" style="margin-top:4px"><span id="nRai">0</span><small>raíces</small></div>
-      <p class="txt" style="margin-top:8px">Cada polinomio se forma lanzando una moneda por coeficiente; sus raíces complejas se calculan y se acumulan. El brillo de cada punto indica cuántas raíces caen en él.</p>
+      <div class="big"><span id="nPol">0</span><small id="nPolDe">polinomios</small></div>
+      <div class="big" style="margin-top:4px"><span id="nRai">0</span><small id="nRaiDe">raíces</small></div>
+      <p class="estado" id="estadoLluvia"></p>
+      <p class="txt" style="margin-top:8px">Los polinomios caen en orden aleatorio y sin repetirse; las raíces complejas de cada uno se calculan y se acumulan. Cuando han caído todos, la imagen contiene todas las raíces de todos los polinomios de ese grado. La intensidad del color de cada punto indica cuántas raíces caen en él.</p>
     </section>
 
     <section class="grp">
       <h2>Su polinomio</h2>
       <p class="txt" id="gmTxt"></p>
       <div class="monedas" id="monedas"></div>
-      <div class="btns"><button class="btn primary" id="lanzar">Lanzar las monedas</button><button class="btn" id="borrar">Quitar las marcas</button></div>
+      <div class="btns"><button class="btn primary" id="lanzar">Lanzar las monedas</button><button class="btn" id="marcas">Ocultar las marcas</button></div>
       <div class="poli" id="poli"></div>
       <p class="txt" id="poliInfo" style="margin-top:8px"></p>
     </section>
@@ -118,24 +134,24 @@ input[type=range]{width:100%;accent-color:var(--accent)}
         <button class="btn" id="vBorde">Ampliar el borde interior</button>
         <button class="btn" id="vUno">Ampliar el borde exterior</button>
       </div>
-      <label class="chk"><input type="checkbox" id="circulo" checked>Mostrar el círculo |z| = 1</label>
+      <label class="chk"><input type="checkbox" id="circulo" checked autocomplete="off">Mostrar el círculo |z| = 1</label>
       <div class="btns"><button class="btn" id="fs">Pantalla completa</button></div>
-      <label class="chk"><input type="checkbox" id="expo">Modo exhibición: lanza monedas y recorre la imagen cuando nadie interactúa</label>
+      <label class="chk"><input type="checkbox" id="expo" autocomplete="off">Modo exhibición: lanza monedas y recorre la imagen cuando nadie interactúa</label>
       <div class="row" style="margin-top:14px"><label>Ambientación</label></div>
       <div class="seg">
-        <label><input type="radio" name="tema" value="clasico">Clásica</label>
-        <label><input type="radio" name="tema" value="halloween">Halloween</label>
+        <label><input type="radio" name="tema" value="clasico" autocomplete="off">Clásica</label>
+        <label><input type="radio" name="tema" value="halloween" autocomplete="off">Halloween</label>
       </div>
-      <p class="txt" style="margin-top:10px">Arrastre para desplazar la imagen y use la rueda o los botones para ampliarla. Un clic en un punto muestra el fractal escondido en esa zona.</p>
+      <p class="txt" style="margin-top:10px">Arrastre para desplazar la imagen y use la rueda o los botones para ampliarla. Un clic en un punto muestra el fractal escondido en esa zona. En los grados altos, al cambiar la vista la lluvia vuelve a empezar, para que la nueva vista también contenga todas las raíces.</p>
     </section>
 
     <section class="grp">
       <h2>Por qué un anillo</h2>
       <p class="txt">Si los coeficientes valen ±1 y |z| ≥ 2, el término de mayor grado domina: |p(z)| ≥ |z|<sup>n</sup> − (|z|<sup>n</sup> − 1)/(|z| − 1) ≥ 1, de modo que no hay raíces con |z| ≥ 2. El polinomio con los coeficientes en orden inverso tiene por raíces los inversos 1/z, así que tampoco hay raíces con |z| ≤ 1/2. El mismo argumento vale con coeficientes 0 y 1 cuando el primero y el último valen 1. Las raíces se concentran cerca del círculo |z| = 1.</p>
       <h2 style="margin-top:12px">Simetrías</h2>
-      <p class="txt">Como los coeficientes son reales, la imagen es simétrica respecto al eje real. Invertir el orden de los coeficientes cambia cada raíz z por 1/z. Con coeficientes ±1, cambiar el signo de los coeficientes de grado impar cambia z por −z.</p>
+      <p class="txt">Como los coeficientes son reales, la imagen es simétrica respecto al eje real. Invertir el orden de los coeficientes cambia cada raíz z por 1/z. Con coeficientes ±1, cambiar el signo de los coeficientes de grado impar cambia z por −z, y cambiar el signo de todos no cambia las raíces.</p>
       <h2 style="margin-top:12px">La caminata escondida</h2>
-      <p class="txt">Con coeficientes ±1, p(1) es la suma de las monedas: la posición final de una caminata aleatoria con pasos ±1. El número 1 es raíz exactamente cuando la caminata termina en el origen; p(−1) cuenta lo mismo con los pasos de grado impar invertidos. Si el grado es par, hay un número impar de monedas y la suma nunca es 0: con coeficientes ±1, z = 1 y z = −1 no son raíces y la imagen muestra un hueco en esos puntos. Si el grado es impar, sí pueden serlo.</p>
+      <p class="txt">Con coeficientes ±1, p(1) es la suma de los coeficientes: la posición final de una caminata con pasos ±1. El número 1 es raíz exactamente cuando la caminata termina en el origen; p(−1) cuenta lo mismo con los pasos de grado impar invertidos. Si el grado es par, hay un número impar de coeficientes y la suma nunca es 0: con coeficientes ±1, z = 1 y z = −1 no son raíces y la imagen muestra un hueco en esos puntos. Si el grado es impar, sí pueden serlo.</p>
       <h2 style="margin-top:12px">El fractal escondido</h2>
       <p class="txt">Cerca de un punto z, la imagen ampliada se parece al conjunto que produce el juego del caos con las transformaciones <b>x ↦ 1 + z·x</b> y <b>x ↦ 1 − z·x</b>, elegidas también a cara o cruz. Con coeficientes 0 y 1, las transformaciones correspondientes son <b>x ↦ z·x</b> y <b>x ↦ 1 + z·x</b>.</p>
       <h2 style="margin-top:12px">Referencias</h2>
@@ -154,10 +170,10 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 </div>
 
 <script id="codigoTrabajador" type="text/plain">
-let modo='pm', grado=20, activo=false, gen=0;
+let modo='pm', grado=18, activo=false, gen=0, N=0, t=0, paso=1, mBits=2, cadena=0, K=[0,0,0,0,1,1,1,1];
 const MAXN=40, zr=new Float64Array(MAXN), zi=new Float64Array(MAXN), a=new Float64Array(MAXN+1);
 function aberth(n){
-  for(let k=0;k<n;k++){ const t=2*Math.PI*k/n+0.37; zr[k]=Math.cos(t); zi[k]=Math.sin(t); }
+  for(let k=0;k<n;k++){ const u=2*Math.PI*k/n+0.37; zr[k]=Math.cos(u); zi[k]=Math.sin(u); }
   for(let it=0;it<80;it++){
     let maxd=0;
     for(let k=0;k<n;k++){
@@ -173,20 +189,35 @@ function aberth(n){
     }
     if(maxd<1e-11) break;
   }
+  // Las raíces reales salen con una parte imaginaria residual del orden del redondeo; se anula.
+  for(let k=0;k<n;k++) if(Math.abs(zi[k])<1e-7) zi[k]=0;
 }
-function coeficientes(n){
-  if(modo==='pm'){ for(let j=0;j<=n;j++) a[j]=Math.random()<0.5? -1 : 1; }
-  else { a[0]=1; a[n]=1; for(let j=1;j<n;j++) a[j]=Math.random()<0.5? 0 : 1; }
+// Biyección pseudoaleatoria de {0, …, 2^m − 1}: sumar una constante, multiplicar por un impar y mezclar los bits altos con los bajos son operaciones invertibles.
+function mezclar(x){
+  const mask=(1<<mBits)-1, s=Math.max(1, mBits>>1);
+  for(let r=0;r<4;r++){ x=(x+K[r])&mask; x=Math.imul(x, K[4+r]|1)&mask; x^=x>>>s; }
+  return x;
 }
-function lote(){
-  if(!activo) return;
+function coeficientesDe(x, n){
+  if(modo==='pm'){ a[n]=1; for(let j=0;j<n;j++) a[j]=((x>>>j)&1)? 1 : -1; }
+  else { a[0]=1; a[n]=1; for(let j=1;j<n;j++) a[j]=(x>>>(j-1))&1; }
+}
+function lote(c){
+  if(!activo || c!==cadena) return;
   const g=gen, n=grado, t0=Date.now(), out=new Float32Array(240000); let k=0, np=0;
-  while(Date.now()-t0<45 && k+2*n<=out.length){ coeficientes(n); aberth(n); for(let j=0;j<n;j++){ out[k++]=zr[j]; out[k++]=zi[j]; } np++; }
-  const res=out.slice(0,k); self.postMessage({gen:g, raices:res, np:np}, [res.buffer]);
-  setTimeout(lote, 0);
+  while(t<N && Date.now()-t0<45 && k+2*n<=out.length){ coeficientesDe(mezclar(t), n); aberth(n); for(let j=0;j<n;j++){ out[k++]=zr[j]; out[k++]=zi[j]; } np++; t+=paso; }
+  const fin=t>=N, res=out.slice(0,k);
+  self.postMessage({gen:g, raices:res, np:np, fin:fin}, [res.buffer]);
+  if(fin){ activo=false; return; }
+  setTimeout(function(){ lote(c); }, 0);
 }
+function arrancar(){ activo=true; cadena++; lote(cadena); }
 self.onmessage=function(e){ const m=e.data;
-  if(m.cmd==='iniciar'){ modo=m.modo; grado=m.grado; gen=m.gen; if(!activo){ activo=true; lote(); } }
+  if(m.cmd==='iniciar'){
+    if(m.gen!==gen){ gen=m.gen; modo=m.modo; grado=m.grado; K=m.claves; mBits=(modo==='pm')? grado : grado-1; N=Math.pow(2,mBits); t=m.indice; paso=m.paso; }
+    if(m.activo===false){ activo=false; return; }
+    if(!activo && t<N) arrancar();
+  }
   else if(m.cmd==='pausa'){ activo=false; }
   else if(m.cmd==='raices'){ const c=m.coef, n=c.length-1; for(let j=0;j<=n;j++) a[j]=c[j]; aberth(n); const r=[]; for(let j=0;j<n;j++) r.push([zr[j],zi[j]]); self.postMessage({id:m.id, raicesPol:r}); }
 };
@@ -206,11 +237,13 @@ function temaInicial(){
 let tema=temaInicial();
 document.documentElement.setAttribute('data-tema', tema);
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===tema); });
-function sistemaOscuro(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function marcarSeg(){ document.querySelectorAll('.seg label').forEach(function(l){ const i=l.querySelector('input'); l.classList.toggle('sel', !!(i && i.checked)); }); }
+const mqOscuro=window.matchMedia? window.matchMedia('(prefers-color-scheme: dark)') : null;
+let sisOscuro=!!(mqOscuro && mqOscuro.matches);
 function hex(c){ return [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)]; }
 let LUT=new Uint8Array(256*3), FONDO=[0,0,0], COL={};
 function colores(){
-  const hw=tema==='halloween', osc=hw || sistemaOscuro();
+  const hw=tema==='halloween', osc=hw || sisOscuro;
   const stops=(hw? ['#0B0710','#2E1450','#7B3FC4','#E0601A','#FFB347','#FFF4E2'] : (osc? ['#14181D','#163A3A','#1F7A6E','#3EBBA6','#BFF0E6','#FFFFFF'] : ['#FBF9F4','#D5E8E2','#7FC4B8','#1F8A7A','#0E4A42','#10202A'])).map(hex);
   FONDO=stops[0];
   for(let i=0;i<256;i++){ const t=i/255, x=t*(stops.length-1), k=Math.min(stops.length-2,Math.floor(x)), f=x-k, A=stops[k], B=stops[k+1]; for(let c=0;c<3;c++) LUT[3*i+c]=Math.round(A[c]+(B[c]-A[c])*f); }
@@ -219,10 +252,14 @@ function colores(){
 }
 
 // ---------- Estado ----------
-const st={ modo:'pm', grado:18, gen:1, activo:true, vista:{cx:0, cy:0, hw:1.75}, np:0, nr:0, circulo:true, sel:null, monedas:[], gm:18, raicesPol:[] };
+const st={ modo:'pm', grado:18, gen:1, activo:true, vista:{cx:0, cy:0, hw:1.75}, np:0, nr:0, N:0, gradoLluvia:18, completo:false, circulo:true, sel:null, monedas:[], gm:18, raicesPol:[], verMarcas:true };
 const DPR=Math.min(window.devicePixelRatio||1, 1.5);
-const CAP=4000000; const almacen=new Float32Array(2*CAP); let nAlm=0, pos=0;
-let W=0, H=0, hist=null, maxH=0, sucio=true;
+// Se guardan las raíces calculadas (hasta CAP) para redibujar al cambiar la vista sin recalcular.
+const CAP=4800000; const almacen=new Float32Array(2*CAP); let nAlm=0, pos=0;
+// hist acumula la lluvia en la vista vL (con tamaño hW × hH), que es la vista en la que la imagen es exacta.
+let W=0, H=0, hist=null, hW=0, hH=0, vL={cx:0, cy:0, hw:1.75}, maxH=0, sucio=true;
+// Vista previa con las raíces guardadas: durante un gesto ('gesto') y mientras la lluvia vuelve a empezar tras un cambio de vista ('reinicio').
+let histPrev=null, modoPrevia=null, nPrev=0, bufPrev=null;
 
 // ---------- Trabajadores ----------
 const fuenteT=$('codigoTrabajador').textContent;
@@ -247,46 +284,110 @@ function recibir(e){
   const r=m.raices; st.np+=m.np; st.nr+=r.length/2;
   for(let i=0;i<r.length;i+=2){ almacen[2*pos]=r[i]; almacen[2*pos+1]=r[i+1]; pos=(pos+1)%CAP; if(nAlm<CAP) nAlm++; }
   binear(r, r.length/2); sucio=true;
+  if(!st.completo && st.np>=st.N){ st.completo=true; actualizarBotones(); }
 }
+function totalPolinomios(){ return Math.pow(2, st.modo==='pm'? st.grado : st.grado-1); }
 function iniciarLluvia(){
-  st.gen++; st.np=0; st.nr=0; nAlm=0; pos=0; limpiarHist();
-  trabajadores.forEach(function(w){ w.postMessage({cmd:'iniciar', modo:st.modo, grado:st.grado, gen:st.gen}); });
-  if(!st.activo) trabajadores.forEach(function(w){ w.postMessage({cmd:'pausa'}); });
+  st.gen++; st.np=0; st.nr=0; st.completo=false; st.N=totalPolinomios(); st.gradoLluvia=st.grado; nAlm=0; pos=0; histPrev=null; modoPrevia=null; limpiarHist();
+  // Orden aleatorio sin repetición: cada hilo recorre los lugares i, i + T, i + 2T, … de una permutación pseudoaleatoria nueva.
+  const claves=[]; for(let k=0;k<8;k++) claves.push((Math.random()*4294967296)>>>0);
+  trabajadores.forEach(function(w,i){ w.postMessage({cmd:'iniciar', modo:st.modo, grado:st.grado, gen:st.gen, claves:claves, indice:i, paso:trabajadores.length, activo:st.activo}); });
+  actualizarBotones(); sucio=true;
 }
 function raicesDe(coef, cb){ const id=++idPol; respuestasPol[id]=cb; trabajadores[0].postMessage({cmd:'raices', coef:coef, id:id}); }
+function actualizarBotones(){ const b=$('pausa'); b.disabled=st.completo; b.textContent=st.completo? 'Lluvia completa' : (st.activo? 'Pausa' : 'Continuar'); }
 
 // ---------- Densidad ----------
 const cvD=$('dens'), cvO=$('over'), gD=cvD.getContext('2d'), gO=cvO.getContext('2d');
 let img=null;
 function dimensionar(){
   const w=Math.max(10, Math.round(cvD.clientWidth*DPR)), h=Math.max(10, Math.round(cvD.clientHeight*DPR));
-  if(w===W && h===H) return; W=w; H=h; cvD.width=w; cvD.height=h; cvO.width=w; cvO.height=h; img=gD.createImageData(W,H); rebinear();
+  if(w===W && h===H) return false; W=w; H=h; cvD.width=w; cvD.height=h; cvO.width=w; cvO.height=h; img=gD.createImageData(W,H); vistaCambiada(false); return true;
 }
 function escala(){ return 2*st.vista.hw/Math.min(W,H); }
-function limpiarHist(){ hist=new Uint32Array(W*H); maxH=0; sucio=true; }
-function binear(r, n){
-  const s=escala(), x0=st.vista.cx-W/2*s, y0=st.vista.cy+H/2*s, inv=1/s;
-  for(let i=0;i<n;i++){ const px=((r[2*i]-x0)*inv)|0, py=((y0-r[2*i+1])*inv)|0; if(px>=0 && px<W && py>=0 && py<H){ const k=py*W+px; const v=++hist[k]; if(v>maxH) maxH=v; } }
+function limpiarHist(){ hist=new Uint32Array(W*H); hW=W; hH=H; vL={cx:st.vista.cx, cy:st.vista.cy, hw:st.vista.hw}; maxH=0; sucio=true; }
+function binearEn(Hh, w, h, v, r, n){
+  const s=2*v.hw/Math.min(w,h), x0=v.cx-w/2*s, y0=v.cy+h/2*s, inv=1/s; let mx=0;
+  for(let i=0;i<n;i++){ const px=((r[2*i]-x0)*inv)|0, py=((y0-r[2*i+1])*inv)|0; if(px>=0 && px<w && py>=0 && py<h){ const k=py*w+px; const c=++Hh[k]; if(c>mx) mx=c; } }
+  return mx;
 }
+function binear(r, n){ const mx=binearEn(hist, hW, hH, vL, r, n); if(mx>maxH) maxH=mx; }
 function rebinear(){ limpiarHist(); binear(almacen, nAlm); }
+function enVistaDeLaLluvia(){ return hW===W && hH===H && vL.cx===st.vista.cx && vL.cy===st.vista.cy && vL.hw===st.vista.hw; }
+let tFinal=null;
+// Tras un cambio de vista: si están guardadas todas las raíces, la imagen se rehace al instante y es exacta. Si no
+// (grados altos), se muestra una vista previa con las guardadas y, al terminar el gesto, la lluvia vuelve a empezar
+// para que la nueva vista contenga todas las raíces. Si la vista no cambió, no se repite nada.
+function vistaCambiada(final){
+  sucio=true;
+  if(final){ clearTimeout(tFinal); tFinal=null; }
+  if(st.nr<=CAP){ histPrev=null; modoPrevia=null; rebinear(); return; }
+  if(enVistaDeLaLluvia()){ if(modoPrevia==='gesto'){ histPrev=null; modoPrevia=null; } return; }
+  if(!bufPrev || bufPrev.length!==W*H) bufPrev=new Uint32Array(W*H); else bufPrev.fill(0);
+  histPrev=bufPrev; binearEn(histPrev, W, H, st.vista, almacen, nAlm); modoPrevia='gesto';
+  if(final){ const prev=histPrev; iniciarLluvia(); histPrev=prev; modoPrevia='reinicio'; nPrev=CAP; }
+}
+function programarFinal(ms){ clearTimeout(tFinal); tFinal=setTimeout(function(){ vistaCambiada(true); pintarEncima(); }, ms); }
+let ultOcupados=0, radioPuntos=0;
+function indiceColor(c, L){ return Math.min(255, Math.round(255*(0.18+0.82*Math.min(1, Math.log(1+c)/L)))); }
 function pintar(){
-  if(!img) return; const d=img.data, F=FONDO, L=Math.log(1+Math.max(1,maxH)*0.6);
-  const pocos=[]; let ocupados=0;
-  for(let k=0,o=0;k<W*H;k++,o+=4){ const c=hist[k]; if(c===0){ d[o]=F[0]; d[o+1]=F[1]; d[o+2]=F[2]; } else { const t=Math.min(255, Math.round(255*(0.18+0.82*Math.min(1,Math.log(1+c)/L)))); d[o]=LUT[3*t]; d[o+1]=LUT[3*t+1]; d[o+2]=LUT[3*t+2]; ocupados++; if(pocos.length<3000) pocos.push(k); } d[o+3]=255; }
+  if(!img) return;
+  let fuente=hist;
+  if(histPrev){
+    if(modoPrevia==='reinicio' && (st.completo || st.nr>=nPrev)){ histPrev=null; modoPrevia=null; }
+    else fuente=histPrev;
+  }
+  if(fuente===hist && (hW!==W || hH!==H)) return;
+  const d=img.data, F=FONDO, A=W*H;
+  // Escala de color robusta: el color más intenso corresponde al cuantil del 99,9 % de los conteos, para que unos pocos
+  // píxeles con conteos enormes (por ejemplo, z = ±1 en los grados impares) no apaguen el resto de la imagen. El mínimo
+  // de 8 evita que, cuando casi todos los conteos valen 1, todos los puntos tomen el color más intenso.
+  let M=0; for(let k=0;k<A;k++) if(fuente[k]) M++;
+  const salto=Math.max(1, Math.floor(M/20000)), muestra=[]; let j=0;
+  for(let k=0;k<A;k++){ const c=fuente[k]; if(c>0 && (j++)%salto===0) muestra.push(c); }
+  muestra.sort(function(x,y){ return x-y; });
+  const q=muestra.length? muestra[Math.floor(0.999*(muestra.length-1))] : 1, L=Math.log(1+Math.max(8,q));
+  // Con pocas raíces distintas, cada píxel ocupado se dibuja además como un disco. Su radio es proporcional a la
+  // separación típica entre puntos, √(A/M), de modo que disminuye de manera continua al aumentar el número M de puntos.
+  const KAPPA=0.1, RMIN=0.75, RFADE=0.5, RMAX=4.5*DPR, maxPuntos=Math.floor(A*(KAPPA/RMIN)*(KAPPA/RMIN));
+  const ids=[]; let ocupados=0;
+  for(let k=0,o=0;k<A;k++,o+=4){ const c=fuente[k]; if(c===0){ d[o]=F[0]; d[o+1]=F[1]; d[o+2]=F[2]; } else { const t=indiceColor(c,L); d[o]=LUT[3*t]; d[o+1]=LUT[3*t+1]; d[o+2]=LUT[3*t+2]; ocupados++; if(ids.length<=maxPuntos) ids.push(k); } d[o+3]=255; }
   gD.putImageData(img,0,0);
-  // Con grados pequeños hay pocas raíces distintas: se dibujan como puntos visibles
-  if(ocupados>0 && ocupados<=3000){ const t=230; gD.fillStyle='rgb('+LUT[3*t]+','+LUT[3*t+1]+','+LUT[3*t+2]+')'; const r=Math.max(2.5, 3.2*DPR);
-    pocos.forEach(function(k){ const x=k%W, y=(k/W)|0; gD.beginPath(); gD.arc(x+0.5,y+0.5,r,0,2*Math.PI); gD.fill(); }); }
+  ultOcupados=ocupados; radioPuntos=0;
+  if(ocupados>0 && ocupados<=maxPuntos){
+    const r=Math.min(RMAX, KAPPA*Math.sqrt(A/ocupados));
+    if(r>RMIN){
+      radioPuntos=r;
+      // Los discos conservan el color de su conteo; los más brillantes se dibujan encima.
+      const grupos=new Map();
+      ids.forEach(function(k){ const t=indiceColor(fuente[k],L); let g=grupos.get(t); if(!g){ g=[]; grupos.set(t,g); } g.push(k); });
+      const ts=Array.from(grupos.keys()).sort(function(a,b){ return a-b; });
+      gD.save(); gD.globalAlpha=Math.min(1,(r-RMIN)/RFADE);
+      ts.forEach(function(t){ gD.fillStyle='rgb('+LUT[3*t]+','+LUT[3*t+1]+','+LUT[3*t+2]+')'; gD.beginPath(); grupos.get(t).forEach(function(k){ const x=k%W+0.5, y=((k/W)|0)+0.5; gD.moveTo(x+r,y); gD.arc(x,y,r,0,2*Math.PI); }); gD.fill(); });
+      gD.restore();
+    }
+  }
 }
 function aPantalla(x,y){ const s=escala(); return [W/2+(x-st.vista.cx)/s, H/2-(y-st.vista.cy)/s]; }
 function aPlano(px,py){ const s=escala(); return [st.vista.cx+(px-W/2)*s, st.vista.cy-(py-H/2)*s]; }
 function pintarEncima(){
   gO.clearRect(0,0,W,H);
   if(st.circulo){ const c=aPantalla(0,0), R=1/escala(); gO.strokeStyle=COL.circulo; gO.lineWidth=1*DPR; gO.setLineDash([6*DPR,6*DPR]); gO.beginPath(); gO.arc(c[0],c[1],R,0,2*Math.PI); gO.stroke(); gO.setLineDash([]); }
+  if(!st.verMarcas) return;
   st.raicesPol.forEach(function(z){ const p=aPantalla(z[0],z[1]); gO.fillStyle=COL.centro; gO.strokeStyle=COL.anillo; gO.lineWidth=2.6*DPR; gO.beginPath(); gO.arc(p[0],p[1],6.5*DPR,0,2*Math.PI); gO.fill(); gO.stroke(); });
   if(st.sel){ const p=aPantalla(st.sel[0],st.sel[1]); gO.strokeStyle=COL.sel; gO.lineWidth=1.6*DPR; gO.beginPath(); gO.moveTo(p[0]-10*DPR,p[1]); gO.lineTo(p[0]+10*DPR,p[1]); gO.moveTo(p[0],p[1]-10*DPR); gO.lineTo(p[0],p[1]+10*DPR); gO.stroke(); gO.beginPath(); gO.arc(p[0],p[1],5*DPR,0,2*Math.PI); gO.stroke(); }
 }
-function ponerVista(v){ st.vista=v; rebinear(); pintarEncima(); }
+function ponerVista(v){ st.vista=v; vistaCambiada(true); pintarEncima(); }
+
+// ---------- Marcas ----------
+// Las marcas son los anillos de las raíces del polinomio del visitante y la cruz del punto elegido, con su fractal.
+function actualizarMarcas(){
+  $('marcas').textContent=st.verMarcas? 'Ocultar las marcas' : 'Mostrar las marcas';
+  const ver=st.verMarcas && !!st.sel;
+  $('dragon').classList.toggle('show', ver); $('pista').style.display=ver? 'none' : '';
+  pintarEncima();
+}
+function mostrarMarcas(){ if(!st.verMarcas){ st.verMarcas=true; actualizarMarcas(); } }
 
 // ---------- Fractal escondido ----------
 function dibujarDragon(z){
@@ -295,6 +396,7 @@ function dibujarDragon(z){
   if(m>1){ zr=zr/(m*m); zi=zi/(m*m); m=1/m; nota=' Fuera del círculo |z| = 1 se usa el punto simétrico 1/z̄: la imagen de las raíces es simétrica respecto a ese círculo.'; }
   if(m>0.97){ zr*=0.97/m; zi*=0.97/m; m=0.97; }
   if(m<0.05){ zr=0.05; zi=0; m=0.05; }
+  $('dragon').classList.add('show'); $('pista').style.display='none';
   const cv=$('dragonC'), lado=Math.round(cv.clientWidth*DPR)||300; cv.width=lado; cv.height=lado; const g=cv.getContext('2d');
   const N=260000, P=new Float32Array(2*N), Q=new Uint8Array(N); let x=0, y=0;
   const pm=st.modo==='pm';
@@ -315,7 +417,6 @@ function dibujarDragon(z){
   const fz=function(a,b){ return a.toFixed(3).replace('-','−')+(b<0? ' − ' : ' + ')+Math.abs(b).toFixed(3)+'i'; };
   $('dragonT').textContent='Fractal de z = '+fz(zr,zi);
   $('dragonD').textContent=(pm? 'Juego del caos con x ↦ 1 + z·x y x ↦ 1 − z·x, eligiendo cada paso a cara o cruz.' : 'Juego del caos con x ↦ z·x y x ↦ 1 + z·x, eligiendo cada paso a cara o cruz.')+' Donde la imagen de las raíces es densa, este conjunto es una mancha llena; cerca de los bordes del anillo se vuelve un encaje, como las raíces de esa zona.'+nota;
-  $('dragon').classList.add('show'); $('pista').style.display='none';
 }
 
 // ---------- Monedas del visitante ----------
@@ -331,19 +432,22 @@ function construirMonedas(){
   const box=$('monedas'); box.innerHTML=''; const n=st.gm;
   if(st.monedas.length!==n+1) st.monedas=Array.from({length:n+1}, function(){ return st.modo==='pm'? (Math.random()<0.5?-1:1) : (Math.random()<0.5?0:1); });
   if(st.modo==='01'){ st.monedas[0]=1; st.monedas[n]=1; st.monedas=st.monedas.map(function(v){ return v<0? 0 : v; }); }
-  else st.monedas=st.monedas.map(function(v){ return v===0? -1 : v; });
+  else { st.monedas=st.monedas.map(function(v){ return v===0? -1 : v; }); st.monedas[n]=1; }
   for(let k=n;k>=0;k--){
     const b=document.createElement('button'); b.className='moneda'; b.type='button'; b.dataset.k=k; b.title='Coeficiente de grado '+k;
-    const fija=(st.modo==='01' && (k===0||k===n)); if(fija) b.classList.add('fija');
-    b.addEventListener('click', function(){ if(fija) return; interaccion(); const v=st.monedas[k]; st.monedas[k]=st.modo==='pm'? -v : 1-v; b.classList.remove('gira'); void b.offsetWidth; b.classList.add('gira'); pintarMoneda(b,k); actualizarPoli(); });
+    const fija=esFija(k); if(fija) b.classList.add('fija');
+    b.addEventListener('click', function(){ if(fija) return; interaccion(); const v=st.monedas[k]; st.monedas[k]=st.modo==='pm'? -v : 1-v; b.classList.remove('gira'); void b.offsetWidth; b.classList.add('gira'); pintarMoneda(b,k); mostrarMarcas(); actualizarPoli(); });
     pintarMoneda(b,k); box.appendChild(b);
   }
   actualizarPoli();
 }
+// Coeficientes que no se sortean: el principal con ±1; el primero y el último con 0 y 1.
+function esFija(k){ const n=st.gm; return st.modo==='01'? (k===0||k===n) : k===n; }
 function pintarMoneda(b,k){ const v=st.monedas[k]; b.textContent=st.modo==='pm'? (v>0? '+1' : '−1') : String(v); b.classList.toggle('cruz', st.modo==='pm'? v<0 : v===0); }
 function lanzarMonedas(){
-  const n=st.gm; st.monedas=st.monedas.map(function(v,k){ if(st.modo==='01' && (k===0||k===n)) return 1; return st.modo==='pm'? (Math.random()<0.5?-1:1) : (Math.random()<0.5?0:1); });
-  $('monedas').querySelectorAll('.moneda').forEach(function(b){ const k=+b.dataset.k; b.classList.remove('gira'); void b.offsetWidth; b.classList.add('gira'); setTimeout(function(){ pintarMoneda(b,k); }, 220); });
+  st.monedas=st.monedas.map(function(v,k){ if(esFija(k)) return 1; return st.modo==='pm'? (Math.random()<0.5?-1:1) : (Math.random()<0.5?0:1); });
+  $('monedas').querySelectorAll('.moneda').forEach(function(b){ const k=+b.dataset.k; if(esFija(k)) return; b.classList.remove('gira'); void b.offsetWidth; b.classList.add('gira'); setTimeout(function(){ pintarMoneda(b,k); }, 220); });
+  mostrarMarcas();
   setTimeout(actualizarPoli, 250);
 }
 function actualizarPoli(){
@@ -353,19 +457,24 @@ function actualizarPoli(){
     let dentro=0, fuera=0, sobre=0; r.forEach(function(z){ const m=Math.hypot(z[0],z[1]); if(Math.abs(m-1)<1e-6) sobre++; else if(m<1) dentro++; else fuera++; });
     let t='Sus '+r.length+' raíces se marcan en la imagen con anillos: '+dentro+' dentro del círculo |z| = 1, '+sobre+' sobre él y '+fuera+' fuera.';
     if(st.modo==='pm'){ const s=a.reduce(function(x,y){ return x+y; },0), sm=a.reduce(function(x,y,k){ return x+(k%2? -y : y); },0);
-      t+=' p(1) = '+String(s).replace('-','−')+(s===0? ': la caminata de las monedas regresa al origen y z = 1 es raíz.' : ', así que z = 1 no es raíz.')+' p(−1) = '+String(sm).replace('-','−')+'.'; }
+      t+=' p(1) = '+String(s).replace('-','−')+(s===0? ': la caminata regresa al origen y z = 1 es raíz.' : ', así que z = 1 no es raíz.')+' p(−1) = '+String(sm).replace('-','−')+'.'; }
     $('poliInfo').textContent=t;
   });
 }
 
 // ---------- Textos ----------
-function fmtN(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+function fmtN(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'\u202F'); }
 function actualizarTextos(){
-  $('modoTxt').textContent=st.modo==='pm'
-    ? 'Cara vale 1 y cruz vale −1. Así se obtiene la célebre imagen de las raíces de los polinomios de Littlewood, con huecos junto a algunas raíces de la unidad.'
+  const pm=st.modo==='pm', g=st.gradoLluvia, total=st.N*g;
+  $('modoTxt').textContent=pm
+    ? 'Cara vale 1 y cruz vale −1. El coeficiente de mayor grado se fija en 1, porque p y −p tienen las mismas raíces. Así se obtiene la célebre imagen de las raíces de los polinomios de Littlewood, con huecos junto a algunas raíces de la unidad.'
     : 'Cara vale 1 y cruz vale 0; el primer y el último coeficiente valen siempre 1. Es el caso que estudiaron Odlyzko y Poonen (1993).';
-  $('hudD').textContent='Grado '+st.grado+' · coeficientes '+(st.modo==='pm'? '±1' : '0 y 1')+' · '+fmtN(st.np)+' polinomios · '+fmtN(st.nr)+' raíces';
-  $('nPol').textContent=fmtN(st.np); $('nRai').textContent=fmtN(st.nr);
+  $('hudD').textContent='Grado '+g+' · coeficientes '+(pm? '±1' : '0 y 1')+' · '+(st.completo? 'los '+fmtN(st.N)+' polinomios' : fmtN(st.np)+' de '+fmtN(st.N)+' polinomios');
+  $('nPol').textContent=fmtN(st.np); $('nPolDe').textContent='de '+fmtN(st.N)+' polinomios';
+  $('nRai').textContent=fmtN(st.nr); $('nRaiDe').textContent='de '+fmtN(total)+' raíces';
+  $('estadoLluvia').textContent=st.completo
+    ? 'Lluvia completa: se calcularon las '+fmtN(total)+' raíces de los '+fmtN(st.N)+' polinomios de grado '+g+'.'
+    : (st.activo? '' : 'Lluvia en pausa.');
 }
 
 // ---------- Interacción ----------
@@ -377,11 +486,11 @@ cvO.addEventListener('pointermove', function(e){
   if(arr){ const dx=e.clientX-ant.x, dy=e.clientY-ant.y; if(Math.hypot(e.clientX-arr.x,e.clientY-arr.y)>4) arr.movido=true; if(arr.movido){ const s=escala()*DPR; st.vista.cx-=dx*s; st.vista.cy+=dy*s; arrastreVista=true; pintarEncima(); programarRebin(); } }
 });
 let arrastreVista=false, tRebin=null;
-function programarRebin(){ if(tRebin) return; tRebin=setTimeout(function(){ tRebin=null; rebinear(); }, 90); }
+function programarRebin(){ if(tRebin) return; tRebin=setTimeout(function(){ tRebin=null; vistaCambiada(false); }, 90); }
 function fin(e){
   punteros.delete(e.pointerId); if(punteros.size<2) pinza=0;
-  if(arr && !arr.movido){ const r=cvO.getBoundingClientRect(); const z=aPlano((e.clientX-r.left)*DPR, (e.clientY-r.top)*DPR); st.sel=z; pintarEncima(); dibujarDragon(z); }
-  if(arrastreVista){ arrastreVista=false; rebinear(); pintarEncima(); }
+  if(arr && !arr.movido){ const r=cvO.getBoundingClientRect(); const z=aPlano((e.clientX-r.left)*DPR, (e.clientY-r.top)*DPR); st.sel=z; st.verMarcas=true; dibujarDragon(z); actualizarMarcas(); }
+  if(arrastreVista){ arrastreVista=false; clearTimeout(tRebin); tRebin=null; vistaCambiada(true); pintarEncima(); }
   arr=null;
 }
 cvO.addEventListener('pointerup', fin); cvO.addEventListener('pointercancel', fin);
@@ -389,8 +498,10 @@ cvO.addEventListener('wheel', function(e){ e.preventDefault(); interaccion(); co
 let tZoom=null;
 function zoomEn(f, p){
   const v=st.vista, nh=Math.min(2.2, Math.max(0.0005, v.hw/f));
+  if(nh===v.hw) return;
   if(p){ const a=aPlano(p[0],p[1]); const k=nh/v.hw; v.cx=a[0]+(v.cx-a[0])*k; v.cy=a[1]+(v.cy-a[1])*k; }
-  v.hw=nh; clearTimeout(tZoom); tZoom=setTimeout(function(){ rebinear(); pintarEncima(); }, 60);
+  v.hw=nh; clearTimeout(tZoom); tZoom=setTimeout(function(){ vistaCambiada(false); pintarEncima(); }, 60);
+  programarFinal(350);
   pintarEncima();
 }
 $('zMas').addEventListener('click', function(){ interaccion(); zoomEn(1.6,null); });
@@ -399,36 +510,58 @@ $('vCompleta').addEventListener('click', function(){ interaccion(); ponerVista({
 $('vBorde').addEventListener('click', function(){ interaccion(); ponerVista({cx:-0.43, cy:0.53, hw:0.13}); });
 $('vUno').addEventListener('click', function(){ interaccion(); ponerVista({cx:0.92, cy:1.22, hw:0.2}); });
 $('circulo').addEventListener('change', function(){ st.circulo=this.checked; pintarEncima(); });
-document.querySelectorAll('input[name="modo"]').forEach(function(r){ r.addEventListener('change', function(){ interaccion(); st.modo=this.value; st.monedas=[]; st.sel=null; $('dragon').classList.remove('show'); $('pista').style.display=''; construirMonedas(); iniciarLluvia(); actualizarTextos(); }); });
+document.querySelectorAll('input[name="modo"]').forEach(function(r){ r.addEventListener('change', function(){ interaccion(); st.modo=this.value; marcarSeg(); st.monedas=[]; st.sel=null; actualizarMarcas(); construirMonedas(); textoGrado(); iniciarLluvia(); actualizarTextos(); }); });
 $('grado').addEventListener('input', function(){ interaccion(); st.grado=+this.value; st.gm=st.grado; $('gradoOut').textContent=st.grado; st.monedas=[]; construirMonedas(); textoGrado(); });
 $('grado').addEventListener('change', function(){ iniciarLluvia(); });
-$('pausa').addEventListener('click', function(){ interaccion(); st.activo=!st.activo; this.textContent=st.activo? 'Pausa' : 'Continuar'; trabajadores.forEach(function(w){ w.postMessage(st.activo? {cmd:'iniciar', modo:st.modo, grado:st.grado, gen:st.gen} : {cmd:'pausa'}); }); });
+$('pausa').addEventListener('click', function(){
+  interaccion(); if(st.completo) return;
+  st.activo=!st.activo; actualizarBotones(); sucio=true;
+  trabajadores.forEach(function(w){ w.postMessage(st.activo? {cmd:'iniciar', gen:st.gen, activo:true} : {cmd:'pausa'}); });
+});
 $('reiniciar').addEventListener('click', function(){ interaccion(); iniciarLluvia(); });
-function textoGrado(){ $('gmTxt').textContent='Su polinomio tiene el mismo grado que los de la lluvia, '+st.grado+', y se forma con '+(st.grado+1)+' monedas: es una gota más de la lluvia. Pueden lanzarse monedas reales y copiar el resultado haciendo clic en cada moneda.'; }
+function textoGrado(){
+  const g=st.grado, fijos=st.modo==='pm'? 'el coeficiente de mayor grado vale 1 y los otros '+g : 'el primer y el último coeficiente valen 1 y los otros '+(g-1);
+  $('gmTxt').textContent='Su polinomio tiene el mismo grado que los de la lluvia, '+g+': '+fijos+' se eligen con monedas. Es una gota más de la lluvia. También se pueden lanzar monedas reales y copiar el resultado: un clic en una moneda la voltea.';
+}
 $('lanzar').addEventListener('click', function(){ interaccion(); lanzarMonedas(); });
-$('borrar').addEventListener('click', function(){ interaccion(); st.raicesPol=[]; st.sel=null; pintarEncima(); $('dragon').classList.remove('show'); $('pista').style.display=''; });
-$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(d.documentElement.requestFullscreen){ d.documentElement.requestFullscreen().catch(function(){}); } });
+$('marcas').addEventListener('click', function(){ interaccion(); st.verMarcas=!st.verMarcas; actualizarMarcas(); });
+const fsOk=!!(document.fullscreenEnabled && document.documentElement.requestFullscreen);
+if(!fsOk) $('fs').style.display='none';
+$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(fsOk){ d.documentElement.requestFullscreen().catch(function(){}); } });
+document.addEventListener('fullscreenchange', function(){ $('fs').textContent=document.fullscreenElement? 'Salir de pantalla completa' : 'Pantalla completa'; });
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.addEventListener('change', function(){ interaccion(); tema=this.value; aplicarTema(); }); });
-function aplicarTema(){ document.documentElement.setAttribute('data-tema',tema); colores(); sucio=true; pintarEncima(); if(st.sel) dibujarDragon(st.sel); }
-if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', aplicarTema); }catch(e){} }
-if(window.ResizeObserver) new ResizeObserver(function(){ dimensionar(); pintarEncima(); sucio=true; }).observe($('stage'));
+function aplicarTema(){ document.documentElement.setAttribute('data-tema',tema); marcarSeg(); colores(); sucio=true; pintarEncima(); if(st.sel){ dibujarDragon(st.sel); actualizarMarcas(); } }
+if(mqOscuro){
+  const alCambiar=function(e){ sisOscuro=!!e.matches; aplicarTema(); };
+  try{ mqOscuro.addEventListener('change', alCambiar); }catch(e){ try{ mqOscuro.addListener(alCambiar); }catch(e2){} }
+}
+if(window.ResizeObserver) new ResizeObserver(function(){ if(dimensionar()) programarFinal(250); pintarEncima(); sucio=true; }).observe($('stage'));
+// Tras usar un control con el ratón o el dedo, se suelta el foco.
+let usoPuntero=false;
+document.addEventListener('pointerdown', function(){ usoPuntero=true; }, true);
+document.addEventListener('keydown', function(e){ if(e.key==='Tab') usoPuntero=false; }, true);
+function soltarFoco(sel){ return function(e){ const t=e.target && e.target.closest? e.target.closest(sel) : null; if(t && usoPuntero) setTimeout(function(){ if(document.activeElement===t) t.blur(); }, 0); }; }
+document.addEventListener('click', soltarFoco('button, input[type=checkbox], input[type=radio]'));
+document.addEventListener('change', soltarFoco('input[type=range], input[type=checkbox], input[type=radio]'));
 
 // ---------- Exhibición ----------
 let ultimaInteraccion=-1e9; const EXPO={activa:false, t:0, paso:0};
 function interaccion(){ ultimaInteraccion=performance.now(); EXPO.activa=false; }
+// Cualquier gesto del público cuenta como interacción, también desplazarse por el panel.
+['pointerdown','wheel','keydown','touchstart'].forEach(function(ev){ document.addEventListener(ev, interaccion, {capture:true, passive:true}); });
 $('expo').addEventListener('change', function(){ if(this.checked) ultimaInteraccion=-1e9; else { EXPO.activa=false; ultimaInteraccion=performance.now(); } });
 const PUNTOS=[[0.35,0.58],[-0.45,0.52],[0.5,0.5],[0.12,0.68],[-0.62,0.28],[0.6,0.36]];
 const VISTAS=[{cx:0,cy:0,hw:1.75},{cx:-0.43,cy:0.53,hw:0.13},{cx:0,cy:0,hw:1.75},{cx:0.92,cy:1.22,hw:0.2}];
 function pasoExpo(dt){
   if(!$('expo').checked){ EXPO.activa=false; return; }
   if(performance.now()-ultimaInteraccion<45000) return;
-  if(!EXPO.activa){ EXPO.activa=true; EXPO.t=0; EXPO.paso=0; }
+  if(!EXPO.activa){ EXPO.activa=true; EXPO.t=0; EXPO.paso=0; if(!st.activo){ st.activo=true; actualizarBotones(); trabajadores.forEach(function(w){ w.postMessage({cmd:'iniciar', gen:st.gen, activo:true}); }); } }
   EXPO.t+=dt;
   if(EXPO.t>=9){ EXPO.t=0; EXPO.paso++;
+    if(EXPO.paso%20===0){ st.modo=st.modo==='pm'? '01' : 'pm'; document.querySelectorAll('input[name="modo"]').forEach(function(r){ r.checked=(r.value===st.modo); }); marcarSeg(); st.monedas=[]; construirMonedas(); textoGrado(); iniciarLluvia(); actualizarTextos(); }
     lanzarMonedas();
-    const z=PUNTOS[EXPO.paso%PUNTOS.length]; st.sel=z; dibujarDragon(z);
+    const z=PUNTOS[EXPO.paso%PUNTOS.length]; st.sel=z; st.verMarcas=true; dibujarDragon(z); actualizarMarcas();
     if(EXPO.paso%5===0){ ponerVista(Object.assign({}, VISTAS[(EXPO.paso/5)%VISTAS.length])); }
-    if(EXPO.paso%20===0){ st.modo=st.modo==='pm'? '01' : 'pm'; document.querySelectorAll('input[name="modo"]').forEach(function(r){ r.checked=(r.value===st.modo); }); st.monedas=[]; construirMonedas(); iniciarLluvia(); actualizarTextos(); }
     pintarEncima();
   }
 }
@@ -436,15 +569,17 @@ function pasoExpo(dt){
 // ---------- Ciclo ----------
 let ultimo=performance.now(), ultimoPintado=0;
 function ciclo(ahora){
-  const dt=Math.min(0.1,(ahora-ultimo)/1000); ultimo=ahora;
+  const dt=Math.max(0, Math.min(0.1,(ahora-ultimo)/1000)); ultimo=ahora;
   pasoExpo(dt);
   if(sucio && ahora-ultimoPintado>120){ sucio=false; ultimoPintado=ahora; pintar(); actualizarTextos(); }
   requestAnimationFrame(ciclo);
 }
 
 // ---------- Inicio ----------
-colores(); dimensionar(); crearTrabajadores(); iniciarLluvia(); construirMonedas(); textoGrado(); actualizarTextos(); pintarEncima();
-if(window.RAICES_TEST){ window.__rc={ st:st, raicesDe:raicesDe, ponerVista:ponerVista, dibujarDragon:dibujarDragon, almacen:function(){ return almacen.subarray(0,2*nAlm); }, lanzar:lanzarMonedas, aplicarTema:function(t){ tema=t; aplicarTema(); } }; }
+colores(); marcarSeg(); dimensionar(); crearTrabajadores(); iniciarLluvia(); construirMonedas(); textoGrado(); actualizarTextos(); actualizarMarcas();
+if(window.RAICES_TEST){ window.__rc={ st:st, raicesDe:raicesDe, ponerVista:ponerVista, dibujarDragon:dibujarDragon, almacen:function(){ return almacen.subarray(0,2*nAlm); }, lanzar:lanzarMonedas,
+  aplicarTema:function(t){ tema=t; document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===t); }); aplicarTema(); },
+  dibujo:function(){ return {ocupados:ultOcupados, radio:radioPuntos, W:W, H:H, previa:!!histPrev}; }, hist:function(){ return hist; }, EXPO:EXPO, CAP:CAP }; }
 requestAnimationFrame(ciclo);
 })();
 </script>
