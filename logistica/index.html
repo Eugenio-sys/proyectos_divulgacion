@@ -22,16 +22,16 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
 .app{display:grid;grid-template-columns:340px minmax(0,1fr);height:100vh}
 .side{background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:18px 18px 28px}
 .stage{position:relative;min-height:0;min-width:0;overflow:hidden;padding:10px;display:grid;gap:10px}
-.stage.log{grid-template-rows:minmax(0,52fr) minmax(0,15fr) minmax(0,33fr);grid-template-columns:1fr 1fr}
+.stage.log{grid-template-rows:minmax(0,52fr) minmax(96px,15fr) minmax(0,33fr);grid-template-columns:1fr 1fr}
 .stage.man{grid-template-rows:minmax(0,45fr) minmax(0,55fr);grid-template-columns:1fr}
 .panel{position:relative;background:var(--plot);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-height:0}
 .panel canvas{display:block;width:100%;height:100%}
-.ptit{position:absolute;left:10px;top:7px;font-size:12px;font-weight:600;color:var(--muted);pointer-events:none;background:var(--glass);padding:2px 7px;border-radius:6px}
+.ptit{position:absolute;left:10px;top:7px;font-size:12px;font-weight:600;color:var(--muted);pointer-events:none;background:var(--glass);padding:2px 7px;border-radius:6px;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stage.log #pBif{grid-column:1 / 3}
 .stage.log #pLya{grid-column:1 / 3}
 .stage.man #pLya,.stage.man #pTel,.stage.man #pSer{display:none}
 .stage.log #pMan{display:none}
-#cBif{cursor:crosshair;touch-action:none}
+#cBif{cursor:crosshair;touch-action:pan-y pinch-zoom}
 h1{font-size:18px;font-weight:650;margin:0 0 2px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;line-height:1.25}
 h1 svg{display:none;width:22px;height:22px;flex:0 0 auto}
 :root[data-tema="halloween"] h1 svg{display:block}
@@ -44,30 +44,44 @@ h1 svg{display:none;width:22px;height:22px;flex:0 0 auto}
 input[type=range]{width:100%;accent-color:var(--accent)}
 .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg label{flex:1;text-align:center;padding:6px 4px;cursor:pointer;color:var(--muted);font-size:13px;position:relative}
-.seg label:has(input:checked){background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
+.seg label.sel{background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
 .seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .btn{font:inherit;font-size:13px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:6px;padding:7px 11px;cursor:pointer}
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:550}
 .btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
 .btn.chip{padding:5px 9px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line)}
 .btn:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .chk{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:13px;cursor:pointer}
 .chk input{accent-color:var(--accent);width:16px;height:16px;margin:0;flex:0 0 auto}
 .txt{color:var(--muted);font-size:12.5px;line-height:1.55;margin:0 0 8px}
 .txt b{color:var(--ink);font-weight:550}
+.nw{white-space:nowrap}
 .estado{margin-top:10px;padding:9px 11px;border:1px solid var(--accent);border-radius:8px;background:var(--accent-soft);color:var(--ink);font-size:13px;line-height:1.45}
 table.feig{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;margin-top:6px}
 table.feig th{color:var(--muted);font-weight:550;text-align:right;padding:2px 4px;border-bottom:1px solid var(--line)}
 table.feig td{text-align:right;padding:2px 4px}
 table.feig tr:last-child td{color:var(--accent-ink);font-weight:600}
-@media (max-width:880px){
+.barra{display:none}
+@media (max-height:520px) and (orientation:landscape){
+  .stage{overflow-y:auto}
+  .stage.log{grid-template-rows:minmax(230px,52fr) minmax(96px,15fr) minmax(210px,33fr)}
+  .stage.man{grid-template-rows:minmax(210px,45fr) minmax(240px,55fr)}
+}
+@media (max-width:880px) and (orientation:portrait){
   .app{grid-template-columns:1fr;height:auto}
-  .side{order:2;border-right:0;border-top:1px solid var(--line)}
-  .stage{order:1;height:92vh}
-  .stage.log{grid-template-rows:minmax(0,40fr) minmax(0,14fr) minmax(0,23fr) minmax(0,23fr);grid-template-columns:1fr}
+  .side{order:2;border-right:0;border-top:1px solid var(--line);overflow:visible}
+  .stage{order:1;height:calc(92vh - 52px)}
+  .stage.log{grid-template-rows:minmax(0,40fr) minmax(84px,14fr) minmax(0,23fr) minmax(0,23fr);grid-template-columns:1fr}
   .stage.log #pBif,.stage.log #pLya{grid-column:auto}
+  body{padding-bottom:58px}
+  .barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;align-items:center;gap:10px;padding:9px 14px calc(9px + env(safe-area-inset-bottom));background:var(--panel);border-top:1px solid var(--line);box-shadow:0 -4px 14px rgba(0,0,0,.12)}
+  .barra label{font-size:13px;color:var(--muted);flex:0 0 auto}
+  .barra output{font-variant-numeric:tabular-nums;min-width:58px;text-align:right;font-size:13px;flex:0 0 auto}
 }
 </style>
 </head>
@@ -75,12 +89,12 @@ table.feig tr:last-child td{color:var(--accent-ink);font-weight:600}
 <div class="app">
   <aside class="side">
     <h1><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20c3-1 4-5 6-9s4-6 6-6 3 1 4 3" fill="none" stroke="#FF7A1A" stroke-width="1.8" stroke-linecap="round"/><path d="M12 3l1.2 2.4M5 6l2 1.6M19 11l-2.4.6" stroke="#A86BFF" stroke-width="1.6" stroke-linecap="round"/><circle cx="19" cy="8" r="1.6" fill="#4BE38A"/></svg>Caos en la ecuación logística</h1>
-    <p class="sub">x<sub>n+1</sub> = r·x<sub>n</sub>(1 − x<sub>n</sub>): del equilibrio a los ciclos y al caos</p>
+    <p class="sub"><span class="nw">x<sub>n+1</sub> = r·x<sub>n</sub>(1 − x<sub>n</sub>)</span>: del equilibrio a los ciclos y al caos</p>
 
     <section class="grp">
       <h2>Tasa de crecimiento</h2>
       <div class="row"><label for="r">Parámetro r</label><output id="rOut">3.5000</output></div>
-      <input id="r" type="range" min="0" max="4" step="0.0001" value="3.5">
+      <input id="r" type="range" min="0" max="4" step="0.0001" value="3.5" autocomplete="off">
       <div class="btns" id="presets"></div>
       <div class="btns"><button class="btn primary" id="barrer">Recorrer r</button><button class="btn" id="sonido">Escuchar</button></div>
       <div class="estado" id="estado"></div>
@@ -89,38 +103,38 @@ table.feig tr:last-child td{color:var(--accent-ink);font-weight:600}
     <section class="grp">
       <h2>Población inicial</h2>
       <div class="row"><label for="x0">x<sub>0</sub></label><output id="x0Out">0.2000</output></div>
-      <input id="x0" type="range" min="0.001" max="0.999" step="0.001" value="0.2">
-      <p class="txt" style="margin-top:8px">La serie temporal compara la trayectoria que parte de x<sub>0</sub> con la que parte de x<sub>0</sub> + 0.000001.</p>
+      <input id="x0" type="range" min="0.001" max="0.999" step="0.001" value="0.2" autocomplete="off">
+      <p class="txt" style="margin-top:8px">El panel «Dos trayectorias» compara la trayectoria que parte de x<sub>0</sub> con la que parte de <span class="nw">x<sub>0</sub> + 0.000001</span>.</p>
     </section>
 
     <section class="grp">
       <h2>Diagrama de bifurcación</h2>
       <div class="seg">
-        <label><input type="radio" name="vista" value="log" checked>Logística</label>
-        <label><input type="radio" name="vista" value="man">Con Mandelbrot</label>
+        <label><input type="radio" name="vista" value="log" checked autocomplete="off">Logística</label>
+        <label><input type="radio" name="vista" value="man" autocomplete="off">Con Mandelbrot</label>
       </div>
       <div class="btns">
         <button class="btn" id="vCompleta">Vista completa</button>
         <button class="btn" id="vCascada">Ampliar la cascada</button>
         <button class="btn" id="vVentana">Ampliar la ventana de periodo 3</button>
       </div>
-      <p class="txt" style="margin-top:10px">Arrastre sobre el diagrama para ampliar una región; un clic fija el valor de r; doble clic regresa a la vista completa.</p>
+      <p class="txt" id="ayudaDiag" style="margin-top:10px"></p>
     </section>
 
     <section class="grp">
       <h2>Constante de Feigenbaum</h2>
-      <p class="txt">Valores de r en los que el ciclo de periodo 2<sup>n</sup> pasa por x = 1/2, calculados por el método de Newton, y cociente de distancias sucesivas.</p>
+      <p class="txt">Valores de r en los que el ciclo de periodo 2<sup>n</sup> pasa por <span class="nw">x = 1/2</span>, calculados por el método de Newton, y cociente de distancias sucesivas.</p>
       <table class="feig" id="feig"><thead><tr><th>n</th><th>periodo</th><th>R<sub>n</sub></th><th>δ<sub>n</sub></th></tr></thead><tbody></tbody></table>
     </section>
 
     <section class="grp">
       <h2>Vista</h2>
       <div class="btns"><button class="btn" id="fs">Pantalla completa</button></div>
-      <label class="chk"><input type="checkbox" id="expo">Modo exhibición: recorre el diagrama cuando nadie interactúa</label>
+      <label class="chk"><input type="checkbox" id="expo" autocomplete="off">Modo exhibición: recorre el diagrama cuando nadie interactúa</label>
       <div class="row" style="margin-top:14px"><label>Ambientación</label></div>
       <div class="seg">
-        <label><input type="radio" name="tema" value="clasico">Clásica</label>
-        <label><input type="radio" name="tema" value="halloween">Halloween</label>
+        <label><input type="radio" name="tema" value="clasico" autocomplete="off">Clásica</label>
+        <label><input type="radio" name="tema" value="halloween" autocomplete="off">Halloween</label>
       </div>
     </section>
 
@@ -128,14 +142,15 @@ table.feig tr:last-child td{color:var(--accent-ink);font-weight:600}
       <h2>El modelo</h2>
       <p class="txt">La ecuación logística discreta describe una población con generaciones separadas: <b>x</b> es la población como fracción del máximo que admite el medio y <b>r</b> es la tasa de crecimiento por generación. La población crece en proporción a r y se frena al acercarse al máximo. Robert May (1976) mostró que esta regla tan simple puede producir caos.</p>
       <h2 style="margin-top:12px">Del equilibrio al caos</h2>
-      <p class="txt">Si r ≤ 1, la población se extingue. Si 1 &lt; r &lt; 3, se estabiliza en <b>x* = 1 − 1/r</b>. En r = 3 el equilibrio se vuelve inestable y aparece un ciclo de periodo 2; en r = 1 + √6 ≈ 3.449, uno de periodo 4, y después de periodo 8, 16, … Esas duplicaciones se acumulan en r ≈ 3.5699. A partir de ahí aparece el caos, interrumpido por ventanas de orden, como la de periodo 3, que comienza en r = 1 + √8 ≈ 3.828. Dentro de esa ventana se repite, en miniatura, el diagrama completo.</p>
+      <p class="txt">Si <span class="nw">r ≤ 1</span>, la población se extingue. Si <span class="nw">1 &lt; r &lt; 3</span>, se estabiliza en <b class="nw">x* = 1 − 1/r</b>. En <span class="nw">r = 3</span> el equilibrio se vuelve inestable y aparece un ciclo de periodo 2; en <span class="nw">r = 1 + √6 ≈ 3.449</span>, uno de periodo 4 y, después, ciclos de periodo 8, 16, … Esas duplicaciones se acumulan en <span class="nw">r ≈ 3.5699</span>. A partir de ahí aparece el caos, interrumpido por ventanas de orden, como la de periodo 3, que comienza en <span class="nw">r = 1 + √8 ≈ 3.828</span>. Dentro de esa ventana se repite, en miniatura, el diagrama completo.</p>
       <h2 style="margin-top:12px">Sensibilidad a las condiciones iniciales</h2>
-      <p class="txt">En el régimen caótico, dos poblaciones que difieren en una millonésima se separan en pocas decenas de generaciones. El exponente de Lyapunov <b>λ</b> mide la rapidez de esa separación: λ &lt; 0 indica orden y λ &gt; 0, caos. En r = 4 vale exactamente log 2.</p>
+      <p class="txt">En el régimen caótico, dos poblaciones que difieren en una millonésima se separan en pocas decenas de generaciones. El exponente de Lyapunov <b>λ</b> mide la rapidez de esa separación: <span class="nw">λ &lt; 0</span> indica orden y <span class="nw">λ &gt; 0</span>, caos. En <span class="nw">r = 4</span> vale exactamente <span class="nw">ln 2 ≈ 0.693</span>.</p>
       <h2 style="margin-top:12px">Universalidad</h2>
-      <p class="txt">Las distancias entre duplicaciones sucesivas disminuyen en una razón que tiende a <b>δ = 4.6692…</b>, la constante de Feigenbaum (1978). El mismo número aparece en toda familia de funciones con un solo máximo suave, y se ha medido en experimentos con fluidos calentados, grifos que gotean y circuitos eléctricos.</p>
+      <p class="txt">Las distancias entre duplicaciones sucesivas disminuyen en una razón que tiende a <b class="nw">δ = 4.6692…</b>, la constante de Feigenbaum (1978). El mismo número aparece en toda familia de funciones con un único máximo de forma parabólica que presente una cascada de duplicaciones, y se ha medido en experimentos con fluidos calentados y con circuitos eléctricos. En grifos que gotean también se han observado duplicaciones de periodo y caos.</p>
       <h2 style="margin-top:12px">El conjunto de Mandelbrot</h2>
-      <p class="txt">El cambio de variable z = r(1/2 − x) transforma la ecuación logística en <b>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</b>, con <b>c = r/2 − r<sup>2</sup>/4</b>. El diagrama de bifurcación de esta familia se alinea con el conjunto de Mandelbrot sobre el eje real: cada bulbo corresponde a un ciclo de periodo 1, 2, 4, …, y la ventana de periodo 3 coincide con un conjunto de Mandelbrot en miniatura cerca de c = −1.75.</p>
-      <p class="txt">Al escuchar, cada generación se convierte en una nota cuya altura es la población: un equilibrio suena como una sola nota; un ciclo, como una melodía que se repite; el caos, como una melodía que nunca se repite.</p>
+      <p class="txt">El cambio de variable <span class="nw">z = r(1/2 − x)</span> transforma la ecuación logística en <b class="nw">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</b>, con <b class="nw">c = r/2 − r<sup>2</sup>/4</b>. El diagrama de bifurcación de esta familia se alinea con el conjunto de Mandelbrot sobre el eje real: el equilibrio corresponde al cardioide principal, y los ciclos de periodo 2, 4, …, a los bulbos que lo siguen sobre el eje real. La ventana de periodo 3 coincide con un conjunto de Mandelbrot en miniatura cerca de <span class="nw">c = −1.75</span>.</p>
+      <h2 style="margin-top:12px" id="sonTit">Escuchar la población</h2>
+      <p class="txt" id="sonTxt">Con el botón «Escuchar», cada generación se convierte en una nota cuya altura depende de la población: un equilibrio suena como una sola nota; un ciclo, como una melodía que se repite; el caos, como una melodía que nunca se repite. Una población extinguida no suena.</p>
     </section>
   </aside>
 
@@ -147,6 +162,7 @@ table.feig tr:last-child td{color:var(--accent-ink);font-weight:600}
     <div class="panel" id="pMan"><canvas id="cMan"></canvas><div class="ptit">Conjunto de Mandelbrot, con el mismo eje c</div></div>
   </main>
 </div>
+<div class="barra" id="barra"><label for="rB">r</label><input id="rB" type="range" min="0" max="4" step="0.0001" value="3.5" autocomplete="off"><output id="rBOut">3.5000</output></div>
 
 <script>
 (function(){
@@ -163,11 +179,13 @@ function temaInicial(){
 let tema=temaInicial();
 document.documentElement.setAttribute('data-tema', tema);
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===tema); });
-function sistemaOscuro(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function marcarSeg(){ document.querySelectorAll('.seg label').forEach(function(l){ const i=l.querySelector('input'); l.classList.toggle('sel', !!(i && i.checked)); }); }
+const mqOscuro=window.matchMedia? window.matchMedia('(prefers-color-scheme: dark)') : null;
+let sisOscuro=!!(mqOscuro && mqOscuro.matches);
 function hex(c){ return [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)]; }
 let C={};
 function colores(){
-  const hw=tema==='halloween', osc=hw || sistemaOscuro();
+  const hw=tema==='halloween', osc=hw || sisOscuro;
   C={ osc:osc,
     fondo:hex(hw? '#0E0914' : (osc? '#161B21' : '#FBF9F4')),
     tinta:hw? '#F2EAF7' : (osc? '#E8E4DA' : '#1E2A32'),
@@ -189,12 +207,14 @@ function mezcla(stops,t){ t=Math.min(1,Math.max(0,t)); const x=t*(stops.length-1
 
 // ---------- Estado ----------
 const VISTA0={r0:2.5, r1:4, x0:0, x1:1};
+const VCASCADA={r0:3.54, r1:3.5725, x0:0.47, x1:0.57}, VVENTANA={r0:3.8275, r1:3.8585, x0:0.44, x1:0.56};
 const C0=-2.02, C1=0.29;
 const st={ r:3.5, x0:0.2, vista:Object.assign({},VISTA0), modo:'log', barrido:false, dirB:1, bMin:2.8, bMax:4, sonido:false };
 const DPR=Math.min(window.devicePixelRatio||1, 1.5);
 const M={l:46, r:12, t:36, b:26};
 function rDeC(c){ return 1+Math.sqrt(Math.max(0,1-4*c)); }
 function cDeR(r){ return r/2-r*r/4; }
+function menos(s){ if(/^-0\.?0*$/.test(s)) s=s.slice(1); return s.replace('-','−'); }
 
 // ---------- Utilidades de dibujo ----------
 function prepararCanvas(cv){
@@ -210,12 +230,25 @@ function marcas(a,b,n){
 function decimales(paso){ return Math.max(0, Math.min(6, -Math.floor(Math.log10(paso)+1e-9))); }
 function ejes(P, x0, x1, y0, y1, etqX, etqY, nx, ny){
   const g=P.ctx; g.save(); g.font=fuente(11); g.fillStyle=C.tenue; g.strokeStyle=C.rejilla; g.lineWidth=1;
-  const mx=marcas(x0,x1,nx||8), my=marcas(y0,y1,ny||5);
+  // El número de marcas se limita según el espacio disponible para que las etiquetas no se encimen.
+  nx=Math.max(2, Math.min(nx||8, Math.floor((P.pr-P.pl)/(62*DPR))));
+  ny=Math.max(1, Math.min(ny||5, Math.floor((P.pb-P.pt)/(22*DPR))));
+  const mx=marcas(x0,x1,nx), my=marcas(y0,y1,ny);
   const anchoEtq=g.measureText(etqX).width+14*DPR;
-  mx.v.forEach(function(v){ const X=P.pl+(v-x0)/(x1-x0)*(P.pr-P.pl); g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); if(X<P.pr-anchoEtq-10*DPR){ g.textAlign='center'; g.fillText(v.toFixed(decimales(mx.paso)).replace('-','−'), X, P.pb+15*DPR); } });
-  my.v.forEach(function(v){ const Y=P.pb-(v-y0)/(y1-y0)*(P.pb-P.pt); g.beginPath(); g.moveTo(P.pl,Y); g.lineTo(P.pr,Y); g.stroke(); if(Y>P.pt+6*DPR){ g.textAlign='right'; g.fillText(v.toFixed(decimales(my.paso)).replace('-','−'), P.pl-6*DPR, Y+4*DPR); } });
+  mx.v.forEach(function(v){ const X=P.pl+(v-x0)/(x1-x0)*(P.pr-P.pl); g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); if(X<P.pr-anchoEtq-10*DPR){ g.textAlign='center'; g.fillText(menos(v.toFixed(decimales(mx.paso))), X, P.pb+15*DPR); } });
+  let ultY=null;
+  my.v.forEach(function(v){ const Y=P.pb-(v-y0)/(y1-y0)*(P.pb-P.pt); g.beginPath(); g.moveTo(P.pl,Y); g.lineTo(P.pr,Y); g.stroke(); if(Y>P.pt+6*DPR && (ultY===null || Math.abs(Y-ultY)>=13*DPR)){ g.textAlign='right'; g.fillText(menos(v.toFixed(decimales(my.paso))), P.pl-6*DPR, Y+4*DPR); ultY=Y; } });
   g.textAlign='right'; g.fillStyle=C.tinta; g.fillText(etqX, P.pr, P.pb+15*DPR); g.fillStyle=C.tenue;
   g.save(); g.translate(12*DPR, (P.pt+P.pb)/2); g.rotate(-Math.PI/2); g.textAlign='center'; g.fillText(etqY,0,0); g.restore();
+  g.restore();
+}
+function cursorVertical(P,g,p,a,b,yFlecha){
+  if(p>=a && p<=b){ const X=P.pl+(p-a)/(b-a)*(P.pr-P.pl); g.strokeStyle=C.cursor; g.lineWidth=1.5*DPR; g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); return; }
+  // Si r queda fuera de la vista, una flecha en el borde indica hacia dónde está.
+  const izq=p<a, y=(yFlecha!==undefined)? yFlecha : P.pt+12*DPR, x=izq? P.pl+4*DPR : P.pr-4*DPR, s=izq? 1 : -1;
+  g.save(); g.fillStyle=C.cursor; g.font=fuente(11);
+  g.beginPath(); g.moveTo(x,y); g.lineTo(x+s*8*DPR,y-5*DPR); g.lineTo(x+s*8*DPR,y+5*DPR); g.closePath(); g.fill();
+  g.textAlign=izq? 'left' : 'right'; g.textBaseline='middle'; g.fillText('r = '+p.toFixed(4), x+s*12*DPR, y);
   g.restore();
 }
 
@@ -253,9 +286,7 @@ let sel=null;
 function dibujarBif(){
   const cv=$('cBif'); if(!baseBif) return; const P=prepararCanvas(cv), g=P.ctx;
   g.drawImage(baseBif,0,0);
-  const cuad=(st.modo==='man'), V=cuad? {r0:C0, r1:C1} : st.vista;
-  const p=cuad? cDeR(st.r) : st.r;
-  if(p>=V.r0 && p<=V.r1 && !(cuad && st.r<1)){ const X=P.pl+(p-V.r0)/(V.r1-V.r0)*(P.pr-P.pl); g.strokeStyle=C.cursor; g.lineWidth=1.5*DPR; g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); }
+  if(st.modo==='man') cursorVertical(P,g,cDeR(st.r),C0,C1); else cursorVertical(P,g,st.r,st.vista.r0,st.vista.r1);
   if(sel){ g.strokeStyle=C.cursor; g.setLineDash([5*DPR,4*DPR]); g.lineWidth=1.2*DPR; g.strokeRect(Math.min(sel.a,sel.c), Math.min(sel.b,sel.d), Math.abs(sel.c-sel.a), Math.abs(sel.d-sel.b)); g.setLineDash([]); }
 }
 
@@ -269,7 +300,7 @@ function dibujarLya(){
   const Y=function(l){ return P.pb-(Math.max(y0,Math.min(y1,l))-y0)/(y1-y0)*(P.pb-P.pt); }, Y0=Y(0);
   for(let i=0;i<n;i++){ const X=P.pl+i+0.5, l=v[i]; g.strokeStyle=l>0? C.caos : C.estable; g.globalAlpha=0.85; g.beginPath(); g.moveTo(X,Y0); g.lineTo(X,Y(l)); g.stroke(); }
   g.globalAlpha=1; g.strokeStyle=C.tinta; g.lineWidth=1*DPR; g.beginPath(); g.moveTo(P.pl,Y0); g.lineTo(P.pr,Y0); g.stroke();
-  const p=st.r; if(p>=cacheLya.r0 && p<=cacheLya.r1){ const X=P.pl+(p-cacheLya.r0)/(cacheLya.r1-cacheLya.r0)*(P.pr-P.pl); g.strokeStyle=C.cursor; g.lineWidth=1.5*DPR; g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); }
+  cursorVertical(P,g,st.r,cacheLya.r0,cacheLya.r1,P.pb-8*DPR);
 }
 
 // ---------- Telaraña ----------
@@ -302,7 +333,8 @@ function dibujarSer(){
   [[B,C.tray2,1.4],[A,C.tray1,1.8]].forEach(function(s){ g.strokeStyle=s[1]; g.lineWidth=s[2]*DPR; g.beginPath(); s[0].forEach(function(v,n){ if(n===0) g.moveTo(X(n),Y(v)); else g.lineTo(X(n),Y(v)); }); g.stroke();
     g.fillStyle=s[1]; s[0].forEach(function(v,n){ g.beginPath(); g.arc(X(n),Y(v),1.9*DPR,0,2*Math.PI); g.fill(); }); });
   if(sep>=0){ g.strokeStyle=C.cursor; g.setLineDash([4*DPR,4*DPR]); g.beginPath(); g.moveTo(X(sep),P.pt); g.lineTo(X(sep),P.pb); g.stroke(); g.setLineDash([]); }
-  $('tSer').textContent=sep>=0? ('Dos trayectorias: x₀ y x₀ + 0.000001 se separan en la generación '+sep) : 'Dos trayectorias: x₀ y x₀ + 0.000001 permanecen juntas';
+  const corto=cv.clientWidth<320;
+  $('tSer').textContent=sep>=0? ((corto? 'Se separan' : 'Dos trayectorias: se separan')+' en n = '+sep) : ((corto? 'Juntas' : 'Dos trayectorias: juntas')+' hasta n = '+N);
 }
 
 // ---------- Conjunto de Mandelbrot ----------
@@ -329,32 +361,48 @@ function avanzarMan(){
     }
     filaMan++;
   }
-  const g=P.ctx; g.putImageData(imgMan,0,0); ejes(P, C0, C1, -imMax, imMax, 'c (parte real)', 'Im c', 9, 4);
+  const g=P.ctx; g.putImageData(imgMan,0,0); ejes(P, C0, C1, -imMax, imMax, 'Re c', 'Im c', 9, 4);
   if(filaMan>=ph){ baseMan=document.createElement('canvas'); baseMan.width=P.w; baseMan.height=P.h; baseMan.getContext('2d').drawImage(cv,0,0); imgMan=null; }
   dibujarCursorMan();
 }
 function dibujarCursorMan(){
-  const cv=$('cMan'); if(!baseMan && imgMan) return; if(!baseMan) return; const P=prepararCanvas(cv), g=P.ctx; g.drawImage(baseMan,0,0);
-  if(st.r>=1){ const c=cDeR(st.r); if(c>=C0 && c<=C1){ const X=P.pl+(c-C0)/(C1-C0)*(P.pr-P.pl); g.strokeStyle=C.cursor; g.lineWidth=1.5*DPR; g.beginPath(); g.moveTo(X,P.pt); g.lineTo(X,P.pb); g.stroke(); } }
+  const cv=$('cMan'); if(!baseMan) return; const P=prepararCanvas(cv), g=P.ctx; g.drawImage(baseMan,0,0);
+  // c(r) = c(2 − r): también para r < 1 el cursor marca el parámetro equivalente.
+  cursorVertical(P,g,cDeR(st.r),C0,C1);
 }
 
 // ---------- Análisis del parámetro ----------
+function fmtLam(l){ if(l<-10) return 'λ → −∞, superestable'; let s=l.toFixed(3); if(s==='-0.000') s='0.000'; return 'λ = '+menos(s); }
 function analizar(r){
-  if(r<=1) return {t:'Extinción: con r ≤ 1 la población tiende a 0.', p:1};
+  const man=(st.modo==='man'), Z=function(x){ return r*(0.5-x); };
+  if(r<=1) return {t:'Extinción: con r ≤ 1 la población tiende a 0'+(man? '; en el diagrama, z tiende a r/2 = '+(r/2).toFixed(3) : '')+'.', p:1, lam:null};
   let x=0.4321; for(let t=0;t<6000;t++) x=r*x*(1-x);
   let sl=0; const N=4000; let y=x; for(let k=0;k<N;k++){ sl+=Math.log(Math.max(1e-12,Math.abs(r*(1-2*y)))); y=r*y*(1-y); }
   const lam=sl/N; const ref=x; let p=0, z=x;
   for(let k=1;k<=256;k++){ z=r*z*(1-z); if(Math.abs(z-ref)<1e-7){ p=k; break; } }
-  const L=' (λ = '+lam.toFixed(3).replace('-','−')+')';
+  const L=' ('+fmtLam(lam)+').';
   if(p>=1 && lam>0.002) p=0;
-  if(Math.abs(lam)<0.01) return {t:'Cerca de una bifurcación: la convergencia es muy lenta.'+L, p:0, lam:lam};
-  if(p===1){ return {t:'Equilibrio estable: la población se estabiliza en x* = '+(1-1/r).toFixed(4)+'.'+L, p:1, lam:lam}; }
-  if(p>1){ const v=[]; let w=ref; for(let k=0;k<p;k++){ v.push(w); w=r*w*(1-w); } v.sort(function(a,b){ return a-b; });
-    const lista=p<=4? (': '+v.map(function(u){ return u.toFixed(3); }).join(', ')) : '';
-    return {t:'Ciclo de periodo '+p+lista+'.'+L, p:p, lam:lam}; }
-  if(lam>0.002) return {t:'Caos: la población nunca se repite y dos poblaciones casi iguales se separan rápidamente.'+L, p:0, lam:lam};
-  return {t:'Cerca de una bifurcación: la convergencia es muy lenta.'+L, p:0, lam:lam};
+  if(p===0 && lam>0.002){
+    if(lam<0.15) return {t:'Caos débil: la población nunca se repite, pero dos poblaciones casi iguales suelen tardar en separarse'+L, p:0, lam:lam};
+    return {t:'Caos: la población nunca se repite y dos poblaciones casi iguales suelen separarse rápidamente'+L, p:0, lam:lam};
+  }
+  if(p===0 || Math.abs(lam)<0.01) return {t:'Cerca de una bifurcación: la convergencia es muy lenta'+L, p:0, lam:lam};
+  if(p===1){
+    const xs=1-1/r;
+    return {t:man? ('Equilibrio estable: z* = '+menos(Z(xs).toFixed(4))+', que corresponde a x* = '+xs.toFixed(4)+L) : ('Equilibrio estable: la población se estabiliza en x* = '+xs.toFixed(4)+L), p:1, lam:lam};
+  }
+  const v=[]; let w=ref; for(let k=0;k<p;k++){ v.push(man? Z(w) : w); w=r*w*(1-w); } v.sort(function(a,b){ return a-b; });
+  const lista=p<=4? (': '+(man? 'z = ' : 'x = ')+v.map(function(u){ return menos(u.toFixed(3)); }).join(', ')) : '';
+  return {t:'Ciclo de periodo '+p+lista+L, p:p, lam:lam};
 }
+// Algunos valores iniciales caen exactamente en un punto fijo (por ejemplo, x₀ = 1/2 con r = 4) y no muestran la dinámica típica.
+function notaExcepcional(a){
+  if(a.p===1 || st.r<=1) return '';
+  let x=st.x0;
+  for(let n=0;n<120;n++){ const y=st.r*x*(1-x); if(Math.abs(y-x)<1e-12) return ' Con este x₀, la trayectoria cae exactamente en un punto fijo: es un valor inicial excepcional.'; x=y; }
+  return '';
+}
+function actualizarEstado(){ const a=analizar(st.r); $('estado').textContent=a.t+notaExcepcional(a); }
 
 // ---------- Constante de Feigenbaum ----------
 function superestables(){
@@ -379,87 +427,171 @@ function tablaFeigenbaum(){
 }
 
 // ---------- Sonido ----------
+const AC=window.AudioContext||window.webkitAudioContext;
 let audio=null, osc=null, gan=null, xSon=0.3, timerSon=null;
 function setSonido(on){
+  if(on && !AC) on=false;
   st.sonido=on; $('sonido').classList.toggle('active',on); $('sonido').textContent=on? 'Silenciar' : 'Escuchar';
   if(on){
-    if(!audio){ const AC=window.AudioContext||window.webkitAudioContext; if(!AC){ st.sonido=false; return; } audio=new AC(); osc=audio.createOscillator(); osc.type='triangle'; gan=audio.createGain(); gan.gain.value=0.0001; osc.connect(gan); gan.connect(audio.destination); osc.start(); }
+    if(!audio){ audio=new AC(); osc=audio.createOscillator(); osc.type='triangle'; gan=audio.createGain(); gan.gain.value=0.0001; osc.connect(gan); gan.connect(audio.destination); osc.start(); }
     if(audio.state==='suspended') audio.resume();
-    xSon=st.x0; timerSon=setInterval(function(){
-      xSon=st.r*xSon*(1-xSon); if(!(xSon>0&&xSon<1)) xSon=0.3;
+    xSon=st.x0; if(timerSon) clearInterval(timerSon);
+    timerSon=setInterval(function(){
+      if(st.r<=1){ xSon=0; if(notaSon!==null){ notaSon=null; pedir('tel'); } return; }
+      xSon=st.r*xSon*(1-xSon);
+      if(!(xSon>1e-9 && xSon<1)){
+        // Una población extinguida no suena; si r vuelve a permitir crecimiento, la melodía empieza de nuevo desde x₀.
+        if(st.r>1) xSon=st.x0; else { xSon=0; notaSon=null; pedir('tel'); return; }
+      }
       const f=196*Math.pow(2,2.6*xSon), t=audio.currentTime;
       osc.frequency.setValueAtTime(f,t); gan.gain.cancelScheduledValues(t); gan.gain.setValueAtTime(0.0001,t); gan.gain.exponentialRampToValueAtTime(0.16,t+0.012); gan.gain.exponentialRampToValueAtTime(0.0001,t+0.17);
       notaSon=xSon; pedir('tel');
     }, 180);
   } else { if(timerSon){ clearInterval(timerSon); timerSon=null; } notaSon=null; pedir('tel'); }
 }
+if(!AC){ ['sonido','sonTit','sonTxt'].forEach(function(id){ $(id).style.display='none'; }); }
+document.addEventListener('visibilitychange', function(){ if(document.hidden && st.sonido) setSonido(false); });
 
 // ---------- Actualización ----------
 const pend={bif:false, cur:true, lya:true, tel:true, ser:true, man:false};
 function pedir(k){ pend[k]=true; }
-function ponerR(r, desdeSlider){
-  st.r=Math.min(4,Math.max(0,r)); if(!desdeSlider) $('r').value=st.r;
-  $('rOut').textContent=st.r.toFixed(4)+(st.modo==='man' && st.r>=1? '  (c = '+cDeR(st.r).toFixed(4).replace('-','−')+')' : '');
-  const a=analizar(st.r); $('estado').textContent=a.t;
+function ponerR(r, desde){
+  st.r=Math.min(4,Math.max(0,r));
+  if(desde!=='r') $('r').value=st.r; if(desde!=='rB') $('rB').value=st.r;
+  $('rOut').textContent=st.r.toFixed(4)+(st.modo==='man'? '  (c = '+menos(cDeR(st.r).toFixed(4))+')' : '');
+  $('rBOut').textContent=st.r.toFixed(4);
+  actualizarEstado();
   pend.cur=true; pend.lya=true; pend.tel=true; pend.ser=true;
 }
-function ponerVista(v){ st.vista=v; pend.bif=true; }
+function rangoBarrido(){
+  const V=st.modo==='man'? {r0:1, r1:4} : st.vista;
+  st.bMin=Math.max(V.r0, st.modo==='log' && V.r0<=2.8 && V.r1>=3.9? 2.8 : V.r0); st.bMax=Math.min(4,V.r1);
+  if(st.r<st.bMin||st.r>st.bMax) ponerR(st.bMin);
+}
+function ponerVista(v){ st.vista=v; pend.bif=true; if(st.barrido && !EXPO.activa) rangoBarrido(); }
+function ayudaDiagrama(){
+  $('ayudaDiag').textContent=st.modo==='man'
+    ? 'Un clic sobre el diagrama fija el valor de c y, con él, el de r.'
+    : 'Arrastre sobre el diagrama para ampliar una región (en horizontal, solo el intervalo de r); un clic fija el valor de r; un doble clic restablece la vista completa.';
+}
 function ponerModo(m){
-  st.modo=m; $('stage').className='stage '+m; document.querySelectorAll('input[name="vista"]').forEach(function(x){ x.checked=(x.value===m); });
+  st.modo=m; $('stage').className='stage '+m; document.querySelectorAll('input[name="vista"]').forEach(function(x){ x.checked=(x.value===m); }); marcarSeg();
   ['vCompleta','vCascada','vVentana'].forEach(function(id){ $(id).disabled=(m==='man'); });
-  if(m==='man' && st.r<1) ponerR(3.2);
+  ayudaDiagrama();
+  if(st.barrido && !EXPO.activa) rangoBarrido();
   requestAnimationFrame(function(){ pend.bif=true; if(m==='man') iniciarMan(); ponerR(st.r); });
 }
-function aplicarTema(){ document.documentElement.setAttribute('data-tema',tema); colores(); pend.bif=true; if(st.modo==='man') iniciarMan(); else { imgMan=null; baseMan=null; } ponerR(st.r); }
+function aplicarTema(){ document.documentElement.setAttribute('data-tema',tema); marcarSeg(); colores(); pend.bif=true; if(st.modo==='man') iniciarMan(); else { imgMan=null; baseMan=null; } ponerR(st.r); }
 
 // ---------- Interacción con el diagrama ----------
-const cvB=$('cBif'); let arrastre=null;
+const cvB=$('cBif'); let arrastre=null, ultimoClic=null;
 function aDatos(ev){
   const rc=cvB.getBoundingClientRect(), X=(ev.clientX-rc.left)*DPR, Y=(ev.clientY-rc.top)*DPR, w=cvB.width, h=cvB.height;
   const pl=M.l*DPR, pr=w-M.r*DPR, pt=M.t*DPR, pb=h-M.b*DPR;
   const cuad=(st.modo==='man'), V=cuad? {r0:C0, r1:C1, x0:-2, x1:2} : st.vista;
-  return { X:X, Y:Y, p:V.r0+(X-pl)/(pr-pl)*(V.r1-V.r0), x:V.x1-(Y-pt)/(pb-pt)*(V.x1-V.x0) };
+  return { X:X, Y:Y, pt:pt, pb:pb, p:V.r0+(X-pl)/(pr-pl)*(V.r1-V.r0), x:V.x1-(Y-pt)/(pb-pt)*(V.x1-V.x0) };
 }
-cvB.addEventListener('pointerdown', function(ev){ interaccion(); cvB.setPointerCapture(ev.pointerId); const a=aDatos(ev); arrastre={a:a, b:a}; });
-cvB.addEventListener('pointermove', function(ev){ if(!arrastre) return; arrastre.b=aDatos(ev); if(st.modo==='log' && Math.abs(arrastre.b.X-arrastre.a.X)>6*DPR){ sel={a:arrastre.a.X, b:arrastre.a.Y, c:arrastre.b.X, d:arrastre.b.Y}; pend.cur=true; } });
+// Un arrastre cuenta como vertical (rectángulo) solo si se aparta claramente de la horizontal; así un dedo puede ampliar solo el intervalo de r.
+function esAlto(a,b){ return Math.abs(b.Y-a.Y)>Math.max(8*DPR, 0.35*Math.abs(b.X-a.X)); }
+cvB.addEventListener('pointerdown', function(ev){
+  interaccion();
+  if(!ev.isPrimary){ arrastre=null; sel=null; pend.cur=true; return; }
+  try{ cvB.setPointerCapture(ev.pointerId); }catch(e){} const a=aDatos(ev); arrastre={a:a, b:a};
+});
+cvB.addEventListener('pointermove', function(ev){
+  if(!arrastre || !ev.isPrimary) return; const a=arrastre.a, b=aDatos(ev); arrastre.b=b;
+  if(st.modo==='log' && Math.abs(b.X-a.X)>6*DPR){ const alto=esAlto(a,b); sel={a:a.X, b:alto? a.Y : a.pt, c:b.X, d:alto? b.Y : a.pb}; pend.cur=true; }
+});
+cvB.addEventListener('pointercancel', function(){ arrastre=null; sel=null; pend.cur=true; });
 cvB.addEventListener('pointerup', function(ev){
-  if(!arrastre) return; const a=arrastre.a, b=aDatos(ev); arrastre=null; sel=null;
-  if(st.modo==='log' && Math.abs(b.X-a.X)>8*DPR && Math.abs(b.Y-a.Y)>8*DPR){
-    const r0=Math.max(0,Math.min(a.p,b.p)), r1=Math.min(4,Math.max(a.p,b.p)), x0=Math.max(0,Math.min(a.x,b.x)), x1=Math.min(1,Math.max(a.x,b.x));
+  if(!arrastre || !ev.isPrimary) return; const a=arrastre.a, b=aDatos(ev); arrastre=null; sel=null;
+  detenerBarrido();
+  if(st.modo==='log' && Math.abs(b.X-a.X)>8*DPR){
+    // Un arrastre casi horizontal amplía solo el intervalo de r.
+    const r0=Math.max(0,Math.min(a.p,b.p)), r1=Math.min(4,Math.max(a.p,b.p));
+    let x0=st.vista.x0, x1=st.vista.x1;
+    if(esAlto(a,b)){ x0=Math.max(0,Math.min(a.x,b.x)); x1=Math.min(1,Math.max(a.x,b.x)); }
     if(r1-r0>1e-5 && x1-x0>1e-5) ponerVista({r0:r0, r1:r1, x0:x0, x1:x1});
-  } else { const p=b.p; if(st.modo==='man'){ if(p>=C0 && p<=0.25) ponerR(rDeC(p)); } else ponerR(p); }
+  } else {
+    const ahora=performance.now();
+    if(!ultimoClic || ahora-ultimoClic.t>600) ultimoClic={t:ahora, rPrevio:st.r}; else ultimoClic.t=ahora;
+    const p=b.p; if(st.modo==='man'){ if(p>=C0 && p<=0.25) ponerR(rDeC(p)); } else ponerR(p);
+  }
   pend.cur=true;
 });
-cvB.addEventListener('dblclick', function(){ interaccion(); if(st.modo==='log') ponerVista(Object.assign({},VISTA0)); });
+cvB.addEventListener('dblclick', function(){
+  interaccion();
+  if(st.modo!=='log') return;
+  // El doble clic restablece la vista sin cambiar el valor de r que había antes.
+  if(ultimoClic && performance.now()-ultimoClic.t<800) ponerR(ultimoClic.rPrevio);
+  ponerVista(Object.assign({},VISTA0));
+});
 
 // ---------- Controles ----------
 const PRESETS=[[2.8,'2.8'],[3.2,'3.2'],[3.5,'3.5'],[3.56,'3.56'],[3.835,'3.835'],[3.9,'3.9'],[4,'4']];
-PRESETS.forEach(function(p){ const b=document.createElement('button'); b.className='btn chip'; b.textContent='r = '+p[1]; b.addEventListener('click', function(){ interaccion(); detenerBarrido(); ponerR(p[0]); }); $('presets').appendChild(b); });
-$('r').addEventListener('input', function(){ interaccion(); detenerBarrido(); ponerR(+this.value, true); });
-$('x0').addEventListener('input', function(){ interaccion(); st.x0=+this.value; $('x0Out').textContent=st.x0.toFixed(4); pend.tel=true; pend.ser=true; });
+PRESETS.forEach(function(p){ const b=document.createElement('button'); b.className='btn chip'; b.textContent='r = '+p[1];
+  b.addEventListener('click', function(){ interaccion(); detenerBarrido(); if(st.modo==='log' && (p[0]<st.vista.r0 || p[0]>st.vista.r1)) ponerVista(Object.assign({},VISTA0)); ponerR(p[0]); });
+  $('presets').appendChild(b); });
+$('r').addEventListener('input', function(){ interaccion(); detenerBarrido(); ponerR(+this.value, 'r'); });
+$('rB').addEventListener('input', function(){ interaccion(); detenerBarrido(); ponerR(+this.value, 'rB'); });
+$('x0').addEventListener('input', function(){ interaccion(); st.x0=+this.value; $('x0Out').textContent=st.x0.toFixed(4); actualizarEstado(); pend.tel=true; pend.ser=true; });
 function detenerBarrido(){ st.barrido=false; $('barrer').textContent='Recorrer r'; }
-$('barrer').addEventListener('click', function(){ interaccion(); st.barrido=!st.barrido; this.textContent=st.barrido? 'Detener' : 'Recorrer r';
-  if(st.barrido){ const V=st.modo==='man'? {r0:1, r1:4} : st.vista; st.bMin=Math.max(V.r0, st.modo==='log' && V.r0<=2.8 && V.r1>=3.9? 2.8 : V.r0); st.bMax=Math.min(4,V.r1); if(st.r<st.bMin||st.r>st.bMax) ponerR(st.bMin); st.dirB=1; } });
+$('barrer').addEventListener('click', function(){
+  interaccion();
+  if(performance.now()-EXPO.finBarrer<1000){ EXPO.finBarrer=-1e9; return; }
+  st.barrido=!st.barrido; this.textContent=st.barrido? 'Detener' : 'Recorrer r';
+  if(st.barrido){ rangoBarrido(); st.dirB=1; }
+});
 $('sonido').addEventListener('click', function(){ interaccion(); setSonido(!st.sonido); });
 $('vCompleta').addEventListener('click', function(){ interaccion(); ponerVista(Object.assign({},VISTA0)); });
-$('vCascada').addEventListener('click', function(){ interaccion(); ponerVista({r0:3.54, r1:3.5725, x0:0.47, x1:0.57}); if(st.r<3.54||st.r>3.5725) ponerR(3.565); });
-$('vVentana').addEventListener('click', function(){ interaccion(); ponerVista({r0:3.8275, r1:3.8585, x0:0.44, x1:0.56}); if(st.r<3.8275||st.r>3.8585) ponerR(3.835); });
+$('vCascada').addEventListener('click', function(){ interaccion(); ponerVista(Object.assign({},VCASCADA)); if(st.r<VCASCADA.r0||st.r>VCASCADA.r1) ponerR(3.565); });
+$('vVentana').addEventListener('click', function(){ interaccion(); ponerVista(Object.assign({},VVENTANA)); if(st.r<VVENTANA.r0||st.r>VVENTANA.r1) ponerR(3.835); });
 document.querySelectorAll('input[name="vista"]').forEach(function(x){ x.addEventListener('change', function(){ interaccion(); ponerModo(this.value); }); });
-$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(d.documentElement.requestFullscreen){ d.documentElement.requestFullscreen().catch(function(){}); } });
+const fsOk=!!(document.fullscreenEnabled && document.documentElement.requestFullscreen);
+if(!fsOk) $('fs').style.display='none';
+$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(fsOk){ d.documentElement.requestFullscreen().catch(function(){}); } });
+document.addEventListener('fullscreenchange', function(){ $('fs').textContent=document.fullscreenElement? 'Salir de pantalla completa' : 'Pantalla completa'; });
 document.querySelectorAll('input[name="tema"]').forEach(function(x){ x.addEventListener('change', function(){ interaccion(); tema=this.value; aplicarTema(); }); });
-if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', aplicarTema); }catch(e){} }
+if(mqOscuro){
+  const alCambiar=function(e){ sisOscuro=!!e.matches; aplicarTema(); };
+  try{ mqOscuro.addEventListener('change', alCambiar); }catch(e){ try{ mqOscuro.addListener(alCambiar); }catch(e2){} }
+}
 let tRes=null;
 if(window.ResizeObserver){ new ResizeObserver(function(){ clearTimeout(tRes); tRes=setTimeout(function(){ pend.bif=true; pend.lya=true; pend.tel=true; pend.ser=true; if(st.modo==='man') iniciarMan(); }, 120); }).observe($('stage')); }
-document.addEventListener('keydown', function(e){ const tag=(e.target && e.target.tagName||'').toLowerCase(); if(tag==='input'||tag==='button') return;
-  if(e.key==='ArrowRight'){ interaccion(); ponerR(st.r+(st.vista.r1-st.vista.r0)/400); } else if(e.key==='ArrowLeft'){ interaccion(); ponerR(st.r-(st.vista.r1-st.vista.r0)/400); } });
+// Tras usar un control con el ratón o el dedo, se suelta el foco para que las flechas sigan moviendo r.
+let usoPuntero=false;
+document.addEventListener('pointerdown', function(){ usoPuntero=true; }, true);
+document.addEventListener('keydown', function(e){ if(e.key==='Tab') usoPuntero=false; }, true);
+function soltarFoco(sel){ return function(e){ const t=e.target && e.target.closest? e.target.closest(sel) : null; if(t && usoPuntero) setTimeout(function(){ if(document.activeElement===t) t.blur(); }, 0); }; }
+document.addEventListener('click', soltarFoco('button, input[type=checkbox], input[type=radio]'));
+document.addEventListener('change', soltarFoco('select, input[type=range], input[type=checkbox], input[type=radio]'));
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const tag=(e.target && e.target.tagName||'').toLowerCase(); if(tag==='input'||tag==='select'||tag==='textarea') return;
+  const der=e.key==='ArrowRight', izq=e.key==='ArrowLeft'; if(!der && !izq) return;
+  e.preventDefault(); interaccion(); detenerBarrido();
+  if(st.modo==='man'){
+    // En el modo Mandelbrot la flecha mueve c a paso fijo en la dirección de la flecha.
+    const c=Math.min(0.25, Math.max(-2, cDeR(st.r)+(der? 1 : -1)*(C1-C0)/400));
+    ponerR(rDeC(c));
+  } else ponerR(st.r+(der? 1 : -1)*(st.vista.r1-st.vista.r0)/400);
+});
 
 // ---------- Exhibición ----------
-let ultimaInteraccion=-1e9; const EXPO={activa:false, k:0, t:0};
-function interaccion(){ ultimaInteraccion=performance.now(); if(EXPO.activa){ EXPO.activa=false; detenerBarrido(); } }
+let ultimaInteraccion=-1e9; const EXPO={activa:false, k:0, t:0, finBarrer:-1e9};
+function interaccion(e){
+  ultimaInteraccion=performance.now();
+  if(EXPO.activa){
+    EXPO.activa=false; detenerBarrido();
+    // Si el gesto fue sobre «Detener», el clic que lo sigue no debe volver a iniciar el recorrido.
+    if(e && e.target && e.target.closest && e.target.closest('#barrer')) EXPO.finBarrer=performance.now();
+  }
+}
+['pointerdown','wheel','keydown','touchstart'].forEach(function(ev){ document.addEventListener(ev, interaccion, {capture:true, passive:true}); });
 $('expo').addEventListener('change', function(){ if(this.checked) ultimaInteraccion=-1e9; else { EXPO.activa=false; detenerBarrido(); ultimaInteraccion=performance.now(); } });
 const GUION=[
   {modo:'log', vista:VISTA0, b:[2.8,4], dur:34},
-  {modo:'log', vista:{r0:3.8275, r1:3.8585, x0:0.44, x1:0.56}, b:[3.8282,3.857], dur:18},
+  {modo:'log', vista:VVENTANA, b:[3.8282,3.857], dur:32},
   {modo:'man', b:[1,4], dur:26}
 ];
 function escenaExpo(s){
@@ -476,7 +608,7 @@ function pasoExpo(dt){
 // ---------- Ciclo ----------
 let ultimo=performance.now();
 function ciclo(ahora){
-  const dt=Math.min(0.1,(ahora-ultimo)/1000); ultimo=ahora;
+  const dt=Math.max(0, Math.min(0.1,(ahora-ultimo)/1000)); ultimo=ahora;
   pasoExpo(dt);
   if(st.barrido){ const vel=(st.bMax-st.bMin)/(EXPO.activa? (st.modo==='man'? 24 : 30) : 30); let r=st.r+st.dirB*vel*dt; if(r>=st.bMax){ r=st.bMax; st.dirB=-1; } if(r<=st.bMin){ r=st.bMin; st.dirB=1; } ponerR(r); }
   if(pend.bif){ pend.bif=false; calcularBif(); pend.cur=true; pend.lya=true; }
@@ -490,11 +622,11 @@ function ciclo(ahora){
 }
 
 // ---------- Inicio ----------
-colores();
+colores(); marcarSeg();
 const RFeig=tablaFeigenbaum();
 $('x0Out').textContent=st.x0.toFixed(4);
 ponerModo('log'); ponerR(3.5);
-if(window.LOGIS_TEST){ window.__lg={ st:st, analizar:analizar, superestables:superestables, ponerR:ponerR, ponerModo:ponerModo, ponerVista:ponerVista, cDeR:cDeR, rDeC:rDeC, lya:function(){ return cacheLya; }, aplicarTema:function(t){ tema=t; aplicarTema(); } }; }
+if(window.LOGIS_TEST){ window.__lg={ st:st, EXPO:EXPO, analizar:analizar, superestables:superestables, ponerR:ponerR, ponerModo:ponerModo, ponerVista:ponerVista, cDeR:cDeR, rDeC:rDeC, lya:function(){ return cacheLya; }, aplicarTema:function(t){ tema=t; document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===t); }); aplicarTema(); } }; }
 requestAnimationFrame(ciclo);
 })();
 </script>
