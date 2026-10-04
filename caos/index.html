@@ -21,7 +21,7 @@ html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.45}
 .app{display:grid;grid-template-columns:330px minmax(0,1fr);height:100vh}
 .side{background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:18px 18px 28px}
-.stage{position:relative;min-height:0;min-width:0;overflow:hidden}
+.stage{position:relative;min-height:0;min-width:0;overflow:hidden;background:var(--bg)}
 .stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
 .stage canvas:active{cursor:grabbing}
 h1{font-size:18px;font-weight:650;margin:0 0 2px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
@@ -37,7 +37,7 @@ select,input[type=range]{width:100%;font:inherit;color:inherit;accent-color:var(
 select{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 8px}
 .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg label{flex:1;text-align:center;padding:6px 4px;cursor:pointer;color:var(--muted);font-size:13px;position:relative}
-.seg label:has(input:checked){background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
+.seg label.sel{background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
 .seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
 .seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -45,14 +45,17 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:550}
 .btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line)}
+.btn.primary:disabled:hover{border-color:var(--accent)}
 .btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .chk{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:13px;cursor:pointer}
-.chk input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.chk input{accent-color:var(--accent);width:16px;height:16px;margin:0;flex:0 0 auto}
 .txt{color:var(--muted);font-size:12.5px;line-height:1.55;margin:0 0 8px}
 .txt b{color:var(--ink);font-weight:550}
 .big{font-size:24px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1;margin-top:12px}
 .big small{font-size:12.5px;font-weight:400;color:var(--muted);margin-left:5px}
-.hud{position:absolute;left:14px;top:14px;background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:10px 14px;max-width:min(92%,420px);pointer-events:none}
+.hud{position:absolute;left:14px;top:14px;background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:10px 14px;max-width:min(calc(100% - 130px),420px);pointer-events:none}
 .hud .t{font-size:15px;font-weight:650}
 .hud .d{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:2px}
 .note{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:var(--glass);border:1px solid var(--accent);border-radius:10px;padding:10px 16px;font-size:14px;max-width:min(92%,620px);text-align:center;display:none;pointer-events:none}
@@ -61,10 +64,27 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 .die.show{display:flex}
 .die b{font-size:38px;line-height:1}
 .die span{font-size:11px;margin-top:4px;opacity:.85}
-@media (max-width:860px){
-  .app{grid-template-columns:1fr;grid-template-rows:62vh auto;height:auto}
-  .side{order:2;border-right:0;border-top:1px solid var(--line)}
-  .stage{order:1;height:62vh}
+@media (max-width:860px) and (orientation:portrait){
+  .app{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
+  .side{order:2;border-right:0;border-top:1px solid var(--line);overflow:visible}
+  .stage{order:1;height:52vh;position:sticky;top:0;z-index:5}
+  .hud{left:8px;top:8px;padding:6px 10px;max-width:calc(100% - 16px);border-radius:8px}
+  .hud .t{font-size:13.5px}
+  .hud .d{font-size:12px}
+  .die{top:auto;bottom:10px;right:10px;width:62px;height:62px;border-radius:12px}
+  .die b{font-size:28px}
+  .die span{font-size:10px;margin-top:2px}
+  .note{left:10px;right:10px;bottom:10px;transform:none;max-width:none;font-size:12.5px;padding:7px 10px;border-radius:8px}
+  .die.show ~ .note{right:82px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .hud{left:8px;top:8px;padding:5px 9px;border-radius:8px}
+  .hud .t{font-size:13px}
+  .hud .d{font-size:12px}
+  .die{top:8px;right:8px;width:58px;height:58px;border-radius:11px}
+  .die b{font-size:26px}
+  .die span{font-size:10px;margin-top:2px}
+  .note{bottom:8px;font-size:12.5px;padding:6px 10px}
 }
 </style>
 </head>
@@ -72,24 +92,24 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 <div class="app">
   <aside class="side">
     <h1><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c-1-2.2-.3-3.6 1.4-4.4" fill="none" stroke="#4BE38A" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="7.6" cy="14" rx="5.6" ry="7" fill="#E8650F"/><ellipse cx="16.4" cy="14" rx="5.6" ry="7" fill="#E8650F"/><ellipse cx="12" cy="14" rx="5" ry="7.6" fill="#FF7A1A"/></svg>Juego del caos</h1>
-    <p class="sub">Fractales de Sierpiński en el plano y en el espacio</p>
+    <p class="sub">Fractales autosemejantes en el plano y en el espacio</p>
 
     <section class="grp">
       <h2>Figura</h2>
-      <select id="fig" aria-label="Figura">
+      <select id="fig" aria-label="Figura" autocomplete="off">
         <option value="tri">Triángulo (en el plano)</option>
         <option value="tet" selected>Tetraedro</option>
         <option value="pir">Pirámide de base cuadrada</option>
         <option value="oct">Octaedro</option>
-        <option value="cubo2">Cubo, razón 1/2</option>
-        <option value="cubo3">Cubo, razón 1/3</option>
+        <option value="cubo2">Cubo</option>
+        <option value="cubo3">Polvo de Cantor</option>
         <option value="menger">Esponja de Menger</option>
         <option value="ico">Icosaedro</option>
         <option value="dod">Dodecaedro</option>
       </select>
       <p class="txt" id="figInfo" style="margin-top:10px"></p>
       <div class="row"><label for="s">Razón de contracción s</label><output id="sOut">0.500</output></div>
-      <input id="s" type="range" min="0.2" max="0.8" step="0.005" value="0.5">
+      <input id="s" type="range" min="0.2" max="0.8" step="0.005" value="0.5" autocomplete="off">
       <div class="btns"><button class="btn" id="sReset">Razón original</button></div>
       <p class="txt" id="dimTxt" style="margin-top:10px"></p>
     </section>
@@ -97,19 +117,20 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
     <section class="grp">
       <h2>Generación</h2>
       <div class="row"><label for="rate">Puntos por segundo</label><output id="rateOut">—</output></div>
-      <input id="rate" type="range" min="0" max="100" step="1" value="72">
+      <input id="rate" type="range" min="0" max="100" step="1" value="72" autocomplete="off">
       <div class="btns">
         <button class="btn primary" id="play">Pausa</button>
         <button class="btn" id="step">Lanzar el dado</button>
         <button class="btn" id="reset">Reiniciar</button>
       </div>
       <div class="big"><span id="nPts">0</span><small>puntos</small></div>
+      <p class="txt" style="margin-top:10px">Teclado: <b>espacio</b> pausa o continúa; <b>D</b> lanza el dado.</p>
     </section>
 
     <section class="grp">
       <h2>Vista</h2>
       <div class="row"><label for="colorBy">Color de cada punto según</label></div>
-      <select id="colorBy">
+      <select id="colorBy" autocomplete="off">
         <option value="v1">El último vértice elegido</option>
         <option value="v2">Los dos últimos vértices elegidos</option>
         <option value="alt">La altura</option>
@@ -120,24 +141,24 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
         <button class="btn" id="ana">Lentes 3D rojo-cian</button>
         <button class="btn" id="fs">Pantalla completa</button>
       </div>
-      <label class="chk"><input type="checkbox" id="expo">Modo exhibición: cambia de figura cuando nadie interactúa</label>
+      <label class="chk"><input type="checkbox" id="expo" autocomplete="off">Modo exhibición: cambia de figura cuando nadie interactúa</label>
       <div class="row" style="margin-top:14px"><label>Ambientación</label></div>
       <div class="seg">
-        <label><input type="radio" name="tema" value="clasico">Clásica</label>
-        <label><input type="radio" name="tema" value="halloween">Halloween</label>
+        <label><input type="radio" name="tema" value="clasico" autocomplete="off">Clásica</label>
+        <label><input type="radio" name="tema" value="halloween" autocomplete="off">Halloween</label>
       </div>
     </section>
 
     <section class="grp">
       <h2>La regla</h2>
-      <p class="txt">Se fijan <b>N</b> puntos, los vértices de la figura, y una razón <b>s</b> entre 0 y 1. Se parte de un punto cualquiera <b>p</b>. En cada paso se elige uno de los vértices al azar, todos con la misma probabilidad, y el punto se acerca a él: el nuevo punto es <b>v + s·(p − v)</b>, de modo que su distancia al vértice <b>v</b> es <b>s</b> veces la anterior. Con s = 1/2, el nuevo punto es el punto medio entre el punto actual y el vértice elegido.</p>
+      <p class="txt">Se fijan <b>N</b> puntos, que aquí son los vértices de la figura (en la esponja de Menger, también los puntos medios de las aristas), y una razón <b>s</b> entre 0 y 1. Se parte de un punto cualquiera <b>p</b>. En cada paso se elige uno de esos <b>N</b> puntos al azar, todos con la misma probabilidad, y el punto se acerca a él: el nuevo punto es <b>v + s·(p − v)</b>, de modo que su distancia al punto elegido <b>v</b> es <b>s</b> veces la anterior. Con s = 1/2, el nuevo punto es el punto medio entre el punto actual y el elegido.</p>
       <p class="txt">El sorteo puede hacerse con dados reales: los dados de 4, 6, 8, 12 y 20 caras corresponden a los vértices del tetraedro, el octaedro, el cubo, el icosaedro y el dodecaedro, y el de 20 caras sirve también para la esponja de Menger.</p>
     </section>
 
     <section class="grp">
       <h2>Por qué aparece un fractal</h2>
-      <p class="txt">Cada elección aplica una de las contracciones <b>f<sub>i</sub>(p) = v<sub>i</sub> + s·(p − v<sub>i</sub>)</b>. Existe un único conjunto compacto <b>A</b> que coincide con la unión de sus <b>N</b> copias reducidas, A = f<sub>1</sub>(A) ∪ ⋯ ∪ f<sub>N</sub>(A) (Hutchinson, 1981). En cada paso la distancia del punto al conjunto A se multiplica, a lo sumo, por s, y con probabilidad 1 los puntos recorren todo el conjunto. Por eso la imagen es siempre la misma, aunque cada punto se elija al azar.</p>
-      <p class="txt">Si las copias reducidas no se superponen, salvo en puntos o segmentos, la dimensión del conjunto es <b>D = log N / log(1/s)</b>. El tetraedro de Sierpiński tiene dimensión log 4 / log 2 = 2, la misma de un cuadrado, aunque vive en el espacio y tiene huecos en todas las escalas. Por eso, mirado en una dirección adecuada, proyecta un cuadrado lleno.</p>
+      <p class="txt">Cada elección aplica una de las contracciones <b>f<sub>i</sub>(p) = v<sub>i</sub> + s·(p − v<sub>i</sub>)</b>. Existe un único conjunto compacto no vacío <b>A</b> que coincide con la unión de sus <b>N</b> copias reducidas, A = f<sub>1</sub>(A) ∪ ⋯ ∪ f<sub>N</sub>(A) (Hutchinson, 1981). En cada paso la distancia del punto al conjunto A se multiplica, a lo sumo, por s, y con probabilidad 1 los puntos recorren todo el conjunto. Por eso la imagen es siempre la misma, aunque cada punto se elija al azar.</p>
+      <p class="txt">Si las copias reducidas no se superponen, salvo en sus bordes, la dimensión del conjunto es <b>D = log N / log(1/s)</b>. El tetraedro de Sierpiński tiene dimensión log 4 / log 2 = 2, la misma que la de un cuadrado, aunque está en el espacio y tiene huecos en todas las escalas. Esa dimensión es la mínima que permite que una sombra tenga área; en la dirección adecuada, la sombra es de hecho un cuadrado lleno.</p>
     </section>
   </aside>
 
@@ -2395,7 +2416,7 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 
 			const _scene = new THREE.Scene();
 
-			const _stereo = new THREE.StereoCamera();
+			const _stereo = new THREE.StereoCamera(); this.stereo = _stereo;
 
 			const _params = {
 				minFilter: THREE.LinearFilter,
@@ -2495,11 +2516,14 @@ function temaInicial(){
 let tema=temaInicial();
 document.documentElement.setAttribute('data-tema', tema);
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===tema); });
-function sistemaOscuro(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
-function oscuro(){ return tema==='halloween' || sistemaOscuro(); }
+function marcarSeg(){ document.querySelectorAll('.seg label').forEach(function(l){ const i=l.querySelector('input'); l.classList.toggle('sel', !!(i && i.checked)); }); }
+const mqOscuro=window.matchMedia? window.matchMedia('(prefers-color-scheme: dark)') : null;
+let sisOscuro=!!(mqOscuro && mqOscuro.matches);
+function oscuro(){ return tema==='halloween' || sisOscuro; }
 
 // ---------- Geometría de las figuras ----------
-const PHI=(1+Math.sqrt(5))/2, R0=1.5;
+// s: razón original; toca: mayor razón con la que las copias no se superponen; cubre: menor razón con la que las copias cubren la figura.
+const PHI=(1+Math.sqrt(5))/2, R0=1.5, TAN_FOV=Math.tan(19*Math.PI/180);
 function norm(v){ const L=Math.hypot(v[0],v[1],v[2]); return [v[0]/L,v[1]/L,v[2]/L]; }
 function rotFromTo(a,b){
   const c=a[0]*b[0]+a[1]*b[1]+a[2]*b[2], ab=[a[0]+b[0],a[1]+b[1],a[2]+b[2]];
@@ -2512,39 +2536,39 @@ function escala(V){ let m=0; V.forEach(function(v){ m=Math.max(m, Math.hypot(v[0
 const FIG={};
 (function(){
   const s3=Math.sqrt(3);
-  FIG.tri={ V:escala([[0,1,0],[-s3/2,-0.5,0],[s3/2,-0.5,0]]), s:0.5, plano:true, frente:[0,0,1],
+  FIG.tri={ V:escala([[0,1,0],[-s3/2,-0.5,0],[s3/2,-0.5,0]]), s:0.5, toca:0.5, cubre:2/3, plano:true, frente:[0,0,1], macizo:'el triángulo relleno',
     info:'El juego del caos original: tres vértices y razón 1/2 producen el triángulo de Sierpiński.',
-    notaFrente:'Vista de frente: el triángulo de Sierpiński, formado por tres copias de sí mismo a la mitad de tamaño.' };
+    notaFrente:'Vista de frente: el triángulo de Sierpiński, formado por tres copias de sí mismo a la mitad de su tamaño.' };
   const Rt=rotFromTo(norm([1,1,1]),[0,1,0]);
-  FIG.tet={ V:escala([[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]].map(function(v){ return apl(Rt,v); })), s:0.5, frente:norm(apl(Rt,[1,0,0])),
-    info:'Cuatro vértices y razón 1/2: el tetraedro de Sierpiński, formado por cuatro copias de sí mismo a la mitad de tamaño.',
-    notaFrente:'Mirado en la dirección que une los puntos medios de dos aristas opuestas, el tetraedro de Sierpiński proyecta un cuadrado lleno: su dimensión es 2, la misma del cuadrado.' };
+  FIG.tet={ V:escala([[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]].map(function(v){ return apl(Rt,v); })), s:0.5, toca:0.5, cubre:0.75, frente:norm(apl(Rt,[1,0,0])), macizo:'el tetraedro macizo',
+    info:'Cuatro vértices y razón 1/2: el tetraedro de Sierpiński, formado por cuatro copias de sí mismo a la mitad de su tamaño.',
+    notaFrente:'En la dirección que une los puntos medios de dos aristas opuestas, la sombra del tetraedro de Sierpiński es un cuadrado lleno, aunque el tetraedro tiene huecos en todas las escalas.' };
   (function(){ const F=FIG.tet, d=F.frente, a=F.V[0], b=F.V[2], m=[a[0]+b[0],a[1]+b[1],a[2]+b[2]], k=m[0]*d[0]+m[1]*d[1]+m[2]*d[2]; F.arriba=norm([m[0]-k*d[0],m[1]-k*d[1],m[2]-k*d[2]]); })();
   const h=Math.SQRT2;
-  FIG.pir={ V:escala([[1,-h/2,1],[1,-h/2,-1],[-1,-h/2,-1],[-1,-h/2,1],[0,h/2,0]]), s:0.5, frente:[0,1,0],
+  FIG.pir={ V:escala([[1,-h/2,1],[1,-h/2,-1],[-1,-h/2,-1],[-1,-h/2,1],[0,h/2,0]]), s:0.5, toca:0.5, cubre:2/3, frente:[0,1,0], macizo:'la pirámide maciza',
     info:'Cinco vértices y razón 1/2: la pirámide de Sierpiński.',
     notaFrente:'Vista desde arriba: la sombra es el cuadrado completo de la base, aunque los puntos se acumulan más en unas zonas que en otras.' };
-  FIG.oct={ V:escala([[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]]), s:0.5, frente:[0,1,0], arriba:norm([1,0,-1]),
+  FIG.oct={ V:escala([[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]]), s:0.5, toca:0.5, cubre:2/3, frente:[0,1,0], arriba:norm([1,0,-1]), macizo:'el octaedro macizo',
     info:'Seis vértices y razón 1/2: el octaedro de Sierpiński.',
     notaFrente:'Vista desde un vértice: la sombra ocupa todo el cuadrado, aunque los puntos se acumulan más en unas zonas que en otras.' };
   const cubo=[]; [-1,1].forEach(function(x){ [-1,1].forEach(function(y){ [-1,1].forEach(function(z){ cubo.push([x,y,z]); }); }); });
-  FIG.cubo2={ V:escala(cubo), s:0.5, frente:[0,0,1],
+  FIG.cubo2={ V:escala(cubo), s:0.5, toca:0.5, cubre:0.5, frente:[0,0,1], macizo:'el cubo macizo',
     info:'Ocho vértices y razón 1/2: las ocho copias llenan el cubo sin dejar huecos, y no aparece ningún fractal.',
     notaFrente:'Vista de frente: un cuadrado lleno, porque el cubo entero queda cubierto.' };
-  FIG.cubo3={ V:escala(cubo), s:1/3, frente:[0,0,1],
-    info:'Ocho vértices y razón 1/3: las copias quedan separadas y se obtiene el polvo de Cantor.',
+  FIG.cubo3={ V:escala(cubo), s:1/3, toca:0.5, cubre:0.5, frente:[0,0,1], macizo:'el cubo macizo', neutro:'Vértices de un cubo',
+    info:'Los ocho vértices de un cubo con razón 1/3: las copias quedan separadas y se obtiene el polvo de Cantor.',
     notaFrente:'Vista de frente: el polvo de Cantor del plano.' };
   const med=[]; [-1,1].forEach(function(a){ [-1,1].forEach(function(b){ med.push([0,a,b],[a,0,b],[a,b,0]); }); });
-  FIG.menger={ V:escala(cubo.concat(med)), s:1/3, frente:[0,0,1],
+  FIG.menger={ V:escala(cubo.concat(med)), s:1/3, toca:1/3, cubre:0.5, frente:[0,0,1], macizo:'el cubo macizo', neutro:'Cubo: vértices y puntos medios de las aristas',
     info:'Los 8 vértices y los 12 puntos medios de las aristas de un cubo, con razón 1/3: la esponja de Menger.',
-    notaFrente:'Vista de frente, la esponja de Menger se ve como la alfombra de Sierpiński.' };
+    notaFrente:'Vista de frente: la esponja de Menger se ve como la alfombra de Sierpiński.' };
   const ico=[]; [-1,1].forEach(function(a){ [-1,1].forEach(function(b){ ico.push([0,a,b*PHI],[a,b*PHI,0],[b*PHI,0,a]); }); });
-  FIG.ico={ V:escala(ico), s:1/(1+PHI), frente:norm([0,1,PHI]),
+  FIG.ico={ V:escala(ico), s:1/(1+PHI), toca:1/(1+PHI), cubre:2/3, frente:norm([0,1,PHI]), macizo:'el icosaedro macizo',
     info:'Doce vértices y razón 1/(1 + φ), donde φ = (1 + √5)/2 es la razón áurea: las copias apenas se tocan.',
     notaFrente:'Vista desde un eje de simetría de orden cinco.' };
   const dod=cubo.slice(), ip=1/PHI; [-1,1].forEach(function(a){ [-1,1].forEach(function(b){ dod.push([0,a*ip,b*PHI],[a*ip,b*PHI,0],[b*PHI,0,a*ip]); }); });
-  FIG.dod={ V:escala(dod), s:1/(2+PHI), frente:norm([0,1,PHI]),
-    info:'Veinte vértices y razón 1/(2 + φ).',
+  FIG.dod={ V:escala(dod), s:1/(2+PHI), toca:1/(2+PHI), cubre:1-1/Math.sqrt(5), frente:norm([1,0,PHI]), macizo:'el dodecaedro macizo',
+    info:'Veinte vértices y razón 1/(2 + φ): las copias apenas se tocan.',
     notaFrente:'Vista desde un eje de simetría de orden cinco.' };
 })();
 
@@ -2555,7 +2579,7 @@ const PAL={
   claro:{ ciclo:['#1F8A7A','#3D5A98','#8E4585','#C0502A','#B8860B','#4C8C2A'].map(hex), grad:['#2E3F7F','#1F8A7A','#B8860B','#C0502A'].map(hex), neutro:hex('#1E2A32') },
   oscuro:{ ciclo:['#3EBBA6','#7A9BE6','#C77DBF','#F08A5D','#E5C35A','#8FD16A'].map(hex), grad:['#5D73C9','#3EBBA6','#E5C35A','#F08A5D'].map(hex), neutro:hex('#E8E4DA') }
 };
-function pal(){ return tema==='halloween'? PAL.halloween : (sistemaOscuro()? PAL.oscuro : PAL.claro); }
+let palAct=PAL.claro, oscAct=false, modoGris=false;
 function mezcla(stops, t, ciclico){
   const n=stops.length; let x;
   if(ciclico){ t=((t%1)+1)%1; x=t*n; } else { t=Math.min(1,Math.max(0,t)); x=t*(n-1); }
@@ -2572,8 +2596,12 @@ const cam=new THREE.PerspectiveCamera(38, 1, 0.05, 100); cam.position.set(3.4, 2
 const ortho=new THREE.OrthographicCamera(-2,2,2,-2,0.1,100);
 const controls=new THREE.OrbitControls(cam, canvas);
 controls.enableDamping=true; controls.dampingFactor=0.08; controls.autoRotate=true; controls.autoRotateSpeed=0.9; controls.minDistance=1.2; controls.maxDistance=14;
+controls.saveState();
+controls.addEventListener('change', function(){ pendiente=true; });
 const anaglifo=new THREE.AnaglyphEffect(renderer);
-let usarAnaglifo=false, usarOrto=false;
+if(anaglifo.stereo) anaglifo.stereo.eyeSep=0.15;
+let usarAnaglifo=false, usarOrto=false, pendiente=true;
+function pedirRender(){ pendiente=true; }
 
 function texturaDisco(suave){
   const c=document.createElement('canvas'); c.width=c.height=64; const g=c.getContext('2d');
@@ -2606,32 +2634,35 @@ lineaPaso.visible=false; scene.add(lineaPaso);
 
 function aplicarTema(){
   document.documentElement.setAttribute('data-tema', tema);
-  const osc=oscuro();
+  marcarSeg();
+  oscAct=oscuro(); palAct=tema==='halloween'? PAL.halloween : (sisOscuro? PAL.oscuro : PAL.claro);
+  modoGris=usarAnaglifo && !usarOrto;
+  const osc=oscAct;
   scene.background=new THREE.Color(tema==='halloween'? 0x0B0710 : (osc? 0x14181D : 0xEDE8DE));
   scene.fog=new THREE.Fog(scene.background.getHex(), 4, 9);
   const aditivo=osc;
   matPuntos.map=aditivo? texSuave : texDura;
   matPuntos.blending=aditivo? THREE.AdditiveBlending : THREE.NormalBlending;
-  matPuntos.depthWrite=!aditivo; matPuntos.alphaTest=aditivo? 0.02 : 0.45; matPuntos.opacity=aditivo? 0.9 : 1;
+  matPuntos.depthWrite=!aditivo; matPuntos.alphaTest=aditivo? 0.02 : 0.45;
   matPuntos.needsUpdate=true;
-  const acc=tema==='halloween'? 0xFF7A1A : (osc? 0x3EBBA6 : 0x1F8A7A);
-  matArista.color.setHex(tema==='halloween'? 0xA86BFF : (osc? 0x98A3AC : 0x5F6C76));
-  matVert.color.setHex(acc); matCursor.color.setHex(tema==='halloween'? 0xF4EBD9 : (osc? 0xFFFFFF : 0x1E2A32));
-  lineaPaso.material.color.setHex(acc);
+  const acc=tema==='halloween'? 0xFF7A1A : (osc? 0x3EBBA6 : 0x1F8A7A), gris=osc? 0xBDBDBD : 0x3C3C3C;
+  matArista.color.setHex(modoGris? (osc? 0x9A9A9A : 0x6A6A6A) : (tema==='halloween'? 0xA86BFF : (osc? 0x98A3AC : 0x5F6C76)));
+  matVert.color.setHex(modoGris? gris : acc); matCursor.color.setHex(tema==='halloween'? 0xF4EBD9 : (osc? 0xFFFFFF : 0x1E2A32));
+  lineaPaso.material.color.setHex(modoGris? gris : acc);
   etiquetas.forEach(function(sp){ dibujarEtiqueta(sp); });
   recolorear();
 }
 
 // ---------- Estado del juego ----------
-const st={ fig:'tet', V:null, N:0, s:0.5, n:0, cur:[0,0,0], prev:0, nuevo:true, jugando:true, tasa:0, acum:0, sucio:0, modoColor:'v1', anim:null, lleno:false };
+const st={ fig:'tet', V:null, N:0, s:0.5, n:0, cur:[0,0,0], prev:0, nuevo:true, jugando:true, tasa:0, acum:0, sucio:0, recolor:false, modoColor:'v1', anim:null, lleno:false };
 
 function colorDe(i,j,p,out){
-  const P=pal(); let c;
+  const P=palAct; let c;
   if(i===255){ c=P.neutro; }
   else if(st.modoColor==='v1'){ c=mezcla(P.ciclo, i/st.N, true); }
   else if(st.modoColor==='v2'){ c=(j===255)? mezcla(P.ciclo, i/st.N, true) : mezcla(P.ciclo, (i+0.8*j/st.N)/st.N, true); }
   else { c=mezcla(P.grad, (p[1]/R0+1)/2, false); }
-  if(usarAnaglifo){ const g=0.30*c[0]+0.59*c[1]+0.11*c[2]; const k=oscuro()? Math.max(150,g) : Math.min(90,g); c=[k,k,k]; }
+  if(modoGris){ const g=0.30*c[0]+0.59*c[1]+0.11*c[2]; const k=oscAct? Math.max(150,g) : Math.min(90,g); out[0]=k; out[1]=k; out[2]=k; return; }
   out[0]=c[0]; out[1]=c[1]; out[2]=c[2];
 }
 const tmpC=[0,0,0];
@@ -2641,21 +2672,26 @@ function agregar(p,i,j){
   pos[3*k]=p[0]; pos[3*k+1]=p[1]; pos[3*k+2]=p[2]; uA[k]=i; uB[k]=j;
   colorDe(i,j,p,tmpC); col[3*k]=tmpC[0]; col[3*k+1]=tmpC[1]; col[3*k+2]=tmpC[2];
   st.n++;
+  if(st.n>=MAXP){ st.lleno=true; actualizarPlay(); }
 }
 function recolorear(){
   const p=[0,0,0];
   for(let k=0;k<st.n;k++){ p[0]=pos[3*k]; p[1]=pos[3*k+1]; p[2]=pos[3*k+2]; colorDe(uA[k],uB[k],p,tmpC); col[3*k]=tmpC[0]; col[3*k+1]=tmpC[1]; col[3*k+2]=tmpC[2]; }
-  colAttr.updateRange.offset=0; colAttr.updateRange.count=-1; colAttr.needsUpdate=true;
+  st.recolor=true; pedirRender();
 }
+// Envía a la tarjeta gráfica solo lo que cambió: los puntos nuevos o, tras recolorear, todos los colores.
 function subir(){
-  if(st.n>st.sucio){
-    posAttr.updateRange.offset=st.sucio*3; posAttr.updateRange.count=(st.n-st.sucio)*3; posAttr.needsUpdate=true;
-    colAttr.updateRange.offset=st.sucio*3; colAttr.updateRange.count=(st.n-st.sucio)*3; colAttr.needsUpdate=true;
-    st.sucio=st.n;
-  }
+  if(st.n>st.sucio){ posAttr.updateRange.offset=st.sucio*3; posAttr.updateRange.count=(st.n-st.sucio)*3; posAttr.needsUpdate=true; }
+  if(st.recolor){ colAttr.updateRange.offset=0; colAttr.updateRange.count=-1; colAttr.needsUpdate=true; st.recolor=false; }
+  else if(st.n>st.sucio){ colAttr.updateRange.offset=st.sucio*3; colAttr.updateRange.count=(st.n-st.sucio)*3; colAttr.needsUpdate=true; }
+  st.sucio=st.n;
   geo.setDrawRange(0, st.n);
-  matPuntos.size=Math.max(0.0105, Math.min(0.07, 0.75/Math.sqrt(Math.max(1,st.n))));
-  if(matPuntos.blending===THREE.AdditiveBlending){ matPuntos.opacity=Math.min(0.9, Math.max(0.3, 0.9*Math.sqrt(120000/Math.max(1,st.n))))*(FIG[st.fig].plano? 0.5 : 1); } else matPuntos.opacity=1;
+}
+function tamPuntos(){
+  const t=Math.max(0.0105, Math.min(0.12, 0.75/Math.sqrt(Math.max(1,st.n))));
+  // Con la cámara ortogonal el tamaño se mide en píxeles: se convierte para que los puntos se vean como en perspectiva.
+  matPuntos.size=usarOrto? Math.max(1, t*TAN_FOV*stage.clientHeight/(ortho.top-ortho.bottom)) : t;
+  if(matPuntos.blending===THREE.AdditiveBlending){ matPuntos.opacity=Math.min(0.9, Math.max(0.3, 0.9*Math.sqrt(120000/Math.max(1,st.n))))*((FIG[st.fig].plano||usarOrto)? 1-0.5*Math.min(1, st.n/60000) : 1); } else matPuntos.opacity=1;
 }
 function pasoCaos(){
   const i=(Math.random()*st.N)|0, v=st.V[i], s=st.s, c=st.cur;
@@ -2668,10 +2704,15 @@ function puntoInterior(){
   const p=[0,0,0]; st.V.forEach(function(v,k){ p[0]+=v[0]*w[k]/t; p[1]+=v[1]*w[k]/t; p[2]+=v[2]*w[k]/t; });
   return p;
 }
+function actualizarPlay(){
+  const b=$('play'); b.disabled=st.lleno; $('step').disabled=st.lleno;
+  b.textContent=st.lleno? 'Límite alcanzado' : (st.jugando? 'Pausa' : 'Continuar');
+}
 function reiniciar(){
-  st.n=0; st.sucio=0; st.acum=0; st.nuevo=true; st.lleno=false; st.anim=null; st.prev=255;
-  cursor.visible=false; lineaPaso.visible=false; $('die').classList.remove('show'); if(!usarOrto) ocultarNota();
-  geo.setDrawRange(0,0); actualizarTextos();
+  st.n=0; st.sucio=0; st.acum=0; st.nuevo=true; st.lleno=false; st.anim=null; st.prev=255; notaPaso=null;
+  cursor.visible=false; lineaPaso.visible=false; $('die').classList.remove('show');
+  marcas.forEach(function(m){ m.scale.setScalar(1); });
+  restaurarNota(); geo.setDrawRange(0,0); actualizarTextos(); actualizarPlay(); pedirRender();
 }
 
 function dibujarEtiqueta(sp){
@@ -2695,28 +2736,32 @@ function construirFigura(){
     sp.userData.n=k+1; const d=norm(v); sp.position.set(v[0]+d[0]*0.17, v[1]+d[1]*0.17, v[2]+d[2]*0.17); sp.scale.set(0.2,0.2,0.2);
     dibujarEtiqueta(sp); grupoFig.add(sp); etiquetas.push(sp);
   });
+  ultimoPocos=null; pedirRender();
 }
 
 // ---------- Textos ----------
 function fmt(v,d){ return v.toFixed(d); }
 function fmtN(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+const FRACS=[[1/2,'1/2'],[1/3,'1/3'],[1/(1+PHI),'1/(1 + φ)'],[1/(2+PHI),'1/(2 + φ)']];
 function fraccion(s){
-  const casos=[[1/2,'1/2'],[1/3,'1/3'],[1/(1+PHI),'1/(1 + φ)'],[1/(2+PHI),'1/(2 + φ)']];
-  for(let k=0;k<casos.length;k++) if(Math.abs(s-casos[k][0])<0.0026) return casos[k][1];
+  for(let k=0;k<FRACS.length;k++) if(Math.abs(s-FRACS[k][0])<1e-9) return FRACS[k][1];
   return fmt(s,3);
 }
 function nombreFig(){ const o=$('fig').options[$('fig').selectedIndex]; return o? o.textContent : ''; }
 function actualizarTextos(){
-  const F=FIG[st.fig];
+  const F=FIG[st.fig], amb=F.plano? 2 : 3, e=1e-9;
   $('figInfo').textContent=F.info;
-  $('sOut').textContent=fmt(st.s,3);
-  const D=Math.log(st.N)/Math.log(1/st.s);
-  const amb=F.plano? 2 : 3;
-  let t='N = '+st.N+' copias de razón s = '+fraccion(st.s)+'. Dimensión de semejanza D = log '+st.N+' / log(1/s) = '+fmt(D,3)+'.';
-  if(D>amb+1e-9) t+=' Como D supera '+amb+', las copias se superponen: el conjunto ocupa una región de '+(amb===3?'volumen':'área')+' positiva y su dimensión es '+amb+'.';
-  else if(Math.abs(D-amb)<1e-9) t+=' Las copias llenan exactamente la figura.';
+  $('sOut').textContent=fraccion(st.s);
+  const D=Math.log(st.N)/Math.log(1/st.s), Dr=Math.round(D*1000)/1000;
+  let t='N = '+st.N+' copias de razón s = '+fraccion(st.s)+'. Dimensión de semejanza: D = log '+st.N+' / log(1/s) = '+fmt(D,3)+'.';
+  if(st.s>=F.cubre-e) t+=' Con esta razón las copias cubren toda la figura: el conjunto es '+F.macizo+' y su dimensión es '+amb+'.';
+  else if(Dr>amb) t+=' Como D supera '+amb+', las copias necesariamente se superponen y D deja de ser la dimensión del conjunto, que no puede pasar de '+amb+'.';
+  else if(st.s>F.toca+e) t+=' Con esta razón las copias se superponen, y D es solo una cota superior de la dimensión del conjunto.';
+  else if(st.s>F.toca-e) t+=' Con esta razón las copias apenas se tocan, y D es la dimensión del conjunto.';
+  else t+=' Con esta razón las copias quedan separadas, y D es la dimensión del conjunto.';
   $('dimTxt').textContent=t;
-  $('hudT').textContent=nombreFig();
+  // Los nombres que dependen de la razón original se sustituyen por uno neutro cuando s cambia.
+  $('hudT').textContent=(F.neutro && Math.abs(st.s-F.s)>1e-9)? F.neutro : nombreFig();
   actualizarHud();
 }
 function actualizarHud(){
@@ -2729,10 +2774,10 @@ function actualizarTasa(){ st.tasa=tasaDe(+$('rate').value); $('rateOut').textCo
 
 // ---------- Paso a paso ----------
 function lanzarDado(){
-  if(st.anim) return;
+  if(st.anim || st.lleno) return;
   marcarInteraccion();
-  st.jugando=false; $('play').textContent='Continuar';
-  if(st.nuevo){ st.cur=puntoInterior(); st.prev=255; agregar(st.cur,255,255); st.nuevo=false; }
+  st.jugando=false; actualizarPlay();
+  if(st.nuevo){ st.cur=puntoInterior(); st.prev=255; agregar(st.cur,255,255); st.nuevo=false; actualizarHud(); }
   const i=(Math.random()*st.N)|0, v=st.V[i], c=st.cur, s=st.s;
   const to=[v[0]+s*(c[0]-v[0]), v[1]+s*(c[1]-v[1]), v[2]+s*(c[2]-v[2])];
   st.anim={de:c.slice(), a:to, i:i, t:0};
@@ -2740,8 +2785,11 @@ function lanzarDado(){
   const P=lineaPaso.geometry.attributes.position; P.setXYZ(0,c[0],c[1],c[2]); P.setXYZ(1,v[0],v[1],v[2]); P.needsUpdate=true; lineaPaso.computeLineDistances(); lineaPaso.visible=true;
   cursor.visible=true; cursor.position.set(c[0],c[1],c[2]);
   marcas.forEach(function(m,k){ m.scale.setScalar(k===i? 2.2 : 1); });
-  const nota=(Math.abs(s-0.5)<1e-9)? 'el punto medio entre el punto actual y el vértice '+(i+1) : 'el punto que queda a '+fraccion(s)+' de la distancia, medida desde el vértice '+(i+1);
-  mostrarNota('Salió el '+(i+1)+'. El nuevo punto es '+nota+'.', 0);
+  const nomV=st.fig==='menger'? 'punto' : 'vértice', n=i+1, fr=fraccion(s);
+  const nota=(Math.abs(s-0.5)<1e-9)? 'El nuevo punto es el punto medio entre el punto actual y el '+nomV+' '+n+'.'
+    : 'El nuevo punto se acerca en línea recta al '+nomV+' '+n+': su distancia a él es '+(fr.indexOf('/')>=0? fr+' de la anterior' : fr+' veces la anterior')+'.';
+  notaPaso='Salió el '+n+'. '+nota; mostrarNota(notaPaso, 0);
+  pedirRender();
 }
 function avanzarAnim(dt){
   const a=st.anim; if(!a) return;
@@ -2754,29 +2802,54 @@ function avanzarAnim(dt){
 let notaTimer=null;
 function mostrarNota(t,ms){ const n=$('note'); n.textContent=t; n.classList.add('show'); if(notaTimer) clearTimeout(notaTimer); notaTimer=ms? setTimeout(function(){ n.classList.remove('show'); }, ms) : null; }
 function ocultarNota(){ $('note').classList.remove('show'); }
+function textoFrente(){
+  const F=FIG[st.fig];
+  return Math.abs(st.s-F.s)<1e-9? F.notaFrente : 'Proyección de frente: cada punto se proyecta perpendicularmente sobre el plano de la pantalla.';
+}
+let notaPaso=null;
+function restaurarNota(){ if(usarOrto) mostrarNota(textoFrente(), 0); else if(notaPaso && lineaPaso.visible) mostrarNota(notaPaso, 0); else ocultarNota(); }
 function ajustarOrto(){
-  const F=FIG[st.fig], d=F.frente, w=stage.clientWidth, h=stage.clientHeight, half=R0*1.18, asp=w/Math.max(1,h);
-  ortho.left=-half*asp; ortho.right=half*asp; ortho.top=half; ortho.bottom=-half; ortho.updateProjectionMatrix();
+  const F=FIG[st.fig], d=F.frente, w=stage.clientWidth, h=stage.clientHeight, asp=w/Math.max(1,h), half=R0*1.18*Math.max(1,1/asp);
+  // Margen inferior un poco mayor para dejar sitio a la nota.
+  ortho.left=-half*asp; ortho.right=half*asp; ortho.top=half; ortho.bottom=-half*1.12; ortho.updateProjectionMatrix();
   ortho.position.set(d[0]*8,d[1]*8,d[2]*8);
   if(F.arriba) ortho.up.set(F.arriba[0],F.arriba[1],F.arriba[2]); else if(Math.abs(d[1])>0.9) ortho.up.set(0,0,-1); else ortho.up.set(0,1,0);
   ortho.lookAt(0,0,0);
 }
 function setOrto(on){
   usarOrto=on; $('front').textContent=on? 'Vista libre' : 'Proyección de frente'; $('front').classList.toggle('active', on);
-  controls.enabled=!on;
-  if(on){ ajustarOrto(); mostrarNota(FIG[st.fig].notaFrente, 0); } else ocultarNota();
+  controls.enabled=!on; $('ana').disabled=on;
+  if(on) ajustarOrto();
+  if(usarAnaglifo) aplicarTema();
+  restaurarNota(); pedirRender();
 }
-function setAnaglifo(on){ usarAnaglifo=on; $('ana').classList.toggle('active', on); redimensionar(); recolorear(); }
+function setAnaglifo(on){ usarAnaglifo=on; $('ana').classList.toggle('active', on); redimensionar(); aplicarTema(); }
+const mqMovil=window.matchMedia? window.matchMedia('(max-width:860px) and (orientation:portrait)') : null;
 function redimensionar(){
   const w=stage.clientWidth, h=stage.clientHeight; if(!w||!h) return;
   if(usarAnaglifo) anaglifo.setSize(w,h); else renderer.setSize(w,h,false);
-  cam.aspect=w/h; cam.updateProjectionMatrix(); if(usarOrto) ajustarOrto();
+  const asp=w/h;
+  // En pantallas verticales se abre el campo visual para que la figura quepa a lo ancho.
+  cam.aspect=asp; cam.fov=asp<1? 2*Math.atan(1.1*TAN_FOV/asp)*180/Math.PI : 38;
+  // En el teléfono vertical la escena sube un poco; en pantallas bajas y anchas baja un poco para librar el recuadro superior.
+  if(mqMovil && mqMovil.matches) cam.setViewOffset(w, h, 0, Math.round(0.02*h), w, h); else if(h<520) cam.setViewOffset(w, h, 0, -Math.round(0.05*h), w, h); else cam.clearViewOffset();
+  cam.updateProjectionMatrix();
+  if(usarOrto) ajustarOrto();
+  pedirRender();
 }
 if(window.ResizeObserver) new ResizeObserver(redimensionar).observe(stage); else window.addEventListener('resize', redimensionar);
 
 // ---------- Exhibición ----------
-const EXPO={ orden:['tet','menger','oct','ico','tri','dod','pir','cubo3'], k:0, t:0, ultima:-1e9, activa:false };
-function marcarInteraccion(){ EXPO.ultima=performance.now(); if(EXPO.activa){ EXPO.activa=false; } }
+const EXPO={ orden:['tet','menger','oct','ico','tri','dod','pir','cubo3'], k:0, t:0, ultima:-1e9, activa:false, orto:false };
+function marcarInteraccion(e){
+  EXPO.ultima=performance.now();
+  if(EXPO.activa){
+    EXPO.activa=false;
+    const enFrente=!!(e && e.target && e.target.closest && e.target.closest('#front'));
+    if(EXPO.orto && usarOrto && !enFrente) setOrto(false);
+    EXPO.orto=false;
+  }
+}
 function cambiarFigura(f){
   st.fig=f; $('fig').value=f; st.s=FIG[f].s; $('s').value=st.s;
   construirFigura(); reiniciar(); if(usarOrto) setOrto(true);
@@ -2785,66 +2858,102 @@ function pasoExpo(dt){
   if(!$('expo').checked){ EXPO.activa=false; return; }
   const ocioso=performance.now()-EXPO.ultima>45000;
   if(!ocioso){ EXPO.activa=false; return; }
-  if(!EXPO.activa){ EXPO.activa=true; EXPO.t=0; setOrto(false); cambiarFigura(EXPO.orden[EXPO.k%EXPO.orden.length]); st.jugando=true; $('play').textContent='Pausa'; controls.autoRotate=true; $('rot').classList.add('active'); }
-  EXPO.t+=dt; st.jugando=true;
+  if(!EXPO.activa){
+    EXPO.activa=true; EXPO.t=0; EXPO.orto=false;
+    if(usarOrto) setOrto(false);
+    if(usarAnaglifo) setAnaglifo(false);
+    controls.reset(); $('rate').value=72; actualizarTasa();
+    cambiarFigura(EXPO.orden[EXPO.k%EXPO.orden.length]);
+    st.jugando=true; actualizarPlay(); controls.autoRotate=true; $('rot').classList.add('active');
+  }
+  EXPO.t+=dt;
   const f=st.fig, conProy=(f==='tet'||f==='menger'||f==='tri'||f==='pir');
-  if(conProy && EXPO.t>16 && !usarOrto && EXPO.t<24) setOrto(true);
-  if(EXPO.t>(conProy?26:20)){ EXPO.k++; EXPO.t=0; setOrto(false); cambiarFigura(EXPO.orden[EXPO.k%EXPO.orden.length]); }
+  if(conProy && EXPO.t>16 && EXPO.t<24 && !usarOrto){ setOrto(true); EXPO.orto=true; }
+  if(EXPO.t>(conProy?26:20)){ EXPO.k++; EXPO.t=0; if(usarOrto) setOrto(false); EXPO.orto=false; cambiarFigura(EXPO.orden[EXPO.k%EXPO.orden.length]); }
 }
 
 // ---------- Controles ----------
 $('fig').addEventListener('change', function(){ marcarInteraccion(); cambiarFigura(this.value); });
-$('s').addEventListener('input', function(){ marcarInteraccion(); st.s=+this.value; reiniciar(); });
+$('s').addEventListener('input', function(){
+  marcarInteraccion(); let s=+this.value; const F=FIG[st.fig];
+  if(Math.abs(s-F.s)<0.0026) s=F.s;
+  st.s=s; reiniciar();
+});
 $('sReset').addEventListener('click', function(){ marcarInteraccion(); st.s=FIG[st.fig].s; $('s').value=st.s; reiniciar(); });
 $('rate').addEventListener('input', function(){ marcarInteraccion(); actualizarTasa(); });
-$('play').addEventListener('click', function(){ marcarInteraccion(); if(st.anim) return; st.jugando=!st.jugando; this.textContent=st.jugando? 'Pausa' : 'Continuar'; if(st.jugando){ cursor.visible=false; lineaPaso.visible=false; $('die').classList.remove('show'); if(!usarOrto) ocultarNota(); } });
+$('play').addEventListener('click', function(){
+  marcarInteraccion(); if(st.anim || st.lleno) return;
+  st.jugando=!st.jugando; actualizarPlay();
+  if(st.jugando){ cursor.visible=false; lineaPaso.visible=false; notaPaso=null; $('die').classList.remove('show'); restaurarNota(); }
+  pedirRender();
+});
 $('step').addEventListener('click', lanzarDado);
 $('reset').addEventListener('click', function(){ marcarInteraccion(); reiniciar(); });
 $('colorBy').addEventListener('change', function(){ marcarInteraccion(); st.modoColor=this.value; recolorear(); });
 $('front').addEventListener('click', function(){ marcarInteraccion(); setOrto(!usarOrto); });
 $('rot').addEventListener('click', function(){ marcarInteraccion(); controls.autoRotate=!controls.autoRotate; this.classList.toggle('active', controls.autoRotate); });
 $('ana').addEventListener('click', function(){ marcarInteraccion(); setAnaglifo(!usarAnaglifo); });
-$('expo').addEventListener('change', function(){ if(this.checked){ EXPO.ultima=-1e9; } else { EXPO.activa=false; EXPO.ultima=performance.now(); } });
-$('fs').addEventListener('click', function(){ marcarInteraccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(d.documentElement.requestFullscreen){ d.documentElement.requestFullscreen().catch(function(){}); } });
+$('expo').addEventListener('change', function(){ if(this.checked){ EXPO.ultima=-1e9; } else { EXPO.activa=false; EXPO.orto=false; EXPO.ultima=performance.now(); } });
+const fsOk=!!(document.fullscreenEnabled && document.documentElement.requestFullscreen);
+if(!fsOk) $('fs').style.display='none';
+$('fs').addEventListener('click', function(){ marcarInteraccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(fsOk){ d.documentElement.requestFullscreen().catch(function(){}); } });
+document.addEventListener('fullscreenchange', function(){ $('fs').textContent=document.fullscreenElement? 'Salir de pantalla completa' : 'Pantalla completa'; });
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.addEventListener('change', function(){ marcarInteraccion(); tema=this.value; aplicarTema(); }); });
-if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', aplicarTema); }catch(e){} }
-canvas.addEventListener('pointerdown', marcarInteraccion);
-canvas.addEventListener('wheel', marcarInteraccion, {passive:true});
+if(mqOscuro){
+  const alCambiar=function(e){ sisOscuro=!!e.matches; aplicarTema(); };
+  try{ mqOscuro.addEventListener('change', alCambiar); }catch(e){ try{ mqOscuro.addListener(alCambiar); }catch(e2){} }
+}
+// Cualquier gesto del público cuenta como interacción (también desplazarse por el panel).
+['pointerdown','wheel','keydown','touchstart'].forEach(function(ev){ document.addEventListener(ev, marcarInteraccion, {capture:true, passive:true}); });
+// Tras usar un control con el ratón o el dedo, se suelta el foco para que el teclado siga controlando la animación.
+let usoPuntero=false;
+document.addEventListener('pointerdown', function(){ usoPuntero=true; }, true);
+document.addEventListener('keydown', function(e){ if(e.key==='Tab') usoPuntero=false; }, true);
+function soltarFoco(sel){ return function(e){ const t=e.target && e.target.closest? e.target.closest(sel) : null; if(t && usoPuntero) setTimeout(function(){ if(document.activeElement===t) t.blur(); }, 0); }; }
+document.addEventListener('click', soltarFoco('button, input[type=checkbox], input[type=radio]'));
+document.addEventListener('change', soltarFoco('select, input[type=range], input[type=checkbox], input[type=radio]'));
 document.addEventListener('keydown', function(e){
-  const tag=(e.target && e.target.tagName || '').toLowerCase(); if(tag==='input'||tag==='select'||tag==='button') return;
-  if(e.code==='Space'){ e.preventDefault(); $('play').click(); }
-  else if(e.key==='d'||e.key==='D'){ lanzarDado(); }
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const tag=(e.target && e.target.tagName || '').toLowerCase(); if(tag==='input'||tag==='select'||tag==='button'||tag==='textarea') return;
+  if(e.code==='Space'){ e.preventDefault(); if(!e.repeat) $('play').click(); }
+  else if(!e.repeat && (e.key==='d'||e.key==='D')){ lanzarDado(); }
 });
 
 // ---------- Ciclo ----------
-let ultimo=performance.now();
+let ultimo=performance.now(), ultimoPocos=null;
 function ciclo(ahora){
-  const dt=Math.min(0.1,(ahora-ultimo)/1000); ultimo=ahora;
+  const dt=Math.max(0, Math.min(0.1,(ahora-ultimo)/1000)); ultimo=ahora;
   pasoExpo(dt);
+  const n0=st.n;
   if(st.jugando && !st.anim && !st.lleno){
     if(st.nuevo) iniciarDesdeVertice();
     st.acum+=st.tasa*dt; let k=Math.floor(st.acum); st.acum-=k;
     k=Math.min(k, MAXP-st.n); for(let q=0;q<k;q++) pasoCaos();
-    if(st.n>=MAXP){ st.lleno=true; }
+    if(st.n>=MAXP){ st.lleno=true; actualizarPlay(); }
   }
   avanzarAnim(dt);
-  subir(); actualizarHud();
+  if(st.n!==n0 || st.recolor){ subir(); actualizarHud(); pendiente=true; }
+  if(st.anim) pendiente=true;
   const pocos=st.n<400 || !!st.anim || lineaPaso.visible;
-  etiquetas.forEach(function(sp){ sp.visible=pocos; });
-  marcas.forEach(function(m){ m.visible=pocos; });
-  if(!usarOrto) controls.update();
-  if(scene.fog){ const dcam=cam.position.length(); scene.fog.near=Math.max(0.1, dcam-R0*0.9); scene.fog.far=dcam+R0*2.2; }
-  matPuntos.fog=!usarOrto;
-  const camara=usarOrto? ortho : cam;
-  if(matPuntos.fog!==matPuntos.userData.fogPrev){ matPuntos.needsUpdate=true; matPuntos.userData.fogPrev=matPuntos.fog; }
-  if(usarAnaglifo && !usarOrto) anaglifo.render(scene, camara); else renderer.render(scene, camara);
+  if(pocos!==ultimoPocos){ etiquetas.forEach(function(sp){ sp.visible=pocos; }); marcas.forEach(function(m){ m.visible=pocos; }); ultimoPocos=pocos; pendiente=true; }
+  if(!usarOrto && controls.update()) pendiente=true;
+  if(pendiente){
+    pendiente=false;
+    if(scene.fog){
+      if(usarOrto){ scene.fog.near=1e4; scene.fog.far=2e4; }
+      else { const dcam=cam.position.distanceTo(controls.target); scene.fog.near=Math.max(0.1, dcam-R0*0.9); scene.fog.far=dcam+R0*2.2; }
+    }
+    tamPuntos();
+    if(usarAnaglifo && !usarOrto){ cam.focus=cam.position.distanceTo(controls.target); anaglifo.render(scene, cam); }
+    else renderer.render(scene, usarOrto? ortho : cam);
+  }
   requestAnimationFrame(ciclo);
 }
 
 // ---------- Inicio ----------
 actualizarTasa();
 st.s=FIG.tet.s; construirFigura(); aplicarTema(); reiniciar(); redimensionar();
-if(window.CAOS_TEST){ window.__caos={ st:st, FIG:FIG, cambiarFigura:cambiarFigura, setOrto:setOrto, lanzarDado:lanzarDado, pos:pos, setAnaglifo:setAnaglifo, aplicarTema:function(t){ tema=t; aplicarTema(); } }; }
+if(window.CAOS_TEST){ window.__caos={ st:st, FIG:FIG, cambiarFigura:cambiarFigura, setOrto:setOrto, lanzarDado:lanzarDado, pos:pos, col:col, colAttr:colAttr, setAnaglifo:setAnaglifo, matPuntos:matPuntos, ortho:ortho, cam:cam, EXPO:EXPO, controls:controls, aplicarTema:function(t){ tema=t; document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===t); }); aplicarTema(); } }; }
 requestAnimationFrame(ciclo);
 })();
 </script>
