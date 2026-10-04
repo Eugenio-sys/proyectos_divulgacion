@@ -37,7 +37,7 @@ select,input[type=range]{width:100%;font:inherit;color:inherit;accent-color:var(
 select{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 8px}
 .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg label{flex:1;text-align:center;padding:6px 4px;cursor:pointer;color:var(--muted);font-size:13px;position:relative}
-.seg label:has(input:checked){background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
+.seg label.sel{background:var(--accent-soft);color:var(--accent-ink);font-weight:550}
 .seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
 .seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -45,6 +45,10 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:550}
 .btn.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line)}
+.btn.primary:disabled:hover{border-color:var(--accent)}
+input[type=range]:disabled{opacity:.45;cursor:not-allowed}
 .btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .chk{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:13px;cursor:pointer}
 .chk input{accent-color:var(--accent);width:16px;height:16px;margin:0;flex:0 0 auto}
@@ -55,11 +59,20 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 .hud .big{font-size:26px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.15;margin-top:4px}
 .hud .d{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:3px}
 .hud .e{font-size:13px;color:var(--accent-ink);font-variant-numeric:tabular-nums;margin-top:3px;font-weight:550}
-@media (max-width:880px){
-  .app{grid-template-columns:1fr;grid-template-rows:62vh auto;height:auto}
-  .side{order:2;border-right:0;border-top:1px solid var(--line)}
-  .stage{order:1;height:62vh}
-  .hud .big{font-size:20px}
+@media (max-width:880px) and (orientation:portrait){
+  .app{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
+  .side{order:2;border-right:0;border-top:1px solid var(--line);overflow:visible}
+  .stage{order:1;height:50vh;position:sticky;top:0;z-index:5;background:var(--bg)}
+  .hud{top:auto;bottom:8px;left:8px;right:8px;max-width:none;padding:6px 10px;border-radius:8px}
+  .hud .t{display:inline;font-size:13px}
+  .hud .big{display:inline;font-size:14px;margin-left:8px;letter-spacing:0}
+  .hud .d,.hud .e{font-size:12px;margin-top:2px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .hud{left:8px;top:8px;padding:5px 9px;border-radius:8px;max-width:min(calc(100% - 16px),420px)}
+  .hud .t{display:inline;font-size:13px}
+  .hud .big{display:inline;font-size:14px;margin-left:8px;letter-spacing:0}
+  .hud .d,.hud .e{font-size:12px;margin-top:2px}
 }
 </style>
 </head>
@@ -72,22 +85,22 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
     <section class="grp">
       <h2>Mundo</h2>
       <div class="seg">
-        <label><input type="radio" name="mundo" value="3">Planilandia (2D)</label>
-        <label><input type="radio" name="mundo" value="4" checked>Nuestro espacio (3D)</label>
+        <label><input type="radio" name="mundo" value="3" autocomplete="off">Planilandia (2D)</label>
+        <label><input type="radio" name="mundo" value="4" checked autocomplete="off">Nuestro espacio (3D)</label>
       </div>
       <p class="txt" id="mundoTxt" style="margin-top:10px"></p>
     </section>
 
     <section class="grp">
       <h2>Objeto</h2>
-      <select id="obj" aria-label="Objeto"></select>
+      <select id="obj" aria-label="Objeto" autocomplete="off"></select>
       <p class="txt" id="objInfo" style="margin-top:10px"></p>
     </section>
 
     <section class="grp">
       <h2 id="pasoTit">Paso del objeto</h2>
       <div class="row"><label for="h" id="hLbl">Posición en la cuarta dimensión</label><output id="hOut">0.00</output></div>
-      <input id="h" type="range" min="-2" max="2" step="0.001" value="0">
+      <input id="h" type="range" min="-2" max="2" step="0.001" value="0" autocomplete="off">
       <div class="btns"><button class="btn primary" id="pasar">Atravesar</button></div>
       <div id="presetsBox"><div class="row" style="margin-top:12px"><label>Entrada del objeto</label></div><div class="btns" id="presets" style="margin-top:0"></div></div>
     </section>
@@ -95,27 +108,27 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
     <section class="grp">
       <h2 id="girosTit">Giros en la cuarta dimensión</h2>
       <div class="row"><label for="a1" id="a1Lbl">Plano XW</label><output id="a1Out">0°</output></div>
-      <input id="a1" type="range" min="0" max="360" step="1" value="0">
+      <input id="a1" type="range" min="0" max="360" step="1" value="0" autocomplete="off">
       <div class="row"><label for="a2" id="a2Lbl">Plano YW</label><output id="a2Out">0°</output></div>
-      <input id="a2" type="range" min="0" max="360" step="1" value="0">
+      <input id="a2" type="range" min="0" max="360" step="1" value="0" autocomplete="off">
       <div id="a3Box"><div class="row"><label for="a3" id="a3Lbl">Plano ZW</label><output id="a3Out">0°</output></div>
-      <input id="a3" type="range" min="0" max="360" step="1" value="0"></div>
-      <div class="btns"><button class="btn" id="girar">Girar continuamente</button><button class="btn" id="giroCero">Sin giro</button></div>
+      <input id="a3" type="range" min="0" max="360" step="1" value="0" autocomplete="off"></div>
+      <div class="btns"><button class="btn" id="girar">Girar continuamente</button><button class="btn" id="giroCero">Quitar giros</button></div>
     </section>
 
     <section class="grp">
       <h2>Vista</h2>
-      <label class="chk"><input type="checkbox" id="sombra" checked><span id="sombraLbl">Mostrar la sombra del objeto completo</span></label>
+      <label class="chk"><input type="checkbox" id="sombra" checked autocomplete="off"><span id="sombraLbl">Mostrar la sombra del objeto completo</span></label>
       <div class="btns">
         <button class="btn active" id="rot">Girar la vista</button>
         <button class="btn" id="ana">Lentes 3D rojo-cian</button>
         <button class="btn" id="fs">Pantalla completa</button>
       </div>
-      <label class="chk"><input type="checkbox" id="expo">Modo exhibición: recorre ejemplos cuando nadie interactúa</label>
+      <label class="chk"><input type="checkbox" id="expo" autocomplete="off">Modo exhibición: recorre ejemplos cuando nadie interactúa</label>
       <div class="row" style="margin-top:14px"><label>Ambientación</label></div>
       <div class="seg">
-        <label><input type="radio" name="tema" value="clasico">Clásica</label>
-        <label><input type="radio" name="tema" value="halloween">Halloween</label>
+        <label><input type="radio" name="tema" value="clasico" autocomplete="off">Clásica</label>
+        <label><input type="radio" name="tema" value="halloween" autocomplete="off">Halloween</label>
       </div>
     </section>
 
@@ -2385,7 +2398,7 @@ select{background:var(--panel);border:1px solid var(--line);border-radius:6px;pa
 
 			const _scene = new THREE.Scene();
 
-			const _stereo = new THREE.StereoCamera();
+			const _stereo = new THREE.StereoCamera(); this.stereo = _stereo;
 
 			const _params = {
 				minFilter: THREE.LinearFilter,
@@ -2485,8 +2498,10 @@ function temaInicial(){
 let tema=temaInicial();
 document.documentElement.setAttribute('data-tema', tema);
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===tema); });
-function sistemaOscuro(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
-function oscuro(){ return tema==='halloween' || sistemaOscuro(); }
+const mqOscuro=window.matchMedia? window.matchMedia('(prefers-color-scheme: dark)') : null;
+let sisOscuro=!!(mqOscuro && mqOscuro.matches);
+function oscuro(){ return tema==='halloween' || sisOscuro; }
+function marcarSeg(){ document.querySelectorAll('.seg label').forEach(function(l){ const i=l.querySelector('input'); l.classList.toggle('sel', !!(i && i.checked)); }); }
 
 // ---------- Álgebra lineal en dimensión D ----------
 function identidad(D){ const M=[]; for(let i=0;i<D;i++){ const r=new Array(D).fill(0); r[i]=1; M.push(r); } return M; }
@@ -2533,21 +2548,22 @@ const OBJ={};
   let V=[]; for(let m=0;m<16;m++) V.push([m&1?1:-1, m&2?1:-1, m&4?1:-1, m&8?1:-1]);
   OBJ.teseracto={ D:4, tipo:'politopo', nombre:'Hipercubo (teseracto)', V:escalar(V), E:aristasMinimas(V),
     entradas:{ celda:unit([1,0,0,0]), cara:unit([1,1,0,0]), arista:unit([1,1,1,0]), vertice:unit([1,1,1,1]) },
-    info:'El hipercubo |x|, |y|, |z|, |w| ≤ 1 tiene 16 vértices, 32 aristas, 24 caras cuadradas y 8 celdas cúbicas. Si entra por una celda, el corte es un cubo durante todo el paso. Si entra por un vértice, aparece un tetraedro que crece, se trunca, es un octaedro a la mitad del camino y vuelve a ser tetraedro.' };
+    info:'El hipercubo |x|, |y|, |z|, |w| ≤ a tiene 16 vértices, 32 aristas, 24 caras cuadradas y 8 celdas cúbicas. Si entra por una celda, el corte es un cubo durante todo el paso. Si entra por un vértice, aparece un tetraedro que crece, se trunca, es un octaedro a la mitad del camino y vuelve a ser tetraedro.' };
   // Símplex
   const H=[[1,-1,0,0,0],[1,1,-2,0,0],[1,1,1,-3,0],[1,1,1,1,-4]].map(unit);
   V=[]; for(let i=0;i<5;i++){ const e=[0,0,0,0,0]; e[i]=1; const p=e.map(function(x){ return x-0.2; }); V.push(H.map(function(h){ let s=0; for(let k=0;k<5;k++) s+=h[k]*p[k]; return s; })); }
   V=escalar(V); let E=aristasMinimas(V);
-  OBJ.pentacoron={ D:4, tipo:'politopo', nombre:'Símplex (pentácoron)', V:V, E:E, entradas:entradasSimpliciales(V,E),
-    info:'El análogo del tetraedro: 5 vértices unidos todos entre sí por 10 aristas, 10 caras triangulares y 5 celdas tetraédricas. En una entrada general, el corte es un tetraedro que se convierte en prisma triangular y vuelve a ser tetraedro.' };
+  const entPenta=entradasSimpliciales(V,E); entPenta.general=unit([0.62,-0.31,0.48,0.53]);
+  OBJ.pentacoron={ D:4, tipo:'politopo', nombre:'Símplex (pentácoron)', V:V, E:E, entradas:entPenta, entradaInicial:'general',
+    info:'El análogo del tetraedro: 5 vértices, unidos todos entre sí por 10 aristas; 10 caras triangulares y 5 celdas tetraédricas. En una entrada general, el corte es un tetraedro que se convierte en prisma triangular y vuelve a ser tetraedro. Si entra por un vértice o por una celda, el corte es siempre un tetraedro; si entra por una arista o por una cara, es un prisma triangular.' };
   // 16 celdas
   V=[]; for(let i=0;i<4;i++) [-1,1].forEach(function(s){ const v=[0,0,0,0]; v[i]=s; V.push(v); });
   V=escalar(V); E=aristasMinimas(V);
   OBJ.hexadecacoron={ D:4, tipo:'politopo', nombre:'Politopo de 16 celdas', V:V, E:E, entradas:entradasSimpliciales(V,E),
-    info:'El análogo del octaedro, |x| + |y| + |z| + |w| ≤ 1: 8 vértices, 24 aristas, 32 caras triangulares y 16 celdas tetraédricas. Si entra por un vértice, sus cortes son octaedros que crecen y se encogen.' };
+    info:'El análogo del octaedro, |x| + |y| + |z| + |w| ≤ a: 8 vértices, 24 aristas, 32 caras triangulares y 16 celdas tetraédricas. Si entra por un vértice, sus cortes son octaedros que crecen y se encogen.' };
   // 24 celdas
   V=[]; for(let i=0;i<4;i++) for(let j=i+1;j<4;j++) [-1,1].forEach(function(a){ [-1,1].forEach(function(b){ const v=[0,0,0,0]; v[i]=a; v[j]=b; V.push(v); }); });
-  OBJ.icositetracoron={ D:4, tipo:'politopo', nombre:'Politopo de 24 celdas', V:escalar(V), E:aristasMinimas(V),
+  OBJ.icositetracoron={ D:4, tipo:'politopo', nombre:'Politopo de 24 celdas', V:escalar(V), E:aristasMinimas(V), entradaInicial:'celda',
     entradas:{ celda:unit([1,0,0,0]), cara:unit([1,1,1,0]), arista:unit([1,0.5,0.5,0]), vertice:unit([1,1,0,0]) },
     info:'Un politopo sin análogo en tres dimensiones: 24 vértices, 96 aristas, 96 caras triangulares y 24 celdas octaédricas. Si entra por una celda, aparece de golpe un octaedro que se transforma hasta ser un cuboctaedro a la mitad del camino.' };
   // 600 celdas
@@ -2559,26 +2575,26 @@ const OBJ={};
   });
   V=escalar(V); E=aristasMinimas(V);
   OBJ.hexacosicoron={ D:4, tipo:'politopo', nombre:'Politopo de 600 celdas', V:V, E:E, entradas:entradasSimpliciales(V,E),
-    info:'120 vértices, 720 aristas, 1200 caras triangulares y 600 celdas tetraédricas. Sus cortes son poliedros de decenas de caras que cambian continuamente.' };
+    info:'El análogo del icosaedro: 120 vértices, 720 aristas, 1200 caras triangulares y 600 celdas tetraédricas. Sus cortes son poliedros de decenas a unas doscientas caras, que cambian continuamente.' };
   // Superficies
-  OBJ.hiperesfera={ D:4, tipo:'implicito', nombre:'Hiperesfera', B:1.5,
+  OBJ.hiperesfera={ D:4, tipo:'implicito', nombre:'Hiperesfera', B:1.5, simetrica:true, soporte:function(){ return 1.5; },
     f:function(x,y,z,w){ return x*x+y*y+z*z+w*w-2.25; },
     info:'La hiperesfera x² + y² + z² + w² = r². Su corte es una esfera que crece desde un punto y vuelve a reducirse; ningún giro cambia lo que se observa.' };
-  OBJ.esferitoro={ D:4, tipo:'implicito', nombre:'Esferitoro', B:1.5,
+  OBJ.esferitoro={ D:4, tipo:'implicito', nombre:'Esferitoro', B:1.5, soporte:function(u){ return Math.hypot(u[0],u[2])+0.5; },
     f:function(x,y,z,w){ const q=Math.sqrt(x*x+z*z)-1.0; return q*q+y*y+w*w-0.25; },
     giros:[{t:'Sin giro', a:[0,0,0]},{t:'Girado 90° en el plano XW', a:[90,0,0]}],
     info:'(√(x² + z²) − R)² + y² + w² = r². Sin giro, el corte es un anillo cuyo tubo engrosa y adelgaza. Girado 90° en el plano XW, el mismo objeto aparece como un cuerpo que se parte en dos piezas, que a la mitad del camino son dos esferas, y que luego vuelven a unirse.' };
-  OBJ.ditoro={ D:4, tipo:'implicito', nombre:'Ditoro', B:1.62,
+  OBJ.tigre={ D:4, tipo:'implicito', nombre:'Tigre (toro de Clifford engrosado)', B:1.62, soporte:function(u){ return 0.8*(Math.hypot(u[0],u[2])+Math.hypot(u[1],u[3]))+0.34; },
     f:function(x,y,z,w){ const a=Math.sqrt(x*x+z*z)-0.8, b=Math.sqrt(y*y+w*w)-0.8; return a*a+b*b-0.1156; },
-    info:'(√(x² + z²) − R)² + (√(y² + w²) − R)² = r². El corte aparece como un anillo que se desdobla en dos anillos superpuestos, que luego vuelven a fundirse en uno solo.' };
-  OBJ.calabaza={ D:4, tipo:'implicito', nombre:'Calabaza de cuatro dimensiones', B:1.48, color:true,
+    info:'(√(x² + z²) − R)² + (√(y² + w²) − R)² = r²: la superficie a distancia r del toro de Clifford, formado por los puntos con √(x² + z²) = √(y² + w²) = R. El corte aparece como un anillo que se desdobla en dos anillos superpuestos, que luego vuelven a fundirse en uno solo.' };
+  OBJ.calabaza={ D:4, tipo:'implicito', nombre:'Calabaza de cuatro dimensiones', B:1.48, color:true, soporte:function(u){ return Math.max(1.325*Math.hypot(u[0],0.8*u[1],u[2],u[3]), 1.36*Math.abs(u[1])+0.157*Math.hypot(u[0],u[2],u[3])); },
     f:function(x,y,z,w){ return Math.min(calabazaCuerpo(x,y,z,w), calabazaTallo(x,y,z,w)); },
     info:'Una hiperesfera achatada, con gajos y con un tallo delgado también en la cuarta dimensión. El corte es una calabaza que crece y se encoge, y el tallo solo aparece cuando el corte pasa cerca del centro.' };
   // Objetos de Planilandia (tres dimensiones)
   V=[]; for(let m=0;m<8;m++) V.push([m&1?1:-1, m&2?1:-1, m&4?1:-1]);
   OBJ.cubo={ D:3, tipo:'politopo', nombre:'Cubo', V:escalar(V), E:aristasMinimas(V),
     entradas:{ cara:unit([1,0,0]), arista:unit([1,1,0]), vertice:unit([1,1,1]) },
-    info:'Si entra por una cara, el corte es un cuadrado; si entra por una arista, un rectángulo que se ensancha y se estrecha; si entra por un vértice, un triángulo que se convierte en hexágono a la mitad del camino.' };
+    info:'Si entra por una cara, el corte es un cuadrado; si entra por una arista, un rectángulo que se ensancha y se estrecha; si entra por un vértice, un triángulo que crece, se trunca hasta ser un hexágono, regular a la mitad del camino, y vuelve a ser triángulo.' };
   V=[[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]];
   OBJ.tetraedro={ D:3, tipo:'politopo', nombre:'Tetraedro', V:escalar(V), E:aristasMinimas(V),
     entradas:{ cara:unit([1,1,-1]), arista:unit([1,0,0]), vertice:unit([1,1,1]) },
@@ -2587,7 +2603,7 @@ const OBJ={};
   OBJ.octaedro={ D:3, tipo:'politopo', nombre:'Octaedro', V:escalar(V), E:aristasMinimas(V),
     entradas:{ cara:unit([1,1,1]), arista:unit([1,1,0]), vertice:unit([1,0,0]) },
     info:'Si entra por un vértice, el corte es un cuadrado que crece y se encoge. Si entra por una cara, el corte es un triángulo que se convierte en hexágono y termina como el triángulo invertido.' };
-  OBJ.esfera={ D:3, tipo:'esfera', nombre:'Esfera', R:1.5,
+  OBJ.esfera={ D:3, tipo:'esfera', nombre:'Esfera', R:1.5, simetrica:true,
     info:'El corte es un círculo que crece desde un punto y vuelve a reducirse: lo que observan los habitantes de Planilandia en la novela de Abbott.' };
 })();
 function calabazaCuerpo(x,y,z,w){
@@ -2600,7 +2616,7 @@ function calabazaTallo(x,y,z,w){
   const xs=x-0.18*(y-0.85)*(y-0.85);
   return Math.max(Math.sqrt(xs*xs+z*z+w*w)-0.11, y-1.36, 0.85-y);
 }
-const LISTA={ 4:['teseracto','pentacoron','hexadecacoron','icositetracoron','hexacosicoron','hiperesfera','esferitoro','ditoro','calabaza'], 3:['cubo','tetraedro','octaedro','esfera'] };
+const LISTA={ 4:['teseracto','pentacoron','hexadecacoron','icositetracoron','hexacosicoron','hiperesfera','esferitoro','tigre','calabaza'], 3:['cubo','tetraedro','octaedro','esfera'] };
 
 // ---------- Escena ----------
 const canvas=$('c'), stage=$('stage');
@@ -2665,7 +2681,7 @@ const polvo=(function(){
 })();
 
 function aplicarTema(){
-  document.documentElement.setAttribute('data-tema', tema);
+  document.documentElement.setAttribute('data-tema', tema); marcarSeg();
   const hw=tema==='halloween', osc=oscuro();
   const fondo=hw? 0x0B0710 : (osc? 0x14181D : 0xEDE8DE);
   scene.background=new THREE.Color(fondo);
@@ -2685,7 +2701,7 @@ function aplicarTema(){
 function usarFantasma(){ return oscuro(); }
 
 // ---------- Estado ----------
-const est={ mundo:4, obj:'teseracto', h:0, hmin:-2, hmax:2, ang:[0,0,0], pre:null, entrada:'vertice', pasando:false, dirPaso:1, pausaPaso:0, girando:false, sombra:true, cambio:true, fino:false, ultimoCambio:0, info:{} };
+const est={ mundo:4, obj:'teseracto', h:0, hmin:-2, hmax:2, ang:[0,0,0], pre:null, entrada:'vertice', pasando:false, dirPaso:1, pausaPaso:0, girando:false, sombra:true, cambio:true, fino:false, ultimoCambio:0, info:{}, nivel:null, soporte:null, topo:null, topoCand:null };
 function orientacion(){
   const o=OBJ[est.obj], D=o.D, ex=(D===4)?3:1, r=Math.PI/180;
   let M=est.pre? est.pre.map(function(f){ return f.slice(); }) : identidad(D);
@@ -2694,10 +2710,12 @@ function orientacion(){
   return {M:M, ex:ex};
 }
 function rangoPaso(){
-  const o=OBJ[est.obj];
-  if(o.tipo==='politopo'){ const O=orientacion(); let a=1e9,b=-1e9; o.V.forEach(function(v){ const w=aplicar(O.M,v)[O.ex]; a=Math.min(a,w); b=Math.max(b,w); }); return [a-0.12, b+0.12]; }
-  if(o.tipo==='esfera') return [-o.R-0.12, o.R+0.12];
-  return [-o.B-0.05, o.B+0.05];
+  const o=OBJ[est.obj]; est.nivel=null; est.soporte=null;
+  if(o.tipo==='politopo'){ const O=orientacion(); let a=1e9,b=-1e9; o.V.forEach(function(v){ const w=aplicar(O.M,v)[O.ex]; a=Math.min(a,w); b=Math.max(b,w); }); est.nivel=[a,b]; return [a-0.12, b+0.12]; }
+  if(o.tipo==='esfera'){ est.nivel=[-o.R,o.R]; return [-o.R-0.12, o.R+0.12]; }
+  // Superficies: la extensión en la dirección del corte se obtiene de la función soporte del objeto girado.
+  const u=orientacion().M[3], sp=o.soporte? o.soporte(u) : o.B; est.soporte=sp;
+  return [-sp-0.05, sp+0.05];
 }
 function actualizarRango(){
   const r=rangoPaso(); est.hmin=r[0]; est.hmax=r[1]; const s=$('h'); s.min=r[0].toFixed(3); s.max=r[1].toFixed(3);
@@ -2846,8 +2864,15 @@ function construir(){
   vaciar(grupoCorte); vaciar(grupoSombra);
   grupoPlano.visible=(o.D===3); grupoPlano.position.y=h;
   let txt='', eul='';
+  // Mensaje de corte vacío según el sentido del recorrido: en el regreso, el objeto vuelve a entrar.
+  const atras=est.dirPaso<0, antes=atras? h>0 : h<0;
   if(o.tipo==='politopo' && o.D===4){
-    const c=cortePolitopo(o,O.M,O.ex,h), r=poliedro(c.pts);
+    let c=cortePolitopo(o,O.M,O.ex,h), r=poliedro(c.pts);
+    // En cortes casi degenerados la envolvente puede fallar por redondeo; un desplazamiento mínimo de h, invisible en pantalla, lo evita.
+    if(r.tipo==='poliedro' && r.V-r.A+r.C!==2){
+      const dd=[5e-4,-5e-4,1.5e-3,-1.5e-3];
+      for(let q=0;q<dd.length;q++){ const c2=cortePolitopo(o,O.M,O.ex,h+dd[q]), r2=poliedro(c2.pts); if(r2.tipo==='poliedro' && r2.V-r2.A+r2.C===2){ c=c2; r=r2; break; } }
+    }
     if(r.tipo==='poliedro'){
       const pos=new Float32Array(r.tris.length*9); r.tris.forEach(function(t,k){ for(let q=0;q<3;q++){ pos[9*k+3*q]=t[q].x; pos[9*k+3*q+1]=t[q].y; pos[9*k+3*q+2]=t[q].z; } });
       const g=new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos,3)); g.computeVertexNormals();
@@ -2864,7 +2889,7 @@ function construir(){
       txt='Instante de contacto: el corte es '+conArticulo(pts.length)+', sin volumen.';
     } else if(r.tipo==='segmento'){ grupoCorte.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(r.pts.map(function(p){ return new THREE.Vector3(p[0],p[1],p[2]); })), MAT.aristas)); txt='Instante de contacto: el corte es un segmento.'; }
     else if(r.tipo==='punto'){ const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(r.pts[0][0],r.pts[0][1],r.pts[0][2])]); grupoCorte.add(new THREE.Points(g, MAT.punto)); txt='Instante de contacto: el corte es un solo punto.'; }
-    else { txt=(h<0)? 'El objeto todavía no toca nuestro espacio.' : 'El objeto ya atravesó nuestro espacio.'; }
+    else { txt=antes? 'El objeto todavía no toca nuestro espacio.' : 'El objeto ya atravesó nuestro espacio.'; }
     if(est.sombra){
       const n=o.E.length, p=new Float32Array(n*6), col=new Float32Array(n*6);
       const cerca=tema==='halloween'? [1.0,0.62,0.25] : (oscuro()? [0.62,0.95,0.88] : [0.05,0.42,0.37]);
@@ -2884,7 +2909,7 @@ function construir(){
       txt='El corte es '+conArticulo(Q.length)+'.';
     } else if(Q.length===2){ grupoCorte.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(Q.map(function(q){ return new THREE.Vector3(q[0],h+0.004,q[1]); })), MAT.borde2)); txt='Instante de contacto: el corte es un segmento.'; }
     else if(Q.length===1){ grupoCorte.add(new THREE.Points(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(Q[0][0],h+0.004,Q[0][1])]), MAT.punto)); txt='Instante de contacto: el corte es un solo punto.'; }
-    else txt=(h<0)? 'El objeto todavía no toca el plano.' : 'El objeto ya atravesó el plano.';
+    else txt=antes? 'El objeto todavía no toca el plano.' : 'El objeto ya atravesó el plano.';
     if(est.sombra){
       const pts=c.Vr.map(function(v){ return new THREE.Vector3(v[0],v[1],v[2]); });
       const gg=new THREE.ConvexGeometry(pts);
@@ -2895,7 +2920,7 @@ function construir(){
     if(r2>1e-6){ const r=Math.sqrt(r2); const g=new THREE.CircleGeometry(r,96).rotateX(-Math.PI/2).translate(0,h+0.004,0); grupoCorte.add(new THREE.Mesh(g, MAT.corte2));
       const pts=[]; for(let k=0;k<96;k++){ const a=2*Math.PI*k/96; pts.push(new THREE.Vector3(r*Math.cos(a),h+0.004,r*Math.sin(a))); } grupoCorte.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), MAT.borde2));
       txt='El corte es un círculo de radio '+r.toFixed(2)+'.'; }
-    else txt=(Math.abs(r2)<=1e-6)? 'Instante de contacto: el corte es un solo punto.' : ((h<0)? 'La esfera todavía no toca el plano.' : 'La esfera ya atravesó el plano.');
+    else txt=(Math.abs(r2)<=1e-6)? 'Instante de contacto: el corte es un solo punto.' : (antes? 'La esfera todavía no toca el plano.' : 'La esfera ya atravesó el plano.');
     if(est.sombra){ grupoSombra.add(new THREE.Mesh(new THREE.SphereGeometry(o.R,48,32), MAT.objeto)); }
   } else {
     const M=O.M, f=o.f;
@@ -2904,12 +2929,24 @@ function construir(){
     if(o.color){ colorear=function(x,y,z){ const X=M[0][0]*x+M[1][0]*y+M[2][0]*z+M[3][0]*h, Y=M[0][1]*x+M[1][1]*y+M[2][1]*z+M[3][1]*h, Z=M[0][2]*x+M[1][2]*y+M[2][2]*z+M[3][2]*h, W=M[0][3]*x+M[1][3]*y+M[2][3]*z+M[3][3]*h;
       if(calabazaTallo(X,Y,Z,W)<calabazaCuerpo(X,Y,Z,W)) return [0.30,0.62,0.22];
       const g=0.5+0.5*Math.cos(8*Math.atan2(Z,X)); const k=0.62+0.38*g; return [1.0*k, 0.47*k, 0.07*k]; }; }
-    const m=mallaImplicita(F, o.B+0.06, est.fino? 64 : 40, colorear);
+    // Fuera del alcance del objeto el corte es vacío y no hace falta recorrer la malla.
+    const fuera=est.soporte!==null && Math.abs(h)>est.soporte+0.02;
+    const m=fuera? {V:0, piezas:0, agujeros:0, geo:null} : mallaImplicita(F, o.B+0.06, est.fino? 64 : 36, colorear);
     if(m.V>0){ const mat=o.color? (fant? MAT.fantasmaVC : MAT.superficieVC) : (fant? MAT.fantasma : MAT.superficie); grupoCorte.add(new THREE.Mesh(m.geo, mat)); }
-    else m.geo.dispose();
-    if(m.V===0) txt=(h<0)? 'El objeto todavía no toca nuestro espacio.' : 'El objeto ya atravesó nuestro espacio.';
-    else if(o.color){ const ca=m.geo.getAttribute('color').array; let tallo=false; for(let q=0;q<ca.length;q+=3){ if(ca[q]<0.5){ tallo=true; break; } } txt=tallo? 'El corte es una calabaza con tallo.' : 'El corte es una calabaza sin tallo: el tallo es delgado también en la cuarta dimensión.'; }
-    else txt='Superficie con '+m.piezas+(m.piezas===1?' pieza':' piezas')+' y '+(m.agujeros===0? 'ningún agujero' : (m.agujeros+(m.agujeros===1?' agujero':' agujeros')))+'.';
+    else if(m.geo) m.geo.dispose();
+    if(m.V===0){ txt=antes? 'El objeto todavía no toca nuestro espacio.' : 'El objeto ya atravesó nuestro espacio.'; est.topo=null; est.topoCand=null; }
+    else if(o.color){ const ca=m.geo.getAttribute('color').array; let tallo=false, cuerpo=false; for(let q=0;q<ca.length;q+=3){ if(ca[q]<0.5) tallo=true; else cuerpo=true; if(tallo&&cuerpo) break; }
+      // La explicación del tallo delgado solo vale si el tallo no está girado hacia la cuarta dimensión.
+      const delgado=Math.abs(M[3][1])<0.1;
+      txt=!cuerpo? 'El corte solo atraviesa el tallo.' : (tallo? 'El corte es una calabaza con tallo.' : (delgado? 'El corte es una calabaza sin tallo: el tallo es delgado también en la cuarta dimensión.' : 'El corte es una calabaza sin tallo.')); }
+    else {
+      // Con la malla gruesa del movimiento, el conteo se acepta cuando dos construcciones seguidas coinciden.
+      const clave=m.piezas+'/'+m.agujeros;
+      if(est.fino || est.topo===null || clave===est.topoCand) est.topo=[m.piezas, m.agujeros];
+      est.topoCand=clave;
+      const pz=est.topo[0], ag=est.topo[1];
+      txt='Superficie con '+pz+(pz===1?' pieza':' piezas')+' y '+(ag===0? 'ningún agujero' : (ag+(ag===1?' agujero':' agujeros')))+'.';
+    }
     est.info={piezas:m.piezas, agujeros:m.agujeros};
   }
   $('hudD').textContent=txt; $('hudE').textContent=eul;
@@ -2924,45 +2961,56 @@ function llenarObjetos(){
   LISTA[est.mundo].forEach(function(k){ const op=document.createElement('option'); op.value=k; op.textContent=OBJ[k].nombre; s.appendChild(op); });
   s.value=est.obj;
 }
-const ENTRADAS4=[['celda','Celda primero'],['cara','Cara primero'],['arista','Arista primero'],['vertice','Vértice primero']];
-const ENTRADAS3=[['cara','Cara primero'],['arista','Arista primero'],['vertice','Vértice primero']];
+const ENTRADAS4=[['celda','Por una celda'],['cara','Por una cara'],['arista','Por una arista'],['vertice','Por un vértice'],['general','Entrada general']];
+const ENTRADAS3=[['cara','Por una cara'],['arista','Por una arista'],['vertice','Por un vértice']];
 function llenarEntradas(){
   const o=OBJ[est.obj], box=$('presets'); box.innerHTML='';
   let items=[];
-  if(o.entradas) items=(o.D===4? ENTRADAS4 : ENTRADAS3).map(function(e){ return {t:e[1], k:e[0]}; });
+  if(o.entradas) items=(o.D===4? ENTRADAS4 : ENTRADAS3).filter(function(e){ return !!o.entradas[e[0]]; }).map(function(e){ return {t:e[1], k:e[0]}; });
   else if(o.giros) items=o.giros.map(function(g,i){ return {t:g.t, g:i}; });
   $('presetsBox').style.display=items.length? '' : 'none';
   items.forEach(function(it){ const b=document.createElement('button'); b.className='btn'; b.textContent=it.t;
     if(it.k){ b.dataset.k=it.k; b.classList.toggle('active', est.entrada===it.k); b.addEventListener('click', function(){ interaccion(); ponerEntrada(it.k, true); }); }
-    else { b.dataset.g=it.g; b.addEventListener('click', function(){ interaccion(); ponerAngulos(o.giros[it.g].a); iniciarPaso(); marcarBotonesGiro(it.g); }); }
+    else { b.dataset.g=it.g; b.addEventListener('click', function(){ interaccion(); pararGiro(); ponerAngulos(o.giros[it.g].a); iniciarPaso(); marcarBotonesGiro(it.g); }); }
     box.appendChild(b); });
 }
 function marcarBotonesGiro(i){ $('presets').querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.dataset.g!==undefined && +b.dataset.g===i); }); }
-function sincronizarGiros(){ const o=OBJ[est.obj]; if(!o.giros) return; let k=-1; o.giros.forEach(function(g,i){ if(Math.abs(g.a[0]-est.ang[0])<0.5 && Math.abs(g.a[1]-est.ang[1])<0.5 && Math.abs(g.a[2]-est.ang[2])<0.5) k=i; }); marcarBotonesGiro(k); }
+function sincronizarGiros(){
+  const o=OBJ[est.obj];
+  if(o.entradas){
+    // La entrada elegida solo sigue resaltada mientras no haya giros adicionales.
+    const sinGiro=est.ang.every(function(a){ const r=((a%360)+360)%360; return r<0.5 || r>359.5; });
+    $('presets').querySelectorAll('button[data-k]').forEach(function(b){ b.classList.toggle('active', sinGiro && b.dataset.k===est.entrada); });
+    return;
+  }
+  if(!o.giros) return; let k=-1; o.giros.forEach(function(g,i){ if(Math.abs(g.a[0]-est.ang[0])<0.5 && Math.abs(g.a[1]-est.ang[1])<0.5 && Math.abs(g.a[2]-est.ang[2])<0.5) k=i; }); marcarBotonesGiro(k); }
+function pararGiro(){ est.girando=false; $('girar').classList.remove('active'); }
 function ponerAngulos(a){ est.ang=[a[0]||0,a[1]||0,a[2]||0]; ['a1','a2','a3'].forEach(function(id,k){ $(id).value=est.ang[k]; $(id+'Out').textContent=Math.round(est.ang[k])+'°'; }); actualizarRango(); sincronizarGiros(); marcarCambio(); }
 function ponerEntrada(k, pasar){
   const o=OBJ[est.obj]; if(!o.entradas) return;
   const D=o.D, objetivo=new Array(D).fill(0); objetivo[(D===4)?3:1]=-1;
   est.pre=rotacionHacia(o.entradas[k], objetivo); est.entrada=k;
-  $('presets').querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.dataset.k===k); });
-  ponerAngulos([0,0,0]);
+  pararGiro(); ponerAngulos([0,0,0]);
   if(pasar) iniciarPaso();
 }
-function iniciarPaso(){ actualizarRango(); est.h=est.hmin; est.dirPaso=1; est.pausaPaso=0; est.pasando=true; $('pasar').textContent='Detener'; marcarCambio(); }
+function iniciarPaso(){ actualizarRango(); est.h=est.hmin; est.dirPaso=1; est.pausaPaso=0; est.pasando=true; est.topo=null; est.topoCand=null; $('pasar').textContent='Detener'; marcarCambio(); }
 function detenerPaso(){ est.pasando=false; $('pasar').textContent='Atravesar'; marcarCambio(true); }
 function ponerObjeto(k){
   est.obj=k; $('obj').value=k; const o=OBJ[k];
   $('objInfo').textContent=o.info;
-  est.pre=null; est.entrada=null; est.ang=[0,0,0];
-  llenarEntradas();
-  if(o.entradas) ponerEntrada(o.D===4? 'vertice' : 'vertice', false); else { ponerAngulos([0,0,0]); marcarBotonesGiro(0); }
-  $('sombraLbl').textContent=(o.D===4)? (o.tipo==='politopo'? 'Mostrar la sombra del objeto completo' : 'Sombra no disponible para superficies') : 'Mostrar el objeto completo';
-  $('sombra').disabled=(o.D===4 && o.tipo!=='politopo');
+  est.pre=null; est.entrada=null; est.ang=[0,0,0]; est.topo=null; est.topoCand=null;
+  pararGiro(); llenarEntradas();
+  if(o.entradas) ponerEntrada(o.entradaInicial||'vertice', false); else { ponerAngulos([0,0,0]); marcarBotonesGiro(0); }
+  const conSombra=!(o.D===4 && o.tipo!=='politopo');
+  $('sombraLbl').textContent=(o.D===4)? (conSombra? 'Mostrar la sombra del objeto completo' : 'Sombra no disponible para superficies') : 'Mostrar el objeto completo';
+  $('sombra').disabled=!conSombra; $('sombra').checked=conSombra && est.sombra;
+  // En los objetos con simetría esférica los giros no cambian nada.
+  ['a1','a2','a3','girar','giroCero'].forEach(function(id){ $(id).disabled=!!o.simetrica; });
   $('hudT').textContent=o.nombre;
   iniciarPaso();
 }
 function ponerMundo(D){
-  est.mundo=D; document.querySelectorAll('input[name="mundo"]').forEach(function(r){ r.checked=(+r.value===D); });
+  est.mundo=D; document.querySelectorAll('input[name="mundo"]').forEach(function(r){ r.checked=(+r.value===D); }); marcarSeg();
   $('mundoTxt').textContent=(D===4)
     ? 'Nuestro espacio es el hiperplano w = h dentro del espacio de cuatro dimensiones. De un objeto de cuatro dimensiones solo se percibe su corte con ese hiperplano: un cuerpo tridimensional que aparece, cambia de forma y desaparece mientras el objeto lo atraviesa.'
     : 'Un habitante del plano y = h solo percibe el corte de los cuerpos con su plano: un polígono o un círculo que aparece, cambia y desaparece. Aquí también se muestra el cuerpo completo, tal como lo vería un observador tridimensional.';
@@ -2980,23 +3028,59 @@ let ultimaInteraccion=-1e9;
 function interaccion(){ ultimaInteraccion=performance.now(); if(EXPO.activa) EXPO.activa=false; }
 document.querySelectorAll('input[name="mundo"]').forEach(function(r){ r.addEventListener('change', function(){ interaccion(); ponerMundo(+this.value); }); });
 $('obj').addEventListener('change', function(){ interaccion(); ponerObjeto(this.value); });
-$('h').addEventListener('input', function(){ interaccion(); if(est.pasando) detenerPaso(); est.h=+this.value; marcarCambio(); });
+$('h').addEventListener('input', function(){
+  interaccion(); if(est.pasando) detenerPaso();
+  // Cerca de los instantes de contacto, el valor se ajusta al nivel exacto del primer o del último vértice.
+  let h=+this.value; const tol=Math.max(0.002, 1.5*(est.hmax-est.hmin)/Math.max(100,this.clientWidth));
+  if(est.nivel){ if(Math.abs(h-est.nivel[0])<tol) h=est.nivel[0]; else if(Math.abs(h-est.nivel[1])<tol) h=est.nivel[1]; }
+  if(h!==est.h) est.dirPaso=h<est.h? -1 : 1;
+  est.h=h; marcarCambio();
+});
 $('h').addEventListener('change', function(){ marcarCambio(true); });
 $('pasar').addEventListener('click', function(){ interaccion(); if(est.pasando) detenerPaso(); else iniciarPaso(); });
 ['a1','a2','a3'].forEach(function(id,k){ $(id).addEventListener('input', function(){ interaccion(); est.ang[k]=+this.value; $(id+'Out').textContent=Math.round(est.ang[k])+'°'; actualizarRango(); sincronizarGiros(); marcarCambio(); });
   $(id).addEventListener('change', function(){ marcarCambio(true); }); });
 $('girar').addEventListener('click', function(){ interaccion(); est.girando=!est.girando; this.classList.toggle('active', est.girando); if(!est.girando) marcarCambio(true); });
-$('giroCero').addEventListener('click', function(){ interaccion(); est.girando=false; $('girar').classList.remove('active'); ponerAngulos([0,0,0]); marcarCambio(true); });
+$('giroCero').addEventListener('click', function(){ interaccion(); pararGiro(); ponerAngulos([0,0,0]); marcarCambio(true); });
 $('sombra').addEventListener('change', function(){ interaccion(); est.sombra=this.checked; marcarCambio(true); });
 $('rot').addEventListener('click', function(){ interaccion(); controls.autoRotate=!controls.autoRotate; this.classList.toggle('active', controls.autoRotate); });
-$('ana').addEventListener('click', function(){ interaccion(); usarAnaglifo=!usarAnaglifo; this.classList.toggle('active', usarAnaglifo); redimensionar(); });
-$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(d.documentElement.requestFullscreen){ d.documentElement.requestFullscreen().catch(function(){}); } });
+function setAnaglifo(on){ usarAnaglifo=on; $('ana').classList.toggle('active', on); redimensionar(); }
+$('ana').addEventListener('click', function(){ interaccion(); setAnaglifo(!usarAnaglifo); });
+const fsOk=!!(document.fullscreenEnabled && document.documentElement.requestFullscreen);
+if(!fsOk) $('fs').style.display='none';
+$('fs').addEventListener('click', function(){ interaccion(); const d=document; if(d.fullscreenElement){ d.exitFullscreen && d.exitFullscreen(); } else if(fsOk){ d.documentElement.requestFullscreen().catch(function(){}); } });
+document.addEventListener('fullscreenchange', function(){ $('fs').textContent=document.fullscreenElement? 'Salir de pantalla completa' : 'Pantalla completa'; });
 $('expo').addEventListener('change', function(){ if(this.checked){ ultimaInteraccion=-1e9; } else { EXPO.activa=false; ultimaInteraccion=performance.now(); } });
 document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.addEventListener('change', function(){ interaccion(); tema=this.value; aplicarTema(); }); });
-if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', aplicarTema); }catch(e){} }
-canvas.addEventListener('pointerdown', interaccion); canvas.addEventListener('wheel', interaccion, {passive:true});
-document.addEventListener('keydown', function(e){ const tag=(e.target && e.target.tagName || '').toLowerCase(); if(tag==='input'||tag==='select'||tag==='button') return; if(e.code==='Space'){ e.preventDefault(); $('pasar').click(); } });
-function redimensionar(){ const w=stage.clientWidth, h=stage.clientHeight; if(!w||!h) return; if(usarAnaglifo) anaglifo.setSize(w,h); else renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix(); }
+if(mqOscuro){
+  const alCambiar=function(e){ sisOscuro=!!e.matches; aplicarTema(); };
+  try{ mqOscuro.addEventListener('change', alCambiar); }catch(e){ try{ mqOscuro.addListener(alCambiar); }catch(e2){} }
+}
+// Cualquier gesto del público cuenta como interacción, también desplazarse por el panel.
+['pointerdown','wheel','keydown','touchstart'].forEach(function(ev){ document.addEventListener(ev, interaccion, {capture:true, passive:true}); });
+// Tras usar un control con el ratón o el dedo, se suelta el foco para que la barra espaciadora siga controlando el paso.
+let usoPuntero=false;
+document.addEventListener('pointerdown', function(){ usoPuntero=true; }, true);
+document.addEventListener('keydown', function(e){ if(e.key==='Tab') usoPuntero=false; }, true);
+function soltarFoco(sel){ return function(e){ const t=e.target && e.target.closest? e.target.closest(sel) : null; if(t && usoPuntero) setTimeout(function(){ if(document.activeElement===t) t.blur(); }, 0); }; }
+document.addEventListener('click', soltarFoco('button, input[type=checkbox], input[type=radio]'));
+document.addEventListener('change', soltarFoco('select, input[type=range], input[type=checkbox], input[type=radio]'));
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const t=e.target||{}, tag=(t.tagName || '').toLowerCase();
+  if((tag==='input' && t.type!=='range')||tag==='select'||tag==='button'||tag==='textarea') return;
+  if(e.code==='Space'){ e.preventDefault(); if(!e.repeat) $('pasar').click(); }
+});
+const mqMovil=window.matchMedia? window.matchMedia('(max-width:880px) and (orientation:portrait)') : null;
+function redimensionar(){
+  const w=stage.clientWidth, h=stage.clientHeight; if(!w||!h) return;
+  if(usarAnaglifo) anaglifo.setSize(w,h); else renderer.setSize(w,h,false);
+  const asp=w/h; cam.aspect=asp;
+  // En pantallas verticales se abre el campo visual; en el teléfono la escena sube un poco para dejar sitio al recuadro inferior.
+  cam.fov=asp<1? 2*Math.atan(Math.tan(19*Math.PI/180)/asp)*180/Math.PI : 38;
+  if(mqMovil && mqMovil.matches) cam.setViewOffset(w, h, 0, Math.round(h*0.09), w, h); else if(h<520) cam.setViewOffset(w, h, 0, -Math.round(h*0.06), w, h); else cam.clearViewOffset();
+  cam.updateProjectionMatrix();
+}
 if(window.ResizeObserver) new ResizeObserver(redimensionar).observe(stage); else window.addEventListener('resize', redimensionar);
 
 // ---------- Exhibición ----------
@@ -3005,16 +3089,21 @@ const EXPO={ activa:false, k:0, t:0, guion:[
   {mundo:4, obj:'teseracto', entrada:'vertice', dur:12},
   {mundo:4, obj:'teseracto', entrada:'celda', dur:10},
   {mundo:4, obj:'esferitoro', ang:[90,0,0], dur:12},
-  {mundo:4, obj:'ditoro', dur:12},
+  {mundo:4, obj:'tigre', dur:12},
   {mundo:4, obj:'icositetracoron', entrada:'celda', dur:11},
   {mundo:4, obj:'calabaza', dur:11},
   {mundo:4, obj:'hexacosicoron', entrada:'vertice', dur:12}
 ]};
 function escenaExpo(s){
+  if(usarAnaglifo) setAnaglifo(false);
+  est.sombra=true;
   if(est.mundo!==s.mundo) ponerMundo(s.mundo);
   ponerObjeto(s.obj);
   if(s.entrada) ponerEntrada(s.entrada, true);
   if(s.ang){ ponerAngulos(s.ang); if(OBJ[s.obj].giros) marcarBotonesGiro(1); iniciarPaso(); }
+  pararGiro(); controls.target.set(0,0,0);
+  // Si un visitante dejó la cámara muy cerca o muy lejos, se recupera la distancia habitual.
+  const d0=(s.mundo===4)? 6.5 : 8.08, d=cam.position.length(); if(Math.abs(d-d0)>0.15*d0) cam.position.setLength(d0);
   controls.autoRotate=true; $('rot').classList.add('active');
 }
 function pasoExpo(dt){
@@ -3028,13 +3117,12 @@ function pasoExpo(dt){
 // ---------- Ciclo ----------
 let ultimo=performance.now();
 function ciclo(ahora){
-  const dt=Math.min(0.1,(ahora-ultimo)/1000); ultimo=ahora;
+  const dt=Math.max(0, Math.min(0.1,(ahora-ultimo)/1000)); ultimo=ahora;
   pasoExpo(dt);
   if(est.pasando){
     const rango=est.hmax-est.hmin, vel=rango/(EXPO.activa? 8 : 9);
-    if(est.pausaPaso>0){ est.pausaPaso-=dt; if(est.pausaPaso<=0){ est.dirPaso=-est.dirPaso; } }
-    else { est.h+=est.dirPaso*vel*dt; if(est.h>=est.hmax){ est.h=est.hmax; est.pausaPaso=1.2; } if(est.h<=est.hmin){ est.h=est.hmin; est.pausaPaso=1.2; } }
-    $('h').value=est.h; marcarCambio();
+    if(est.pausaPaso>0){ est.pausaPaso-=dt; if(est.pausaPaso<=0){ est.dirPaso=-est.dirPaso; marcarCambio(); } }
+    else { est.h+=est.dirPaso*vel*dt; if(est.dirPaso>0 && est.h>=est.hmax){ est.h=est.hmax; est.pausaPaso=1.2; } else if(est.dirPaso<0 && est.h<=est.hmin){ est.h=est.hmin; est.pausaPaso=1.2; } $('h').value=est.h; marcarCambio(); }
   }
   if(est.girando){
     const D=OBJ[est.obj].D; est.ang[0]=(est.ang[0]+14*dt)%360; est.ang[D===4?2:1]=(est.ang[D===4?2:1]+9*dt)%360;
@@ -3055,7 +3143,7 @@ ponerMundo(4);
 redimensionar();
 if(window.CUARTA_TEST){ window.__ap={ est:est, OBJ:OBJ, ponerMundo:ponerMundo, ponerObjeto:ponerObjeto, ponerEntrada:ponerEntrada, ponerAngulos:ponerAngulos, detenerPaso:detenerPaso,
   cortePolitopo:cortePolitopo, poliedro:poliedro, orientacion:orientacion, mallaImplicita:mallaImplicita, construir:function(){ est.fino=true; construir(); },
-  fijarH:function(x){ detenerPaso(); est.h=x; $('h').value=x; est.fino=true; construir(); }, aplicarTema:function(t){ tema=t; aplicarTema(); } }; }
+  fijarH:function(x){ detenerPaso(); est.h=x; $('h').value=x; est.fino=true; construir(); }, aplicarTema:function(t){ tema=t; document.querySelectorAll('input[name="tema"]').forEach(function(r){ r.checked=(r.value===t); }); aplicarTema(); }, EXPO:EXPO, controls:controls, setAnaglifo:setAnaglifo, rangoPaso:rangoPaso }; }
 requestAnimationFrame(ciclo);
 })();
 </script>
