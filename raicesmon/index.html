@@ -151,7 +151,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <h2 style="margin-top:12px">Simetrías</h2>
       <p class="txt">Como los coeficientes son reales, la imagen es simétrica respecto al eje real. Invertir el orden de los coeficientes cambia cada raíz z por 1/z. Con coeficientes ±1, cambiar el signo de los coeficientes de grado impar cambia z por −z, y cambiar el signo de todos no cambia las raíces.</p>
       <h2 style="margin-top:12px">La caminata escondida</h2>
-      <p class="txt">Con coeficientes ±1, p(1) es la suma de los coeficientes: la posición final de una caminata con pasos ±1. El número 1 es raíz exactamente cuando la caminata termina en el origen; p(−1) cuenta lo mismo con los pasos de grado impar invertidos. Si el grado es par, hay un número impar de coeficientes y la suma nunca es 0: con coeficientes ±1, z = 1 y z = −1 no son raíces y la imagen muestra un hueco en esos puntos. Si el grado es impar, sí pueden serlo.</p>
+      <p class="txt">Con coeficientes ±1, p(1) es la suma de las monedas: la posición final de una caminata aleatoria con pasos ±1. El número 1 es raíz exactamente cuando la caminata termina en el origen; p(−1) cuenta lo mismo con los pasos de grado impar invertidos. Si el grado es par, hay un número impar de monedas y la suma nunca es 0: con coeficientes ±1, z = 1 y z = −1 no son raíces y la imagen muestra un hueco en esos puntos. Si el grado es impar, sí pueden serlo.</p>
       <h2 style="margin-top:12px">El fractal escondido</h2>
       <p class="txt">Cerca de un punto z, la imagen ampliada se parece al conjunto que produce el juego del caos con las transformaciones <b>x ↦ 1 + z·x</b> y <b>x ↦ 1 − z·x</b>, elegidas también a cara o cruz. Con coeficientes 0 y 1, las transformaciones correspondientes son <b>x ↦ z·x</b> y <b>x ↦ 1 + z·x</b>.</p>
       <h2 style="margin-top:12px">Referencias</h2>
@@ -252,7 +252,7 @@ function colores(){
 }
 
 // ---------- Estado ----------
-const st={ modo:'pm', grado:18, gen:1, activo:true, vista:{cx:0, cy:0, hw:1.75}, np:0, nr:0, N:0, gradoLluvia:18, completo:false, circulo:true, sel:null, monedas:[], gm:18, raicesPol:[], verMarcas:true };
+const st={ modo:'pm', grado:18, gen:1, activo:true, vista:{cx:0, cy:0, hw:1.75}, np:0, nr:0, nc:0, peso:2, N:0, gradoLluvia:18, completo:false, circulo:true, sel:null, monedas:[], gm:18, raicesPol:[], verMarcas:true };
 const DPR=Math.min(window.devicePixelRatio||1, 1.5);
 // Se guardan las raíces calculadas (hasta CAP) para redibujar al cambiar la vista sin recalcular.
 const CAP=4800000; const almacen=new Float32Array(2*CAP); let nAlm=0, pos=0;
@@ -281,14 +281,16 @@ function recibir(e){
   const m=e.data;
   if(m.raicesPol){ const cb=respuestasPol[m.id]; if(cb){ delete respuestasPol[m.id]; cb(m.raicesPol); } return; }
   if(m.gen!==st.gen) return;
-  const r=m.raices; st.np+=m.np; st.nr+=r.length/2;
+  // Con ±1, cada polinomio calculado representa la pareja p, −p, que tiene las mismas raíces: cuenta dos veces.
+  const r=m.raices; st.np+=st.peso*m.np; st.nc+=r.length/2; st.nr=st.peso*st.nc;
   for(let i=0;i<r.length;i+=2){ almacen[2*pos]=r[i]; almacen[2*pos+1]=r[i+1]; pos=(pos+1)%CAP; if(nAlm<CAP) nAlm++; }
   binear(r, r.length/2); sucio=true;
   if(!st.completo && st.np>=st.N){ st.completo=true; actualizarBotones(); }
 }
-function totalPolinomios(){ return Math.pow(2, st.modo==='pm'? st.grado : st.grado-1); }
+// Con ±1 las n + 1 monedas son libres: 2^(n+1) polinomios. Con 0 y 1, el primer y el último coeficiente valen 1: 2^(n−1).
+function totalPolinomios(){ return st.modo==='pm'? Math.pow(2, st.grado+1) : Math.pow(2, st.grado-1); }
 function iniciarLluvia(){
-  st.gen++; st.np=0; st.nr=0; st.completo=false; st.N=totalPolinomios(); st.gradoLluvia=st.grado; nAlm=0; pos=0; histPrev=null; modoPrevia=null; limpiarHist();
+  st.gen++; st.np=0; st.nr=0; st.nc=0; st.peso=(st.modo==='pm')? 2 : 1; st.completo=false; st.N=totalPolinomios(); st.gradoLluvia=st.grado; nAlm=0; pos=0; histPrev=null; modoPrevia=null; limpiarHist();
   // Orden aleatorio sin repetición: cada hilo recorre los lugares i, i + T, i + 2T, … de una permutación pseudoaleatoria nueva.
   const claves=[]; for(let k=0;k<8;k++) claves.push((Math.random()*4294967296)>>>0);
   trabajadores.forEach(function(w,i){ w.postMessage({cmd:'iniciar', modo:st.modo, grado:st.grado, gen:st.gen, claves:claves, indice:i, paso:trabajadores.length, activo:st.activo}); });
@@ -306,12 +308,12 @@ function dimensionar(){
 }
 function escala(){ return 2*st.vista.hw/Math.min(W,H); }
 function limpiarHist(){ hist=new Uint32Array(W*H); hW=W; hH=H; vL={cx:st.vista.cx, cy:st.vista.cy, hw:st.vista.hw}; maxH=0; sucio=true; }
-function binearEn(Hh, w, h, v, r, n){
+function binearEn(Hh, w, h, v, r, n, peso){
   const s=2*v.hw/Math.min(w,h), x0=v.cx-w/2*s, y0=v.cy+h/2*s, inv=1/s; let mx=0;
-  for(let i=0;i<n;i++){ const px=((r[2*i]-x0)*inv)|0, py=((y0-r[2*i+1])*inv)|0; if(px>=0 && px<w && py>=0 && py<h){ const k=py*w+px; const c=++Hh[k]; if(c>mx) mx=c; } }
+  for(let i=0;i<n;i++){ const px=((r[2*i]-x0)*inv)|0, py=((y0-r[2*i+1])*inv)|0; if(px>=0 && px<w && py>=0 && py<h){ const k=py*w+px; const c=(Hh[k]+=peso); if(c>mx) mx=c; } }
   return mx;
 }
-function binear(r, n){ const mx=binearEn(hist, hW, hH, vL, r, n); if(mx>maxH) maxH=mx; }
+function binear(r, n){ const mx=binearEn(hist, hW, hH, vL, r, n, st.peso); if(mx>maxH) maxH=mx; }
 function rebinear(){ limpiarHist(); binear(almacen, nAlm); }
 function enVistaDeLaLluvia(){ return hW===W && hH===H && vL.cx===st.vista.cx && vL.cy===st.vista.cy && vL.hw===st.vista.hw; }
 let tFinal=null;
@@ -321,10 +323,10 @@ let tFinal=null;
 function vistaCambiada(final){
   sucio=true;
   if(final){ clearTimeout(tFinal); tFinal=null; }
-  if(st.nr<=CAP){ histPrev=null; modoPrevia=null; rebinear(); return; }
+  if(st.nc<=CAP){ histPrev=null; modoPrevia=null; rebinear(); return; }
   if(enVistaDeLaLluvia()){ if(modoPrevia==='gesto'){ histPrev=null; modoPrevia=null; } return; }
   if(!bufPrev || bufPrev.length!==W*H) bufPrev=new Uint32Array(W*H); else bufPrev.fill(0);
-  histPrev=bufPrev; binearEn(histPrev, W, H, st.vista, almacen, nAlm); modoPrevia='gesto';
+  histPrev=bufPrev; binearEn(histPrev, W, H, st.vista, almacen, nAlm, st.peso); modoPrevia='gesto';
   if(final){ const prev=histPrev; iniciarLluvia(); histPrev=prev; modoPrevia='reinicio'; nPrev=CAP; }
 }
 function programarFinal(ms){ clearTimeout(tFinal); tFinal=setTimeout(function(){ vistaCambiada(true); pintarEncima(); }, ms); }
@@ -334,7 +336,7 @@ function pintar(){
   if(!img) return;
   let fuente=hist;
   if(histPrev){
-    if(modoPrevia==='reinicio' && (st.completo || st.nr>=nPrev)){ histPrev=null; modoPrevia=null; }
+    if(modoPrevia==='reinicio' && (st.completo || st.nc>=nPrev)){ histPrev=null; modoPrevia=null; }
     else fuente=histPrev;
   }
   if(fuente===hist && (hW!==W || hH!==H)) return;
@@ -342,16 +344,18 @@ function pintar(){
   // Escala de color robusta: el color más intenso corresponde al cuantil del 99,9 % de los conteos, para que unos pocos
   // píxeles con conteos enormes (por ejemplo, z = ±1 en los grados impares) no apaguen el resto de la imagen. El mínimo
   // de 8 evita que, cuando casi todos los conteos valen 1, todos los puntos tomen el color más intenso.
+  // Con ±1 los conteos son dobles (p y −p); para el color se usa el conteo de raíces distintas calculadas.
+  const pz=st.peso;
   let M=0; for(let k=0;k<A;k++) if(fuente[k]) M++;
   const salto=Math.max(1, Math.floor(M/20000)), muestra=[]; let j=0;
-  for(let k=0;k<A;k++){ const c=fuente[k]; if(c>0 && (j++)%salto===0) muestra.push(c); }
+  for(let k=0;k<A;k++){ const c=fuente[k]; if(c>0 && (j++)%salto===0) muestra.push(c/pz); }
   muestra.sort(function(x,y){ return x-y; });
   const q=muestra.length? muestra[Math.floor(0.999*(muestra.length-1))] : 1, L=Math.log(1+Math.max(8,q));
   // Con pocas raíces distintas, cada píxel ocupado se dibuja además como un disco. Su radio es proporcional a la
   // separación típica entre puntos, √(A/M), de modo que disminuye de manera continua al aumentar el número M de puntos.
   const KAPPA=0.1, RMIN=0.75, RFADE=0.5, RMAX=4.5*DPR, maxPuntos=Math.floor(A*(KAPPA/RMIN)*(KAPPA/RMIN));
   const ids=[]; let ocupados=0;
-  for(let k=0,o=0;k<A;k++,o+=4){ const c=fuente[k]; if(c===0){ d[o]=F[0]; d[o+1]=F[1]; d[o+2]=F[2]; } else { const t=indiceColor(c,L); d[o]=LUT[3*t]; d[o+1]=LUT[3*t+1]; d[o+2]=LUT[3*t+2]; ocupados++; if(ids.length<=maxPuntos) ids.push(k); } d[o+3]=255; }
+  for(let k=0,o=0;k<A;k++,o+=4){ const c=fuente[k]; if(c===0){ d[o]=F[0]; d[o+1]=F[1]; d[o+2]=F[2]; } else { const t=indiceColor(c/pz,L); d[o]=LUT[3*t]; d[o+1]=LUT[3*t+1]; d[o+2]=LUT[3*t+2]; ocupados++; if(ids.length<=maxPuntos) ids.push(k); } d[o+3]=255; }
   gD.putImageData(img,0,0);
   ultOcupados=ocupados; radioPuntos=0;
   if(ocupados>0 && ocupados<=maxPuntos){
@@ -360,7 +364,7 @@ function pintar(){
       radioPuntos=r;
       // Los discos conservan el color de su conteo; los más brillantes se dibujan encima.
       const grupos=new Map();
-      ids.forEach(function(k){ const t=indiceColor(fuente[k],L); let g=grupos.get(t); if(!g){ g=[]; grupos.set(t,g); } g.push(k); });
+      ids.forEach(function(k){ const t=indiceColor(fuente[k]/pz,L); let g=grupos.get(t); if(!g){ g=[]; grupos.set(t,g); } g.push(k); });
       const ts=Array.from(grupos.keys()).sort(function(a,b){ return a-b; });
       gD.save(); gD.globalAlpha=Math.min(1,(r-RMIN)/RFADE);
       ts.forEach(function(t){ gD.fillStyle='rgb('+LUT[3*t]+','+LUT[3*t+1]+','+LUT[3*t+2]+')'; gD.beginPath(); grupos.get(t).forEach(function(k){ const x=k%W+0.5, y=((k/W)|0)+0.5; gD.moveTo(x+r,y); gD.arc(x,y,r,0,2*Math.PI); }); gD.fill(); });
@@ -432,7 +436,7 @@ function construirMonedas(){
   const box=$('monedas'); box.innerHTML=''; const n=st.gm;
   if(st.monedas.length!==n+1) st.monedas=Array.from({length:n+1}, function(){ return st.modo==='pm'? (Math.random()<0.5?-1:1) : (Math.random()<0.5?0:1); });
   if(st.modo==='01'){ st.monedas[0]=1; st.monedas[n]=1; st.monedas=st.monedas.map(function(v){ return v<0? 0 : v; }); }
-  else { st.monedas=st.monedas.map(function(v){ return v===0? -1 : v; }); st.monedas[n]=1; }
+  else st.monedas=st.monedas.map(function(v){ return v===0? -1 : v; });
   for(let k=n;k>=0;k--){
     const b=document.createElement('button'); b.className='moneda'; b.type='button'; b.dataset.k=k; b.title='Coeficiente de grado '+k;
     const fija=esFija(k); if(fija) b.classList.add('fija');
@@ -441,8 +445,8 @@ function construirMonedas(){
   }
   actualizarPoli();
 }
-// Coeficientes que no se sortean: el principal con ±1; el primero y el último con 0 y 1.
-function esFija(k){ const n=st.gm; return st.modo==='01'? (k===0||k===n) : k===n; }
+// Coeficientes que no se sortean: con 0 y 1, el primero y el último (el grado es n y z = 0 no es raíz). Con ±1, ninguno.
+function esFija(k){ const n=st.gm; return st.modo==='01' && (k===0||k===n); }
 function pintarMoneda(b,k){ const v=st.monedas[k]; b.textContent=st.modo==='pm'? (v>0? '+1' : '−1') : String(v); b.classList.toggle('cruz', st.modo==='pm'? v<0 : v===0); }
 function lanzarMonedas(){
   st.monedas=st.monedas.map(function(v,k){ if(esFija(k)) return 1; return st.modo==='pm'? (Math.random()<0.5?-1:1) : (Math.random()<0.5?0:1); });
@@ -467,13 +471,13 @@ function fmtN(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'
 function actualizarTextos(){
   const pm=st.modo==='pm', g=st.gradoLluvia, total=st.N*g;
   $('modoTxt').textContent=pm
-    ? 'Cara vale 1 y cruz vale −1. El coeficiente de mayor grado se fija en 1, porque p y −p tienen las mismas raíces. Así se obtiene la célebre imagen de las raíces de los polinomios de Littlewood, con huecos junto a algunas raíces de la unidad.'
-    : 'Cara vale 1 y cruz vale 0; el primer y el último coeficiente valen siempre 1. Es el caso que estudiaron Odlyzko y Poonen (1993).';
+    ? 'Cara vale 1 y cruz vale −1, y las '+(g+1)+' monedas son libres. Como p y −p tienen las mismas raíces, cada pareja se calcula una sola vez y sus raíces se cuentan dos veces. Así se obtiene la célebre imagen de las raíces de los polinomios de Littlewood, con huecos junto a algunas raíces de la unidad.'
+    : 'Cara vale 1 y cruz vale 0. El primer y el último coeficiente valen siempre 1: así el grado es '+g+' y z = 0 no es raíz. Es el caso que estudiaron Odlyzko y Poonen (1993).';
   $('hudD').textContent='Grado '+g+' · coeficientes '+(pm? '±1' : '0 y 1')+' · '+(st.completo? 'los '+fmtN(st.N)+' polinomios' : fmtN(st.np)+' de '+fmtN(st.N)+' polinomios');
   $('nPol').textContent=fmtN(st.np); $('nPolDe').textContent='de '+fmtN(st.N)+' polinomios';
   $('nRai').textContent=fmtN(st.nr); $('nRaiDe').textContent='de '+fmtN(total)+' raíces';
   $('estadoLluvia').textContent=st.completo
-    ? 'Lluvia completa: se calcularon las '+fmtN(total)+' raíces de los '+fmtN(st.N)+' polinomios de grado '+g+'.'
+    ? 'Lluvia completa: están las '+fmtN(total)+' raíces de los '+fmtN(st.N)+' polinomios de grado '+g+'.'
     : (st.activo? '' : 'Lluvia en pausa.');
 }
 
@@ -520,8 +524,8 @@ $('pausa').addEventListener('click', function(){
 });
 $('reiniciar').addEventListener('click', function(){ interaccion(); iniciarLluvia(); });
 function textoGrado(){
-  const g=st.grado, fijos=st.modo==='pm'? 'el coeficiente de mayor grado vale 1 y los otros '+g : 'el primer y el último coeficiente valen 1 y los otros '+(g-1);
-  $('gmTxt').textContent='Su polinomio tiene el mismo grado que los de la lluvia, '+g+': '+fijos+' se eligen con monedas. Es una gota más de la lluvia. También se pueden lanzar monedas reales y copiar el resultado: un clic en una moneda la voltea.';
+  const g=st.grado, monedas=st.modo==='pm'? 'sus '+(g+1)+' coeficientes se eligen con monedas' : 'el primer y el último coeficiente valen 1 y los otros '+(g-1)+' se eligen con monedas';
+  $('gmTxt').textContent='Su polinomio tiene el mismo grado que los de la lluvia, '+g+': '+monedas+'. Es una gota más de la lluvia. También se pueden lanzar monedas reales y copiar el resultado: un clic en una moneda la voltea.';
 }
 $('lanzar').addEventListener('click', function(){ interaccion(); lanzarMonedas(); });
 $('marcas').addEventListener('click', function(){ interaccion(); st.verMarcas=!st.verMarcas; actualizarMarcas(); });
