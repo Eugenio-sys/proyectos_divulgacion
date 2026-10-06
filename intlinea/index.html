@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Integral de línea y Green</title>
 <meta name="description" content="Animación interactiva de la integral de línea de un campo vectorial en el plano, sumas de Riemann, Teorema de Green y cálculo de áreas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1278,6 +1277,7 @@ if (typeof module !== 'undefined') module.exports = Engine;
   const FIELD_PRESETS = [
     { name: 'Polinómico', P: 'y^2', Q: 'x', show: '(<i>y</i>², <i>x</i>)' },
     { name: 'Rotación', P: '-y', Q: 'x', show: '(−<i>y</i>, <i>x</i>)' },
+    { name: 'Campo de área', P: '-y/2', Q: 'x/2', show: '(−<i>y</i>/2, <i>x</i>/2)' },
     { name: 'Cizalla', P: 'y', Q: '0', show: '(<i>y</i>, 0)' },
     { name: 'Gradiente', P: '2x*y', Q: 'x^2', show: '(2<i>xy</i>, <i>x</i>²)' },
     { name: 'Fuente', P: 'x', Q: 'y', show: '(<i>x</i>, <i>y</i>)' },
@@ -2298,6 +2298,20 @@ if (typeof module !== 'undefined') module.exports = Engine;
   const INT = (closed) => (closed ? '∮' : '∫') + '<sub><i>C</i></sub> <b>F</b> · <i>d</i><b>r</b>';
   function statusHTML(kind, text) { return '<p class="status ' + kind + '">' + text + '</p>'; }
 
+  function constCurlNote() {
+    const R = S.R, k = R.curlConst;
+    if (k === null || k === 0 || !R.closed || R.orient === 'mixed' || !Number.isFinite(R.area) || (S.st && S.st.singular)) return '';
+    let t;
+    if (k === 1) {
+      t = 'El rotacional del campo vale 1 en todo el plano. Por el Teorema de Green, ∮<sub><i>C</i></sub> <b>F</b> · <i>d</i><b>r</b> es el área de la región <i>D</i> encerrada por <i>C</i>';
+    } else {
+      const kk = k === -1 ? '−' : E.numStr(k) + ' · ';
+      t = 'El rotacional del campo es constante e igual a ' + E.numStr(k) + '. Por el Teorema de Green, ∮<sub><i>C</i></sub> <b>F</b> · <i>d</i><b>r</b> = ' + kk + 'Área(<i>D</i>), y el área de <i>D</i> mide ' + fmt(Math.abs(R.area));
+    }
+    if (R.orient === 'cw') t += '. Como <i>C</i> se recorre en sentido horario, el signo se invierte';
+    return statusHTML('info', t + '.');
+  }
+
   function greenStatus() {
     const R = S.R;
     if (!R.closed) return statusHTML('warn', 'El Teorema de Green requiere una curva cerrada. Seleccione una de las curvas cerradas.');
@@ -2312,6 +2326,12 @@ if (typeof module !== 'undefined') module.exports = Engine;
       out += statusHTML('warn', t);
     } else {
       out += statusHTML('ok', 'Los dos lados coinciden: la diferencia es ' + fmtSci(diff) + ', del orden del error numérico.');
+      const k = R.curlConst;
+      if (k !== null && k !== 0 && R.orient !== 'mixed' && Number.isFinite(R.area)) {
+        out += statusHTML('info', k === 1
+          ? 'Como el rotacional vale 1, la integral doble es el área de <i>D</i>, que mide ' + fmt(Math.abs(R.area)) + '.'
+          : 'Como el rotacional es constante, la integral doble es ' + E.numStr(k) + ' veces el área de <i>D</i>, que mide ' + fmt(Math.abs(R.area)) + '.');
+      }
     }
     if (R.orient === 'cw') out += statusHTML('info', 'La curva está recorrida en sentido horario, así que ∮<sub><i>C</i></sub> = −∬<sub><i>D</i></sub>.');
     if (R.orient === 'mixed') out += statusHTML('info', 'La curva se corta a sí misma: cada región cuenta tantas veces como la curva gira a su alrededor, con signo (índice de la curva).');
@@ -2330,7 +2350,7 @@ if (typeof module !== 'undefined') module.exports = Engine;
         h += statusHTML('info', c.closed
           ? 'El rotacional del campo es 0 en todo el plano: el campo es conservativo y su integral sobre cualquier curva cerrada vale 0.'
           : 'El rotacional del campo es 0 en todo el plano: el campo es conservativo y el valor depende solo de los extremos A y B.');
-      }
+      } else h += constCurlNote();
     } else if (S.mode === 'riemann') {
       const rs = R.rs;
       h += '<div class="ro-grid">' + item('Suma con <i>n</i> = ' + rs.n, 'roSum', fmt(rs.sum)) +
@@ -2840,5 +2860,3 @@ if (typeof module !== 'undefined') module.exports = Engine;
 })();
 
 </script>
-
-</body></html>
