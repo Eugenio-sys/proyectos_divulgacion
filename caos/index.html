@@ -2643,7 +2643,7 @@ function aplicarTema(){
   const aditivo=osc;
   matPuntos.map=aditivo? texSuave : texDura;
   matPuntos.blending=aditivo? THREE.AdditiveBlending : THREE.NormalBlending;
-  matPuntos.depthWrite=!aditivo; matPuntos.alphaTest=aditivo? 0.02 : 0.45;
+  matPuntos.depthWrite=!aditivo; matPuntos.alphaTest=aditivo? 0.02 : 0.45; regimenTenue=null;
   matPuntos.needsUpdate=true;
   const acc=tema==='halloween'? 0xFF7A1A : (osc? 0x3EBBA6 : 0x1F8A7A), gris=osc? 0xBDBDBD : 0x3C3C3C;
   matArista.color.setHex(modoGris? (osc? 0x9A9A9A : 0x6A6A6A) : (tema==='halloween'? 0xA86BFF : (osc? 0x98A3AC : 0x5F6C76)));
@@ -2687,11 +2687,31 @@ function subir(){
   st.sucio=st.n;
   geo.setDrawRange(0, st.n);
 }
+const DREF=6.02; // distancia inicial de la cámara, a la que se ajustaron los tamaños y las opacidades
+let regimenTenue=null;
 function tamPuntos(){
   const t=Math.max(0.0105, Math.min(0.12, 0.75/Math.sqrt(Math.max(1,st.n))));
   // Con la cámara ortogonal el tamaño se mide en píxeles: se convierte para que los puntos se vean como en perspectiva.
   matPuntos.size=usarOrto? Math.max(1, t*TAN_FOV*stage.clientHeight/(ortho.top-ortho.bottom)) : t;
-  if(matPuntos.blending===THREE.AdditiveBlending){ matPuntos.opacity=Math.min(0.9, Math.max(0.3, 0.9*Math.sqrt(120000/Math.max(1,st.n))))*((FIG[st.fig].plano||usarOrto)? 1-0.5*Math.min(1, st.n/60000) : 1); } else matPuntos.opacity=1;
+  const aditivo=matPuntos.blending===THREE.AdditiveBlending;
+  const base=aditivo? Math.min(0.9, Math.max(0.3, 0.9*Math.sqrt(120000/Math.max(1,st.n))))*((FIG[st.fig].plano||usarOrto)? 1-0.5*Math.min(1, st.n/60000) : 1) : 1;
+  // Un punto nunca se dibuja con menos de un píxel. Al alejar la cámara, los puntos que deberían ser menores que un píxel
+  // se amontonan y la imagen se satura (blanca con luz aditiva, oscura con tinta normal). La opacidad se ajusta en
+  // proporción al área que cada punto debería ocupar, de modo que la luz total no cambie con la distancia.
+  let aten=1;
+  if(!usarOrto){
+    const Hpx=stage.clientHeight*renderer.getPixelRatio(), d=Math.max(0.1, cam.position.distanceTo(controls.target));
+    const p=t*Hpx/(2*d), pRef=t*Hpx/(2*DREF);
+    aten=Math.min(1, p*p)/Math.min(1, pRef*pRef);
+  }
+  const op=Math.max(0.03, Math.min(aditivo? 0.9 : 1, base*aten));
+  matPuntos.opacity=op;
+  if(!aditivo){
+    // Con tinta normal, el recorte de transparencia (alphaTest) descartaría los puntos tenues: se cambia de régimen al alejar.
+    if(regimenTenue===null) regimenTenue=false;
+    const tenue=regimenTenue? op<0.55 : op<0.45;
+    if(tenue!==regimenTenue){ regimenTenue=tenue; matPuntos.alphaTest=tenue? 0.02 : 0.45; matPuntos.depthWrite=!tenue; matPuntos.needsUpdate=true; }
+  }
 }
 function pasoCaos(){
   const i=(Math.random()*st.N)|0, v=st.V[i], s=st.s, c=st.cur;
