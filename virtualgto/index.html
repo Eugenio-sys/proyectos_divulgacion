@@ -15,7 +15,7 @@
 <body>
 <header><div class="wrap"><div class="brand">UVEG</div><div><h1>Mensajes de seguimiento</h1><p>Una plantilla para tus cursos, con los Excel originales.</p></div></div></header>
 <main class="wrap">
-<p class="intro">Elige el momento del módulo, revisa el mensaje y descarga su código. En Thunderbird, usa un archivo de calificaciones por tanda. Aquí no necesitas cargar los datos de tus estudiantes.</p>
+<p class="intro">Elige el momento del módulo, revisa el mensaje y copia los campos para Thunderbird. Usa un archivo de calificaciones por tanda. Aquí no necesitas cargar los datos de tus estudiantes.</p>
 <div class="layout">
 <div>
 <section class="panel">
@@ -23,8 +23,7 @@
 <label for="stage">Momento del envío</label>
 <select id="stage"><option value="0">Mensaje 1 · inicio de la semana 2</option><option value="1">Mensaje 2 · inicio de la semana 3</option><option value="2">Mensaje 3 · inicio de la semana 4 (3 días)</option><option value="3">Mensaje 4 · último día del módulo</option></select>
 <div class="notice">Esta elección cambia el avance esperado y el mensaje de todos los cursos configurados. Los nombres, el grupo y el puntaje se toman de tus Excel. Puedes configurar la fecha de cierre de cada curso en el panel de abajo.</div>
-<div class="buttons"><button class="primary" id="download">Descargar plantilla TXT</button><button id="copyBody">Copiar HTML</button></div>
-<p id="feedback" role="status" aria-live="polite"></p><p id="error" role="alert"></p>
+<p id="error" role="alert"></p>
 <details open id="courseSettings"><summary>Cursos y metas · <span id="courseCount">2 cursos</span></summary>
 <p class="source-info">Puedes agregar cualquier curso que use el mismo formato de reporte. Los dos cursos iniciales conservan las metas de tu archivo de seguimiento.</p>
 <p class="source-info">En <b>Prefijo del grupo</b> puedes indicar el código completo, por ejemplo <code>IN-MA-19006-26-020</code>, o una parte inicial para abarcar varias secciones. Debe coincidir con el Excel, incluidas mayúsculas. Actualízalo cuando cambie tu grupo. Copia el <b>encabezado de calificación</b> tal como aparece en la primera fila, por ejemplo <code>Total del curso (Real)</code>.</p>
@@ -47,6 +46,8 @@
 <label for="to">To</label><textarea id="to" readonly spellcheck="false" aria-label="Campo To de Thunderbird"></textarea><button class="mini" data-copy="to">Copiar To</button>
 <label for="subject">Subject</label><textarea id="subject" readonly spellcheck="false" aria-label="Campo Subject de Thunderbird"></textarea><button class="mini" data-copy="subject">Copiar Subject</button>
 <details><summary>Ver el código HTML para copiar</summary><textarea id="htmlcode" readonly spellcheck="false" style="height:220px"></textarea></details>
+<div class="buttons"><button class="primary" id="copyBody">Copiar HTML</button></div>
+<p id="feedback" role="status" aria-live="polite"></p>
 <div class="notice">El campo <b>To</b> usa <b>Dirección Email</b>, como tu archivo de seguimiento. No añade copias al correo personal. Los grupos que no coincidan con los cursos configurados se excluyen.</div>
 </section>
 <section class="panel help">
@@ -55,8 +56,8 @@
 <li>Descarga los Excel recientes de UVEG. Conserva sus encabezados y la hoja <b>Calificaciones</b>.</li>
 <li>Revisa los grupos, los avances esperados y las fechas de cierre. Una fecha configurada reemplaza la del Excel para ese curso; si dejas el campo vacío, se usará la columna <b>Cierre de actividades</b> del Excel. Pulsa <b>Guardar configuración</b>.</li>
 <li>Selecciona el momento del envío y vuelve a copiar <b>To</b>, <b>Subject</b> y el HTML cada vez que cambies un ajuste. La vista previa usa un estudiante ficticio y muestra exactamente el prefijo configurado; el correo final toma el grupo de cada fila del Excel.</li>
-<li>En Thunderbird, abre <b>Write</b> y elige tu cuenta en <b>From</b>. Copia los campos <b>To</b> y <b>Subject</b> de esta página.</li>
-<li>En <b>Insert → HTML…</b>, pega el HTML copiado o todo el contenido del TXT. Si no aparece <b>Insert</b>, activa <b>Account Settings → Composition &amp; Addressing → Compose messages in HTML format</b> y abre un mensaje nuevo.</li>
+<li>En Thunderbird, abre <b>Write</b> y elige tu cuenta en <b>From</b>. Copia los campos <b>To</b> y <b>Subject</b> de esta página. Si reutilizas un borrador, elimina todos los destinatarios anteriores de <b>To</b> antes de pegar el campo actualizado.</li>
+<li>Pulsa <b>Copiar HTML</b> y pégalo en <b>Insert → HTML…</b>. Si no aparece <b>Insert</b>, activa <b>Account Settings → Composition &amp; Addressing → Compose messages in HTML format</b> y abre un mensaje nuevo.</li>
 <li>Abre <b>Tools → Mail Merge</b>. Usa <b>Source: XLSX</b>, selecciona uno de los Excel en <b>File → Browse</b> y escribe <b>Calificaciones</b> en <b>Sheetname</b>. Deja <b>Attachments</b> vacío.</li>
 <li>Selecciona <b>Deliver Mode: Send Later</b> y pulsa <b>Send</b> dentro de Mail Merge. Revisa los mensajes en <b>Local Folders → Outbox</b> y comprueba que coincidan con los estudiantes del curso.</li>
 <li>Repite con los demás Excel y la misma plantilla. Cuando hayas revisado destinatarios y textos, usa <b>File → Send Unsent Messages</b>; esta acción envía también cualquier otro mensaje pendiente de Outbox.</li>
@@ -144,7 +145,9 @@ function courseBody(course,stage){
 }
 function build(stage){
  const subject=stages[stage]+' · '+byCourse(config.map(c=>chooseGrade(c,stage,statusLabels(stage))),'Revisar curso')+' · '+field('Grupo');
- const to=byCourse(config.map(()=>field('Nombre')+' '+field('Apellido(s)')+' <'+field('Dirección Email')+'>'));
+ // Thunderbird analiza To antes de Mail Merge: debe haber un solo buzón.
+ // Las condiciones se resuelven dentro de su dirección, con el nombre fuera.
+ const to='"'+field('Nombre')+' '+field('Apellido(s)')+'" <'+byCourse(config.map(()=>field('Dirección Email')))+'>';
  const deadline=byCourse(config.map(c=>c.deadline?esc(formatDeadline(c.deadline)):field('Cierre de actividades')));
  const endNote=stage===3?'Hoy es el último día del módulo. Antes del horario de cierre indicado abajo, verifica que tus entregas se hayan registrado correctamente.':stage===2?'Comienza la cuarta semana, que tiene una duración de tres días. Organiza tus pendientes y consulta la fecha y el horario de cierre indicados abajo.':'Consulta los cronogramas de actividades compartidos en Avisos dentro del módulo para organizar tus próximas actividades.';
  const html='<div lang="es" style="margin:0;padding:24px 10px;background-color:#edf3fb;font-family:Arial,Helvetica,sans-serif;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;border-collapse:collapse;background-color:#ffffff;">'+
@@ -237,7 +240,7 @@ function renderSaveState(){
  el('saveState').textContent=storageWarning||(saved?'Configuración guardada en este navegador.':dirty?'Cambios sin guardar. Pulsa Guardar configuración para conservarlos.':'Cursos de ejemplo. Pulsa Guardar configuración para conservar tus ajustes.');
 }
 function setTemplateEnabled(enabled){
- for(const id of ['download','copyBody'])el(id).disabled=!enabled;
+ el('copyBody').disabled=!enabled;
  document.querySelectorAll('[data-copy]').forEach(b=>{b.disabled=!enabled;});
 }
 function render(){
@@ -340,7 +343,6 @@ el('configFile').addEventListener('change',async event=>{
  }catch(error){el('configFeedback').textContent='No se importó el archivo. '+error.message+' Se mantiene tu configuración actual.';}
  finally{input.value='';el('importConfig').disabled=false;}
 });
-el('download').addEventListener('click',()=>{validate();downloadText(build(Number(el('stage').value)).html,'uveg_plantilla_mail_merge.txt','text/plain;charset=utf-8');el('feedback').textContent='Plantilla descargada para '+stages[Number(el('stage').value)]+'.';});
 el('copyBody').addEventListener('click',()=>copy('htmlcode'));document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copy(b.dataset.copy)));
 window.UvegMail={build,substitute,htmlDoc,defaults,stages,formatDeadline,validateCourses,parseConfiguration,exportConfiguration,importConfiguration,saveConfiguration,addCourse,deleteCourse,getConfig:()=>structuredClone(config),setConfig:value=>applyConfiguration(parseConfiguration(JSON.stringify({schema:SCHEMA,version:CONFIG_VERSION,stage:Number(el('stage').value),courses:value})))};
 restoreConfiguration();renderRules(0);render();
