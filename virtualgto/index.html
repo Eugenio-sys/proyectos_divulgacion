@@ -22,21 +22,21 @@
 <span class="tag">1 · Prepara la plantilla</span>
 <label for="stage">Momento del envío</label>
 <select id="stage"><option value="0">Mensaje 1 · inicio de la semana 2</option><option value="1">Mensaje 2 · inicio de la semana 3</option><option value="2">Mensaje 3 · inicio de la semana 4 (3 días)</option><option value="3">Mensaje 4 · último día del módulo</option></select>
-<div class="notice">Esta elección cambia la meta y el mensaje de todos los cursos configurados. Los nombres, el grupo, el puntaje y la fecha de cierre se toman de cada fila de tus Excel.</div>
+<div class="notice">Esta elección cambia el avance esperado y el mensaje de todos los cursos configurados. Los nombres, el grupo y el puntaje se toman de tus Excel. Puedes configurar la fecha de cierre de cada curso en el panel de abajo.</div>
 <div class="buttons"><button class="primary" id="download">Descargar plantilla TXT</button><button id="copyBody">Copiar HTML</button></div>
 <p id="feedback" role="status" aria-live="polite"></p><p id="error" role="alert"></p>
 <details open id="courseSettings"><summary>Cursos y metas · <span id="courseCount">2 cursos</span></summary>
 <p class="source-info">Puedes agregar cualquier curso que use el mismo formato de reporte. Los dos cursos iniciales conservan las metas de tu archivo de seguimiento.</p>
-<p class="source-info">El <b>prefijo del grupo</b> es la parte inicial que identifica el curso, por ejemplo <code>IN-MA-19006-</code>. Debe coincidir exactamente con el Excel, incluidas mayúsculas. Copia el <b>encabezado de calificación</b> tal como aparece en la primera fila, por ejemplo <code>Total del curso (Real)</code>.</p>
+<p class="source-info">En <b>Prefijo del grupo</b> puedes indicar el código completo, por ejemplo <code>IN-MA-19006-26-020</code>, o una parte inicial para abarcar varias secciones. Debe coincidir con el Excel, incluidas mayúsculas. Actualízalo cuando cambie tu grupo. Copia el <b>encabezado de calificación</b> tal como aparece en la primera fila, por ejemplo <code>Total del curso (Real)</code>.</p>
 <div id="rules"></div>
 <button id="addCourse">+ Agregar curso</button>
-<p class="source-info">Las cuatro metas son puntos <b>acumulados</b> para cada momento del envío, mayores que 0 y hasta 100. La última es una referencia de seguimiento, no una regla adicional de acreditación.</p>
+<p class="source-info">Las cuatro metas indican el <b>avance esperado en puntos acumulados</b> para cada momento del envío, según los cronogramas de actividades compartidos en <b>Avisos</b> dentro del módulo. Escribe valores mayores que 0 y hasta 100.</p>
 <div class="config-actions">
 <div class="buttons"><button class="primary" id="saveConfig">Guardar configuración</button><button id="exportConfig">Exportar configuración</button><button id="importConfig">Importar configuración</button></div>
 <input type="file" id="configFile" accept=".json,application/json" hidden aria-label="Archivo de configuración">
 <p id="saveState" class="save-state" role="status" aria-live="polite"></p>
 <p id="configFeedback" class="source-info" role="status" aria-live="polite"></p>
-<p class="config-caption">Guardar recuerda los cursos y el momento del envío en este navegador. Para otro equipo, otro navegador o como respaldo, exporta el archivo JSON e impórtalo allí. Al importar se reemplaza la configuración actual. El archivo contiene ajustes, sin datos de estudiantes.</p>
+<p class="config-caption">Guardar recuerda los cursos, sus fechas de cierre y el momento del envío en este navegador. Para otro equipo, otro navegador o como respaldo, exporta el archivo JSON e impórtalo allí. Al importar se reemplaza la configuración actual. El archivo contiene ajustes, sin datos de estudiantes.</p>
 <p class="config-caption">Si abres este HTML como archivo local, conservar los ajustes también puede depender de su ubicación y del navegador. Exporta antes de moverlo o borrar los datos del navegador.</p>
 <button class="mini" id="reset" style="margin-top:12px">Restablecer cursos de ejemplo</button>
 </div>
@@ -53,7 +53,8 @@
 <h2>Cómo usarlo</h2>
 <ol>
 <li>Descarga los Excel recientes de UVEG. Conserva sus encabezados y la hoja <b>Calificaciones</b>.</li>
-<li>Agrega o edita tus cursos y pulsa <b>Guardar configuración</b>. Selecciona el momento del envío y vuelve a copiar <b>To</b>, <b>Subject</b> y el HTML cada vez que cambies los cursos, las metas o ese momento. La vista previa usa un estudiante ficticio.</li>
+<li>Revisa los grupos, los avances esperados y las fechas de cierre. Una fecha configurada reemplaza la del Excel para ese curso; si dejas el campo vacío, se usará la columna <b>Cierre de actividades</b> del Excel. Pulsa <b>Guardar configuración</b>.</li>
+<li>Selecciona el momento del envío y vuelve a copiar <b>To</b>, <b>Subject</b> y el HTML cada vez que cambies un ajuste. La vista previa usa un estudiante ficticio y muestra exactamente el prefijo configurado; el correo final toma el grupo de cada fila del Excel.</li>
 <li>En Thunderbird, abre <b>Write</b> y elige tu cuenta en <b>From</b>. Copia los campos <b>To</b> y <b>Subject</b> de esta página.</li>
 <li>En <b>Insert → HTML…</b>, pega el HTML copiado o todo el contenido del TXT. Si no aparece <b>Insert</b>, activa <b>Account Settings → Composition &amp; Addressing → Compose messages in HTML format</b> y abre un mensaje nuevo.</li>
 <li>Abre <b>Tools → Mail Merge</b>. Usa <b>Source: XLSX</b>, selecciona uno de los Excel en <b>File → Browse</b> y escribe <b>Calificaciones</b> en <b>Sheetname</b>. Deja <b>Attachments</b> vacío.</li>
@@ -64,12 +65,13 @@
 </section>
 </div>
 <section class="panel">
-<div class="preview-top"><h2>Así se verá el mensaje</h2><span class="tag">Datos ficticios</span></div>
+<div class="preview-top"><h2>Así se verá el mensaje</h2><span class="tag">Estudiante ficticio</span></div>
 <label for="previewCourse">Curso de ejemplo</label><select id="previewCourse"></select>
 <div class="row"><div><label for="previewName">Nombre de ejemplo</label><input id="previewName" value="Alex Ejemplo"></div><div><label for="previewGrade">Puntaje acumulado</label><input id="previewGrade" value="10" inputmode="decimal" aria-describedby="gradeHint"></div></div>
 <p id="gradeHint" class="muted">Prueba 0, un valor menor que la meta, la meta exacta o un guion (-) para una calificación ausente.</p>
+<p id="previewContext" class="source-info" aria-live="polite"></p>
 <p class="subject"><b>Subject:</b> <span id="previewSubject"></span></p>
-<iframe id="preview" title="Vista previa del mensaje personalizado" sandbox=""></iframe>
+<iframe id="preview" title="Vista previa del mensaje personalizado" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
 </section>
 </div>
 </main>
@@ -78,12 +80,13 @@
 (() => {
 'use strict';
 const defaults = [
- {name:'Probabilidad y estadística',prefix:'IN-MA-19006-',grade:'Total del curso (Real)',targets:[10,35,60,70]},
- {name:'Estadística inferencial',prefix:'IN-MA-15005-',grade:'Total del curso',targets:[35,60,85,70]}
+ {name:'Probabilidad y estadística',prefix:'IN-MA-19006-26-020',grade:'Total del curso (Real)',deadline:'',targets:[10,35,60,70]},
+ {name:'Estadística inferencial',prefix:'IN-MA-15005-26-030',grade:'Total del curso',deadline:'',targets:[35,60,85,70]}
 ];
 const stages = ['Inicio de la semana 2','Inicio de la semana 3','Inicio de la semana 4 · últimos 3 días','Último día del módulo'];
 const STORAGE_KEY = 'uveg-mailmerge.config.v1';
 const SCHEMA = 'uveg-mailmerge-config';
+const CONFIG_VERSION = 2;
 const MAX_COURSES = 100;
 const MAX_FILE_BYTES = 256 * 1024;
 let config = structuredClone(defaults);
@@ -101,7 +104,20 @@ function chooseGrade(course,stage,values) {
  const numeric=cmp(g,'>=',target,values.good,cmp(g,'==',0,values.zero,cmp(g,'>',0,values.low,values.invalid)));
  return eq(g,'',values.missing,eq(g,'-',values.missing,numeric));
 }
-function statusLabels(stage){return {good:stage===3?'Referencia de cierre alcanzada':'Buen ritmo de trabajo',zero:'Revisemos tu avance',low:'Retoma el impulso',missing:'Calificación por revisar',invalid:'Dato por revisar'};}
+function deadlineDate(value){
+ if(value==='')return null;
+ if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value))throw Error('La fecha de cierre debe incluir una fecha y una hora completas.');
+ const [year,month,day,hour,minute]=value.split(/[-T:]/).map(Number);
+ const date=new Date(0);date.setUTCFullYear(year,month-1,day);date.setUTCHours(hour,minute,0,0);
+ if(year<1||date.getUTCFullYear()!==year||date.getUTCMonth()!==month-1||date.getUTCDate()!==day||date.getUTCHours()!==hour||date.getUTCMinutes()!==minute)throw Error('La fecha o la hora de cierre no es válida.');
+ return date;
+}
+function formatDeadline(value){
+ const date=deadlineDate(value);if(!date)return '';
+ // Se conserva la hora escrita por el docente, sin convertirla a la zona horaria del dispositivo.
+ return new Intl.DateTimeFormat('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(date)+', '+value.slice(11);
+}
+function statusLabels(stage){return {good:stage===3?'Avance esperado alcanzado':'Buen ritmo de trabajo',zero:'Revisemos tu avance',low:'Retoma el impulso',missing:'Calificación por revisar',invalid:'Dato por revisar'};}
 function gradeCard(course,stage){
  const labels=statusLabels(stage), target=course.targets[stage];
  const cards={};
@@ -109,14 +125,14 @@ function gradeCard(course,stage){
  for(const status of Object.keys(colors)){
   const [bg,color]=colors[status];
   const value=status==='missing'?'Sin calificación':field(course.grade)+' puntos';
-  cards[status]='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:'+bg+';border-left:4px solid '+color+';"><tr><td style="padding:20px 22px;"><p style="margin:0 0 8px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:'+color+';">PUNTAJE ACUMULADO</p><p style="margin:0 0 9px;font:700 29px/36px Arial,sans-serif;color:'+color+';">'+value+'</p><p style="margin:0;font:14px/22px Arial,sans-serif;color:'+color+';"><strong>'+labels[status]+'</strong><br>Referencia para esta etapa: '+target+' puntos.</p></td></tr></table>';
+  cards[status]='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:'+bg+';border-left:4px solid '+color+';"><tr><td style="padding:20px 22px;"><p style="margin:0 0 8px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:'+color+';">PUNTAJE ACUMULADO</p><p style="margin:0 0 9px;font:700 29px/36px Arial,sans-serif;color:'+color+';">'+value+'</p><p style="margin:0;font:14px/22px Arial,sans-serif;color:'+color+';"><strong>'+labels[status]+'</strong><br>Avance esperado para este momento: <strong>'+target+' puntos.</strong></p><p style="margin:9px 0 0;font:12px/19px Arial,sans-serif;color:'+color+';">Según los cronogramas de actividades compartidos en Avisos dentro del módulo.</p></td></tr></table>';
  }
  return chooseGrade(course,stage,cards);
 }
 function guidance(course,stage){
  const texts={
-  good:stage===3?'Has alcanzado la referencia de puntaje prevista para el cierre del módulo. Te felicito por el avance registrado. Antes del cierre, revisa las actividades pendientes y la retroalimentación disponible.':'Te felicito por el avance registrado. Tu puntaje acumulado alcanza la referencia prevista para este momento del módulo. Sigue con ese entusiasmo y revisa la retroalimentación de tus actividades.',
-  low:'Tu puntaje acumulado está por debajo de la referencia prevista para este momento del módulo. Te invito a revisar el cronograma y la retroalimentación, identificar las actividades pendientes y aprovechar las oportunidades de mejora que estén disponibles.',
+  good:stage===3?'Has alcanzado el avance esperado para el cierre del módulo. Te felicito por el trabajo registrado. Antes del cierre, revisa las actividades pendientes y la retroalimentación disponible.':'Te felicito por el avance registrado. Tu puntaje acumulado alcanza el avance esperado para este momento del módulo. Sigue con ese entusiasmo y revisa la retroalimentación de tus actividades.',
+  low:'Tu puntaje acumulado está por debajo del avance esperado para este momento del módulo. Te invito a revisar los cronogramas de actividades compartidos en Avisos y la retroalimentación, identificar las actividades pendientes y aprovechar las oportunidades de mejora que estén disponibles.',
   zero:'El reporte registra 0 puntos acumulados. Te invito a revisar tus actividades y su estado de calificación en el aula virtual. Si ya realizaste entregas o necesitas orientación para continuar, escríbeme para que podamos revisar tu situación.',
   missing:'En este reporte aún no aparece una calificación acumulada. Este dato por sí solo no permite saber si has realizado actividades. Revisa el estado de tus entregas y, si algo no coincide con lo que esperabas, escríbeme para que podamos aclararlo.',
   invalid:'El reporte contiene un valor que requiere revisión. Escríbeme si el puntaje mostrado no coincide con la información disponible en el aula virtual.'
@@ -129,14 +145,15 @@ function courseBody(course,stage){
 function build(stage){
  const subject=stages[stage]+' · '+byCourse(config.map(c=>chooseGrade(c,stage,statusLabels(stage))),'Revisar curso')+' · '+field('Grupo');
  const to=byCourse(config.map(()=>field('Nombre')+' '+field('Apellido(s)')+' <'+field('Dirección Email')+'>'));
- const endNote=stage===3?'Hoy es el último día del módulo. Antes del horario de cierre indicado abajo, verifica que tus entregas se hayan registrado correctamente.':stage===2?'Comienza la cuarta semana, que tiene una duración de tres días. Organiza tus pendientes y consulta la fecha y el horario de cierre indicados abajo.':'Consulta el cronograma del módulo para organizar tus próximas actividades.';
+ const deadline=byCourse(config.map(c=>c.deadline?esc(formatDeadline(c.deadline)):field('Cierre de actividades')));
+ const endNote=stage===3?'Hoy es el último día del módulo. Antes del horario de cierre indicado abajo, verifica que tus entregas se hayan registrado correctamente.':stage===2?'Comienza la cuarta semana, que tiene una duración de tres días. Organiza tus pendientes y consulta la fecha y el horario de cierre indicados abajo.':'Consulta los cronogramas de actividades compartidos en Avisos dentro del módulo para organizar tus próximas actividades.';
  const html='<div lang="es" style="margin:0;padding:24px 10px;background-color:#edf3fb;font-family:Arial,Helvetica,sans-serif;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;border-collapse:collapse;background-color:#ffffff;">'+
- '<tr><td style="background-color:#142691;padding:26px 30px 28px;border-top:5px solid #409cff;"><p style="margin:0 0 21px;font:700 25px/30px Arial,sans-serif;letter-spacing:1px;color:#ffffff;">UVEG</p><p style="margin:0 0 9px;font:700 11px/18px Arial,sans-serif;letter-spacing:2px;color:#b9d8ff;">ACOMPAÑAMIENTO ACADÉMICO</p><h1 style="margin:0;font:normal 31px/39px Georgia,serif;color:#ffffff;">Sigamos avanzando.</h1><p style="margin:13px 0 0;font:15px/23px Arial,sans-serif;color:#d9e9ff;">'+stages[stage]+'</p></td></tr>'+
+ '<tr><td style="background-color:#142691;padding:26px 30px 28px;border-top:5px solid #409cff;"><p style="margin:0 0 21px;font:700 25px/30px Arial,sans-serif;letter-spacing:1px;color:#ffffff;">UVEG</p><p style="margin:0 0 9px;font:700 11px/18px Arial,sans-serif;letter-spacing:2px;color:#b9d8ff;">ACOMPAÑAMIENTO ACADÉMICO</p><h1 style="margin:0;font:normal 25px/34px Georgia,serif;color:#ffffff;">'+stages[stage]+'</h1></td></tr>'+
  '<tr><td style="padding:29px 30px 26px;"><p style="margin:0 0 18px;font:18px/28px Arial,sans-serif;color:#142691;">Apreciable <strong>'+field('Nombre')+' '+field('Apellido(s)')+'</strong>:</p><p style="margin:0 0 25px;font:16px/26px Arial,sans-serif;color:#34445e;">Recibe un cordial saludo. Te comparto un seguimiento de tu avance a partir del reporte de calificaciones disponible.</p>'+
  byCourse(config.map(c=>courseBody(c,stage)),'<p>Este curso requiere configurar sus metas de seguimiento.</p>')+
- '<p style="margin:0 0 23px;font:16px/26px Arial,sans-serif;color:#34445e;">'+endNote+'</p><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:#ebf5ff;"><tr><td style="padding:17px 20px;"><p style="margin:0 0 5px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:#245e9c;">CIERRE DE ACTIVIDADES</p><p style="margin:0;font:700 15px/24px Arial,sans-serif;color:#142691;">'+field('Cierre de actividades')+'</p></td></tr></table>'+
- '<p style="margin:23px 0 20px;font:16px/26px Arial,sans-serif;color:#34445e;">Cuenta conmigo para resolver dudas relacionadas con el módulo. Puedes responder a este correo o contactarme mediante el mensajero del aula virtual.</p><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr><td style="background-color:#142691;border-radius:6px;"><a href="https://campus.uveg.edu.mx/" style="display:inline-block;padding:13px 21px;font:700 14px/20px Arial,sans-serif;color:#ffffff;text-decoration:none;">Ir al aula virtual</a></td></tr></table><p style="margin:28px 0 6px;font:15px/24px Arial,sans-serif;color:#34445e;">Con aprecio,</p><p style="margin:0;font:700 16px/25px Arial,sans-serif;color:#142691;">'+field('Asesor')+'</p><p style="margin:3px 0 0;font:13px/21px Arial,sans-serif;color:#60708a;">Asesor virtual<br>Universidad Virtual del Estado de Guanajuato</p></td></tr>'+
- '<tr><td style="padding:16px 30px;background-color:#f6f9fd;border-top:1px solid #e1e9f3;"><p style="margin:0;font:12px/19px Arial,sans-serif;color:#6c7d95;">Seguimiento individual · '+field('Dirección Email')+'<br>Los puntos corresponden al acumulado registrado en el reporte consultado.</p></td></tr></table></td></tr></table></div>';
+ '<p style="margin:0 0 23px;font:16px/26px Arial,sans-serif;color:#34445e;">'+endNote+'</p><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:#ebf5ff;"><tr><td style="padding:17px 20px;"><p style="margin:0 0 5px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:#245e9c;">CIERRE DE ACTIVIDADES</p><p style="margin:0;font:700 15px/24px Arial,sans-serif;color:#142691;">'+deadline+'</p></td></tr></table>'+
+ '<p style="margin:23px 0 20px;font:16px/26px Arial,sans-serif;color:#34445e;">Cuenta conmigo para resolver dudas relacionadas con el módulo. Puedes responder a este correo o contactarme mediante el mensajero del aula virtual.</p><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr><td style="background-color:#142691;border-radius:6px;"><a href="https://campus.uveg.edu.mx/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:13px 21px;font:700 14px/20px Arial,sans-serif;color:#ffffff;text-decoration:none;">Ir al aula virtual</a></td></tr></table><p style="margin:28px 0 6px;font:15px/24px Arial,sans-serif;color:#34445e;">Atentamente,</p><p style="margin:0;font:700 16px/25px Arial,sans-serif;color:#142691;">'+field('Asesor')+'</p><p style="margin:3px 0 0;font:13px/21px Arial,sans-serif;color:#60708a;">Asesor virtual<br>Universidad Virtual del Estado de Guanajuato</p></td></tr>'+
+ '<tr><td style="padding:16px 30px;background-color:#f6f9fd;border-top:1px solid #e1e9f3;"><p style="margin:0;font:12px/19px Arial,sans-serif;color:#6c7d95;">Seguimiento individual · '+field('Dirección Email')+'<br>Los puntos corresponden al acumulado registrado en el reporte consultado al momento de enviar este mensaje.</p></td></tr></table></td></tr></table></div>';
  return {html:html.replace(/\|>=\|/g,'|&gt;=|').replace(/\|>\|/g,'|&gt;|'),subject,to};
 }
 // Resolver limitado a la sintaxis utilizada por esta plantilla, para su vista previa local.
@@ -169,6 +186,7 @@ function validateCourses(courses,allowEmpty=true){
    if(typeof c[key]!=='string'||!c[key].trim()||c[key].length>160||/[{}|#<>&\u0000-\u001f\u007f]/.test(c[key]))throw Error(label+'revisa el '+title+'. Debe tener entre 1 y 160 caracteres y no contener { } | # < > & ni saltos de línea.');
   }
   if(!Array.isArray(c.targets)||c.targets.length!==4||c.targets.some(n=>typeof n!=='number'||!Number.isFinite(n)||n<=0||n>100))throw Error(label+'completa las cuatro metas con números mayores que 0 y hasta 100.');
+  try{deadlineDate(c.deadline===undefined?'':c.deadline);}catch(error){throw Error(label+error.message);}
  }
  for(let i=0;i<courses.length;i++)for(let j=i+1;j<courses.length;j++){
   const a=courses[i],b=courses[j];
@@ -177,18 +195,22 @@ function validateCourses(courses,allowEmpty=true){
 }
 function validate(){validateCourses(config,false);}
 function configurationDocument(){
- return {schema:SCHEMA,version:1,stage:Number(el('stage').value),courses:config.map(c=>({name:c.name,prefix:c.prefix,grade:c.grade,targets:[...c.targets]}))};
+ return {schema:SCHEMA,version:CONFIG_VERSION,stage:Number(el('stage').value),courses:config.map(c=>({name:c.name,prefix:c.prefix,grade:c.grade,deadline:c.deadline??'',targets:[...c.targets]}))};
 }
 function snapshot(){return JSON.stringify(configurationDocument());}
 function parseConfiguration(text){
  if(typeof text!=='string'||new Blob([text]).size>MAX_FILE_BYTES)throw Error('El archivo de configuración supera los 256 KB permitidos.');
  let value;try{value=JSON.parse(text);}catch{throw Error('No se pudo leer el JSON. Selecciona un archivo creado con Exportar configuración.');}
- if(!value||value.schema!==SCHEMA||value.version!==1)throw Error('Este archivo no es una configuración compatible de Mensajes de seguimiento.');
+ if(!value||value.schema!==SCHEMA||![1,CONFIG_VERSION].includes(value.version))throw Error('Este archivo no es una configuración compatible de Mensajes de seguimiento.');
  if(!Number.isInteger(value.stage)||value.stage<0||value.stage>=stages.length)throw Error('El momento del envío del archivo no es válido.');
  if(!Array.isArray(value.courses)||value.courses.length>MAX_COURSES)throw Error('La configuración debe contener una lista de hasta '+MAX_COURSES+' cursos.');
- const courses=value.courses.map(c=>({name:typeof c?.name==='string'?c.name.trim():c?.name,prefix:typeof c?.prefix==='string'?c.prefix.trim():c?.prefix,grade:typeof c?.grade==='string'?c.grade.trim():c?.grade,targets:c?.targets}));
+ const courses=value.courses.map(c=>({name:typeof c?.name==='string'?c.name.trim():c?.name,prefix:typeof c?.prefix==='string'?c.prefix.trim():c?.prefix,grade:typeof c?.grade==='string'?c.grade.trim():c?.grade,deadline:c?.deadline===undefined?'':c.deadline,targets:c?.targets}));
+ if(value.version===1){
+  const oldPrefixes=['IN-MA-19006-','IN-MA-15005-'];
+  for(const c of courses){const index=defaults.findIndex((d,i)=>c.name===d.name&&c.grade===d.grade&&c.prefix===oldPrefixes[i]);if(index>=0)c.prefix=defaults[index].prefix;}
+ }
  validateCourses(courses);
- return {schema:SCHEMA,version:1,stage:value.stage,courses};
+ return {schema:SCHEMA,version:CONFIG_VERSION,stage:value.stage,courses};
 }
 function renderPreviewCourses(selected=Number(el('previewCourse').value)){
  el('previewCourse').innerHTML=config.length?config.map((c,i)=>'<option value="'+i+'">'+esc(c.name||'Curso '+(i+1))+'</option>').join(''):'<option value="">Agrega un curso</option>';
@@ -198,7 +220,14 @@ function renderPreviewCourses(selected=Number(el('previewCourse').value)){
 }
 function renderRules(selected){
  const targetLabels=['Mensaje 1 · inicio S. 2','Mensaje 2 · inicio S. 3','Mensaje 3 · inicio S. 4','Mensaje 4 · último día'];
- el('rules').innerHTML=config.length?config.map((c,i)=>'<section class="course-card" aria-labelledby="courseTitle'+i+'"><div class="course-head"><strong id="courseTitle'+i+'">'+esc(c.name||'Curso '+(i+1))+'</strong><button class="mini danger" data-delete="'+i+'" aria-label="Eliminar curso '+(i+1)+'">Eliminar</button></div><label for="name'+i+'">Nombre del curso</label><input id="name'+i+'" data-name="'+i+'" value="'+esc(c.name)+'" maxlength="160" placeholder="Ejemplo: Cálculo I" autocomplete="off"><label for="prefix'+i+'">Prefijo del grupo</label><input id="prefix'+i+'" data-prefix="'+i+'" value="'+esc(c.prefix)+'" maxlength="160" placeholder="Copia la parte inicial del grupo" autocomplete="off" spellcheck="false"><label for="grade'+i+'">Encabezado de calificación</label><input id="grade'+i+'" data-grade="'+i+'" value="'+esc(c.grade)+'" maxlength="160" placeholder="Ejemplo: Total del curso" autocomplete="off" spellcheck="false"><div class="targets">'+c.targets.map((n,j)=>'<div><label for="target'+i+'_'+j+'">'+targetLabels[j]+'</label><input id="target'+i+'_'+j+'" type="number" min="0.01" max="100" step="any" data-course="'+i+'" data-stage="'+j+'" value="'+(Number.isFinite(n)?n:'')+'" placeholder="Puntos acumulados" aria-label="Meta del curso '+(i+1)+' · '+stages[j]+'"></div>').join('')+'</div></section>').join(''):'<p class="empty-courses">Todavía no hay cursos. Pulsa Agregar curso para configurar el primero.</p>';
+ el('rules').innerHTML=config.length?config.map((c,i)=>
+  '<section class="course-card" aria-labelledby="courseTitle'+i+'"><div class="course-head"><strong id="courseTitle'+i+'">'+esc(c.name||'Curso '+(i+1))+'</strong><button class="mini danger" data-delete="'+i+'" aria-label="Eliminar curso '+(i+1)+'">Eliminar</button></div>'+
+  '<label for="name'+i+'">Nombre del curso</label><input id="name'+i+'" data-name="'+i+'" value="'+esc(c.name)+'" maxlength="160" placeholder="Ejemplo: Cálculo I" autocomplete="off">'+
+  '<label for="prefix'+i+'">Prefijo del grupo</label><input id="prefix'+i+'" data-prefix="'+i+'" value="'+esc(c.prefix)+'" maxlength="160" placeholder="Ejemplo: IN-MA-19006-26-020" autocomplete="off" spellcheck="false">'+
+  '<label for="grade'+i+'">Encabezado de calificación</label><input id="grade'+i+'" data-grade="'+i+'" value="'+esc(c.grade)+'" maxlength="160" placeholder="Ejemplo: Total del curso" autocomplete="off" spellcheck="false">'+
+  '<label for="deadline'+i+'">Fecha y hora de cierre</label><input id="deadline'+i+'" data-deadline="'+i+'" type="datetime-local" step="60" value="'+esc(c.deadline??'')+'" aria-describedby="deadlineHint'+i+'"><p id="deadlineHint'+i+'" class="source-info">Opcional: si completas este campo, esta fecha se usará en todos los mensajes del curso. Si lo dejas vacío, se tomará <b>Cierre de actividades</b> del Excel. Usa la fecha y hora que indica el aula virtual.</p>'+
+  '<h3>Avance esperado · puntos acumulados</h3><div class="targets">'+c.targets.map((n,j)=>'<div><label for="target'+i+'_'+j+'">'+targetLabels[j]+'</label><input id="target'+i+'_'+j+'" type="number" min="0.01" max="100" step="any" data-course="'+i+'" data-stage="'+j+'" value="'+(Number.isFinite(n)?n:'')+'" placeholder="Puntos acumulados" aria-label="Avance esperado del curso '+(i+1)+' · '+stages[j]+'"></div>').join('')+'</div></section>'
+ ).join(''):'<p class="empty-courses">Todavía no hay cursos. Pulsa Agregar curso para configurar el primero.</p>';
  renderPreviewCourses(selected);
  el('addCourse').disabled=config.length>=MAX_COURSES;
 }
@@ -219,13 +248,15 @@ function render(){
   if(settingsError)throw Error(settingsError);
   validate();el('error').textContent='';setTemplateEnabled(true);
   const stage=Number(el('stage').value),result=build(stage);el('to').value=result.to;el('subject').value=result.subject;el('htmlcode').value=result.html;
-  const c=config[Number(el('previewCourse').value)];const row={'Nombre':el('previewName').value||'Alex Ejemplo','Apellido(s)':'','Grupo':c.prefix+'26-020','Dirección Email':'estudiante@example.com','Asesor':'Eugenio Guerrero Ruiz','Cierre de actividades':'miércoles, 21 de octubre de 2026, 23:59',[c.grade]:el('previewGrade').value};
+  const c=config[Number(el('previewCourse').value)];const row={'Nombre':el('previewName').value||'Alex Ejemplo','Apellido(s)':'','Grupo':c.prefix,'Dirección Email':'estudiante@example.com','Asesor':'Eugenio Guerrero Ruiz','Cierre de actividades':'Fecha y hora indicadas en la columna «Cierre de actividades» de tu Excel',[c.grade]:el('previewGrade').value};
+  el('previewContext').textContent='Grupo mostrado: '+c.prefix+'. '+(c.deadline?'Cierre configurado: '+formatDeadline(c.deadline)+'.':'La fecha de cierre se completará con los datos del Excel al combinar los mensajes.');
   el('previewSubject').textContent=substitute(result.subject,row);
   const safe=Object.fromEntries(Object.entries(row).map(([k,v])=>[k,esc(v).replaceAll('{','&#123;').replaceAll('}','&#125;').replaceAll('|','&#124;')]));
   el('preview').srcdoc=htmlDoc(substitute(result.html,safe));
  }catch(error){
   el('error').textContent=error.message;el('to').value='';el('subject').value='';el('htmlcode').value='';setTemplateEnabled(false);
   el('previewSubject').textContent='Completa la configuración para ver el mensaje.';
+  el('previewContext').textContent='';
   el('preview').srcdoc=htmlDoc('<div style="padding:36px;font:16px/1.7 Arial,sans-serif;color:#415a7c;"><h2 style="color:#142691;">Configura tus cursos</h2><p>'+esc(error.message)+'</p><p>La vista previa se actualizará cuando los datos estén completos.</p></div>');
  }
 }
@@ -244,7 +275,9 @@ function restoreConfiguration(){
  let text;try{text=window.localStorage.getItem(STORAGE_KEY);}catch{storageWarning='El navegador no permite recuperar ajustes locales. Puedes usar Exportar e Importar configuración.';return;}
  if(text===null)return;
  try{
-  const value=parseConfiguration(text);config=value.courses;el('stage').value=String(value.stage);savedSnapshot=snapshot();
+  const value=parseConfiguration(text);config=value.courses;el('stage').value=String(value.stage);
+  if(JSON.parse(text).version===CONFIG_VERSION)savedSnapshot=snapshot();
+  else{dirty=true;el('configFeedback').textContent='Configuración anterior recuperada. Revisa los grupos y las fechas de cierre y pulsa Guardar configuración.';}
  }catch{storageWarning='No se pudo recuperar la configuración guardada. Se muestran los cursos de ejemplo; puedes importar un respaldo o guardar una configuración nueva.';}
 }
 function applyConfiguration(value){
@@ -262,7 +295,7 @@ function downloadText(text,name,type){
 }
 function addCourse(){
  if(config.length>=MAX_COURSES)return;
- config.push({name:'',prefix:'',grade:'',targets:[null,null,null,null]});markChanged();renderRules(config.length-1);render();el('courseSettings').open=true;el('name'+(config.length-1)).focus();
+ config.push({name:'',prefix:'',grade:'',deadline:'',targets:[null,null,null,null]});markChanged();renderRules(config.length-1);render();el('courseSettings').open=true;el('name'+(config.length-1)).focus();
 }
 function deleteCourse(index){
  if(!Number.isInteger(index)||index<0||index>=config.length)return;
@@ -277,7 +310,7 @@ async function copy(id){
 }
 document.addEventListener('input',event=>{
  const t=event.target;let changed=false;
- for(const key of ['name','prefix','grade'])if(t.dataset[key]!==undefined){
+ for(const key of ['name','prefix','grade','deadline'])if(t.dataset[key]!==undefined){
   const index=Number(t.dataset[key]);config[index][key]=t.value.trim();changed=true;
   if(key==='name'){el('courseTitle'+index).textContent=config[index].name||'Curso '+(index+1);renderPreviewCourses();}
  }
@@ -291,7 +324,7 @@ el('reset').addEventListener('click',()=>{
  if(!window.confirm('¿Reemplazar los cursos actuales por los dos cursos de ejemplo y sus metas originales? Después pulsa Guardar configuración si deseas conservar este cambio.'))return;
  config=structuredClone(defaults);markChanged();renderRules(0);render();
 });
-el('saveConfig').addEventListener('click',()=>{try{if(saveConfiguration())el('configFeedback').textContent='Cursos, metas y momento del envío guardados. Puedes cerrar y volver a abrir este archivo en el mismo navegador.';}catch(error){el('configFeedback').textContent=error.message;}});
+el('saveConfig').addEventListener('click',()=>{try{if(saveConfiguration())el('configFeedback').textContent='Cursos, fechas de cierre, avances esperados y momento del envío guardados. Puedes cerrar y volver a abrir este archivo en el mismo navegador.';}catch(error){el('configFeedback').textContent=error.message;}});
 el('exportConfig').addEventListener('click',()=>{
  try{downloadText(exportConfiguration(),'uveg_configuracion_cursos.json','application/json;charset=utf-8');el('configFeedback').textContent='Configuración exportada. Incluye los ajustes actuales; puedes importarla en otro equipo.';}catch(error){el('configFeedback').textContent=error.message;}
 });
@@ -309,7 +342,7 @@ el('configFile').addEventListener('change',async event=>{
 });
 el('download').addEventListener('click',()=>{validate();downloadText(build(Number(el('stage').value)).html,'uveg_plantilla_mail_merge.txt','text/plain;charset=utf-8');el('feedback').textContent='Plantilla descargada para '+stages[Number(el('stage').value)]+'.';});
 el('copyBody').addEventListener('click',()=>copy('htmlcode'));document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copy(b.dataset.copy)));
-window.UvegMail={build,substitute,htmlDoc,defaults,stages,validateCourses,parseConfiguration,exportConfiguration,importConfiguration,saveConfiguration,addCourse,deleteCourse,getConfig:()=>structuredClone(config),setConfig:value=>applyConfiguration(parseConfiguration(JSON.stringify({schema:SCHEMA,version:1,stage:Number(el('stage').value),courses:value})))};
+window.UvegMail={build,substitute,htmlDoc,defaults,stages,formatDeadline,validateCourses,parseConfiguration,exportConfiguration,importConfiguration,saveConfiguration,addCourse,deleteCourse,getConfig:()=>structuredClone(config),setConfig:value=>applyConfiguration(parseConfiguration(JSON.stringify({schema:SCHEMA,version:CONFIG_VERSION,stage:Number(el('stage').value),courses:value})))};
 restoreConfiguration();renderRules(0);render();
 })();
 </script>
