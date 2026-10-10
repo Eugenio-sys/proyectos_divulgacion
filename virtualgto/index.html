@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UVEG · Mensajes de seguimiento</title>
+<style>
+:root{color-scheme:light;--blue:#142691;--sky:#409cff;--pale:#ebf5ff;--ink:#172748;--muted:#61718a;--line:#dce5ef}
+*{box-sizing:border-box}body{margin:0;background:#f2f6fb;color:var(--ink);font:15px/1.55 Arial,Helvetica,sans-serif}header{background:var(--blue);color:white;border-bottom:5px solid var(--sky)}.wrap{max-width:1240px;margin:auto;padding:26px}header .wrap{display:flex;gap:24px;align-items:center}.brand{font-size:34px;font-weight:800;letter-spacing:-1px;border-right:1px solid #6a79bc;padding-right:26px}h1{margin:0;font-size:25px;line-height:1.3}header p{margin:5px 0 0;color:#d9e9ff;font-size:14px}.layout{display:grid;grid-template-columns:minmax(320px,420px) minmax(0,1fr);gap:24px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 30px #14269106}.panel+.panel{margin-top:18px}h2{font-size:18px;margin:0 0 14px}h3{font-size:15px;margin:18px 0 10px}.intro{margin:0 0 22px;color:var(--muted)}label{display:block;font-weight:700;margin:16px 0 7px}select,input,textarea{font:inherit;color:var(--ink);width:100%;padding:11px 12px;border:1px solid #c8d5e5;border-radius:8px;background:white}input:focus,select:focus,textarea:focus{outline:3px solid #409cff35;border-color:var(--sky)}small,.muted{color:var(--muted);font-size:13px}.tag{display:inline-block;background:var(--pale);color:var(--blue);padding:5px 10px;border-radius:30px;font-weight:700;font-size:12px}.notice{padding:12px 14px;background:var(--pale);border-left:3px solid var(--sky);border-radius:5px;margin:15px 0;color:#28416a;font-size:13px}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}button{font:700 14px Arial,sans-serif;cursor:pointer;border:1px solid #c8d5e5;border-radius:8px;background:white;color:var(--blue);padding:12px 14px}button.primary{background:var(--blue);border-color:var(--blue);color:white}button:hover{filter:brightness(.95)}button:disabled{opacity:.45;cursor:not-allowed}.mini{font-size:12px;padding:8px 10px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}textarea{font:12px/1.5 Consolas,monospace;resize:vertical;min-height:68px}details{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}summary{cursor:pointer;font-weight:700;color:var(--blue)}table.settings{border-collapse:collapse;width:100%;font-size:12px;margin-top:10px}table.settings th,table.settings td{padding:6px 4px;text-align:left;border-bottom:1px solid var(--line)}table.settings input{padding:6px;width:57px;font-size:13px}table.settings td:first-child{min-width:110px}.rule{padding-bottom:12px;border-bottom:1px solid var(--line)}.rule input{font-size:12px}.rule label{font-size:12px;margin-top:10px}.preview-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.preview-top h2{margin:0}.subject{font-size:13px;overflow-wrap:anywhere;margin:0 0 14px;padding:12px 14px;border:1px solid var(--line);border-radius:8px}iframe{display:block;width:100%;height:1180px;border:0;background:#edf3fb;border-radius:8px}.help ol{padding-left:22px;font-size:14px}.help li{margin-bottom:10px}code{font-family:Consolas,monospace;background:#edf3fb;padding:2px 4px;border-radius:3px}#feedback{min-height:24px;margin:10px 0 0;font-size:13px;color:#265f47}#error{color:#a62b32;font-size:14px;margin-top:10px}.foot{margin:22px auto 0;color:var(--muted);font-size:12px;max-width:1188px;padding:0 26px 25px}a{color:var(--blue)}.source-info{margin:8px 0 0;font-size:12px;color:var(--muted)}@media(max-width:850px){.layout{grid-template-columns:1fr}.wrap{padding:18px}.brand{font-size:26px;padding-right:16px}header .wrap{gap:16px}h1{font-size:21px}.panel{padding:20px}.preview-top{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brand">UVEG</div><div><h1>Mensajes de seguimiento</h1><p>Una plantilla para tus dos cursos, con los Excel originales.</p></div></div></header>
+<main class="wrap">
+<p class="intro">Elige el momento del módulo, revisa el mensaje y descarga su código. En Thunderbird, usa un archivo de calificaciones por tanda. Aquí no necesitas cargar los datos de tus estudiantes.</p>
+<div class="layout">
+<div>
+<section class="panel">
+<span class="tag">1 · Prepara la plantilla</span>
+<label for="stage">Momento del envío</label>
+<select id="stage"><option value="0">Mensaje 1 · inicio de la semana 2</option><option value="1">Mensaje 2 · inicio de la semana 3</option><option value="2">Mensaje 3 · inicio de la semana 4 (3 días)</option><option value="3">Mensaje 4 · último día del módulo</option></select>
+<div class="notice">Esta elección cambia la meta y el mensaje de ambos cursos. No modifica tus Excel. Los nombres, el grupo, el puntaje y la fecha de cierre se toman de cada fila.</div>
+<div class="buttons"><button class="primary" id="download">Descargar plantilla TXT</button><button id="copyBody">Copiar HTML</button></div>
+<p id="feedback" role="status" aria-live="polite"></p><p id="error" role="alert"></p>
+<details><summary>Metas y cursos configurados</summary>
+<p class="source-info">Metas tomadas de Sheet2 de tu archivo de seguimiento. Los prefijos identifican estos dos cursos; no incluyen el año ni el número de grupo.</p>
+<div id="rules"></div>
+<table class="settings"><thead><tr><th>Curso</th><th>S. 2</th><th>S. 3</th><th>S. 4</th><th>Último día</th></tr></thead><tbody id="thresholds"></tbody></table>
+<p class="source-info">La meta de cierre es 70 en ambos cursos, tal como aparece en tu archivo. No se interpreta como una regla adicional de acreditación. Cambia las metas si cambia tu cronograma y vuelve a descargar el TXT.</p>
+<button class="mini" id="reset" style="margin-top:10px">Restablecer valores originales</button>
+</details>
+</section>
+<section class="panel">
+<span class="tag">2 · Copia en Thunderbird</span>
+<label for="to">To</label><textarea id="to" readonly spellcheck="false" aria-label="Campo To de Thunderbird"></textarea><button class="mini" data-copy="to">Copiar To</button>
+<label for="subject">Subject</label><textarea id="subject" readonly spellcheck="false" aria-label="Campo Subject de Thunderbird"></textarea><button class="mini" data-copy="subject">Copiar Subject</button>
+<details><summary>Ver el código HTML para copiar</summary><textarea id="htmlcode" readonly spellcheck="false" style="height:220px"></textarea></details>
+<div class="notice">El campo <b>To</b> usa <b>Dirección Email</b>, como tu archivo de seguimiento. No añade copias al correo personal. Los grupos que no coincidan con los cursos configurados se excluyen.</div>
+</section>
+<section class="panel help">
+<h2>Cómo usarlo</h2>
+<ol>
+<li>Descarga los Excel recientes de UVEG. Conserva sus encabezados y la hoja <b>Calificaciones</b>.</li>
+<li>Selecciona aquí el momento del envío. La vista previa usa un estudiante ficticio; cambiar su curso o puntaje no cambia la plantilla universal.</li>
+<li>En Thunderbird, abre <b>Write</b> y elige tu cuenta en <b>From</b>. Copia los campos <b>To</b> y <b>Subject</b> de esta página.</li>
+<li>En <b>Insert → HTML…</b>, pega el HTML copiado o todo el contenido del TXT. Si no aparece <b>Insert</b>, activa <b>Account Settings → Composition &amp; Addressing → Compose messages in HTML format</b> y abre un mensaje nuevo.</li>
+<li>Abre <b>Tools → Mail Merge</b>. Usa <b>Source: XLSX</b>, selecciona uno de los Excel en <b>File → Browse</b> y escribe <b>Calificaciones</b> en <b>Sheetname</b>. Deja <b>Attachments</b> vacío.</li>
+<li>Selecciona <b>Deliver Mode: Send Later</b> y pulsa <b>Send</b> dentro de Mail Merge. Revisa los mensajes en <b>Local Folders → Outbox</b>. Para los archivos de ejemplo deben generarse 36 y 25 mensajes, respectivamente.</li>
+<li>Repite con el otro Excel y la misma plantilla. Cuando hayas revisado destinatarios y textos, usa <b>File → Send Unsent Messages</b>; esta acción envía también cualquier otro mensaje pendiente de Outbox.</li>
+</ol>
+<p class="muted">En el borrador pueden verse las condiciones y sus alternativas. Los mensajes ya combinados en Outbox muestran únicamente el texto que corresponde a cada estudiante. Este archivo no envía correos.</p>
+</section>
+</div>
+<section class="panel">
+<div class="preview-top"><h2>Así se verá el mensaje</h2><span class="tag">Datos ficticios</span></div>
+<label for="previewCourse">Curso de ejemplo</label><select id="previewCourse"><option value="0">Probabilidad y estadística</option><option value="1">Estadística inferencial</option></select>
+<div class="row"><div><label for="previewName">Nombre de ejemplo</label><input id="previewName" value="Alex Ejemplo"></div><div><label for="previewGrade">Puntaje acumulado</label><input id="previewGrade" value="10" inputmode="decimal" aria-describedby="gradeHint"></div></div>
+<p id="gradeHint" class="muted">Prueba 0, un valor menor que la meta, la meta exacta o un guion (-) para una calificación ausente.</p>
+<p class="subject"><b>Subject:</b> <span id="previewSubject"></span></p>
+<iframe id="preview" title="Vista previa del mensaje personalizado" sandbox=""></iframe>
+</section>
+</div>
+</main>
+<footer class="foot">Diseño inspirado en los azules del <a href="https://uveg.edu.mx/" target="_blank" rel="noopener">sitio de UVEG</a>. Plantilla para <a href="https://addons.thunderbird.net/en-US/thunderbird/addon/mail-merge/" target="_blank" rel="noopener">Mail Merge de Alexander Bergmann</a>. Funciona localmente, sin cargar expedientes ni calificaciones a un servidor.</footer>
+<script>
+(() => {
+'use strict';
+const defaults = [
+ {name:'Probabilidad y estadística',short:'Probabilidad',prefix:'IN-MA-19006-',grade:'Total del curso (Real)',targets:[10,35,60,70]},
+ {name:'Estadística inferencial',short:'Inferencial',prefix:'IN-MA-15005-',grade:'Total del curso',targets:[35,60,85,70]}
+];
+const stages = ['Inicio de la semana 2','Inicio de la semana 3','Inicio de la semana 4 · últimos 3 días','Último día del módulo'];
+let config = structuredClone(defaults);
+const el = id => document.getElementById(id);
+const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const field = name => '{{'+name+'}}';
+const eq = (name,value,yes,no) => '{{'+[name,value,yes,no].join('|')+'}}';
+const cmp = (name,operator,value,yes,no) => '{{'+[name,operator,value,yes,no].join('|')+'}}';
+function byCourse(values,otherwise='') { return config.reduceRight((other,course,index) => cmp('Grupo','^',course.prefix,values[index],other),otherwise); }
+function chooseGrade(course,stage,values) {
+ const g=course.grade, target=course.targets[stage];
+ const numeric=cmp(g,'>=',target,values.good,cmp(g,'==',0,values.zero,cmp(g,'>',0,values.low,values.invalid)));
+ return eq(g,'',values.missing,eq(g,'-',values.missing,numeric));
+}
+function statusLabels(stage){return {good:stage===3?'Referencia de cierre alcanzada':'Buen ritmo de trabajo',zero:'Revisemos tu avance',low:'Retoma el impulso',missing:'Calificación por revisar',invalid:'Dato por revisar'};}
+function gradeCard(course,stage){
+ const labels=statusLabels(stage), target=course.targets[stage];
+ const cards={};
+ const colors={good:['#eaf6ef','#236446'],low:['#fff6e8','#845517'],zero:['#fff0f1','#a33743'],missing:['#eef3fa','#415a7c'],invalid:['#fff0f1','#a33743']};
+ for(const status of Object.keys(colors)){
+  const [bg,color]=colors[status];
+  const value=status==='missing'?'Sin calificación':field(course.grade)+' puntos';
+  cards[status]='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:'+bg+';border-left:4px solid '+color+';"><tr><td style="padding:20px 22px;"><p style="margin:0 0 8px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:'+color+';">PUNTAJE ACUMULADO</p><p style="margin:0 0 9px;font:700 29px/36px Arial,sans-serif;color:'+color+';">'+value+'</p><p style="margin:0;font:14px/22px Arial,sans-serif;color:'+color+';"><strong>'+labels[status]+'</strong><br>Referencia para esta etapa: '+target+' puntos.</p></td></tr></table>';
+ }
+ return chooseGrade(course,stage,cards);
+}
+function guidance(course,stage){
+ const texts={
+  good:stage===3?'Has alcanzado la referencia de puntaje prevista para el cierre del módulo. Te felicito por el avance registrado. Antes del cierre, revisa las actividades pendientes y la retroalimentación disponible.':'Te felicito por el avance registrado. Tu puntaje acumulado alcanza la referencia prevista para este momento del módulo. Sigue con ese entusiasmo y revisa la retroalimentación de tus actividades.',
+  low:'Tu puntaje acumulado está por debajo de la referencia prevista para este momento del módulo. Te invito a revisar el cronograma y la retroalimentación, identificar las actividades pendientes y aprovechar las oportunidades de mejora que estén disponibles.',
+  zero:'El reporte registra 0 puntos acumulados. Te invito a revisar tus actividades y su estado de calificación en el aula virtual. Si ya realizaste entregas o necesitas orientación para continuar, escríbeme para que podamos revisar tu situación.',
+  missing:'En este reporte aún no aparece una calificación acumulada. Este dato por sí solo no permite saber si has realizado actividades. Revisa el estado de tus entregas y, si algo no coincide con lo que esperabas, escríbeme para que podamos aclararlo.',
+  invalid:'El reporte contiene un valor que requiere revisión. Escríbeme si el puntaje mostrado no coincide con la información disponible en el aula virtual.'
+ };
+ return '<p style="margin:24px 0 18px;font:16px/27px Arial,sans-serif;color:#34445e;">'+chooseGrade(course,stage,texts)+'</p>';
+}
+function courseBody(course,stage){
+ return '<p style="margin:0 0 8px;font:700 12px/19px Arial,sans-serif;letter-spacing:1px;color:#607697;">TU MÓDULO</p><h2 style="margin:0 0 6px;font:700 23px/31px Arial,sans-serif;color:#142691;">'+esc(course.name)+'</h2><p style="margin:0 0 22px;font:13px/21px Arial,sans-serif;color:#60708a;">Grupo '+field('Grupo')+'</p>'+gradeCard(course,stage)+guidance(course,stage);
+}
+function build(stage){
+ const subject=stages[stage]+' · '+byCourse(config.map(c=>chooseGrade(c,stage,statusLabels(stage))),'Revisar curso')+' · '+field('Grupo');
+ const to=byCourse(config.map(()=>field('Nombre')+' '+field('Apellido(s)')+' <'+field('Dirección Email')+'>'));
+ const endNote=stage===3?'Hoy es el último día del módulo. Antes del horario de cierre indicado abajo, verifica que tus entregas se hayan registrado correctamente.':stage===2?'Comienza la cuarta semana, que tiene una duración de tres días. Organiza tus pendientes y consulta la fecha y el horario de cierre indicados abajo.':'Consulta el cronograma del módulo para organizar tus próximas actividades.';
+ const html='<div lang="es" style="margin:0;padding:24px 10px;background-color:#edf3fb;font-family:Arial,Helvetica,sans-serif;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;border-collapse:collapse;background-color:#ffffff;">'+
+ '<tr><td style="background-color:#142691;padding:26px 30px 28px;border-top:5px solid #409cff;"><p style="margin:0 0 21px;font:700 25px/30px Arial,sans-serif;letter-spacing:1px;color:#ffffff;">UVEG</p><p style="margin:0 0 9px;font:700 11px/18px Arial,sans-serif;letter-spacing:2px;color:#b9d8ff;">ACOMPAÑAMIENTO ACADÉMICO</p><h1 style="margin:0;font:normal 31px/39px Georgia,serif;color:#ffffff;">Sigamos avanzando.</h1><p style="margin:13px 0 0;font:15px/23px Arial,sans-serif;color:#d9e9ff;">'+stages[stage]+'</p></td></tr>'+
+ '<tr><td style="padding:29px 30px 26px;"><p style="margin:0 0 18px;font:18px/28px Arial,sans-serif;color:#142691;">Apreciable <strong>'+field('Nombre')+' '+field('Apellido(s)')+'</strong>:</p><p style="margin:0 0 25px;font:16px/26px Arial,sans-serif;color:#34445e;">Recibe un cordial saludo. Te comparto un seguimiento de tu avance a partir del reporte de calificaciones disponible.</p>'+
+ byCourse(config.map(c=>courseBody(c,stage)),'<p>Este curso requiere configurar sus metas de seguimiento.</p>')+
+ '<p style="margin:0 0 23px;font:16px/26px Arial,sans-serif;color:#34445e;">'+endNote+'</p><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background-color:#ebf5ff;"><tr><td style="padding:17px 20px;"><p style="margin:0 0 5px;font:700 11px/17px Arial,sans-serif;letter-spacing:1px;color:#245e9c;">CIERRE DE ACTIVIDADES</p><p style="margin:0;font:700 15px/24px Arial,sans-serif;color:#142691;">'+field('Cierre de actividades')+'</p></td></tr></table>'+
+ '<p style="margin:23px 0 20px;font:16px/26px Arial,sans-serif;color:#34445e;">Cuenta conmigo para resolver dudas relacionadas con el módulo. Puedes responder a este correo o contactarme mediante el mensajero del aula virtual.</p><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr><td style="background-color:#142691;border-radius:6px;"><a href="https://campus.uveg.edu.mx/" style="display:inline-block;padding:13px 21px;font:700 14px/20px Arial,sans-serif;color:#ffffff;text-decoration:none;">Ir al aula virtual</a></td></tr></table><p style="margin:28px 0 6px;font:15px/24px Arial,sans-serif;color:#34445e;">Con aprecio,</p><p style="margin:0;font:700 16px/25px Arial,sans-serif;color:#142691;">'+field('Asesor')+'</p><p style="margin:3px 0 0;font:13px/21px Arial,sans-serif;color:#60708a;">Asesor virtual<br>Universidad Virtual del Estado de Guanajuato</p></td></tr>'+
+ '<tr><td style="padding:16px 30px;background-color:#f6f9fd;border-top:1px solid #e1e9f3;"><p style="margin:0;font:12px/19px Arial,sans-serif;color:#6c7d95;">Seguimiento individual · '+field('Dirección Email')+'<br>Los puntos corresponden al acumulado registrado en el reporte consultado.</p></td></tr></table></td></tr></table></div>';
+ return {html:html.replace(/\|>=\|/g,'|&gt;=|').replace(/\|>\|/g,'|&gt;|'),subject,to};
+}
+// Resolver limitado a la sintaxis utilizada por esta plantilla, para su vista previa local.
+function substitute(text,row){
+ let output=text;
+ for(let step=0;step<1000;step++){
+  let found=false;
+  output=output.replace(/\{\{([^{}]*)\}\}/g,(match,inside)=>{
+   found=true;const parts=inside.split('|');const v=String(row[parts[0].trim()]??'');
+   if(parts.length===1)return v;
+   if(parts.length===4)return v===parts[1]?parts[2]:parts[3];
+   if(parts.length===5){const op=parts[1].replace('&gt;','>').replace('&lt;','<');let yes=false;
+    if(op==='^')yes=v.startsWith(parts[2]);
+    else {const a=Number(v.replace(',','.')),b=Number(parts[2].replace(',','.'));if(op==='>=')yes=a>=b;else if(op==='>')yes=a>b;else if(op==='==')yes=a===b;else throw Error('Operador no compatible: '+op);}
+    return yes?parts[3]:parts[4];
+   }throw Error('Condición no compatible en la plantilla.');
+  });
+  if(!found)return output;
+ }throw Error('La plantilla contiene demasiadas condiciones anidadas.');
+}
+function htmlDoc(body){return '<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Seguimiento UVEG</title></head><body style="margin:0;background:#edf3fb;">'+body+'</body></html>';}
+function renderRules(){
+ el('rules').innerHTML=config.map((c,i)=>'<div class="rule"><label>'+esc(c.name)+' · prefijo del grupo<input data-prefix="'+i+'" value="'+esc(c.prefix)+'"></label><label>Encabezado de calificación<input data-grade="'+i+'" value="'+esc(c.grade)+'"></label></div>').join('');
+ el('thresholds').innerHTML=config.map((c,i)=>'<tr><td>'+esc(c.short)+'</td>'+c.targets.map((n,j)=>'<td><input type="number" min="1" max="100" step="0.01" data-course="'+i+'" data-stage="'+j+'" value="'+n+'" aria-label="'+esc(c.name)+' '+stages[j]+'"></td>').join('')+'</tr>').join('');
+}
+function validate(){
+ for(const c of config){if(!c.prefix||!c.grade||/[{}|#<>]/.test(c.prefix+c.grade))throw Error('Revisa el prefijo y el encabezado: no pueden estar vacíos ni contener llaves, barras verticales o signos especiales.');if(c.targets.some(n=>!Number.isFinite(n)||n<=0||n>100))throw Error('Las metas deben ser números mayores que 0 y hasta 100.');}
+ if(config[0].prefix.startsWith(config[1].prefix)||config[1].prefix.startsWith(config[0].prefix))throw Error('Los prefijos deben distinguir los dos cursos sin solaparse.');
+}
+function render(){
+ try{
+  validate();el('error').textContent='';for(const id of ['download','copyBody'])el(id).disabled=false;
+  const stage=Number(el('stage').value), result=build(stage);el('to').value=result.to;el('subject').value=result.subject;el('htmlcode').value=result.html;
+  const c=config[Number(el('previewCourse').value)];const row={'Nombre':el('previewName').value||'Alex Ejemplo','Apellido(s)':'','Grupo':c.prefix+'26-020','Dirección Email':'estudiante@example.com','Asesor':'Eugenio Guerrero Ruiz','Cierre de actividades':'miércoles, 21 de octubre de 2026, 23:59',[c.grade]:el('previewGrade').value};
+  el('previewSubject').textContent=substitute(result.subject,row);
+  const safe=Object.fromEntries(Object.entries(row).map(([k,v])=>[k,esc(v).replaceAll('{','&#123;').replaceAll('}','&#125;').replaceAll('|','&#124;')]));
+  el('preview').srcdoc=htmlDoc(substitute(result.html,safe));
+ }catch(error){el('error').textContent=error.message;el('to').value='';el('subject').value='';el('htmlcode').value='';for(const id of ['download','copyBody'])el(id).disabled=true;}
+}
+async function copy(id){
+ const text=el(id).value;if(!text)return;
+ try{await navigator.clipboard.writeText(text);el('feedback').textContent='Copiado. Ya puedes pegarlo en Thunderbird.';}
+ catch{el(id).closest('details')?.setAttribute('open','');el(id).focus();el(id).select();let ok=false;try{ok=document.execCommand('copy');}catch{}el('feedback').textContent=ok?'Copiado. Ya puedes pegarlo en Thunderbird.':'El texto está seleccionado. Pulsa Ctrl+C para copiarlo.';}
+}
+document.addEventListener('input',event=>{
+ const t=event.target;if(t.dataset.prefix!==undefined)config[Number(t.dataset.prefix)].prefix=t.value.trim();
+ if(t.dataset.grade!==undefined)config[Number(t.dataset.grade)].grade=t.value.trim();
+ if(t.dataset.course!==undefined)config[Number(t.dataset.course)].targets[Number(t.dataset.stage)]=t.value===''?NaN:Number(t.value);
+ render();
+});
+for(const id of ['stage','previewCourse'])el(id).addEventListener('change',render);
+el('reset').addEventListener('click',()=>{config=structuredClone(defaults);renderRules();render();});
+el('download').addEventListener('click',()=>{validate();const blob=new Blob([build(Number(el('stage').value)).html],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='uveg_plantilla_mail_merge.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);el('feedback').textContent='Plantilla descargada para '+stages[Number(el('stage').value)]+'.';});
+el('copyBody').addEventListener('click',()=>copy('htmlcode'));document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copy(b.dataset.copy)));
+window.UvegMail={build,substitute,htmlDoc,defaults,stages,getConfig:()=>structuredClone(config),setConfig:value=>{config=structuredClone(value);renderRules();render();}};
+renderRules();render();
+})();
+</script>
+</body>
+</html>
