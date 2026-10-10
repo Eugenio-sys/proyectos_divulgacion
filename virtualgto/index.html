@@ -8,9 +8,12 @@
 :root{color-scheme:light;--blue:#142691;--sky:#409cff;--pale:#ebf5ff;--ink:#172748;--muted:#61718a;--line:#dce5ef}
 *{box-sizing:border-box}body{margin:0;background:#f2f6fb;color:var(--ink);font:15px/1.55 Arial,Helvetica,sans-serif}header{background:var(--blue);color:white;border-bottom:5px solid var(--sky)}.wrap{max-width:1240px;margin:auto;padding:26px}header .wrap{display:flex;gap:24px;align-items:center}.brand{font-size:34px;font-weight:800;letter-spacing:-1px;border-right:1px solid #6a79bc;padding-right:26px}h1{margin:0;font-size:25px;line-height:1.3}header p{margin:5px 0 0;color:#d9e9ff;font-size:14px}.layout{display:grid;grid-template-columns:minmax(320px,420px) minmax(0,1fr);gap:24px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 30px #14269106}.panel+.panel{margin-top:18px}h2{font-size:18px;margin:0 0 14px}h3{font-size:15px;margin:18px 0 10px}.intro{margin:0 0 22px;color:var(--muted)}label{display:block;font-weight:700;margin:16px 0 7px}select,input,textarea{font:inherit;color:var(--ink);width:100%;padding:11px 12px;border:1px solid #c8d5e5;border-radius:8px;background:white}input:focus,select:focus,textarea:focus{outline:3px solid #409cff35;border-color:var(--sky)}small,.muted{color:var(--muted);font-size:13px}.tag{display:inline-block;background:var(--pale);color:var(--blue);padding:5px 10px;border-radius:30px;font-weight:700;font-size:12px}.notice{padding:12px 14px;background:var(--pale);border-left:3px solid var(--sky);border-radius:5px;margin:15px 0;color:#28416a;font-size:13px}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}button{font:700 14px Arial,sans-serif;cursor:pointer;border:1px solid #c8d5e5;border-radius:8px;background:white;color:var(--blue);padding:12px 14px}button.primary{background:var(--blue);border-color:var(--blue);color:white}button:hover{filter:brightness(.95)}button:disabled{opacity:.45;cursor:not-allowed}.mini{font-size:12px;padding:8px 10px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}textarea{font:12px/1.5 Consolas,monospace;resize:vertical;min-height:68px}details{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}summary{cursor:pointer;font-weight:700;color:var(--blue)}table.settings{border-collapse:collapse;width:100%;font-size:12px;margin-top:10px}table.settings th,table.settings td{padding:6px 4px;text-align:left;border-bottom:1px solid var(--line)}table.settings input{padding:6px;width:57px;font-size:13px}table.settings td:first-child{min-width:110px}.rule{padding-bottom:12px;border-bottom:1px solid var(--line)}.rule input{font-size:12px}.rule label{font-size:12px;margin-top:10px}.preview-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.preview-top h2{margin:0}.subject{font-size:13px;overflow-wrap:anywhere;margin:0 0 14px;padding:12px 14px;border:1px solid var(--line);border-radius:8px}iframe{display:block;width:100%;height:1180px;border:0;background:#edf3fb;border-radius:8px}.help ol{padding-left:22px;font-size:14px}.help li{margin-bottom:10px}code{font-family:Consolas,monospace;background:#edf3fb;padding:2px 4px;border-radius:3px}#feedback{min-height:24px;margin:10px 0 0;font-size:13px;color:#265f47}#error{color:#a62b32;font-size:14px;margin-top:10px}.foot{margin:22px auto 0;color:var(--muted);font-size:12px;max-width:1188px;padding:0 26px 25px}a{color:var(--blue)}.source-info{margin:8px 0 0;font-size:12px;color:var(--muted)}@media(max-width:850px){.layout{grid-template-columns:1fr}.wrap{padding:18px}.brand{font-size:26px;padding-right:16px}header .wrap{gap:16px}h1{font-size:21px}.panel{padding:20px}.preview-top{flex-wrap:wrap}}
 </style>
+<style>
+.course-card{border:1px solid var(--line);border-radius:12px;background:#f9fbff;padding:16px;margin:14px 0}.course-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.course-head strong{overflow-wrap:anywhere;font-size:14px}.course-card label{font-size:12px;margin-top:12px}.course-card input{font-size:13px;background:white}.targets{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.targets input{min-width:0}.danger{color:#a33743;border-color:#e3c5ca}.config-actions{border-top:1px solid var(--line);padding-top:14px}.save-state{font-size:13px;border-radius:7px;padding:10px 12px;background:#fff6e8;color:#845517;margin:12px 0}.save-state.saved{background:#eaf6ef;color:#236446}.empty-courses{padding:18px 12px;border:1px dashed #bdcee3;border-radius:9px;color:var(--muted);font-size:13px}.config-caption{font-size:12px;color:var(--muted);margin:12px 0 0}.course-card input[aria-invalid="true"]{border-color:#a33743}button:focus-visible,summary:focus-visible{outline:3px solid #409cff70;outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style>
 </head>
 <body>
-<header><div class="wrap"><div class="brand">UVEG</div><div><h1>Mensajes de seguimiento</h1><p>Una plantilla para tus dos cursos, con los Excel originales.</p></div></div></header>
+<header><div class="wrap"><div class="brand">UVEG</div><div><h1>Mensajes de seguimiento</h1><p>Una plantilla para tus cursos, con los Excel originales.</p></div></div></header>
 <main class="wrap">
 <p class="intro">Elige el momento del módulo, revisa el mensaje y descarga su código. En Thunderbird, usa un archivo de calificaciones por tanda. Aquí no necesitas cargar los datos de tus estudiantes.</p>
 <div class="layout">
@@ -19,15 +22,24 @@
 <span class="tag">1 · Prepara la plantilla</span>
 <label for="stage">Momento del envío</label>
 <select id="stage"><option value="0">Mensaje 1 · inicio de la semana 2</option><option value="1">Mensaje 2 · inicio de la semana 3</option><option value="2">Mensaje 3 · inicio de la semana 4 (3 días)</option><option value="3">Mensaje 4 · último día del módulo</option></select>
-<div class="notice">Esta elección cambia la meta y el mensaje de ambos cursos. No modifica tus Excel. Los nombres, el grupo, el puntaje y la fecha de cierre se toman de cada fila.</div>
+<div class="notice">Esta elección cambia la meta y el mensaje de todos los cursos configurados. Los nombres, el grupo, el puntaje y la fecha de cierre se toman de cada fila de tus Excel.</div>
 <div class="buttons"><button class="primary" id="download">Descargar plantilla TXT</button><button id="copyBody">Copiar HTML</button></div>
 <p id="feedback" role="status" aria-live="polite"></p><p id="error" role="alert"></p>
-<details><summary>Metas y cursos configurados</summary>
-<p class="source-info">Metas tomadas de Sheet2 de tu archivo de seguimiento. Los prefijos identifican estos dos cursos; no incluyen el año ni el número de grupo.</p>
+<details open id="courseSettings"><summary>Cursos y metas · <span id="courseCount">2 cursos</span></summary>
+<p class="source-info">Puedes agregar cualquier curso que use el mismo formato de reporte. Los dos cursos iniciales conservan las metas de tu archivo de seguimiento.</p>
+<p class="source-info">El <b>prefijo del grupo</b> es la parte inicial que identifica el curso, por ejemplo <code>IN-MA-19006-</code>. Debe coincidir exactamente con el Excel, incluidas mayúsculas. Copia el <b>encabezado de calificación</b> tal como aparece en la primera fila, por ejemplo <code>Total del curso (Real)</code>.</p>
 <div id="rules"></div>
-<table class="settings"><thead><tr><th>Curso</th><th>S. 2</th><th>S. 3</th><th>S. 4</th><th>Último día</th></tr></thead><tbody id="thresholds"></tbody></table>
-<p class="source-info">La meta de cierre es 70 en ambos cursos, tal como aparece en tu archivo. No se interpreta como una regla adicional de acreditación. Cambia las metas si cambia tu cronograma y vuelve a descargar el TXT.</p>
-<button class="mini" id="reset" style="margin-top:10px">Restablecer valores originales</button>
+<button id="addCourse">+ Agregar curso</button>
+<p class="source-info">Las cuatro metas son puntos <b>acumulados</b> para cada momento del envío, mayores que 0 y hasta 100. La última es una referencia de seguimiento, no una regla adicional de acreditación.</p>
+<div class="config-actions">
+<div class="buttons"><button class="primary" id="saveConfig">Guardar configuración</button><button id="exportConfig">Exportar configuración</button><button id="importConfig">Importar configuración</button></div>
+<input type="file" id="configFile" accept=".json,application/json" hidden aria-label="Archivo de configuración">
+<p id="saveState" class="save-state" role="status" aria-live="polite"></p>
+<p id="configFeedback" class="source-info" role="status" aria-live="polite"></p>
+<p class="config-caption">Guardar recuerda los cursos y el momento del envío en este navegador. Para otro equipo, otro navegador o como respaldo, exporta el archivo JSON e impórtalo allí. Al importar se reemplaza la configuración actual. El archivo contiene ajustes, sin datos de estudiantes.</p>
+<p class="config-caption">Si abres este HTML como archivo local, conservar los ajustes también puede depender de su ubicación y del navegador. Exporta antes de moverlo o borrar los datos del navegador.</p>
+<button class="mini" id="reset" style="margin-top:12px">Restablecer cursos de ejemplo</button>
+</div>
 </details>
 </section>
 <section class="panel">
@@ -41,19 +53,19 @@
 <h2>Cómo usarlo</h2>
 <ol>
 <li>Descarga los Excel recientes de UVEG. Conserva sus encabezados y la hoja <b>Calificaciones</b>.</li>
-<li>Selecciona aquí el momento del envío. La vista previa usa un estudiante ficticio; cambiar su curso o puntaje no cambia la plantilla universal.</li>
+<li>Agrega o edita tus cursos y pulsa <b>Guardar configuración</b>. Selecciona el momento del envío y vuelve a copiar <b>To</b>, <b>Subject</b> y el HTML cada vez que cambies los cursos, las metas o ese momento. La vista previa usa un estudiante ficticio.</li>
 <li>En Thunderbird, abre <b>Write</b> y elige tu cuenta en <b>From</b>. Copia los campos <b>To</b> y <b>Subject</b> de esta página.</li>
 <li>En <b>Insert → HTML…</b>, pega el HTML copiado o todo el contenido del TXT. Si no aparece <b>Insert</b>, activa <b>Account Settings → Composition &amp; Addressing → Compose messages in HTML format</b> y abre un mensaje nuevo.</li>
 <li>Abre <b>Tools → Mail Merge</b>. Usa <b>Source: XLSX</b>, selecciona uno de los Excel en <b>File → Browse</b> y escribe <b>Calificaciones</b> en <b>Sheetname</b>. Deja <b>Attachments</b> vacío.</li>
-<li>Selecciona <b>Deliver Mode: Send Later</b> y pulsa <b>Send</b> dentro de Mail Merge. Revisa los mensajes en <b>Local Folders → Outbox</b>. Para los archivos de ejemplo deben generarse 36 y 25 mensajes, respectivamente.</li>
-<li>Repite con el otro Excel y la misma plantilla. Cuando hayas revisado destinatarios y textos, usa <b>File → Send Unsent Messages</b>; esta acción envía también cualquier otro mensaje pendiente de Outbox.</li>
+<li>Selecciona <b>Deliver Mode: Send Later</b> y pulsa <b>Send</b> dentro de Mail Merge. Revisa los mensajes en <b>Local Folders → Outbox</b> y comprueba que coincidan con los estudiantes del curso.</li>
+<li>Repite con los demás Excel y la misma plantilla. Cuando hayas revisado destinatarios y textos, usa <b>File → Send Unsent Messages</b>; esta acción envía también cualquier otro mensaje pendiente de Outbox.</li>
 </ol>
 <p class="muted">En el borrador pueden verse las condiciones y sus alternativas. Los mensajes ya combinados en Outbox muestran únicamente el texto que corresponde a cada estudiante. Este archivo no envía correos.</p>
 </section>
 </div>
 <section class="panel">
 <div class="preview-top"><h2>Así se verá el mensaje</h2><span class="tag">Datos ficticios</span></div>
-<label for="previewCourse">Curso de ejemplo</label><select id="previewCourse"><option value="0">Probabilidad y estadística</option><option value="1">Estadística inferencial</option></select>
+<label for="previewCourse">Curso de ejemplo</label><select id="previewCourse"></select>
 <div class="row"><div><label for="previewName">Nombre de ejemplo</label><input id="previewName" value="Alex Ejemplo"></div><div><label for="previewGrade">Puntaje acumulado</label><input id="previewGrade" value="10" inputmode="decimal" aria-describedby="gradeHint"></div></div>
 <p id="gradeHint" class="muted">Prueba 0, un valor menor que la meta, la meta exacta o un guion (-) para una calificación ausente.</p>
 <p class="subject"><b>Subject:</b> <span id="previewSubject"></span></p>
@@ -66,11 +78,18 @@
 (() => {
 'use strict';
 const defaults = [
- {name:'Probabilidad y estadística',short:'Probabilidad',prefix:'IN-MA-19006-',grade:'Total del curso (Real)',targets:[10,35,60,70]},
- {name:'Estadística inferencial',short:'Inferencial',prefix:'IN-MA-15005-',grade:'Total del curso',targets:[35,60,85,70]}
+ {name:'Probabilidad y estadística',prefix:'IN-MA-19006-',grade:'Total del curso (Real)',targets:[10,35,60,70]},
+ {name:'Estadística inferencial',prefix:'IN-MA-15005-',grade:'Total del curso',targets:[35,60,85,70]}
 ];
 const stages = ['Inicio de la semana 2','Inicio de la semana 3','Inicio de la semana 4 · últimos 3 días','Último día del módulo'];
+const STORAGE_KEY = 'uveg-mailmerge.config.v1';
+const SCHEMA = 'uveg-mailmerge-config';
+const MAX_COURSES = 100;
+const MAX_FILE_BYTES = 256 * 1024;
 let config = structuredClone(defaults);
+let savedSnapshot = null;
+let dirty = false;
+let storageWarning = '';
 const el = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const field = name => '{{'+name+'}}';
@@ -139,23 +158,117 @@ function substitute(text,row){
  }throw Error('La plantilla contiene demasiadas condiciones anidadas.');
 }
 function htmlDoc(body){return '<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Seguimiento UVEG</title></head><body style="margin:0;background:#edf3fb;">'+body+'</body></html>';}
-function renderRules(){
- el('rules').innerHTML=config.map((c,i)=>'<div class="rule"><label>'+esc(c.name)+' · prefijo del grupo<input data-prefix="'+i+'" value="'+esc(c.prefix)+'"></label><label>Encabezado de calificación<input data-grade="'+i+'" value="'+esc(c.grade)+'"></label></div>').join('');
- el('thresholds').innerHTML=config.map((c,i)=>'<tr><td>'+esc(c.short)+'</td>'+c.targets.map((n,j)=>'<td><input type="number" min="1" max="100" step="0.01" data-course="'+i+'" data-stage="'+j+'" value="'+n+'" aria-label="'+esc(c.name)+' '+stages[j]+'"></td>').join('')+'</tr>').join('');
+function validateCourses(courses,allowEmpty=true){
+ if(!Array.isArray(courses)||courses.length>MAX_COURSES)throw Error('La configuración debe contener una lista de hasta '+MAX_COURSES+' cursos.');
+ if(!allowEmpty&&!courses.length)throw Error('Agrega un curso y completa sus datos para generar la plantilla.');
+ for(let i=0;i<courses.length;i++){
+  const c=courses[i], label='Curso '+(i+1)+': ';
+  if(!c||typeof c!=='object'||Array.isArray(c))throw Error(label+'el formato no es válido.');
+  if(typeof c.name!=='string'||!c.name.trim()||c.name.length>160||/[{}|\u0000-\u001f\u007f]/.test(c.name))throw Error(label+'escribe un nombre de hasta 160 caracteres, sin llaves ni barras verticales.');
+  for(const [key,title] of [['prefix','prefijo del grupo'],['grade','encabezado de calificación']]){
+   if(typeof c[key]!=='string'||!c[key].trim()||c[key].length>160||/[{}|#<>&\u0000-\u001f\u007f]/.test(c[key]))throw Error(label+'revisa el '+title+'. Debe tener entre 1 y 160 caracteres y no contener { } | # < > & ni saltos de línea.');
+  }
+  if(!Array.isArray(c.targets)||c.targets.length!==4||c.targets.some(n=>typeof n!=='number'||!Number.isFinite(n)||n<=0||n>100))throw Error(label+'completa las cuatro metas con números mayores que 0 y hasta 100.');
+ }
+ for(let i=0;i<courses.length;i++)for(let j=i+1;j<courses.length;j++){
+  const a=courses[i],b=courses[j];
+  if(a.prefix.startsWith(b.prefix)||b.prefix.startsWith(a.prefix))throw Error('Los prefijos de «'+a.name+'» y «'+b.name+'» se solapan. Usa prefijos que distingan los cursos.');
+ }
 }
-function validate(){
- for(const c of config){if(!c.prefix||!c.grade||/[{}|#<>]/.test(c.prefix+c.grade))throw Error('Revisa el prefijo y el encabezado: no pueden estar vacíos ni contener llaves, barras verticales o signos especiales.');if(c.targets.some(n=>!Number.isFinite(n)||n<=0||n>100))throw Error('Las metas deben ser números mayores que 0 y hasta 100.');}
- if(config[0].prefix.startsWith(config[1].prefix)||config[1].prefix.startsWith(config[0].prefix))throw Error('Los prefijos deben distinguir los dos cursos sin solaparse.');
+function validate(){validateCourses(config,false);}
+function configurationDocument(){
+ return {schema:SCHEMA,version:1,stage:Number(el('stage').value),courses:config.map(c=>({name:c.name,prefix:c.prefix,grade:c.grade,targets:[...c.targets]}))};
+}
+function snapshot(){return JSON.stringify(configurationDocument());}
+function parseConfiguration(text){
+ if(typeof text!=='string'||new Blob([text]).size>MAX_FILE_BYTES)throw Error('El archivo de configuración supera los 256 KB permitidos.');
+ let value;try{value=JSON.parse(text);}catch{throw Error('No se pudo leer el JSON. Selecciona un archivo creado con Exportar configuración.');}
+ if(!value||value.schema!==SCHEMA||value.version!==1)throw Error('Este archivo no es una configuración compatible de Mensajes de seguimiento.');
+ if(!Number.isInteger(value.stage)||value.stage<0||value.stage>=stages.length)throw Error('El momento del envío del archivo no es válido.');
+ if(!Array.isArray(value.courses)||value.courses.length>MAX_COURSES)throw Error('La configuración debe contener una lista de hasta '+MAX_COURSES+' cursos.');
+ const courses=value.courses.map(c=>({name:typeof c?.name==='string'?c.name.trim():c?.name,prefix:typeof c?.prefix==='string'?c.prefix.trim():c?.prefix,grade:typeof c?.grade==='string'?c.grade.trim():c?.grade,targets:c?.targets}));
+ validateCourses(courses);
+ return {schema:SCHEMA,version:1,stage:value.stage,courses};
+}
+function renderPreviewCourses(selected=Number(el('previewCourse').value)){
+ el('previewCourse').innerHTML=config.length?config.map((c,i)=>'<option value="'+i+'">'+esc(c.name||'Curso '+(i+1))+'</option>').join(''):'<option value="">Agrega un curso</option>';
+ el('previewCourse').value=config.length?String(Math.max(0,Math.min(Number.isInteger(selected)?selected:0,config.length-1))):'';
+ el('previewCourse').disabled=!config.length;
+ el('courseCount').textContent=config.length+' '+(config.length===1?'curso':'cursos');
+}
+function renderRules(selected){
+ const targetLabels=['Mensaje 1 · inicio S. 2','Mensaje 2 · inicio S. 3','Mensaje 3 · inicio S. 4','Mensaje 4 · último día'];
+ el('rules').innerHTML=config.length?config.map((c,i)=>'<section class="course-card" aria-labelledby="courseTitle'+i+'"><div class="course-head"><strong id="courseTitle'+i+'">'+esc(c.name||'Curso '+(i+1))+'</strong><button class="mini danger" data-delete="'+i+'" aria-label="Eliminar curso '+(i+1)+'">Eliminar</button></div><label for="name'+i+'">Nombre del curso</label><input id="name'+i+'" data-name="'+i+'" value="'+esc(c.name)+'" maxlength="160" placeholder="Ejemplo: Cálculo I" autocomplete="off"><label for="prefix'+i+'">Prefijo del grupo</label><input id="prefix'+i+'" data-prefix="'+i+'" value="'+esc(c.prefix)+'" maxlength="160" placeholder="Copia la parte inicial del grupo" autocomplete="off" spellcheck="false"><label for="grade'+i+'">Encabezado de calificación</label><input id="grade'+i+'" data-grade="'+i+'" value="'+esc(c.grade)+'" maxlength="160" placeholder="Ejemplo: Total del curso" autocomplete="off" spellcheck="false"><div class="targets">'+c.targets.map((n,j)=>'<div><label for="target'+i+'_'+j+'">'+targetLabels[j]+'</label><input id="target'+i+'_'+j+'" type="number" min="0.01" max="100" step="any" data-course="'+i+'" data-stage="'+j+'" value="'+(Number.isFinite(n)?n:'')+'" placeholder="Puntos acumulados" aria-label="Meta del curso '+(i+1)+' · '+stages[j]+'"></div>').join('')+'</div></section>').join(''):'<p class="empty-courses">Todavía no hay cursos. Pulsa Agregar curso para configurar el primero.</p>';
+ renderPreviewCourses(selected);
+ el('addCourse').disabled=config.length>=MAX_COURSES;
+}
+function renderSaveState(){
+ const saved=savedSnapshot!==null&&savedSnapshot===snapshot();
+ el('saveState').className='save-state'+(saved&&!storageWarning?' saved':'');
+ el('saveState').textContent=storageWarning||(saved?'Configuración guardada en este navegador.':dirty?'Cambios sin guardar. Pulsa Guardar configuración para conservarlos.':'Cursos de ejemplo. Pulsa Guardar configuración para conservar tus ajustes.');
+}
+function setTemplateEnabled(enabled){
+ for(const id of ['download','copyBody'])el(id).disabled=!enabled;
+ document.querySelectorAll('[data-copy]').forEach(b=>{b.disabled=!enabled;});
 }
 function render(){
+ let settingsError='';try{validateCourses(config);}catch(error){settingsError=error.message;}
+ el('saveConfig').disabled=!!settingsError;el('exportConfig').disabled=!!settingsError;
+ renderSaveState();el('feedback').textContent='';
  try{
-  validate();el('error').textContent='';for(const id of ['download','copyBody'])el(id).disabled=false;
-  const stage=Number(el('stage').value), result=build(stage);el('to').value=result.to;el('subject').value=result.subject;el('htmlcode').value=result.html;
+  if(settingsError)throw Error(settingsError);
+  validate();el('error').textContent='';setTemplateEnabled(true);
+  const stage=Number(el('stage').value),result=build(stage);el('to').value=result.to;el('subject').value=result.subject;el('htmlcode').value=result.html;
   const c=config[Number(el('previewCourse').value)];const row={'Nombre':el('previewName').value||'Alex Ejemplo','Apellido(s)':'','Grupo':c.prefix+'26-020','Dirección Email':'estudiante@example.com','Asesor':'Eugenio Guerrero Ruiz','Cierre de actividades':'miércoles, 21 de octubre de 2026, 23:59',[c.grade]:el('previewGrade').value};
   el('previewSubject').textContent=substitute(result.subject,row);
   const safe=Object.fromEntries(Object.entries(row).map(([k,v])=>[k,esc(v).replaceAll('{','&#123;').replaceAll('}','&#125;').replaceAll('|','&#124;')]));
   el('preview').srcdoc=htmlDoc(substitute(result.html,safe));
- }catch(error){el('error').textContent=error.message;el('to').value='';el('subject').value='';el('htmlcode').value='';for(const id of ['download','copyBody'])el(id).disabled=true;}
+ }catch(error){
+  el('error').textContent=error.message;el('to').value='';el('subject').value='';el('htmlcode').value='';setTemplateEnabled(false);
+  el('previewSubject').textContent='Completa la configuración para ver el mensaje.';
+  el('preview').srcdoc=htmlDoc('<div style="padding:36px;font:16px/1.7 Arial,sans-serif;color:#415a7c;"><h2 style="color:#142691;">Configura tus cursos</h2><p>'+esc(error.message)+'</p><p>La vista previa se actualizará cuando los datos estén completos.</p></div>');
+ }
+}
+function markChanged(){dirty=true;el('configFeedback').textContent='';}
+function saveConfiguration(){
+ validateCourses(config);
+ try{
+  const text=snapshot();window.localStorage.setItem(STORAGE_KEY,text);
+  if(window.localStorage.getItem(STORAGE_KEY)!==text)throw Error('No se pudo confirmar el guardado.');
+  savedSnapshot=text;dirty=false;storageWarning='';renderSaveState();return true;
+ }catch{
+  storageWarning='El navegador no permite guardar estos ajustes. Exporta la configuración para conservarla y poder importarla después.';renderSaveState();return false;
+ }
+}
+function restoreConfiguration(){
+ let text;try{text=window.localStorage.getItem(STORAGE_KEY);}catch{storageWarning='El navegador no permite recuperar ajustes locales. Puedes usar Exportar e Importar configuración.';return;}
+ if(text===null)return;
+ try{
+  const value=parseConfiguration(text);config=value.courses;el('stage').value=String(value.stage);savedSnapshot=snapshot();
+ }catch{storageWarning='No se pudo recuperar la configuración guardada. Se muestran los cursos de ejemplo; puedes importar un respaldo o guardar una configuración nueva.';}
+}
+function applyConfiguration(value){
+ config=structuredClone(value.courses);el('stage').value=String(value.stage);markChanged();renderRules(0);render();
+}
+function importConfiguration(text){
+ const value=parseConfiguration(text);applyConfiguration(value);
+ const saved=saveConfiguration();
+ el('configFeedback').textContent='Configuración importada: '+config.length+' '+(config.length===1?'curso':'cursos')+'. Momento del envío: '+stages[value.stage]+'.'+(saved?' Guardada en este navegador.':' Los ajustes están disponibles en esta sesión.');
+ return {saved,courses:config.length};
+}
+function exportConfiguration(){validateCourses(config);return JSON.stringify(configurationDocument(),null,2)+'\n';}
+function downloadText(text,name,type){
+ const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function addCourse(){
+ if(config.length>=MAX_COURSES)return;
+ config.push({name:'',prefix:'',grade:'',targets:[null,null,null,null]});markChanged();renderRules(config.length-1);render();el('courseSettings').open=true;el('name'+(config.length-1)).focus();
+}
+function deleteCourse(index){
+ if(!Number.isInteger(index)||index<0||index>=config.length)return;
+ if(!window.confirm('¿Eliminar «'+(config[index].name||'Curso '+(index+1))+'» de esta configuración?'))return;
+ let selected=Number(el('previewCourse').value);if(index<selected)selected--;else if(index===selected)selected=Math.min(index,config.length-2);
+ config.splice(index,1);markChanged();renderRules(selected);render();el('addCourse').focus();
 }
 async function copy(id){
  const text=el(id).value;if(!text)return;
@@ -163,17 +276,41 @@ async function copy(id){
  catch{el(id).closest('details')?.setAttribute('open','');el(id).focus();el(id).select();let ok=false;try{ok=document.execCommand('copy');}catch{}el('feedback').textContent=ok?'Copiado. Ya puedes pegarlo en Thunderbird.':'El texto está seleccionado. Pulsa Ctrl+C para copiarlo.';}
 }
 document.addEventListener('input',event=>{
- const t=event.target;if(t.dataset.prefix!==undefined)config[Number(t.dataset.prefix)].prefix=t.value.trim();
- if(t.dataset.grade!==undefined)config[Number(t.dataset.grade)].grade=t.value.trim();
- if(t.dataset.course!==undefined)config[Number(t.dataset.course)].targets[Number(t.dataset.stage)]=t.value===''?NaN:Number(t.value);
- render();
+ const t=event.target;let changed=false;
+ for(const key of ['name','prefix','grade'])if(t.dataset[key]!==undefined){
+  const index=Number(t.dataset[key]);config[index][key]=t.value.trim();changed=true;
+  if(key==='name'){el('courseTitle'+index).textContent=config[index].name||'Curso '+(index+1);renderPreviewCourses();}
+ }
+ if(t.dataset.course!==undefined){config[Number(t.dataset.course)].targets[Number(t.dataset.stage)]=t.value===''?null:Number(t.value);changed=true;}
+ if(changed){markChanged();render();}else if(t.id==='previewName'||t.id==='previewGrade')render();
 });
-for(const id of ['stage','previewCourse'])el(id).addEventListener('change',render);
-el('reset').addEventListener('click',()=>{config=structuredClone(defaults);renderRules();render();});
-el('download').addEventListener('click',()=>{validate();const blob=new Blob([build(Number(el('stage').value)).html],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='uveg_plantilla_mail_merge.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);el('feedback').textContent='Plantilla descargada para '+stages[Number(el('stage').value)]+'.';});
+el('stage').addEventListener('change',()=>{markChanged();render();});el('previewCourse').addEventListener('change',render);
+el('addCourse').addEventListener('click',addCourse);
+el('rules').addEventListener('click',event=>{const button=event.target.closest('[data-delete]');if(button)deleteCourse(Number(button.dataset.delete));});
+el('reset').addEventListener('click',()=>{
+ if(!window.confirm('¿Reemplazar los cursos actuales por los dos cursos de ejemplo y sus metas originales? Después pulsa Guardar configuración si deseas conservar este cambio.'))return;
+ config=structuredClone(defaults);markChanged();renderRules(0);render();
+});
+el('saveConfig').addEventListener('click',()=>{try{if(saveConfiguration())el('configFeedback').textContent='Cursos, metas y momento del envío guardados. Puedes cerrar y volver a abrir este archivo en el mismo navegador.';}catch(error){el('configFeedback').textContent=error.message;}});
+el('exportConfig').addEventListener('click',()=>{
+ try{downloadText(exportConfiguration(),'uveg_configuracion_cursos.json','application/json;charset=utf-8');el('configFeedback').textContent='Configuración exportada. Incluye los ajustes actuales; puedes importarla en otro equipo.';}catch(error){el('configFeedback').textContent=error.message;}
+});
+el('importConfig').addEventListener('click',()=>el('configFile').click());
+el('configFile').addEventListener('change',async event=>{
+ const input=event.target,file=input.files?.[0];if(!file)return;
+ el('importConfig').disabled=true;
+ try{
+  if(file.size>MAX_FILE_BYTES)throw Error('El archivo supera los 256 KB permitidos. Selecciona la configuración JSON, no un Excel.');
+  const text=await file.text(),value=parseConfiguration(text);
+  if(!window.confirm('¿Importar '+value.courses.length+' '+(value.courses.length===1?'curso':'cursos')+' y reemplazar la configuración actual? El momento del envío será: '+stages[value.stage]+'.'))return;
+  importConfiguration(text);
+ }catch(error){el('configFeedback').textContent='No se importó el archivo. '+error.message+' Se mantiene tu configuración actual.';}
+ finally{input.value='';el('importConfig').disabled=false;}
+});
+el('download').addEventListener('click',()=>{validate();downloadText(build(Number(el('stage').value)).html,'uveg_plantilla_mail_merge.txt','text/plain;charset=utf-8');el('feedback').textContent='Plantilla descargada para '+stages[Number(el('stage').value)]+'.';});
 el('copyBody').addEventListener('click',()=>copy('htmlcode'));document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copy(b.dataset.copy)));
-window.UvegMail={build,substitute,htmlDoc,defaults,stages,getConfig:()=>structuredClone(config),setConfig:value=>{config=structuredClone(value);renderRules();render();}};
-renderRules();render();
+window.UvegMail={build,substitute,htmlDoc,defaults,stages,validateCourses,parseConfiguration,exportConfiguration,importConfiguration,saveConfiguration,addCourse,deleteCourse,getConfig:()=>structuredClone(config),setConfig:value=>applyConfiguration(parseConfiguration(JSON.stringify({schema:SCHEMA,version:1,stage:Number(el('stage').value),courses:value})))};
+restoreConfiguration();renderRules(0);render();
 })();
 </script>
 </body>
