@@ -531,6 +531,9 @@ SOFTWARE.
  const COURSES={pe:'Probabilidad y estadística',ei:'Estadística inferencial'};
  const DEFAULT_SETTINGS={advisor:'Eugenio Guerrero Ruiz',role:'Asesor de asignatura virtual',success:'Veo que tu entrega cumplió con todo lo establecido en la rúbrica. Tienes una tarea excelente. **¡Felicitaciones!**',closing:'Al corregir estos puntos, podrás mejorar tu entrega. Si tienes alguna duda, puedes plantearla por correo o por el mensajero del aula virtual. Consulta también los materiales de apoyo disponibles en la Bienvenida, dentro de Avisos.'};
  const obs=(id,title,text)=>({id,title,text});
+ const EA2_PREVIOUS_HYPOTHESES=raw`Revisa la formulación de tus hipótesis y distingue la media muestral de la media poblacional. Para \(630\) abandonos registrados en \(60\) semanas, el promedio observado es \(\bar{x}=630/60=10.5\) personas por semana.
+
+Si la pregunta del problema es determinar si el abandono medio semanal supera el promedio estatal de \(9\), plantea \(H_0:\mu=9\) frente a \(H_1:\mu>9\), donde \(\mu\) es la media poblacional de abandonos por semana. La dirección de la alternativa se determina por esa pregunta, antes de observar el resultado de la muestra.`;
  const DEFAULTS=[
  {id:'pe-r2',course:'pe',title:'R2. Estudio estadístico aplicado a un caso real',url:'https://avalicmod19c.uveg.edu.mx/mod/assign/view.php?id=5506',resource:'Recuerda revisar las Ligas importantes 2, donde encontrarás material útil para este reto.',note:'El tamaño n = 80 corresponde a los vaciados que describiste. Si la actividad cambia, edita la observación. Se precisaron el rango, el histograma y la ojiva.',observations:[
   obs('r2-frecuencias','Frecuencias de la TDF',raw`En la tabla de distribución de frecuencias (TDF), la frecuencia absoluta de cada clase debe contar los datos que pertenecen a su intervalo. Usa un criterio consistente en los extremos, para no contar un dato dos veces ni dejarlo fuera. Después, recalcula las frecuencias acumuladas y relativas, y los productos \(f_i m_i\) y \(f_i m_i^2\), donde \(m_i\) es la marca de clase.`),
@@ -575,10 +578,9 @@ Al sustituir, \(P(S\mid D)=\frac{0.80\cdot0.50}{0.80\cdot0.50+0.90\cdot0.30+0.60
 
 Explica en palabras qué significa cada probabilidad obtenida.`)
  ]},
- {id:'ei-ea2',course:'ei',title:'EA2. Análisis de un problema con herramientas estadísticas',url:'https://avalicmod41b.uveg.edu.mx/mod/assign/view.php?id=29680',resource:'',note:'Edita los números 630 y 60 si los datos del estudiante son diferentes. La alternativa se define por la pregunta del problema, no porque la media observada sea mayor que 9.',observations:[
-  obs('ea2-hipotesis','Hipótesis nula y alternativa',raw`Revisa la formulación de tus hipótesis y distingue la media muestral de la media poblacional. Para \(630\) abandonos registrados en \(60\) semanas, el promedio observado es \(\bar{x}=630/60=10.5\) personas por semana.
-
-Si la pregunta del problema es determinar si el abandono medio semanal supera el promedio estatal de \(9\), plantea \(H_0:\mu=9\) frente a \(H_1:\mu>9\), donde \(\mu\) es la media poblacional de abandonos por semana. La dirección de la alternativa se determina por esa pregunta, antes de observar el resultado de la muestra.`),
+ {id:'ei-ea2',course:'ei',title:'EA2. Análisis de un problema con herramientas estadísticas',url:'https://avalicmod41b.uveg.edu.mx/mod/assign/view.php?id=29680',resource:'',note:'Selecciona por separado el cálculo del promedio, las hipótesis y el tipo de variable según corresponda. Edita los números 630 y 60 si los datos del estudiante son diferentes. La alternativa se define por la pregunta del problema, no porque la media observada sea mayor que 9.',observations:[
+  obs('ea2-promedio','Cálculo del promedio semanal',raw`Revisa el cálculo del promedio de abandonos por semana. Debes dividir el total de abandonos registrados entre el número de semanas observadas. Por ejemplo, para \(630\) abandonos en \(60\) semanas, se obtiene \(\bar{x}=\frac{630}{60}=10.5\) personas por semana. Verifica la suma de tus datos, la cantidad de semanas y el resultado de la división.`),
+  obs('ea2-hipotesis','Hipótesis nula y alternativa',raw`Revisa la formulación de tus hipótesis. Si el objetivo es determinar si el abandono medio semanal supera el promedio estatal de \(9\) personas, plantea \(H_0:\mu=9\) frente a \(H_1:\mu>9\), donde \(\mu\) representa la media poblacional de abandonos por semana. Las hipótesis se formulan sobre ese parámetro; la dirección de la alternativa corresponde a la pregunta del problema.`),
   obs('ea2-variable','Tipo de variable',raw`La variable observada es el número de personas que abandonan por semana: es cuantitativa discreta, porque cuenta personas. Su promedio puede tener decimales, como \(10.5\), sin que por ello el conteo semanal se convierta en una variable continua.`)
  ]},
  {id:'ei-ea5',course:'ei',title:'EA5. Prueba de hipótesis',url:'https://avalicmod41b.uveg.edu.mx/mod/assign/view.php?id=29687',resource:'',note:'Los valores −2.04 y 2.74 provienen de tus retroalimentaciones y no se recalcularon sin los datos originales. Se conserva la prueba bilateral de tus textos. Verifica si el enunciado exige otra alternativa. El intervalo (9.7, 9.8)% está demasiado redondeado para decidir si contiene 9.8%; por eso se pide reportarlo con más decimales.',observations:[
@@ -662,7 +664,7 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
  function parseConfiguration(text){
   if(typeof text!=='string'||text.length>400000)throw Error('El archivo de textos debe tener menos de 400 KB.');
   let data;try{data=JSON.parse(text);}catch{throw Error('No se pudo leer el archivo JSON.');}
-  if(!data||data.schema!=='uveg-retroalimentaciones'||data.version!==1||!Array.isArray(data.activities)||data.activities.length!==DEFAULTS.length)throw Error('El archivo no es una configuración compatible de retroalimentaciones.');
+  if(!data||data.schema!=='uveg-retroalimentaciones'||![1,2].includes(data.version)||!Array.isArray(data.activities)||data.activities.length!==DEFAULTS.length)throw Error('El archivo no es una configuración compatible de retroalimentaciones.');
   const str=(value,label,max)=>{if(typeof value!=='string'||value.length>max)throw Error('Revisa '+label+'.');return value;};
   const settings={};for(const key of Object.keys(DEFAULT_SETTINGS))settings[key]=str(data.settings?.[key],key,6000);
   const ids=new Set();
@@ -675,9 +677,17 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
     const id=str(o?.id,'el identificador de observación',120);if(!/^[a-zA-Z0-9_-]+$/.test(id)||observationIds.has(id))throw Error('Hay observaciones repetidas o no válidas.');observationIds.add(id);
     return {id,title:str(o.title,'el título de observación',200),text:str(o.text,'el texto de observación',15000)};
    });
+   if(a.id==='ei-ea2'&&data.version===1){
+    const hypothesis=observations.find(o=>o.id==='ea2-hipotesis');
+    if(hypothesis?.text===EA2_PREVIOUS_HYPOTHESES)hypothesis.text=base.observations.find(o=>o.id==='ea2-hipotesis').text;
+    if(!observationIds.has('ea2-promedio')&&observations.length<60){
+     const index=observations.findIndex(o=>o.id==='ea2-hipotesis');
+     observations.splice(index<0?0:index,0,clone(base.observations.find(o=>o.id==='ea2-promedio')));
+    }
+   }
    return {...base,title,url,resource:str(a.resource??'','el material de apoyo',3000),observations};
   });
-  return {schema:'uveg-retroalimentaciones',version:1,settings,activities};
+  return {schema:'uveg-retroalimentaciones',version:2,settings,activities};
  }
  root.UvegRetroCore={DEFAULTS,DEFAULT_SETTINGS,COURSES,QUOTE,AUTHOR,clone,esc,safeUrl,makeMessage,documentHtml,parseConfiguration};
 })(typeof window!=='undefined'?window:globalThis);
@@ -758,7 +768,7 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
   const last=el('retro-observations').lastElementChild,details=last.querySelector('details');details.open=true;details.querySelector('textarea').focus();
  });
  el('retro-next').addEventListener('click',()=>{state.name='';state.extra='';state.selected=[];state.mode='correct';state.timely=true;el('retro-name').value='';el('retro-extra').value='';el('retro-mode').value='correct';el('retro-timely').checked=true;renderObservations();changed();el('retro-name').focus();});
- function configuration(){return {schema:'uveg-retroalimentaciones',version:1,settings:C.clone(state.settings),activities:C.clone(state.activities)};}
+ function configuration(){return {schema:'uveg-retroalimentaciones',version:2,settings:C.clone(state.settings),activities:C.clone(state.activities)};}
  function validatedConfiguration(){const data=JSON.stringify(configuration());C.parseConfiguration(data);return data;}
  function save(){let data;try{data=validatedConfiguration();}catch(error){el('retro-save-state').textContent='No se guardaron los cambios: '+error.message;return;}try{window.localStorage.setItem(key,data);if(window.localStorage.getItem(key)!==data)throw Error('No se pudo confirmar el guardado.');state.dirty=false;state.storageWarning='';updateSaveState();el('retro-save-state').textContent='Textos y enlaces guardados en este navegador.';}catch{state.storageWarning='El navegador no permitió guardar. Exporta las retroalimentaciones para conservar los cambios.';updateSaveState();}}
  el('retro-save').addEventListener('click',save);
