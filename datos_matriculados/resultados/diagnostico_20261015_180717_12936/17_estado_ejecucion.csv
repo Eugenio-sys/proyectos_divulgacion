@@ -1,0 +1,2 @@
+﻿version,fecha_utc,procesamiento_completo,revision_tecnica_pendiente,metodologia_aprobada,archivos_encontrados,archivos_reconstruidos,archivos_con_error,archivos_con_problema_estructural,combinaciones_faltantes,combinaciones_duplicadas,combinaciones_fuera_de_cobertura,rds_guardados,registros_todos_periodos,registros_inicio_candidato,filas_persona_recinto_anio_inicio,periodos_bloqueados,avisos
+2.0,2026-10-15 22:14:57,TRUE,TRUE,FALSE,100,100,0,0,0,0,0,100,734081,355954,355062,0,2

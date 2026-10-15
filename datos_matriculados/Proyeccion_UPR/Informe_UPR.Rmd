@@ -1,0 +1,352 @@
+---
+title: "Proyección preliminar de matrícula de la Universidad de Puerto Rico"
+output:
+  word_document:
+    reference_docx: estilo.docx
+    number_sections: true
+lang: es-PR
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
+                      dpi = 200)
+options(scipen = 999)
+paquetes <- c("knitr", "flextable", "officer")
+faltan <- paquetes[!vapply(paquetes, requireNamespace, logical(1), quietly = TRUE)]
+if (length(faltan)) stop("Instala estos paquetes: ", paste(faltan, collapse = ", "))
+# Knit establece el directorio del archivo. this.path permite Source/render directo.
+raiz <- if (requireNamespace("this.path", quietly = TRUE))
+  tryCatch(this.path::this.dir(), error = function(e) NULL) else NULL
+if (is.null(raiz) || !file.exists(file.path(raiz, "data", "07_agregado_recintos_disponibles.csv"))) {
+  entrada <- knitr::current_input(dir = TRUE)
+  if (length(entrada) && nzchar(entrada)) raiz <- dirname(normalizePath(entrada))
+}
+if (is.null(raiz) || !dir.exists(file.path(raiz, "data")))
+  stop("Conserva el Rmd junto a data/, figuras/ y estilo.docx.")
+knitr::opts_knit$set(root.dir = raiz)
+source(file.path(raiz, "preparar_resultados.R"), local = TRUE)
+d <- cargar_resultados(raiz)
+generar_figuras(d, raiz)
+leer <- function(nombre) read.csv(file.path(raiz, "data", paste0(nombre, ".csv")),
+                                  check.names = FALSE, fileEncoding = "UTF-8-BOM")
+A <- d$agregado
+H <- d$historico
+P <- d$proyeccion_recintos
+V <- d$validacion
+S <- d$sensibilidad
+G <- d$G12
+B <- d$otras_incorporaciones
+M <- leer("08b_metricas_validacion")
+Q <- leer("16_calidad_base_subgrado")
+fmt <- function(x) formatC(round(x), format = "f", digits = 0, big.mark = ",", decimal.mark = ".")
+pct <- function(x) sprintf("%.2f%%", x)
+recinto <- nombre_recinto
+ha <- aggregate(cbind(subgrado, posgrado, otros, escolar, total_grado, total_no_escolar) ~ anio_inicio, H, sum)
+base <- A[A$anio_inicio == 2025, ]; fin <- A[A$anio_inicio == 2050, ]
+v <- V[V$ventana == 5, ]
+wm <- function(proy, obs) 100 * sum(abs(proy - obs)) / sum(obs)
+metrica <- function(variable, referencia = FALSE) {
+  z <- M[M$ventana == 5 & M$variable == variable, ]
+  if (nrow(z) != 1L) stop("Metrica de validacion ausente o repetida: ", variable)
+  100 * z[[if (referencia) "WMAPE_base" else "WMAPE"]]
+}
+cifras <- list(
+ base = fmt(base$total_grado), fin = fmt(fin$total_grado),
+ caida = pct(100 * (1 - fin$total_grado / base$total_grado)),
+ hist_ini = fmt(ha$total_grado[ha$anio_inicio == 2017]),
+ caida_hist = pct(100 * (1 - base$total_grado / ha$total_grado[ha$anio_inicio == 2017])),
+ sub_base = fmt(base$subgrado), pos_base = fmt(base$posgrado), otros_base = fmt(base$otros),
+ no_escolar_base = fmt(base$total_no_escolar), escolar_base = fmt(ha$escolar[ha$anio_inicio == 2025]),
+ sub_fin = fmt(fin$subgrado), pos_fin = fmt(fin$posgrado), otros_fin = fmt(fin$otros),
+ otras_entradas = formatC(sum(B$incorporaciones_anuales), digits = 1, format = "f", big.mark = ","),
+ proy_2026 = fmt(A$total_grado[A$anio_inicio == 2026]),
+ obs_2026 = fmt(ha$total_grado[ha$anio_inicio == 2026]),
+ wmape = pct(metrica("total_grado")), naive = pct(metrica("total_grado", TRUE)),
+ wmape_otros = pct(metrica("otros")),
+ sin_origen = fmt(sum(Q$sin_origen)),
+ sin_origen_pct = pct(100 * sum(Q$sin_origen) / sum(Q$subgrado)),
+ cota = fmt(sum(Q$cinco_mas_por_cota)),
+ g12_base = fmt(G$total_G12[G$anio_inicio == 2025]),
+ g12_fin = fmt(G$total_G12[G$anio_inicio == 2050]))
+
+tabla <- function(d) {
+  ft <- flextable::flextable(d)
+  ft <- flextable::font(ft, fontname = "Times New Roman", part = "all")
+  ft <- flextable::fontsize(ft, size = 10, part = "all")
+  ft <- flextable::align(ft, align = "center", part = "all")
+  ft <- flextable::align(ft, j = 1, align = "left", part = "all")
+  ft <- flextable::valign(ft, valign = "center", part = "all")
+  ft <- flextable::bg(ft, bg = "#EEF2F7", part = "header")
+  ft <- flextable::bold(ft, part = "header")
+  ft <- flextable::border_remove(ft)
+  borde <- officer::fp_border(color = "#D9D9D9", width = 0.5)
+  ft <- flextable::border_outer(ft, border = borde, part = "all")
+  ft <- flextable::border_inner_h(ft, border = borde, part = "all")
+  ft <- flextable::border_inner_v(ft, border = borde, part = "all")
+  ft <- flextable::padding(ft, padding = 4, part = "all")
+  ft <- flextable::autofit(ft)
+  ft <- flextable::paginate(ft, init = TRUE, hdr_ftr = TRUE)
+  flextable::set_table_properties(ft, layout = "autofit", width = 1,
+                                 opts_word = list(split = FALSE, keep_with_next = TRUE))
+}
+```
+
+::: {custom-style="Metadata"}
+Eugenio Guerrero Ruiz
+
+15 de octubre de 2026
+:::
+
+# Resumen
+
+Presentamos una proyección preliminar de la matrícula al inicio del año académico para diez recintos de la Universidad de Puerto Rico hasta 2050–2051. El modelo combina el ingreso desde escuela secundaria, relacionado con la matrícula de duodécimo del curso anterior, con la continuidad entre censos y las demás incorporaciones. Se utiliza 2025–2026 como base y una ventana principal de cinco años. El agregado de subgrado y posgrado pasa de `r cifras$base` a `r cifras$fin` bajo el escenario central, una reducción de `r cifras$caida`. Los `r cifras$otros_base` registros sin grado homologado se proyectan separadamente y se excluyen `r cifras$escolar_base` registros escolares del censo base. En la evaluación retrospectiva de un curso, el error absoluto porcentual ponderado del agregado principal es `r cifras$wmape`, frente a `r cifras$naive` al mantener la matrícula del curso anterior. Esta mejora es modesta y no acredita precisión de largo plazo. Los resultados excluyen Mayagüez y representan sumas por recinto, sin deduplicación entre recintos. Son condicionales a los supuestos escolares, demográficos y universitarios y no constituyen intervalos de predicción.
+
+**Palabras clave:** matrícula universitaria, proyección de cohortes, nuevo ingreso, continuidad, duodécimo grado, Puerto Rico.
+
+# Introducción
+
+La matrícula universitaria depende del ingreso de nuevos estudiantes y de la continuidad de quienes ya están matriculados. También intervienen readmisiones, traslados y cambios de nivel. Por ello, proyectar solamente el nuevo ingreso no permite estimar el conjunto del censo universitario. Es necesario representar esas entradas y el movimiento entre censos consecutivos.
+
+El agregado observado de subgrado y posgrado de los diez recintos disponibles pasó de `r cifras$hist_ini` en 2017–2018 a `r cifras$base` en 2025–2026, una disminución de `r cifras$caida_hist`. Este informe examina su posible evolución si se mantienen las relaciones recientes de ingreso y continuidad y se incorpora la trayectoria de la población de referencia para duodécimo grado. Se distinguen los grados identificados, los registros sin homologación suficiente y la matrícula escolar para evitar que cambios de clasificación se interpreten como cambios de matrícula universitaria.
+
+## Objetivo
+
+Estimar anualmente la matrícula del censo inicial por recinto y componente académico entre 2026–2027 y 2050–2051, tomando 2025–2026 como base. Se presenta como resultado principal el agregado de subgrado y posgrado; los otros registros no escolares se conservan separadamente. Se evalúan la reproducción retrospectiva de un curso y la sensibilidad a ventanas históricas de tres y cinco años.
+
+# Metodología
+
+## Fuentes de información y unidad de análisis
+
+Se reconstruyeron 100 archivos universitarios de diez recintos y diez cursos, de 2017–2018 a 2026–2027. Los recintos son Aguadilla, Arecibo, Bayamón, Carolina, Cayey, Ciencias Médicas, Humacao, Ponce, Río Piedras y Utuado. Mayagüez no está incluido. Los archivos originales contienen registros de estudiante y período. La revisión del procesamiento verificó la cobertura por recinto y curso, la identificación de los calendarios y la conciliación de los conteos; los balances de continuidad e incorporaciones cierran en los componentes observados.
+
+El objetivo es la matrícula al inicio del año académico. Se selecciona el primer semestre, trimestre o período denominado *Quarter*, según el calendario, y se incorporan los períodos anuales correspondientes. Se conserva una sola observación cuando una persona aparece en varios calendarios seleccionados del mismo recinto y curso. El identificador se mantiene entre años y recintos, según la confirmación recibida para este análisis, lo que permite enlazar observaciones. La suma por recinto puede contar a la misma persona en más de un recinto; no equivale al número de personas únicas del sistema.
+
+Se usa 2025–2026 como base porque no se ha certificado la consolidación del censo inicial de 2026–2027. Este último se conserva como contraste provisional y se excluye de la estimación de parámetros universitarios. La ausencia de parte del segundo semestre no determina por sí misma la validez del censo inicial. La medida proyectada tampoco es la suma de los dos semestres ni el conjunto de personas atendidas durante todo el curso.
+
+El componente escolar utiliza `Publicas_18_anios.csv`, con matrícula pública hasta 2025–2026; `privadas_t.xlsx`, con matrícula privada hasta 2023–2024; `P_t.csv`, con población estimada de cinco años; y `poptotal_edades_sencillas.csv`, con proyecciones de población por edad. La extensión privada toma el procedimiento del informe escolar suministrado. La matrícula de grado 12 es un insumo distinto de los graduados efectivos.
+
+## Clasificación académica y reconstrucción de cohortes
+
+El subgrado con grado identificado comprende bachillerato y grado asociado, ajustados separadamente por recinto. El posgrado reúne los niveles de maestría, doctorado y grados profesionales homologados. Las clasificaciones de Escuela Superior se separan del universo universitario. Los registros no escolares sin homologación suficiente permanecen en el componente Otros: no se les asigna un grado a partir de una clasificación administrativa aislada.
+
+El modelo de subgrado utiliza seis estados: primer, segundo, tercer y cuarto año desde el origen identificado, quinto año o más y sin origen identificable. Estos estados representan antigüedad desde el origen y no la clasificación administrativa por créditos. Se asigna el origen mediante un nuevo ingreso observado compatible con la trayectoria; en ausencia de este, se utiliza una cohorte estable, del mismo nivel y temporalmente compatible. Si el tiempo transcurrido desde la primera observación permite establecer una antigüedad mínima de cinco cursos, se asigna quinto año o más aunque no se conozca el origen exacto. Los casos restantes conservan el estado sin origen.
+
+La reconstrucción se realiza con la información disponible hasta cada censo. Una cohorte o un nuevo ingreso registrados en cursos posteriores no modifican retroactivamente los estados anteriores. Esta regla se aplica también en los cortes de la evaluación retrospectiva. En el censo base, `r cifras$sin_origen` matrículas de subgrado (`r cifras$sin_origen_pct`) permanecen sin origen y `r cifras$cota` se asignan a quinto año o más por una cota mínima de antigüedad.
+
+## Nuevo ingreso y componente escolar
+
+El ingreso consistente desde secundaria exige una marca de nuevo ingreso compatible con un origen observado en el mismo curso, sin contradicciones de cohorte o fechas ni una observación universitaria previa del mismo nivel. Pertenecer al estado de primer año no basta para cumplir esa definición. Los siete casos que permanecen pendientes de revisión en el panel completo se conservan en los conteos y, cuando corresponda, en las otras incorporaciones; no se añaden automáticamente al numerador de captación.
+
+Sea $G_t$ la matrícula pública y privada de duodécimo en el curso $t$, e $I_{r,g,t+1}$ el ingreso consistente desde secundaria del recinto $r$ y nivel $g$ en el curso siguiente. El coeficiente de captación es el promedio de las razones anuales observadas:
+
+$$
+\widehat\alpha_{r,g}=\frac{1}{m}\sum_{t\in\mathcal C}
+\frac{I_{r,g,t+1}}{G_t}.
+$$
+
+La ventana principal usa las cinco últimas cohortes con denominador escolar observado en ambos sectores: ingresos de 2020–2021 a 2024–2025 y matrícula de duodécimo de 2019–2020 a 2023–2024. El coeficiente expresa una relación histórica entre ingreso y matrícula escolar; no es directamente la proporción de una promoción de graduados que ingresa al recinto. Los valores privados estimados no se tratan como denominadores observados al calibrar este coeficiente.
+
+La matrícula privada se extiende hasta 2025–2026 mediante el procedimiento Monte Carlo del componente escolar, con 10,000 réplicas, semilla 123 y ventana de cinco años. La mediana simulada fija el ancla de la extensión. A partir de esa ancla, el escenario futuro aplica a ambos sectores el cambio proporcional de la mediana de población de 17 años:
+
+$$
+G_{s,t}=G_{s,2025}\frac{P_{17,t}}{P_{17,2025}},
+\qquad s\in\{\text{público},\text{privado}\}.
+$$
+
+Se interpolan linealmente los puntos quinquenales para obtener una serie anual. El supuesto mantiene constante la relación matrícula–población dentro de cada sector y, por ello, la proporción entre matrícula pública y privada. Esta serie futura es un escenario demográfico proporcional; no se obtiene volviendo a aplicar las razones escolares de progresión de grado. La interpolación tampoco incorpora información anual observada adicional.
+
+## Continuidad e incorporaciones de subgrado
+
+Para cada recinto y nivel, $\mathbf x_t$ contiene la matrícula en los seis estados. La entrada $p_{ij}$ de la matriz $\mathbf P$ representa la proporción que pasa del estado $i$ al estado $j$ dentro del mismo recinto y nivel. Se estima como la suma de esos flujos dividida entre la exposición total del estado de origen. La ventana principal de transiciones usa los destinos 2021–2022 a 2025–2026; difiere de la ventana de captación porque esta requiere un denominador escolar observado.
+
+Las filas de $\mathbf P$ pueden sumar menos de uno. La diferencia representa a quienes no reaparecen en el mismo recinto y nivel y puede incluir salidas, traslados o cambios de componente. No equivale a abandono definitivo. Si un estado carece de exposición local, se utiliza la experiencia conjunta del mismo nivel; esta sustitución se identifica en las tablas de parámetros.
+
+La evolución anual se calcula mediante
+
+$$
+\mathbf x_{t+1}=\mathbf P^{\mathsf T}\mathbf x_t+
+\mathbf b+\widehat\alpha G_t\mathbf e_1,
+$$
+
+omitiendo los índices de recinto y nivel. El vector $\mathbf e_1$ asigna el ingreso desde secundaria al primer estado. El vector $\mathbf b$ contiene el promedio anual de las otras incorporaciones por estado y se mantiene constante. Su suma para los diez recintos es `r cifras$otras_entradas` por curso; puede incluir readmisiones, traslados, cambios de nivel y casos que no cumplen la definición de ingreso consistente.
+
+El aporte de cuarto año a quinto o más es $p_{4,5+}x_{4,t}$, mientras que la permanencia en quinto o más es $p_{5+,5+}x_{5+,t}$. Se utilizan numeradores separados para ambos flujos. Se comprueba que la continuidad y las incorporaciones reproducen los balances históricos y que el modelo coincide con el censo del año base.
+
+## Posgrado y otros registros no escolares
+
+Cada componente auxiliar se proyecta por recinto con una persistencia $p$ y un promedio anual de incorporaciones $a$:
+
+$$
+y_{t+1}=p\,y_t+a.
+$$
+
+Cuando la exposición acumulada es inferior a 100 observaciones o no se observan salidas suficientes para aplicar la recurrencia, se conserva la matrícula del año base. Las reglas aplicadas quedan identificadas en la tabla de parámetros auxiliares. Las entradas constantes de posgrado y Otros no se relacionan directamente con el tamaño de las cohortes escolares. Sus niveles de largo plazo dependen de ese supuesto y deben interpretarse como parte del escenario.
+
+## Evaluación retrospectiva y sensibilidad
+
+Se proyectaron a un paso los cursos 2023–2024, 2024–2025 y 2025–2026. Cada ajuste utiliza filas universitarias hasta el curso anterior al objetivo y estados de cohorte reconstruidos hasta cada censo, sin información universitaria posterior al corte. Se compara con una referencia que mantiene la matrícula del curso anterior. El error absoluto porcentual ponderado se define por
+
+$$
+\mathrm{WMAPE}=100\frac{\sum_{r,t}|\widehat N_{r,t}-N_{r,t}|}
+{\sum_{r,t}N_{r,t}}.
+$$
+
+Cada ventana comprende 30 pares de recinto y curso. El denominador pondera el error respecto a la matrícula observada conjunta; la suma de errores absolutos evita la cancelación entre recintos. Se calculan métricas separadas para subgrado, posgrado, Otros, el agregado de grados identificados y el total no escolar.
+
+La evaluación es retrospectiva y condicional a los valores de duodécimo del curso previo y a las versiones actuales de los archivos. No reproduce un archivo histórico de información congelada ni una validación prospectiva realizada en aquellas fechas. Aunque los cortes universitarios se respetan, no se ha certificado la disponibilidad de cada insumo escolar en la fecha original del pronóstico. La evaluación a un paso tampoco acredita precisión hasta 2050–2051.
+
+La ventana de tres años mide sensibilidad frente a la principal de cinco. La diferencia entre sus trayectorias no es un intervalo de confianza ni un intervalo predictivo. No se propagó conjuntamente la incertidumbre escolar, demográfica y universitaria.
+
+# Resultados
+
+## Evolución histórica y matrícula del año base
+
+El censo de 2025–2026 contiene `r cifras$sub_base` matrículas de subgrado y `r cifras$pos_base` de posgrado, para un agregado principal de `r cifras$base`. Aparte se conservan `r cifras$otros_base` registros no escolares sin grado homologado: el total no escolar es `r cifras$no_escolar_base`. Los `r cifras$escolar_base` registros de Escuela Superior se excluyen de la proyección. Esta separación permite conciliar el archivo original sin tratar la matrícula escolar como universitaria.
+
+::: {custom-style="Figure Image"}
+```{r figura-historico, out.width='100%'}
+knitr::include_graphics(file.path(raiz, "figuras", "historico_grado.png"))
+```
+:::
+
+::: {custom-style="Caption"}
+**Figura 1.** Matrícula observada de subgrado y posgrado en los diez recintos. El año identifica el inicio del curso académico; 2026–2027 se conserva como contraste provisional.
+:::
+
+La reducción histórica del agregado principal se concentra en subgrado. La variación de Otros es mayor y su aumento reciente debe interpretarse junto con la heterogeneidad de las clasificaciones que reúne. No se utiliza ese componente para inferir un cambio equivalente de matrícula en grados identificados.
+
+## Trayectoria central del agregado
+
+La proyección central alcanza `r cifras$fin` matrículas de subgrado y posgrado en 2050–2051. El subgrado pasa de `r cifras$sub_base` a `r cifras$sub_fin`; el posgrado, de `r cifras$pos_base` a `r cifras$pos_fin`. Otros pasa de `r cifras$otros_base` a `r cifras$otros_fin` y se mantiene separado. La relativa estabilidad futura del posgrado es consecuencia de la persistencia y las incorporaciones constantes; no es una estimación independiente de la demanda futura de estudios graduados.
+
+::: {custom-style="Table Caption"}
+**Tabla 1.** Proyección central por componente en cursos seleccionados.
+:::
+
+```{r tabla-agregado}
+z <- A[A$anio_inicio %in% c(2025, 2030, 2040, 2050),
+       c("anio", "subgrado", "posgrado", "total_grado", "otros")]
+z[-1] <- lapply(z[-1], fmt)
+names(z) <- c("Curso", "Subgrado", "Posgrado", "Subgrado y posgrado", "Otros no escolares")
+tabla(z)
+```
+
+Las cifras se redondean para presentación; los cálculos utilizan valores sin redondear. El curso 2025–2026 es observado. Otros no se incluye en el agregado principal y Escolar queda excluido de todas las proyecciones.
+
+::: {custom-style="Figure Image"}
+```{r figura-proyeccion, out.width='100%'}
+knitr::include_graphics(file.path(raiz, "figuras", "proyeccion_grado.png"))
+```
+:::
+
+::: {custom-style="Caption"}
+**Figura 2.** Proyección de subgrado y posgrado con ventanas de cinco y tres años. Las líneas comparan dos ajustes del mismo escenario; no delimitan un intervalo probabilístico.
+:::
+
+La trayectoria escolar que alimenta el nuevo ingreso pasa de `r cifras$g12_base` matrículas de duodécimo en 2025–2026 a `r cifras$g12_fin` en 2050–2051. La matrícula universitaria responde con rezago porque combina las entradas anuales con cohortes que permanecen matriculadas.
+
+La disminución no es monótona. El agregado de subgrado y posgrado alcanza un mínimo de `r fmt(min(A$total_grado))` en `r etiqueta_curso(A$anio_inicio[which.min(A$total_grado)])` y luego se recupera parcialmente hasta el final del horizonte. Ese cambio sigue, con rezago, el repunte del insumo demográfico escolar.
+
+## Proyección por recinto
+
+La disminución proyectada es desigual. Ciencias Médicas permanece próximo al nivel de base por el peso del posgrado y de los componentes con incorporaciones constantes. Las diferencias entre recintos deben interpretarse junto con su composición académica y las reglas aplicadas. No permiten atribuir por sí solas los resultados a reclutamiento o retención.
+
+::: {custom-style="Table Caption"}
+**Tabla 2.** Subgrado y posgrado por recinto y cambio respecto al año base.
+:::
+
+```{r tabla-recintos}
+rr <- reshape(P[P$anio_inicio %in% c(2025, 2030, 2050),
+                c("recinto", "anio_inicio", "total_grado")],
+              idvar = "recinto", timevar = "anio_inicio", direction = "wide")
+rr <- rr[order(rr$recinto), ]
+z <- data.frame(Recinto = recinto(rr$recinto),
+                `2025–2026` = fmt(rr$total_grado.2025),
+                `2030–2031` = fmt(rr$total_grado.2030),
+                `2050–2051` = fmt(rr$total_grado.2050),
+                `Cambio porcentual` = pct(100 * (rr$total_grado.2050 / rr$total_grado.2025 - 1)),
+                check.names = FALSE)
+tabla(z)
+```
+
+Los valores redondeados por recinto pueden no sumar exactamente el agregado redondeado. No se incluye Mayagüez ni se deduplican personas entre recintos.
+
+## Evaluación retrospectiva y contraste provisional de 2026
+
+El WMAPE del agregado principal es `r cifras$wmape` con cinco años, frente a `r cifras$naive` en la referencia del curso anterior. La mejora es modesta. El comportamiento varía por componente: el error de Otros alcanza `r cifras$wmape_otros`, por lo que sus resultados requieren una lectura separada. Aunque mejora frente a su referencia constante, ese error refleja que el modelo reproduce con dificultad la variación de un componente heterogéneo.
+
+::: {custom-style="Table Caption"}
+**Tabla 3.** Error absoluto porcentual ponderado en los cursos 2023–2024 a 2025–2026.
+:::
+
+```{r tabla-validacion}
+variables <- c("subgrado", "posgrado", "otros", "total_grado", "total_no_escolar")
+z <- data.frame(Componente = c("Subgrado", "Posgrado", "Otros no escolares", "Subgrado y posgrado", "Total no escolar"),
+  Modelo = vapply(variables, metrica, numeric(1)),
+  Referencia = vapply(variables, metrica, numeric(1), referencia = TRUE))
+z[-1] <- lapply(z[-1], pct)
+names(z)[-1] <- c("Modelo de cinco años", "Curso anterior constante")
+tabla(z)
+```
+
+Cada fila comprende 30 pares de recinto y curso. El total no escolar incluye Otros; el agregado de subgrado y posgrado comprende únicamente los grados identificados. El error del total no escolar queda prácticamente igual al de la referencia, lo que limita cualquier afirmación de mejora general del modelo.
+
+::: {custom-style="Figure Image"}
+```{r figura-validacion, out.width='100%'}
+knitr::include_graphics(file.path(raiz, "figuras", "validacion_grado.png"))
+```
+:::
+
+::: {custom-style="Caption"}
+**Figura 3.** Error de subgrado y posgrado por recinto en la evaluación retrospectiva condicional de 2023–2024 a 2025–2026. Comparación del modelo con el censo del curso anterior.
+:::
+
+Para 2026–2027, el modelo proyecta `r cifras$proy_2026` matrículas de subgrado y posgrado y el censo suministrado registra `r cifras$obs_2026`. La diferencia agregada es pequeña, pero puede ocultar compensaciones entre recintos. Se trata de un contraste provisional del censo inicial, cuya consolidación está pendiente de certificación; no evalúa el año académico completo ni constituye una validación prospectiva.
+
+## Sensibilidad a la ventana histórica
+
+::: {custom-style="Table Caption"}
+**Tabla 4.** Agregado de subgrado y posgrado con ventanas de tres y cinco años.
+:::
+
+```{r tabla-sensibilidad}
+ss <- aggregate(total_grado ~ ventana + anio_inicio, S, sum)
+ss <- reshape(ss[ss$anio_inicio %in% c(2030, 2040, 2050), ],
+              idvar = "anio_inicio", timevar = "ventana", direction = "wide")
+ss <- ss[order(ss$anio_inicio), ]
+z <- data.frame(Curso = paste0(ss$anio_inicio, "–", ss$anio_inicio + 1L),
+ `Tres años` = fmt(ss$total_grado.3), `Cinco años` = fmt(ss$total_grado.5), check.names = FALSE)
+tabla(z)
+```
+
+La ventana de tres años produce niveles mayores en los cursos seleccionados. Ambas trayectorias comparten el escenario escolar y los supuestos de incorporaciones constantes. Su comparación describe el efecto de cambiar la historia utilizada; no permite descartar otras trayectorias ante cambios en la captación, la continuidad o la participación escolar.
+
+# Discusión
+
+Bajo el escenario central, el agregado de subgrado y posgrado disminuye `r cifras$caida` entre 2025–2026 y 2050–2051. La trayectoria resulta de combinar el insumo escolar, la continuidad histórica y las entradas constantes. No representa un resultado inevitable: cambios en captación, oferta académica, traslados, readmisiones o continuidad modificarían los niveles proyectados.
+
+La evaluación de un curso mejora modestamente la referencia de mantener el censo anterior para los grados identificados. Aunque los estados se reconstruyen sin información universitaria posterior al corte, el ejercicio utiliza las versiones actuales de los archivos y depende del insumo escolar. Sin un archivo histórico de disponibilidad, no reproduce íntegramente un pronóstico emitido en cada fecha. Deben evaluarse horizontes de varios cursos y diferencias entre recintos antes de atribuir capacidad predictiva de largo plazo.
+
+Otros requiere revisión administrativa y metodológica: reúne registros sin homologación suficiente, presenta variación reciente considerable y un error retrospectivo elevado. Se conserva para conciliar los conteos y se muestra separado de los grados identificados. Revisar su clasificación permitirá distinguir cambios de matrícula de cambios de registro.
+
+La matrícula de duodécimo es un indicador operativo del volumen escolar relacionado con el ingreso universitario, pero no sustituye una serie de graduados efectivos. El escenario proporcional a población de 17 años mantiene fija la relación entre sectores y no contempla cambios futuros de participación escolar. Además, las entradas constantes de posgrado y de otras incorporaciones sostienen parte del nivel de largo plazo. Por ello, la estabilidad de algunos componentes no debe interpretarse como evidencia de demanda estable.
+
+Las próximas revisiones deben incorporar Mayagüez, resolver las clasificaciones pendientes y contrastar con cada recinto los supuestos de continuidad, incorporaciones y captación. Deben también certificar el censo inicial de 2026–2027 y propagar conjuntamente la incertidumbre escolar, demográfica y universitaria.
+
+# Referencias
+
+::: {custom-style="Bibliography"}
+*Informe de proyección de matrícula escolar pública y privada*. (s. f.). Código de trabajo suministrado `Informe_GPR_v4.Rmd` y plantilla `estilo.docx`.
+:::
+
+::: {custom-style="Bibliography"}
+Equipo de Proyecciones. (2026, 12 de agosto). *Instrucciones metodológicas para la proyección de matrícula por recinto de la Universidad de Puerto Rico*. Documento de trabajo suministrado `instrucciones_modelo_matricula_upr.docx`.
+:::
+
+::: {custom-style="Bibliography"}
+Universidad de Puerto Rico. (2017–2026). *Archivos de matrícula por recinto y curso académico*. Diez recintos disponibles, cursos 2017–2018 a 2026–2027.
+:::
+
+::: {custom-style="Bibliography"}
+Guerrero Ruiz, E. (2026). *Procesamiento y proyección preliminar de matrícula universitaria*. Scripts `01_diagnostico_matricula.R`, `02_cohortes_transiciones.R` y `03_proyeccion_preliminar.R`, versión 2.0; salidas validadas de las etapas 1 a 3.
+:::

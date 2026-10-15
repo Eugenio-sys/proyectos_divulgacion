@@ -1,0 +1,43 @@
+COHORTES Y TRANSICIONES UPR - ETAPA 2 v2.0
+
+Diagnostico utilizado: C:/Users/eugue/Desktop/datos_matriculados/resultados/diagnostico_20261015_180717_12936
+Condiciones confirmadas por el usuario el 15 de octubre de 2026:
+- El identificador no cambia entre anos ni entre recintos.
+- El objetivo es la matricula al inicio del ano academico.
+
+Registros de periodos iniciales/anuales: 355954
+Filas persona-recinto-ano: 355062
+Identificadores distintos en todos los anos y recintos: 120825
+Son unidades diferentes. La suma de recintos no equivale a personas unicas del conjunto.
+
+01 reproduce la seleccion auditada del nuevo 01; se verificaron todos los RDS y sus conteos.
+02 y 03 presentan componentes y union por persona-recinto-ano, sin duplicar calendarios.
+04 incluye toda clasificacion escolar explicita, no solo la etiqueta De Escuela Secundaria.
+05 asigna antiguedad cronologica del grado usando solo informacion hasta cada censo.
+Un cambio de recinto no reinicia el origen del grado; Asoc y Bach tienen origen separado.
+La llave id+nivel no separa programas ni segundas titulaciones del mismo nivel; los NI repetidos quedan ambiguos.
+5 o mas puede provenir de una cota temporal; no significa cinco cursos efectivamente matriculados.
+06 separa candidatos, consistentes y pendientes. Una etiqueta aislada no certifica nuevo ingreso.
+Si NI candidato y cohorte discrepan, el origen prioriza el NI observado y conserva la contradiccion; ese NI queda pendiente, no consistente.
+First Academic Year y niveles Primero/Segundo/etc no se usan para inventar origenes.
+07 muestra flujos entre censos; no observado en recinto no identifica graduacion ni abandono.
+08 contiene tasas ponderadas por exposicion de los ultimos pares de calibracion.
+09 verifica stock siguiente = continuantes del mismo grupo + incorporaciones.
+10 conserva entradas secundarias pendientes dentro de las incorporaciones, sin perderlas.
+11 cuenta identificadores por numero de anos y recintos: no es una prueba de identidad.
+12 separa grado identificado, subgrado generico, escolar, otros y componentes multiples.
+13 deduplica identificadores entre recintos dentro de cada ano; no sumar anos como personas distintas.
+14 y 15 documentan fechas futuras, ambiguedades de ingreso y niveles pendientes de homologar.
+16 conserva calendarios sin inicio: no se reemplazo por un periodo posterior.
+17 y 18 documentan estado y configuracion. COMPLETO no significa metodologia aprobada.
+
+2026-2027 se conserva como provisional: la cobertura del curso esta incompleta y la consolidacion de su inicio no se ha certificado.
+La ausencia del segundo semestre no invalida por si sola un censo inicial.
+Las tasas de 08 usan informacion hasta 2025-2026. La revision retrospectiva no recibe evidencia posterior a cada censo.
+Otros y Subgrado_generico conservan registros; no son grados homologados automaticamente.
+Escolar se mantiene visible y separado; no debe sumarse a la matricula universitaria proyectada.
+G12 es matricula escolar, no graduacion efectiva; privada2024-2025 y2025-2026 siguen sin observacion en estos insumos.
+El alcance sigue siendo diez recintos; Mayaguez no esta incluido.
+
+PARA LA REVISION: compartir TODOS los CSV y TXT de esta carpeta.
+No compartir el RDS: contiene identificadores. No ejecutar todavia el 03.

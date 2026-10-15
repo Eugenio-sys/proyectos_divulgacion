@@ -1,0 +1,1335 @@
+﻿recinto,anio,nivel,fuente_origen,estado_cohorte,base_grupo_antiguedad,origen_ambiguo,cohorte_contradice_ni,cohorte_conflictiva_censo,provisional,corte_informacion,personas
+Aguadilla,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,526
+Aguadilla,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,296
+Aguadilla,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,742
+Aguadilla,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,429
+Aguadilla,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,631
+Aguadilla,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,368
+Aguadilla,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,53
+Aguadilla,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,51
+Aguadilla,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,73
+Aguadilla,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,8
+Aguadilla,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,2
+Aguadilla,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,1
+Arecibo,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,514
+Arecibo,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,482
+Arecibo,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,625
+Arecibo,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,618
+Arecibo,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,634
+Arecibo,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,63
+Arecibo,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,533
+Arecibo,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,67
+Arecibo,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,24
+Arecibo,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,36
+Arecibo,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,12
+Arecibo,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,14
+Bayamon,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,541
+Bayamon,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,488
+Bayamon,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,41
+Bayamon,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,760
+Bayamon,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,787
+Bayamon,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,510
+Bayamon,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,803
+Bayamon,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,36
+Bayamon,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,9
+Bayamon,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,66
+Bayamon,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,14
+Bayamon,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,13
+Carolina,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,360
+Carolina,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,605
+Carolina,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,634
+Carolina,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,414
+Carolina,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,34
+Carolina,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,133
+Carolina,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,13
+Carolina,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,625
+Carolina,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,493
+Carolina,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,52
+Carolina,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,98
+Carolina,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,12
+Cayey,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,814
+Cayey,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,519
+Cayey,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,164
+Cayey,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,641
+Cayey,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,555
+Cayey,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,596
+Ciencias_Medicas,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,70
+Ciencias_Medicas,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,101
+Ciencias_Medicas,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,50
+Ciencias_Medicas,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,70
+Ciencias_Medicas,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,44
+Ciencias_Medicas,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,4
+Ciencias_Medicas,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,10
+Ciencias_Medicas,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,3
+Ciencias_Medicas,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,4
+Humacao,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,266
+Humacao,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,601
+Humacao,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,588
+Humacao,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,682
+Humacao,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,611
+Humacao,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,513
+Humacao,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,71
+Humacao,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,54
+Humacao,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,5
+Humacao,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,45
+Humacao,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,5
+Humacao,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,48
+Ponce,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,484
+Ponce,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,562
+Ponce,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,265
+Ponce,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,46
+Ponce,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,518
+Ponce,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,507
+Ponce,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,389
+Ponce,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,25
+Ponce,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,63
+Ponce,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,71
+Ponce,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,15
+Ponce,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,8
+Rio_Piedras,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,1977
+Rio_Piedras,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,2549
+Rio_Piedras,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,1908
+Rio_Piedras,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,1666
+Rio_Piedras,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,1174
+Rio_Piedras,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,2003
+Utuado,2017-2018,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,202
+Utuado,2017-2018,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,65
+Utuado,2017-2018,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,112
+Utuado,2017-2018,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2017,69
+Utuado,2017-2018,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,80
+Utuado,2017-2018,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,285
+Utuado,2017-2018,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,28
+Utuado,2017-2018,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,13
+Utuado,2017-2018,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,21
+Utuado,2017-2018,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,96
+Utuado,2017-2018,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,38
+Utuado,2017-2018,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2017,17
+Aguadilla,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,241
+Aguadilla,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,465
+Aguadilla,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,618
+Aguadilla,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,517
+Aguadilla,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,50
+Aguadilla,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,596
+Aguadilla,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,335
+Aguadilla,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,80
+Aguadilla,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,63
+Aguadilla,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,28
+Aguadilla,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,8
+Aguadilla,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,4
+Aguadilla,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,3
+Arecibo,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,689
+Arecibo,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,657
+Arecibo,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,456
+Arecibo,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,488
+Arecibo,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,517
+Arecibo,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,101
+Arecibo,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,531
+Arecibo,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,30
+Arecibo,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,57
+Arecibo,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,27
+Arecibo,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,7
+Arecibo,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,7
+Arecibo,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,6
+Bayamon,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,884
+Bayamon,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,413
+Bayamon,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,476
+Bayamon,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,701
+Bayamon,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,573
+Bayamon,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,815
+Bayamon,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,65
+Bayamon,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,20
+Bayamon,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,9
+Bayamon,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,41
+Bayamon,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,10
+Bayamon,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,6
+Bayamon,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,15
+Bayamon,2018-2019,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1
+Carolina,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,42
+Carolina,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,506
+Carolina,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,536
+Carolina,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,564
+Carolina,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,532
+Carolina,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,331
+Carolina,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,423
+Carolina,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,136
+Carolina,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,87
+Carolina,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,37
+Carolina,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,15
+Carolina,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,16
+Carolina,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,7
+Cayey,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,531
+Cayey,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,134
+Cayey,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,495
+Cayey,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,716
+Cayey,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,545
+Cayey,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,581
+Cayey,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,3
+Ciencias_Medicas,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,49
+Ciencias_Medicas,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,70
+Ciencias_Medicas,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,103
+Ciencias_Medicas,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,79
+Ciencias_Medicas,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,37
+Ciencias_Medicas,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,9
+Ciencias_Medicas,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,8
+Ciencias_Medicas,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,5
+Ciencias_Medicas,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,2
+Humacao,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,538
+Humacao,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,588
+Humacao,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,559
+Humacao,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,502
+Humacao,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,223
+Humacao,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,628
+Humacao,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,52
+Humacao,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,42
+Humacao,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,31
+Humacao,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,52
+Humacao,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,6
+Humacao,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1
+Ponce,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,215
+Ponce,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,63
+Ponce,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,37
+Ponce,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,414
+Ponce,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,51
+Ponce,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,457
+Ponce,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,477
+Ponce,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,13
+Ponce,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,506
+Ponce,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,433
+Ponce,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,9
+Ponce,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,46
+Ponce,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1
+Rio_Piedras,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1872
+Rio_Piedras,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,2602
+Rio_Piedras,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,1077
+Rio_Piedras,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,2096
+Rio_Piedras,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1770
+Rio_Piedras,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1859
+Rio_Piedras,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,6
+Utuado,2018-2019,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,29
+Utuado,2018-2019,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,33
+Utuado,2018-2019,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,45
+Utuado,2018-2019,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2018,86
+Utuado,2018-2019,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,20
+Utuado,2018-2019,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,162
+Utuado,2018-2019,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,92
+Utuado,2018-2019,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,185
+Utuado,2018-2019,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,35
+Utuado,2018-2019,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,57
+Utuado,2018-2019,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,54
+Utuado,2018-2019,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,3
+Utuado,2018-2019,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,7
+Utuado,2018-2019,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2018,1
+Aguadilla,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,533
+Aguadilla,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,379
+Aguadilla,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,204
+Aguadilla,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,449
+Aguadilla,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,455
+Aguadilla,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,431
+Aguadilla,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,45
+Aguadilla,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,58
+Aguadilla,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,79
+Aguadilla,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,9
+Aguadilla,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,30
+Aguadilla,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Aguadilla,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2
+Aguadilla,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,8
+Arecibo,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,84
+Arecibo,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,456
+Arecibo,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,500
+Arecibo,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,48
+Arecibo,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,586
+Arecibo,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,620
+Arecibo,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,607
+Arecibo,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,425
+Arecibo,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,70
+Arecibo,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,7
+Arecibo,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,22
+Arecibo,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,10
+Arecibo,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,6
+Arecibo,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Bayamon,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,503
+Bayamon,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,373
+Bayamon,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,471
+Bayamon,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,9
+Bayamon,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,712
+Bayamon,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,818
+Bayamon,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,34
+Bayamon,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,47
+Bayamon,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,753
+Bayamon,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,12
+Bayamon,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,25
+Bayamon,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,11
+Bayamon,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,7
+Bayamon,2019-2020,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Bayamon,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2
+Carolina,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,469
+Carolina,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,450
+Carolina,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,338
+Carolina,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,487
+Carolina,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,426
+Carolina,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,90
+Carolina,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,409
+Carolina,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,39
+Carolina,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,75
+Carolina,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,35
+Carolina,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,13
+Carolina,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,13
+Carolina,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,3
+Carolina,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Cayey,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,503
+Cayey,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,482
+Cayey,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,120
+Cayey,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,661
+Cayey,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,543
+Cayey,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,489
+Cayey,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2
+Ciencias_Medicas,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,42
+Ciencias_Medicas,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,76
+Ciencias_Medicas,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,42
+Ciencias_Medicas,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,96
+Ciencias_Medicas,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Ciencias_Medicas,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,61
+Ciencias_Medicas,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Ciencias_Medicas,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,11
+Ciencias_Medicas,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,10
+Ciencias_Medicas,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2
+Humacao,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,447
+Humacao,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,644
+Humacao,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,212
+Humacao,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,638
+Humacao,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,503
+Humacao,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,3
+Humacao,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,41
+Humacao,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,507
+Humacao,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,59
+Humacao,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,44
+Humacao,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,5
+Humacao,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,9
+Humacao,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Humacao,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2
+Ponce,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,472
+Ponce,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,196
+Ponce,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,370
+Ponce,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,501
+Ponce,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,32
+Ponce,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,356
+Ponce,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,411
+Ponce,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,38
+Ponce,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,41
+Ponce,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,30
+Ponce,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,11
+Ponce,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,4
+Ponce,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Rio_Piedras,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1733
+Rio_Piedras,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2619
+Rio_Piedras,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1655
+Rio_Piedras,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1782
+Rio_Piedras,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,953
+Rio_Piedras,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,2133
+Rio_Piedras,2019-2020,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,6
+Rio_Piedras,2019-2020,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Utuado,2019-2020,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,29
+Utuado,2019-2020,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,43
+Utuado,2019-2020,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,108
+Utuado,2019-2020,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,24
+Utuado,2019-2020,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2019,110
+Utuado,2019-2020,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,27
+Utuado,2019-2020,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,16
+Utuado,2019-2020,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,43
+Utuado,2019-2020,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,103
+Utuado,2019-2020,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,73
+Utuado,2019-2020,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,8
+Utuado,2019-2020,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,36
+Utuado,2019-2020,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,4
+Utuado,2019-2020,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2019,1
+Aguadilla,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,500
+Aguadilla,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,409
+Aguadilla,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,170
+Aguadilla,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,357
+Aguadilla,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,395
+Aguadilla,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,363
+Aguadilla,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,30
+Aguadilla,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,57
+Aguadilla,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,24
+Aguadilla,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,54
+Aguadilla,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,4
+Aguadilla,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,4
+Aguadilla,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,5
+Arecibo,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,602
+Arecibo,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,634
+Arecibo,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,377
+Arecibo,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,45
+Arecibo,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,506
+Arecibo,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,498
+Arecibo,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,410
+Arecibo,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,8
+Arecibo,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,97
+Arecibo,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,64
+Arecibo,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,31
+Arecibo,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,4
+Arecibo,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,5
+Arecibo,2020-2021,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,FALSE,2020,1
+Arecibo,2020-2021,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1
+Bayamon,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,682
+Bayamon,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,707
+Bayamon,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,290
+Bayamon,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,746
+Bayamon,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,518
+Bayamon,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,390
+Bayamon,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,19
+Bayamon,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,43
+Bayamon,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,26
+Bayamon,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,15
+Bayamon,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,7
+Bayamon,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,6
+Bayamon,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,5
+Bayamon,2020-2021,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1
+Carolina,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,448
+Carolina,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,333
+Carolina,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,396
+Carolina,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,401
+Carolina,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,340
+Carolina,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,347
+Carolina,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,50
+Carolina,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,64
+Carolina,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,9
+Carolina,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,26
+Carolina,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,6
+Carolina,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,32
+Carolina,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,4
+Cayey,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,464
+Cayey,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,476
+Cayey,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,433
+Cayey,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,109
+Cayey,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,686
+Cayey,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,533
+Cayey,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1
+Ciencias_Medicas,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,120
+Ciencias_Medicas,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,73
+Ciencias_Medicas,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,51
+Ciencias_Medicas,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,69
+Ciencias_Medicas,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,49
+Ciencias_Medicas,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,7
+Ciencias_Medicas,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,4
+Ciencias_Medicas,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2
+Ciencias_Medicas,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1
+Humacao,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,539
+Humacao,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,425
+Humacao,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,158
+Humacao,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,633
+Humacao,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,630
+Humacao,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,409
+Humacao,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,35
+Humacao,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,65
+Humacao,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,61
+Humacao,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,45
+Humacao,2020-2021,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2
+Humacao,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,8
+Humacao,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,3
+Humacao,2020-2021,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1
+Ponce,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,371
+Ponce,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,491
+Ponce,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,187
+Ponce,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,488
+Ponce,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,317
+Ponce,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,30
+Ponce,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,323
+Ponce,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,22
+Ponce,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,24
+Ponce,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,44
+Ponce,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,8
+Ponce,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,5
+Rio_Piedras,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1540
+Rio_Piedras,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,789
+Rio_Piedras,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2212
+Rio_Piedras,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2521
+Rio_Piedras,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1614
+Rio_Piedras,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,1827
+Rio_Piedras,2020-2021,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,9
+Rio_Piedras,2020-2021,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2
+Rio_Piedras,2020-2021,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,6
+Utuado,2020-2021,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,69
+Utuado,2020-2021,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,92
+Utuado,2020-2021,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,102
+Utuado,2020-2021,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,14
+Utuado,2020-2021,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,41
+Utuado,2020-2021,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,29
+Utuado,2020-2021,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2020,28
+Utuado,2020-2021,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,12
+Utuado,2020-2021,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,57
+Utuado,2020-2021,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,23
+Utuado,2020-2021,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,18
+Utuado,2020-2021,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,26
+Utuado,2020-2021,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2020,2
+Aguadilla,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,502
+Aguadilla,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,257
+Aguadilla,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,113
+Aguadilla,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,34
+Aguadilla,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,380
+Aguadilla,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,297
+Aguadilla,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,34
+Aguadilla,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,318
+Aguadilla,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,16
+Aguadilla,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,127
+Aguadilla,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,5
+Aguadilla,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,24
+Aguadilla,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,26
+Aguadilla,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,5
+Aguadilla,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Aguadilla,2021-2022,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,1
+Arecibo,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,589
+Arecibo,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,276
+Arecibo,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,218
+Arecibo,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,479
+Arecibo,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,320
+Arecibo,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,419
+Arecibo,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,449
+Arecibo,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,7
+Arecibo,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,35
+Arecibo,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,38
+Arecibo,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,68
+Arecibo,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,90
+Arecibo,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,29
+Arecibo,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Arecibo,2021-2022,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Arecibo,2021-2022,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Arecibo,2021-2022,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,FALSE,2021,1
+Arecibo,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,3
+Bayamon,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,746
+Bayamon,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,54
+Bayamon,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,188
+Bayamon,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,336
+Bayamon,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,553
+Bayamon,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,508
+Bayamon,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,38
+Bayamon,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,332
+Bayamon,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,406
+Bayamon,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,12
+Bayamon,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,7
+Bayamon,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,21
+Bayamon,2021-2022,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,3
+Bayamon,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,6
+Bayamon,2021-2022,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Bayamon,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Bayamon,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Carolina,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,31
+Carolina,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,129
+Carolina,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,306
+Carolina,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,363
+Carolina,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,220
+Carolina,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,152
+Carolina,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,26
+Carolina,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,29
+Carolina,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,527
+Carolina,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,325
+Carolina,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,4
+Carolina,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,70
+Carolina,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,30
+Carolina,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,3
+Carolina,2021-2022,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,2
+Carolina,2021-2022,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,FALSE,2021,1
+Carolina,2021-2022,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Cayey,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,379
+Cayey,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,75
+Cayey,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,394
+Cayey,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,559
+Cayey,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,404
+Cayey,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,409
+Cayey,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,240
+Cayey,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,11
+Cayey,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Ciencias_Medicas,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,69
+Ciencias_Medicas,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,82
+Ciencias_Medicas,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,53
+Ciencias_Medicas,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,45
+Ciencias_Medicas,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,38
+Ciencias_Medicas,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Ciencias_Medicas,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,54
+Ciencias_Medicas,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,7
+Ciencias_Medicas,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,3
+Ciencias_Medicas,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Humacao,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,50
+Humacao,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,511
+Humacao,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,25
+Humacao,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,106
+Humacao,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,214
+Humacao,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,374
+Humacao,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,430
+Humacao,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,60
+Humacao,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,590
+Humacao,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,314
+Humacao,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,46
+Humacao,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,20
+Humacao,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Humacao,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,3
+Humacao,2021-2022,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,1
+Humacao,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,3
+Ponce,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,265
+Ponce,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,154
+Ponce,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,282
+Ponce,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,59
+Ponce,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,147
+Ponce,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,529
+Ponce,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,233
+Ponce,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,382
+Ponce,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,30
+Ponce,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,5
+Ponce,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,14
+Ponce,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,26
+Ponce,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,7
+Ponce,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,11
+Ponce,2021-2022,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Ponce,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Ponce,2021-2022,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,2
+Rio_Piedras,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2076
+Rio_Piedras,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1506
+Rio_Piedras,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1827
+Rio_Piedras,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,983
+Rio_Piedras,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1624
+Rio_Piedras,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,114
+Rio_Piedras,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1227
+Rio_Piedras,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,553
+Rio_Piedras,2021-2022,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,2
+Rio_Piedras,2021-2022,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,1
+Rio_Piedras,2021-2022,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,5
+Utuado,2021-2022,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,75
+Utuado,2021-2022,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,15
+Utuado,2021-2022,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,83
+Utuado,2021-2022,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,4
+Utuado,2021-2022,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,32
+Utuado,2021-2022,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,39
+Utuado,2021-2022,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,17
+Utuado,2021-2022,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2021,22
+Utuado,2021-2022,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,7
+Utuado,2021-2022,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,39
+Utuado,2021-2022,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,13
+Utuado,2021-2022,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,49
+Utuado,2021-2022,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,17
+Utuado,2021-2022,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2021,15
+Utuado,2021-2022,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2021,3
+Aguadilla,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,124
+Aguadilla,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,10
+Aguadilla,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,271
+Aguadilla,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,431
+Aguadilla,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,53
+Aguadilla,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,259
+Aguadilla,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,362
+Aguadilla,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,299
+Aguadilla,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,10
+Aguadilla,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,56
+Aguadilla,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,22
+Aguadilla,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,19
+Aguadilla,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Aguadilla,2022-2023,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,4
+Aguadilla,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,12
+Aguadilla,2022-2023,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Arecibo,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,582
+Arecibo,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,392
+Arecibo,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,35
+Arecibo,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,218
+Arecibo,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,471
+Arecibo,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,28
+Arecibo,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,389
+Arecibo,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,443
+Arecibo,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,62
+Arecibo,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,70
+Arecibo,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,72
+Arecibo,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,25
+Arecibo,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Arecibo,2022-2023,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,1
+Arecibo,2022-2023,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Arecibo,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,6
+Arecibo,2022-2023,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,4
+Arecibo,2022-2023,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Arecibo,2022-2023,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Bayamon,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,643
+Bayamon,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,548
+Bayamon,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,495
+Bayamon,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,393
+Bayamon,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,170
+Bayamon,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,412
+Bayamon,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,158
+Bayamon,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,29
+Bayamon,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,18
+Bayamon,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,18
+Bayamon,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,9
+Bayamon,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Bayamon,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Bayamon,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,8
+Bayamon,2022-2023,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Carolina,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,234
+Carolina,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,152
+Carolina,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,607
+Carolina,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,181
+Carolina,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,420
+Carolina,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,71
+Carolina,2022-2023,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Carolina,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,285
+Carolina,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,79
+Carolina,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,49
+Carolina,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,25
+Carolina,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,11
+Carolina,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,26
+Carolina,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,5
+Carolina,2022-2023,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,2
+Carolina,2022-2023,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Cayey,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,470
+Cayey,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,410
+Cayey,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,333
+Cayey,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,353
+Cayey,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,429
+Cayey,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,66
+Cayey,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,77
+Cayey,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,10
+Cayey,2022-2023,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Cayey,2022-2023,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Ciencias_Medicas,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,32
+Ciencias_Medicas,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,59
+Ciencias_Medicas,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,43
+Ciencias_Medicas,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,63
+Ciencias_Medicas,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,50
+Ciencias_Medicas,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,24
+Ciencias_Medicas,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,4
+Ciencias_Medicas,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Ciencias_Medicas,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,6
+Ciencias_Medicas,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Humacao,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,399
+Humacao,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,43
+Humacao,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,106
+Humacao,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,46
+Humacao,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,415
+Humacao,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,529
+Humacao,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,380
+Humacao,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,80
+Humacao,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,455
+Humacao,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,42
+Humacao,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,18
+Humacao,2022-2023,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Humacao,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,16
+Humacao,2022-2023,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Humacao,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Humacao,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,2
+Ponce,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,49
+Ponce,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,238
+Ponce,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,34
+Ponce,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,251
+Ponce,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,143
+Ponce,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,421
+Ponce,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,538
+Ponce,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,307
+Ponce,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,48
+Ponce,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,13
+Ponce,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,39
+Ponce,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,13
+Ponce,2022-2023,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,1
+Ponce,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Ponce,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,3
+Rio_Piedras,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1674
+Rio_Piedras,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1453
+Rio_Piedras,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1629
+Rio_Piedras,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,454
+Rio_Piedras,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1588
+Rio_Piedras,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1616
+Rio_Piedras,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,112
+Rio_Piedras,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,396
+Rio_Piedras,2022-2023,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,6
+Rio_Piedras,2022-2023,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,1
+Utuado,2022-2023,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,38
+Utuado,2022-2023,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,27
+Utuado,2022-2023,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,11
+Utuado,2022-2023,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,67
+Utuado,2022-2023,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,42
+Utuado,2022-2023,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,25
+Utuado,2022-2023,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,5
+Utuado,2022-2023,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,31
+Utuado,2022-2023,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,22
+Utuado,2022-2023,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,4
+Utuado,2022-2023,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2022,28
+Utuado,2022-2023,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,7
+Utuado,2022-2023,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,15
+Utuado,2022-2023,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2022,4
+Utuado,2022-2023,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2022,2
+Aguadilla,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,143
+Aguadilla,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,431
+Aguadilla,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,267
+Aguadilla,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,225
+Aguadilla,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,326
+Aguadilla,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,39
+Aguadilla,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,270
+Aguadilla,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,16
+Aguadilla,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Aguadilla,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,37
+Aguadilla,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,10
+Aguadilla,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,24
+Aguadilla,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,20
+Aguadilla,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,5
+Aguadilla,2023-2024,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,3
+Aguadilla,2023-2024,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Arecibo,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,214
+Arecibo,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,600
+Arecibo,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,351
+Arecibo,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,431
+Arecibo,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,65
+Arecibo,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,469
+Arecibo,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,404
+Arecibo,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,44
+Arecibo,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,30
+Arecibo,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,25
+Arecibo,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,50
+Arecibo,2023-2024,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,1
+Arecibo,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,33
+Arecibo,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Arecibo,2023-2024,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Arecibo,2023-2024,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,4
+Arecibo,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,8
+Arecibo,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,5
+Arecibo,2023-2024,Asoc,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Bayamon,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,513
+Bayamon,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,406
+Bayamon,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,559
+Bayamon,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,146
+Bayamon,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,30
+Bayamon,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,738
+Bayamon,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,324
+Bayamon,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,87
+Bayamon,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,6
+Bayamon,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,8
+Bayamon,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Bayamon,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,13
+Bayamon,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,13
+Bayamon,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,11
+Bayamon,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Bayamon,2023-2024,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Carolina,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,51
+Carolina,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,480
+Carolina,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,143
+Carolina,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,356
+Carolina,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,173
+Carolina,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,647
+Carolina,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,253
+Carolina,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,21
+Carolina,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,41
+Carolina,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,51
+Carolina,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,29
+Carolina,2023-2024,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,7
+Carolina,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,31
+Carolina,2023-2024,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Carolina,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,3
+Carolina,2023-2024,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,2
+Carolina,2023-2024,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,3
+Carolina,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Carolina,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,5
+Cayey,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,374
+Cayey,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,544
+Cayey,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,43
+Cayey,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,12
+Cayey,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,67
+Cayey,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,469
+Cayey,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,293
+Cayey,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,353
+Cayey,2023-2024,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Cayey,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Ciencias_Medicas,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,30
+Ciencias_Medicas,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,58
+Ciencias_Medicas,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,31
+Ciencias_Medicas,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,51
+Ciencias_Medicas,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,41
+Ciencias_Medicas,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,6
+Ciencias_Medicas,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,23
+Ciencias_Medicas,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Ciencias_Medicas,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Ciencias_Medicas,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Humacao,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,390
+Humacao,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,450
+Humacao,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,594
+Humacao,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,107
+Humacao,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,372
+Humacao,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,406
+Humacao,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,32
+Humacao,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,60
+Humacao,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,16
+Humacao,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,41
+Humacao,2023-2024,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Humacao,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,16
+Humacao,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,30
+Humacao,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Humacao,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,3
+Humacao,2023-2024,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Ponce,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,544
+Ponce,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,262
+Ponce,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,426
+Ponce,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,36
+Ponce,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,170
+Ponce,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,279
+Ponce,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,34
+Ponce,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,43
+Ponce,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,330
+Ponce,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,15
+Ponce,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,36
+Ponce,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,12
+Ponce,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,4
+Ponce,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Ponce,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Rio_Piedras,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1442
+Rio_Piedras,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1385
+Rio_Piedras,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1740
+Rio_Piedras,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1458
+Rio_Piedras,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,140
+Rio_Piedras,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1804
+Rio_Piedras,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,429
+Rio_Piedras,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,239
+Rio_Piedras,2023-2024,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,7
+Rio_Piedras,2023-2024,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Rio_Piedras,2023-2024,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Utuado,2023-2024,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,33
+Utuado,2023-2024,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,14
+Utuado,2023-2024,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,15
+Utuado,2023-2024,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Utuado,2023-2024,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2023,45
+Utuado,2023-2024,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,18
+Utuado,2023-2024,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,40
+Utuado,2023-2024,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,2
+Utuado,2023-2024,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,19
+Utuado,2023-2024,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,52
+Utuado,2023-2024,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,27
+Utuado,2023-2024,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,16
+Utuado,2023-2024,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,7
+Utuado,2023-2024,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2023,7
+Utuado,2023-2024,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2023,1
+Aguadilla,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,472
+Aguadilla,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,160
+Aguadilla,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,225
+Aguadilla,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,54
+Aguadilla,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,285
+Aguadilla,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,310
+Aguadilla,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,27
+Aguadilla,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,256
+Aguadilla,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,20
+Aguadilla,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,16
+Aguadilla,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,14
+Aguadilla,2024-2025,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Aguadilla,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,25
+Aguadilla,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Aguadilla,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Aguadilla,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Arecibo,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,258
+Arecibo,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,582
+Arecibo,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,412
+Arecibo,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,386
+Arecibo,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,23
+Arecibo,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,22
+Arecibo,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,462
+Arecibo,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,387
+Arecibo,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,32
+Arecibo,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,45
+Arecibo,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,48
+Arecibo,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,27
+Arecibo,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,4
+Arecibo,2024-2025,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,2
+Arecibo,2024-2025,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,FALSE,2024,2
+Arecibo,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Arecibo,2024-2025,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,1
+Arecibo,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Bayamon,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,519
+Bayamon,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,572
+Bayamon,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,331
+Bayamon,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,683
+Bayamon,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,369
+Bayamon,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,150
+Bayamon,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Bayamon,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,5
+Bayamon,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,59
+Bayamon,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,14
+Bayamon,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,7
+Bayamon,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,8
+Bayamon,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,35
+Bayamon,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,5
+Bayamon,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Bayamon,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Carolina,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,616
+Carolina,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,308
+Carolina,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,145
+Carolina,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,17
+Carolina,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,38
+Carolina,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,18
+Carolina,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,514
+Carolina,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,391
+Carolina,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,203
+Carolina,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,48
+Carolina,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,25
+Carolina,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,36
+Carolina,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Carolina,2024-2025,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,1
+Carolina,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,4
+Carolina,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Carolina,2024-2025,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Carolina,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Carolina,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,2
+Cayey,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,421
+Cayey,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,421
+Cayey,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,308
+Cayey,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,62
+Cayey,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,466
+Cayey,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,333
+Cayey,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,10
+Cayey,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,22
+Cayey,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Cayey,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Ciencias_Medicas,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,76
+Ciencias_Medicas,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,61
+Ciencias_Medicas,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,22
+Ciencias_Medicas,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,19
+Ciencias_Medicas,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,20
+Ciencias_Medicas,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,48
+Ciencias_Medicas,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,4
+Ciencias_Medicas,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,6
+Humacao,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,340
+Humacao,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,484
+Humacao,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,556
+Humacao,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,493
+Humacao,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,334
+Humacao,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,111
+Humacao,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,30
+Humacao,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,12
+Humacao,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,66
+Humacao,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,15
+Humacao,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,43
+Humacao,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,20
+Humacao,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,2
+Humacao,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Humacao,2024-2025,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Humacao,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,2
+Humacao,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Ponce,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,450
+Ponce,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,346
+Ponce,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,560
+Ponce,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,31
+Ponce,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,172
+Ponce,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,286
+Ponce,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,288
+Ponce,2024-2025,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,2
+Ponce,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,14
+Ponce,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,25
+Ponce,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,58
+Ponce,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,25
+Ponce,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,28
+Ponce,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Ponce,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Ponce,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,2
+Ponce,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Rio_Piedras,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1832
+Rio_Piedras,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1264
+Rio_Piedras,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1458
+Rio_Piedras,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1369
+Rio_Piedras,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,452
+Rio_Piedras,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1974
+Rio_Piedras,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,102
+Rio_Piedras,2024-2025,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,157
+Rio_Piedras,2024-2025,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,8
+Rio_Piedras,2024-2025,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Rio_Piedras,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Utuado,2024-2025,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,42
+Utuado,2024-2025,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,14
+Utuado,2024-2025,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,3
+Utuado,2024-2025,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,29
+Utuado,2024-2025,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,58
+Utuado,2024-2025,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,17
+Utuado,2024-2025,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2024,6
+Utuado,2024-2025,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,24
+Utuado,2024-2025,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,5
+Utuado,2024-2025,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,12
+Utuado,2024-2025,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,13
+Utuado,2024-2025,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,50
+Utuado,2024-2025,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2024,38
+Utuado,2024-2025,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Utuado,2024-2025,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2024,1
+Aguadilla,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,15
+Aguadilla,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,289
+Aguadilla,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,483
+Aguadilla,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,374
+Aguadilla,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,195
+Aguadilla,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,217
+Aguadilla,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,43
+Aguadilla,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,250
+Aguadilla,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,25
+Aguadilla,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,20
+Aguadilla,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,7
+Aguadilla,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,35
+Aguadilla,2025-2026,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Aguadilla,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Aguadilla,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Aguadilla,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Arecibo,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,541
+Arecibo,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,397
+Arecibo,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,477
+Arecibo,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,271
+Arecibo,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,451
+Arecibo,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,358
+Arecibo,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,52
+Arecibo,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,22
+Arecibo,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,15
+Arecibo,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,20
+Arecibo,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,34
+Arecibo,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,35
+Arecibo,2025-2026,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,1
+Arecibo,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,4
+Arecibo,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,4
+Arecibo,2025-2026,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Arecibo,2025-2026,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,FALSE,2025,2
+Arecibo,2025-2026,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Arecibo,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Bayamon,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,521
+Bayamon,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,2
+Bayamon,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,545
+Bayamon,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,581
+Bayamon,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,304
+Bayamon,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,378
+Bayamon,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,156
+Bayamon,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,39
+Bayamon,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,54
+Bayamon,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,7
+Bayamon,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,12
+Bayamon,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Bayamon,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,4
+Bayamon,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Bayamon,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Carolina,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,159
+Carolina,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,350
+Carolina,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,45
+Carolina,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,491
+Carolina,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,421
+Carolina,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,226
+Carolina,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,633
+Carolina,2025-2026,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,1
+Carolina,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,38
+Carolina,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,50
+Carolina,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,28
+Carolina,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,28
+Carolina,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,8
+Carolina,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Carolina,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Carolina,2025-2026,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Carolina,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Carolina,2025-2026,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Carolina,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Cayey,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,419
+Cayey,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,481
+Cayey,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,375
+Cayey,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,379
+Cayey,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,288
+Cayey,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,58
+Cayey,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,17
+Cayey,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,5
+Cayey,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Cayey,2025-2026,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Cayey,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Ciencias_Medicas,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,24
+Ciencias_Medicas,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,88
+Ciencias_Medicas,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,31
+Ciencias_Medicas,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,23
+Ciencias_Medicas,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,51
+Ciencias_Medicas,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,10
+Ciencias_Medicas,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Ciencias_Medicas,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,3
+Ciencias_Medicas,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Humacao,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,446
+Humacao,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,463
+Humacao,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,388
+Humacao,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,320
+Humacao,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,115
+Humacao,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,546
+Humacao,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,53
+Humacao,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,16
+Humacao,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,58
+Humacao,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,33
+Humacao,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Humacao,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,12
+Humacao,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,12
+Humacao,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Humacao,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Ponce,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,204
+Ponce,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,370
+Ponce,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,299
+Ponce,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,304
+Ponce,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,588
+Ponce,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,66
+Ponce,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,426
+Ponce,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,12
+Ponce,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,37
+Ponce,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,42
+Ponce,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,25
+Ponce,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,12
+Ponce,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,4
+Ponce,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Ponce,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Rio_Piedras,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1205
+Rio_Piedras,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1332
+Rio_Piedras,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1703
+Rio_Piedras,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1960
+Rio_Piedras,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,463
+Rio_Piedras,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1515
+Rio_Piedras,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,95
+Rio_Piedras,2025-2026,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Rio_Piedras,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,108
+Rio_Piedras,2025-2026,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,7
+Rio_Piedras,2025-2026,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Utuado,2025-2026,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,49
+Utuado,2025-2026,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,45
+Utuado,2025-2026,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,36
+Utuado,2025-2026,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,15
+Utuado,2025-2026,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,33
+Utuado,2025-2026,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,FALSE,2025,35
+Utuado,2025-2026,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,37
+Utuado,2025-2026,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,2
+Utuado,2025-2026,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,3
+Utuado,2025-2026,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,9
+Utuado,2025-2026,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,12
+Utuado,2025-2026,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,8
+Utuado,2025-2026,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,FALSE,2025,5
+Utuado,2025-2026,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,1
+Utuado,2025-2026,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,FALSE,2025,4
+Aguadilla,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,17
+Aguadilla,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,387
+Aguadilla,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,263
+Aguadilla,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,231
+Aguadilla,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,24
+Aguadilla,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,436
+Aguadilla,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,300
+Aguadilla,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,214
+Aguadilla,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,19
+Aguadilla,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,41
+Aguadilla,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,59
+Aguadilla,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,10
+Aguadilla,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Aguadilla,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Aguadilla,2026-2027,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Aguadilla,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Arecibo,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,39
+Arecibo,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,33
+Arecibo,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,412
+Arecibo,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,413
+Arecibo,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,261
+Arecibo,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,406
+Arecibo,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,377
+Arecibo,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,536
+Arecibo,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,44
+Arecibo,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,19
+Arecibo,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,19
+Arecibo,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,7
+Arecibo,2026-2027,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,1
+Arecibo,2026-2027,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,3
+Arecibo,2026-2027,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,3
+Arecibo,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Arecibo,2026-2027,Bach,Sin origen,Sin origen,No identificado,TRUE,FALSE,FALSE,TRUE,2026,2
+Arecibo,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Arecibo,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Arecibo,2026-2027,Asoc,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Bayamon,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,474
+Bayamon,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,484
+Bayamon,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,624
+Bayamon,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,323
+Bayamon,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,406
+Bayamon,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,4
+Bayamon,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,40
+Bayamon,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,150
+Bayamon,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,30
+Bayamon,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,14
+Bayamon,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,5
+Bayamon,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,5
+Bayamon,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,6
+Bayamon,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,5
+Carolina,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,356
+Carolina,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,411
+Carolina,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,524
+Carolina,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,165
+Carolina,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,69
+Carolina,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,577
+Carolina,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,252
+Carolina,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,30
+Carolina,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,13
+Carolina,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,34
+Carolina,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,21
+Carolina,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,8
+Carolina,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,41
+Carolina,2026-2027,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,3
+Carolina,2026-2027,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,3
+Carolina,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Carolina,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Cayey,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,383
+Cayey,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,316
+Cayey,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,70
+Cayey,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,395
+Cayey,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,441
+Cayey,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,341
+Cayey,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,12
+Cayey,2026-2027,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Cayey,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Cayey,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,12
+Ciencias_Medicas,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,9
+Ciencias_Medicas,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,43
+Ciencias_Medicas,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,78
+Ciencias_Medicas,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,54
+Ciencias_Medicas,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,24
+Ciencias_Medicas,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,23
+Ciencias_Medicas,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,3
+Ciencias_Medicas,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,5
+Humacao,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,559
+Humacao,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,364
+Humacao,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,106
+Humacao,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,449
+Humacao,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,53
+Humacao,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,409
+Humacao,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,355
+Humacao,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,14
+Humacao,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,34
+Humacao,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,49
+Humacao,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,9
+Humacao,2026-2027,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,5
+Humacao,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,4
+Humacao,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,11
+Humacao,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,4
+Humacao,2026-2027,Asoc,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,1
+Ponce,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,332
+Ponce,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,49
+Ponce,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,197
+Ponce,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,321
+Ponce,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,310
+Ponce,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,21
+Ponce,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,593
+Ponce,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,21
+Ponce,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,462
+Ponce,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,42
+Ponce,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,35
+Ponce,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Ponce,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,17
+Ponce,2026-2027,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Ponce,2026-2027,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Ponce,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,3
+Ponce,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Rio_Piedras,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,95
+Rio_Piedras,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,446
+Rio_Piedras,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1646
+Rio_Piedras,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1440
+Rio_Piedras,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1248
+Rio_Piedras,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1719
+Rio_Piedras,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1344
+Rio_Piedras,2026-2027,Bach,Cohorte compatible estable,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Rio_Piedras,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,88
+Rio_Piedras,2026-2027,Bach,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,12
+Rio_Piedras,2026-2027,Bach,Cohorte compatible estable,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,4
+Utuado,2026-2027,Asoc,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,22
+Utuado,2026-2027,Bach,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,21
+Utuado,2026-2027,Asoc,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,40
+Utuado,2026-2027,Bach,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,47
+Utuado,2026-2027,Asoc,NI observado,1,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,43
+Utuado,2026-2027,Bach,NI observado,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,28
+Utuado,2026-2027,Bach,Sin origen,Sin origen,No identificado,FALSE,FALSE,FALSE,TRUE,2026,38
+Utuado,2026-2027,Bach,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,16
+Utuado,2026-2027,Asoc,NI observado,3,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,12
+Utuado,2026-2027,Asoc,NI observado,4,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Utuado,2026-2027,Asoc,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Utuado,2026-2027,Bach,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,8
+Utuado,2026-2027,Bach,Sin origen,5 o mas,Cota minima por observacion,FALSE,FALSE,FALSE,TRUE,2026,3
+Utuado,2026-2027,Asoc,NI observado,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,2
+Utuado,2026-2027,Bach,Cohorte compatible estable,5 o mas,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1
+Utuado,2026-2027,Asoc,Cohorte compatible estable,2,Origen asignado por evidencia documentada,FALSE,FALSE,FALSE,TRUE,2026,1

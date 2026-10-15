@@ -1,0 +1,321 @@
+﻿recinto,nivel_origen,estado_origen,destino_transicion,personas,exposicion_origen,proporcion
+Aguadilla,Bach,5 o mas,No observado en recinto,1238,1775,0.697464788732394
+Aguadilla,Bach,5 o mas,5 o mas,525,1775,0.295774647887324
+Aguadilla,Bach,Sin origen,No observado en recinto,278,710,0.391549295774648
+Aguadilla,Bach,Sin origen,Sin origen,392,710,0.552112676056338
+Aguadilla,Bach,5 o mas,Cambio componente o grado,12,1775,0.00676056338028169
+Aguadilla,Asoc,Sin origen,No observado en recinto,65,124,0.524193548387097
+Aguadilla,Bach,Sin origen,5 o mas,36,710,0.0507042253521127
+Aguadilla,Asoc,Sin origen,Sin origen,53,124,0.42741935483871
+Aguadilla,Asoc,5 o mas,No observado en recinto,15,26,0.576923076923077
+Aguadilla,Bach,Sin origen,Cambio componente o grado,4,710,0.00563380281690141
+Aguadilla,Asoc,Sin origen,5 o mas,1,124,0.00806451612903226
+Aguadilla,Asoc,5 o mas,5 o mas,8,26,0.307692307692308
+Aguadilla,Asoc,5 o mas,Cambio componente o grado,3,26,0.115384615384615
+Aguadilla,Bach,4,No observado en recinto,380,1369,0.277574872169467
+Aguadilla,Bach,4,5 o mas,986,1369,0.720233747260774
+Aguadilla,Asoc,4,No observado en recinto,15,21,0.714285714285714
+Aguadilla,Bach,4,Cambio componente o grado,3,1369,0.00219138056975895
+Aguadilla,Asoc,4,Cambio componente o grado,2,21,0.0952380952380952
+Aguadilla,Asoc,Sin origen,Cambio componente o grado,5,124,0.0403225806451613
+Aguadilla,Bach,3,4,1194,1479,0.807302231237322
+Aguadilla,Bach,3,No observado en recinto,283,1479,0.191345503718729
+Aguadilla,Asoc,3,No observado en recinto,72,97,0.742268041237113
+Aguadilla,Asoc,3,4,16,97,0.164948453608247
+Aguadilla,Asoc,3,Cambio componente o grado,9,97,0.0927835051546392
+Aguadilla,Bach,3,Cambio componente o grado,2,1479,0.00135226504394861
+Aguadilla,Bach,2,3,1331,1790,0.743575418994413
+Aguadilla,Bach,2,No observado en recinto,458,1790,0.25586592178771
+Aguadilla,Asoc,2,No observado en recinto,65,167,0.389221556886228
+Aguadilla,Asoc,2,3,77,167,0.461077844311377
+Aguadilla,Asoc,2,Cambio componente o grado,25,167,0.149700598802395
+Aguadilla,Bach,1,2,1742,2336,0.745719178082192
+Aguadilla,Bach,1,No observado en recinto,587,2336,0.251284246575342
+Aguadilla,Asoc,1,2,156,240,0.65
+Aguadilla,Asoc,1,No observado en recinto,81,240,0.3375
+Aguadilla,Bach,1,Cambio componente o grado,7,2336,0.00299657534246575
+Aguadilla,Asoc,1,Cambio componente o grado,3,240,0.0125
+Aguadilla,Asoc,4,5 o mas,4,21,0.19047619047619
+Aguadilla,Bach,2,Cambio componente o grado,1,1790,0.000558659217877095
+Arecibo,Bach,Sin origen,5 o mas,66,1347,0.0489977728285078
+Arecibo,Bach,Sin origen,No observado en recinto,526,1347,0.390497401633259
+Arecibo,Bach,5 o mas,No observado en recinto,1879,2683,0.700335445396944
+Arecibo,Bach,5 o mas,5 o mas,791,2683,0.294819232202758
+Arecibo,Bach,Sin origen,Sin origen,749,1347,0.556050482553823
+Arecibo,Asoc,Sin origen,No observado en recinto,72,175,0.411428571428571
+Arecibo,Asoc,5 o mas,Cambio componente o grado,5,35,0.142857142857143
+Arecibo,Asoc,5 o mas,No observado en recinto,20,35,0.571428571428571
+Arecibo,Asoc,Sin origen,Sin origen,79,175,0.451428571428571
+Arecibo,Bach,4,No observado en recinto,525,1999,0.262631315657829
+Arecibo,Bach,4,5 o mas,1470,1999,0.735367683841921
+Arecibo,Asoc,Sin origen,Cambio componente o grado,23,175,0.131428571428571
+Arecibo,Asoc,4,No observado en recinto,15,29,0.517241379310345
+Arecibo,Asoc,4,Cambio componente o grado,4,29,0.137931034482759
+Arecibo,Asoc,4,5 o mas,10,29,0.344827586206897
+Arecibo,Bach,Sin origen,Cambio componente o grado,6,1347,0.0044543429844098
+Arecibo,Bach,3,4,1890,2102,0.899143672692674
+Arecibo,Asoc,3,No observado en recinto,65,142,0.457746478873239
+Arecibo,Asoc,3,4,25,142,0.176056338028169
+Arecibo,Bach,3,No observado en recinto,209,2102,0.0994291151284491
+Arecibo,Asoc,3,Cambio componente o grado,52,142,0.366197183098592
+Arecibo,Bach,3,Cambio componente o grado,3,2102,0.00142721217887726
+Arecibo,Bach,2,3,1928,2393,0.805683242791475
+Arecibo,Bach,2,No observado en recinto,453,2393,0.189302131216047
+Arecibo,Asoc,2,3,129,292,0.441780821917808
+Arecibo,Bach,1,No observado en recinto,645,2987,0.215935721459659
+Arecibo,Asoc,2,Cambio componente o grado,61,292,0.208904109589041
+Arecibo,Asoc,2,No observado en recinto,102,292,0.349315068493151
+Arecibo,Bach,2,Cambio componente o grado,12,2393,0.00501462599247806
+Arecibo,Bach,1,2,2328,2987,0.779377301640442
+Arecibo,Asoc,1,2,260,367,0.708446866485014
+Arecibo,Asoc,1,No observado en recinto,100,367,0.272479564032698
+Arecibo,Asoc,1,Cambio componente o grado,7,367,0.0190735694822888
+Arecibo,Bach,1,Cambio componente o grado,14,2987,0.00468697689989956
+Arecibo,Asoc,5 o mas,5 o mas,10,35,0.285714285714286
+Arecibo,Bach,5 o mas,Cambio componente o grado,13,2683,0.00484532240029817
+Arecibo,Bach,4,Cambio componente o grado,4,1999,0.00200100050025012
+Arecibo,Asoc,Sin origen,5 o mas,1,175,0.00571428571428571
+Bayamon,Bach,5 o mas,No observado en recinto,1997,3439,0.580692061645827
+Bayamon,Bach,5 o mas,5 o mas,1419,3439,0.412619947659203
+Bayamon,Bach,Sin origen,Sin origen,507,944,0.537076271186441
+Bayamon,Bach,Sin origen,No observado en recinto,339,944,0.359110169491525
+Bayamon,Bach,Sin origen,5 o mas,96,944,0.101694915254237
+Bayamon,Asoc,5 o mas,5 o mas,5,18,0.277777777777778
+Bayamon,Bach,5 o mas,Cambio componente o grado,23,3439,0.00668799069496947
+Bayamon,Asoc,5 o mas,Cambio componente o grado,3,18,0.166666666666667
+Bayamon,Bach,4,5 o mas,1531,1873,0.817405232247731
+Bayamon,Bach,4,No observado en recinto,337,1873,0.179925253603844
+Bayamon,Bach,4,Cambio componente o grado,5,1873,0.00266951414842499
+Bayamon,Asoc,4,Cambio componente o grado,11,39,0.282051282051282
+Bayamon,Asoc,4,No observado en recinto,19,39,0.487179487179487
+Bayamon,Asoc,4,5 o mas,9,39,0.230769230769231
+Bayamon,Asoc,5 o mas,No observado en recinto,10,18,0.555555555555556
+Bayamon,Asoc,Sin origen,No observado en recinto,22,37,0.594594594594595
+Bayamon,Bach,3,4,1727,2197,0.786071916249431
+Bayamon,Bach,3,No observado en recinto,470,2197,0.213928083750569
+Bayamon,Asoc,3,4,24,57,0.421052631578947
+Bayamon,Asoc,3,No observado en recinto,22,57,0.385964912280702
+Bayamon,Asoc,3,Cambio componente o grado,11,57,0.192982456140351
+Bayamon,Bach,2,No observado en recinto,898,2870,0.312891986062718
+Bayamon,Bach,2,3,1971,2870,0.686759581881533
+Bayamon,Asoc,2,3,39,81,0.481481481481482
+Bayamon,Asoc,2,No observado en recinto,34,81,0.419753086419753
+Bayamon,Asoc,2,Cambio componente o grado,8,81,0.0987654320987654
+Bayamon,Asoc,Sin origen,Sin origen,12,37,0.324324324324324
+Bayamon,Bach,1,2,2672,3517,0.759738413420529
+Bayamon,Bach,1,No observado en recinto,843,3517,0.23969292010236
+Bayamon,Asoc,1,No observado en recinto,60,126,0.476190476190476
+Bayamon,Asoc,1,2,62,126,0.492063492063492
+Bayamon,Bach,1,Cambio componente o grado,2,3517,0.000568666477111174
+Bayamon,Asoc,1,Cambio componente o grado,4,126,0.0317460317460317
+Bayamon,Bach,Sin origen,Cambio componente o grado,2,944,0.00211864406779661
+Bayamon,Bach,2,Cambio componente o grado,1,2870,0.000348432055749129
+Bayamon,Asoc,Sin origen,Cambio componente o grado,3,37,0.0810810810810811
+Carolina,Bach,5 o mas,5 o mas,485,1446,0.335408022130014
+Carolina,Bach,Sin origen,No observado en recinto,460,994,0.462776659959759
+Carolina,Asoc,Sin origen,No observado en recinto,88,156,0.564102564102564
+Carolina,Bach,5 o mas,No observado en recinto,954,1446,0.659751037344398
+Carolina,Bach,Sin origen,Sin origen,476,994,0.47887323943662
+Carolina,Bach,Sin origen,5 o mas,53,994,0.0533199195171026
+Carolina,Asoc,Sin origen,Sin origen,59,156,0.378205128205128
+Carolina,Asoc,5 o mas,5 o mas,12,33,0.363636363636364
+Carolina,Asoc,5 o mas,No observado en recinto,20,33,0.606060606060606
+Carolina,Bach,4,No observado en recinto,939,1473,0.637474541751528
+Carolina,Bach,4,5 o mas,531,1473,0.360488798370672
+Carolina,Asoc,4,No observado en recinto,20,27,0.740740740740741
+Carolina,Asoc,4,Cambio componente o grado,4,27,0.148148148148148
+Carolina,Asoc,Sin origen,5 o mas,3,156,0.0192307692307692
+Carolina,Bach,3,4,1365,1742,0.783582089552239
+Carolina,Bach,3,No observado en recinto,373,1742,0.214121699196326
+Carolina,Asoc,3,No observado en recinto,69,102,0.676470588235294
+Carolina,Asoc,3,4,18,102,0.176470588235294
+Carolina,Asoc,3,Cambio componente o grado,15,102,0.147058823529412
+Carolina,Bach,Sin origen,Cambio componente o grado,5,994,0.00503018108651911
+Carolina,Bach,2,3,1560,2177,0.716582452916858
+Carolina,Bach,2,No observado en recinto,613,2177,0.281580156178227
+Carolina,Asoc,2,No observado en recinto,106,195,0.543589743589744
+Carolina,Bach,2,Cambio componente o grado,4,2177,0.00183739090491502
+Carolina,Asoc,2,3,78,195,0.4
+Carolina,Asoc,2,Cambio componente o grado,11,195,0.0564102564102564
+Carolina,Asoc,Sin origen,Cambio componente o grado,6,156,0.0384615384615385
+Carolina,Bach,1,2,2159,2845,0.758875219683656
+Carolina,Asoc,1,Cambio componente o grado,8,304,0.0263157894736842
+Carolina,Asoc,1,2,173,304,0.569078947368421
+Carolina,Bach,1,No observado en recinto,674,2845,0.236906854130053
+Carolina,Asoc,1,No observado en recinto,123,304,0.404605263157895
+Carolina,Bach,1,Sin origen,1,2845,0.000351493848857645
+Carolina,Bach,1,Cambio componente o grado,11,2845,0.0038664323374341
+Carolina,Bach,5 o mas,Cambio componente o grado,7,1446,0.00484094052558783
+Carolina,Asoc,5 o mas,Cambio componente o grado,1,33,0.0303030303030303
+Carolina,Bach,4,Cambio componente o grado,3,1473,0.00203665987780041
+Carolina,Bach,3,Cambio componente o grado,4,1742,0.00229621125143513
+Carolina,Asoc,4,5 o mas,3,27,0.111111111111111
+Cayey,Bach,5 o mas,No observado en recinto,1878,2809,0.668565325738697
+Cayey,Bach,5 o mas,5 o mas,914,2809,0.325382698469206
+Cayey,Bach,Sin origen,No observado en recinto,157,379,0.414248021108179
+Cayey,Bach,Sin origen,Sin origen,199,379,0.525065963060686
+Cayey,Bach,Sin origen,5 o mas,23,379,0.0606860158311346
+Cayey,Bach,4,5 o mas,1470,1851,0.794165316045381
+Cayey,Bach,4,No observado en recinto,379,1851,0.204754186925986
+Cayey,Bach,3,4,1614,1835,0.879564032697548
+Cayey,Bach,3,No observado en recinto,221,1835,0.120435967302452
+Cayey,Bach,2,3,1706,2082,0.81940441882805
+Cayey,Bach,2,No observado en recinto,375,2082,0.180115273775216
+Cayey,Bach,1,No observado en recinto,599,2572,0.232892690513219
+Cayey,Bach,1,2,1973,2572,0.767107309486781
+Cayey,Bach,5 o mas,Cambio componente o grado,17,2809,0.00605197579209683
+Cayey,Bach,4,Cambio componente o grado,2,1851,0.00108049702863317
+Cayey,Bach,2,Cambio componente o grado,1,2082,0.00048030739673391
+Ciencias_Medicas,Bach,Sin origen,Sin origen,138,288,0.479166666666667
+Ciencias_Medicas,Asoc,Sin origen,No observado en recinto,141,176,0.801136363636364
+Ciencias_Medicas,Bach,5 o mas,No observado en recinto,351,543,0.646408839779006
+Ciencias_Medicas,Bach,Sin origen,No observado en recinto,131,288,0.454861111111111
+Ciencias_Medicas,Bach,5 o mas,5 o mas,174,543,0.320441988950276
+Ciencias_Medicas,Asoc,Sin origen,Cambio componente o grado,17,176,0.0965909090909091
+Ciencias_Medicas,Bach,Sin origen,5 o mas,4,288,0.0138888888888889
+Ciencias_Medicas,Bach,Sin origen,Cambio componente o grado,15,288,0.0520833333333333
+Ciencias_Medicas,Asoc,5 o mas,No observado en recinto,7,8,0.875
+Ciencias_Medicas,Bach,5 o mas,Cambio componente o grado,18,543,0.0331491712707182
+Ciencias_Medicas,Asoc,Sin origen,Sin origen,18,176,0.102272727272727
+Ciencias_Medicas,Bach,4,5 o mas,113,292,0.386986301369863
+Ciencias_Medicas,Bach,4,No observado en recinto,161,292,0.551369863013699
+Ciencias_Medicas,Bach,4,Cambio componente o grado,18,292,0.0616438356164384
+Ciencias_Medicas,Asoc,4,No observado en recinto,1,1,1
+Ciencias_Medicas,Bach,3,4,168,174,0.96551724137931
+Ciencias_Medicas,Bach,3,No observado en recinto,6,174,0.0344827586206897
+Ciencias_Medicas,Asoc,2,No observado en recinto,26,28,0.928571428571429
+Ciencias_Medicas,Asoc,2,3,2,28,0.0714285714285714
+Ciencias_Medicas,Asoc,5 o mas,5 o mas,1,8,0.125
+Ciencias_Medicas,Asoc,3,No observado en recinto,4,4,1
+Humacao,Bach,5 o mas,No observado en recinto,1778,2699,0.658762504631345
+Humacao,Bach,5 o mas,5 o mas,906,2699,0.33567988143757
+Humacao,Bach,Sin origen,No observado en recinto,184,588,0.312925170068027
+Humacao,Bach,Sin origen,5 o mas,48,588,0.0816326530612245
+Humacao,Asoc,5 o mas,5 o mas,4,18,0.222222222222222
+Humacao,Bach,5 o mas,Cambio componente o grado,15,2699,0.00555761393108559
+Humacao,Bach,Sin origen,Sin origen,352,588,0.598639455782313
+Humacao,Asoc,Sin origen,No observado en recinto,118,216,0.546296296296296
+Humacao,Asoc,5 o mas,No observado en recinto,12,18,0.666666666666667
+Humacao,Asoc,Sin origen,Cambio componente o grado,9,216,0.0416666666666667
+Humacao,Asoc,5 o mas,Cambio componente o grado,2,18,0.111111111111111
+Humacao,Bach,4,No observado en recinto,485,1913,0.253528489283847
+Humacao,Bach,4,5 o mas,1423,1913,0.74385781495034
+Humacao,Asoc,Sin origen,Sin origen,88,216,0.407407407407407
+Humacao,Asoc,4,No observado en recinto,10,12,0.833333333333333
+Humacao,Bach,4,Cambio componente o grado,5,1913,0.00261369576581286
+Humacao,Asoc,Sin origen,5 o mas,1,216,0.00462962962962963
+Humacao,Asoc,3,4,10,99,0.101010101010101
+Humacao,Bach,3,4,1746,1980,0.881818181818182
+Humacao,Bach,3,No observado en recinto,227,1980,0.114646464646465
+Humacao,Asoc,3,No observado en recinto,58,99,0.585858585858586
+Humacao,Bach,3,Cambio componente o grado,7,1980,0.00353535353535354
+Humacao,Asoc,3,Cambio componente o grado,31,99,0.313131313131313
+Humacao,Bach,2,3,1882,2401,0.7838400666389
+Humacao,Bach,2,No observado en recinto,500,2401,0.208246563931695
+Humacao,Asoc,2,No observado en recinto,114,206,0.553398058252427
+Humacao,Asoc,2,3,73,206,0.354368932038835
+Humacao,Bach,2,Cambio componente o grado,19,2401,0.00791336942940442
+Humacao,Asoc,2,Cambio componente o grado,19,206,0.0922330097087379
+Humacao,Bach,Sin origen,Cambio componente o grado,4,588,0.00680272108843537
+Humacao,Bach,1,2,2277,2899,0.785443256295274
+Humacao,Bach,1,No observado en recinto,592,2899,0.204208347706106
+Humacao,Asoc,1,2,213,297,0.717171717171717
+Humacao,Bach,1,Cambio componente o grado,30,2899,0.0103483959986202
+Humacao,Asoc,1,No observado en recinto,76,297,0.255892255892256
+Humacao,Asoc,1,Cambio componente o grado,8,297,0.0269360269360269
+Humacao,Asoc,4,5 o mas,1,12,0.0833333333333333
+Humacao,Asoc,4,Cambio componente o grado,1,12,0.0833333333333333
+Ponce,Asoc,Sin origen,Sin origen,61,146,0.417808219178082
+Ponce,Bach,5 o mas,5 o mas,534,1826,0.292442497261774
+Ponce,Bach,5 o mas,No observado en recinto,1272,1826,0.696604600219058
+Ponce,Bach,5 o mas,Cambio componente o grado,20,1826,0.0109529025191676
+Ponce,Bach,Sin origen,No observado en recinto,279,819,0.340659340659341
+Ponce,Bach,Sin origen,Sin origen,502,819,0.612942612942613
+Ponce,Asoc,5 o mas,5 o mas,7,27,0.259259259259259
+Ponce,Asoc,5 o mas,No observado en recinto,17,27,0.62962962962963
+Ponce,Bach,Sin origen,5 o mas,34,819,0.0415140415140415
+Ponce,Bach,Sin origen,Cambio componente o grado,4,819,0.00488400488400488
+Ponce,Asoc,5 o mas,Cambio componente o grado,3,27,0.111111111111111
+Ponce,Bach,4,5 o mas,951,1401,0.678800856531049
+Ponce,Bach,4,No observado en recinto,446,1401,0.318344039971449
+Ponce,Asoc,Sin origen,No observado en recinto,69,146,0.472602739726027
+Ponce,Asoc,4,No observado en recinto,15,21,0.714285714285714
+Ponce,Asoc,Sin origen,5 o mas,2,146,0.0136986301369863
+Ponce,Asoc,4,5 o mas,3,21,0.142857142857143
+Ponce,Asoc,4,Cambio componente o grado,3,21,0.142857142857143
+Ponce,Asoc,Sin origen,Cambio componente o grado,14,146,0.0958904109589041
+Ponce,Bach,3,4,1321,1590,0.830817610062893
+Ponce,Bach,3,No observado en recinto,255,1590,0.160377358490566
+Ponce,Asoc,3,No observado en recinto,52,91,0.571428571428571
+Ponce,Asoc,3,Cambio componente o grado,20,91,0.21978021978022
+Ponce,Asoc,3,4,19,91,0.208791208791209
+Ponce,Bach,3,Cambio componente o grado,14,1590,0.00880503144654088
+Ponce,Bach,2,3,1556,2052,0.758284600389864
+Ponce,Bach,2,No observado en recinto,473,2052,0.230506822612086
+Ponce,Asoc,2,3,74,164,0.451219512195122
+Ponce,Asoc,2,No observado en recinto,61,164,0.371951219512195
+Ponce,Asoc,2,Cambio componente o grado,29,164,0.176829268292683
+Ponce,Bach,2,Cambio componente o grado,23,2052,0.0112085769980507
+Ponce,Bach,1,2,2094,2659,0.787514103046258
+Ponce,Asoc,1,2,171,252,0.678571428571429
+Ponce,Bach,1,No observado en recinto,544,2659,0.204588191049267
+Ponce,Asoc,1,No observado en recinto,72,252,0.285714285714286
+Ponce,Asoc,1,Cambio componente o grado,9,252,0.0357142857142857
+Ponce,Bach,1,Cambio componente o grado,21,2659,0.00789770590447537
+Ponce,Bach,4,Cambio componente o grado,4,1401,0.00285510349750178
+Rio_Piedras,Bach,5 o mas,No observado en recinto,6684,11385,0.587088274044796
+Rio_Piedras,Bach,5 o mas,5 o mas,4062,11385,0.356785243741765
+Rio_Piedras,Bach,5 o mas,Cambio componente o grado,639,11385,0.0561264822134387
+Rio_Piedras,Bach,Sin origen,No observado en recinto,917,2677,0.342547627941726
+Rio_Piedras,Bach,Sin origen,5 o mas,270,2677,0.100859170713485
+Rio_Piedras,Bach,Sin origen,Cambio componente o grado,56,2677,0.0209189391109451
+Rio_Piedras,Bach,Sin origen,Sin origen,1434,2677,0.535674262233844
+Rio_Piedras,Bach,4,No observado en recinto,1352,7330,0.184447476125512
+Rio_Piedras,Bach,4,5 o mas,5798,7330,0.790995907230559
+Rio_Piedras,Bach,4,Cambio componente o grado,180,7330,0.0245566166439291
+Rio_Piedras,Bach,3,4,6722,7564,0.888683236382866
+Rio_Piedras,Bach,3,No observado en recinto,829,7564,0.109598096245373
+Rio_Piedras,Bach,3,Cambio componente o grado,13,7564,0.00171866737176097
+Rio_Piedras,Bach,2,3,6896,8144,0.846758349705305
+Rio_Piedras,Bach,2,No observado en recinto,1241,8144,0.152382121807466
+Rio_Piedras,Bach,2,Cambio componente o grado,7,8144,0.000859528487229863
+Rio_Piedras,Bach,1,2,7756,9534,0.813509544787078
+Rio_Piedras,Bach,1,No observado en recinto,1774,9534,0.186070904132578
+Rio_Piedras,Bach,1,Cambio componente o grado,4,9534,0.000419551080344032
+Utuado,Bach,Sin origen,Sin origen,159,325,0.489230769230769
+Utuado,Bach,5 o mas,No observado en recinto,87,124,0.701612903225807
+Utuado,Asoc,Sin origen,No observado en recinto,82,153,0.535947712418301
+Utuado,Bach,Sin origen,No observado en recinto,150,325,0.461538461538462
+Utuado,Asoc,Sin origen,Cambio componente o grado,12,153,0.0784313725490196
+Utuado,Bach,5 o mas,5 o mas,36,124,0.290322580645161
+Utuado,Asoc,5 o mas,No observado en recinto,29,41,0.707317073170732
+Utuado,Bach,Sin origen,5 o mas,15,325,0.0461538461538462
+Utuado,Asoc,5 o mas,Cambio componente o grado,4,41,0.0975609756097561
+Utuado,Bach,4,5 o mas,39,79,0.493670886075949
+Utuado,Asoc,4,Cambio componente o grado,6,46,0.130434782608696
+Utuado,Bach,4,No observado en recinto,39,79,0.493670886075949
+Utuado,Asoc,4,No observado en recinto,32,46,0.695652173913044
+Utuado,Asoc,4,5 o mas,8,46,0.173913043478261
+Utuado,Asoc,Sin origen,Sin origen,59,153,0.38562091503268
+Utuado,Asoc,3,Cambio componente o grado,7,123,0.0569105691056911
+Utuado,Bach,3,4,61,93,0.655913978494624
+Utuado,Asoc,3,4,24,123,0.195121951219512
+Utuado,Asoc,3,No observado en recinto,92,123,0.747967479674797
+Utuado,Bach,3,No observado en recinto,30,93,0.32258064516129
+Utuado,Asoc,2,No observado en recinto,111,212,0.523584905660377
+Utuado,Asoc,2,3,88,212,0.415094339622642
+Utuado,Bach,2,No observado en recinto,59,139,0.424460431654676
+Utuado,Bach,2,3,74,139,0.532374100719425
+Utuado,Asoc,2,Cambio componente o grado,13,212,0.0613207547169811
+Utuado,Bach,2,Cambio componente o grado,6,139,0.0431654676258993
+Utuado,Asoc,1,No observado en recinto,148,329,0.449848024316109
+Utuado,Asoc,1,2,179,329,0.544072948328267
+Utuado,Bach,1,2,139,217,0.640552995391705
+Utuado,Bach,1,No observado en recinto,70,217,0.32258064516129
+Utuado,Bach,1,Cambio componente o grado,8,217,0.0368663594470046
+Utuado,Asoc,5 o mas,5 o mas,8,41,0.195121951219512
+Utuado,Bach,4,Cambio componente o grado,1,79,0.0126582278481013
+Utuado,Asoc,1,Cambio componente o grado,2,329,0.0060790273556231
+Utuado,Bach,3,Cambio componente o grado,2,93,0.021505376344086
+Utuado,Bach,Sin origen,Cambio componente o grado,1,325,0.00307692307692308
+Utuado,Bach,5 o mas,Cambio componente o grado,1,124,0.00806451612903226

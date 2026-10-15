@@ -1,0 +1,5 @@
+ETAPA 1 v2.0: PROCESAMIENTO COMPLETO
+
+Todos los archivos previstos se reconstruyeron y guardaron en RDS completos.
+Este sello no aprueba la seleccion de censos ni la metodologia.
+Revisar las advertencias, los periodos bloqueados y las tablas 13 a 17 antes de la etapa 2.

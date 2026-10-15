@@ -1,0 +1,40 @@
+PROYECCION PRELIMINAR DE MATRICULA UPR
+Version revisada del 15 de octubre de 2026
+
+ABRIR LOS DOCUMENTOS
+- Informe_UPR.docx: informe academico en Word.
+- Presentacion_UPR.html: diapositivas con el formato de Presentacion_GPR_v8.
+  Abrir en Chrome, Edge o Firefox. Usar flechas izquierda/derecha para navegar.
+  El HTML contiene las imagenes y recursos necesarios.
+
+ALCANCE
+Objetivo: matricula al inicio del ano academico, por recinto.
+Base: 2025-2026. Horizonte: 2050-2051. Diez recintos; Mayaguez no incluido.
+El agregado suma matriculas por recinto y no deduplica personas entre recintos.
+Se distinguen grado identificado, Otros no homologados y Escolar.
+Escolar se conserva en la historia para conciliar los archivos, pero no se proyecta.
+2026-2027 es contraste provisional: su censo inicial no se ha certificado como consolidado.
+La falta del segundo semestre no invalida por si sola un censo inicial.
+El escenario escolar usa matricula G12, no graduados efectivos.
+Las ventanas de tres y cinco anos son sensibilidad, no intervalos probabilisticos.
+
+REGENERAR WORD Y DIAPOSITIVAS
+1. Descomprimir la carpeta completa Proyeccion_UPR.
+2. Conservar juntos los Rmd, preparar_resultados.R, estilo.docx y las carpetas data, figuras y assets.
+3. Abrir generar_documentos.R en RStudio y pulsar Source.
+   Requiere rmarkdown, knitr, flextable y officer; this.path se usa si esta disponible.
+   No instala paquetes automaticamente. RStudio proporciona Pandoc.
+   La regeneracion usa solamente los CSV agregados de data; no reajusta el modelo.
+Los resultados renderizados conservan los calculos sin redondear; las tablas muestran enteros.
+
+FUENTES DEL MODELO
+codigo_modelo contiene los scripts 01, 02 y 03, version 2.0.
+Para ejecutarlos, copiarlos a la carpeta original datos_matriculados, junto a los insumos originales
+universitarios y la carpeta Informe_Escolaridad. No ejecutarlos dentro de codigo_modelo.
+El orden es 01, revision, 02, revision y 03. Sus versiones actuales corresponden a las etapas validadas.
+data contiene los 23 CSV de resultados_paso_03.zip recibidos para esta entrega.
+figuras contiene los graficos derivados de esas tablas. No se incluyen identificadores ni microdatos.
+
+FORMATO
+Informe: estructura academica y estilos del informe escolar suministrado.
+Diapositivas: clases, tipografia y estilos de la presentacion v8 suministrada.

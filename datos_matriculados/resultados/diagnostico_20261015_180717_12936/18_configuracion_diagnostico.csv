@@ -1,0 +1,12 @@
+﻿parametro,valor
+version,2.0
+anios_inicio,"2017,2018,2019,2020,2021,2022,2023,2024,2025,2026"
+recintos_esperados,"Aguadilla,Arecibo,Bayamon,Carolina,Cayey,Ciencias_Medicas,Humacao,Ponce,Rio_Piedras,Utuado"
+guardar_microdatos,TRUE
+seleccion,Inicio por calendario y periodo anual; revisar 13 y 14
+cohortes,Solo campos originales; no se reconstruyen origenes
+cache,No se reutilizaron resultados anteriores
+version_R,R version 4.4.2 (2024-10-31 ucrt)
+paquete_data.table,1.18.2.1
+paquete_this.path,2.8.0
+paquete_readxl,1.4.3

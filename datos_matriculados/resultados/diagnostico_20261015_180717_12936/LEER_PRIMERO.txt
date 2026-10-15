@@ -1,0 +1,51 @@
+DIAGNOSTICO INICIAL DE MATRICULA UPR - ETAPA 1 v2.0
+
+Raiz: C:/Users/eugue/Desktop/datos_matriculados
+CSV encontrados: 100
+Archivos reconstruidos: 100
+Errores de procesamiento: 0
+Archivos con problemas estructurales: 0
+RDS completos guardados: 100
+Combinaciones de recinto y ano faltantes: 0
+Combinaciones duplicadas: 0
+Procesamiento completo: TRUE
+Periodos ambiguos bloqueados: 0
+Avisos para revision: 2
+
+ALCANCE
+Se leyeron de nuevo los CSV originales. No se reutilizaron resultados anteriores.
+Los RDS conservan todos los registros y periodos reconstruidos; no se filtraron al censo inicial.
+La cobertura por recinto y ano se establece por contenido inequivoco, manteniendo avisos del nombre.
+Quarter conserva su etiqueta: el codigo no infiere su duracion institucional.
+Verano, periodo anual e inicio de cada calendario tienen reglas y razones explicitas en 13.
+Un periodo contradictorio se bloquea completo; no se escogen unas filas y se ocultan otras.
+La falta de inicio cuando hay periodos posteriores se advierte en 14; no se inventa un censo.
+Los registros de escuela superior se etiquetan, pero no se eliminan de los RDS ni de los totales.
+
+ORDEN DE REVISION
+1. 17: estado del procesamiento. Completo no significa metodologia aprobada.
+2. 01, 02 y 08: cobertura, errores, nombres discrepantes, duplicados y campos nucleares.
+3. 13, 14 y 16: periodos incluidos/excluidos, ambiguedades y calendarios sin inicio.
+4. 04 y 15: contrastar todos los periodos con la union candidata de periodos iniciales.
+5. 05, 06 y 06b: nivel, clasificacion escolar y candidatos de ingreso universitario.
+6. 07 y 09: campos de cohorte originales y solapamiento bruto de identificadores.
+7. 10, 11 y 12: inventario escolar, G12 observada y alineacion con el siguiente curso universitario.
+
+INTERPRETACION
+No sumar periodos para obtener personas distintas del ano.
+La tabla 15 cuenta personas dentro de cada recinto y ano; su suma no deduplica todo el sistema.
+Las personas de categorias de 05 y las columnas superpuestas de 06 no deben sumarse automaticamente.
+Desde_secundaria conserva el candidato original; desde_secundaria_universitario_candidato excluye
+clasificaciones escolares/no grado y exige nivel Bach o Asoc. Sigue siendo una definicion por validar.
+No se reconstruyeron cohortes ni se calcularon tasas de continuidad o proyecciones.
+Una cohorte futura o desconocida queda documentada; no se imputa ni corrige automaticamente.
+La coincidencia de identificadores no certifica por si sola su estabilidad institucional.
+Se propone un censo inicial/anual por calendario, no matricula anual de ambos semestres.
+2026-2027 carece del segundo semestre completo; su censo inicial requiere comprobar consolidacion.
+G12 representa matricula de duodecimo, no graduados efectivos. Mayaguez sigue fuera del alcance.
+
+PARA COMPARTIR
+Enviar TODOS los CSV y LEER_PRIMERO.txt, sesion_R.txt y COMPLETO.txt si existe.
+No compartir bases_limpias ni archivos RDS: contienen identificadores.
+No ejecutar todavia la etapa 2: revisar primero los resultados de esta etapa.
+Si faltan 09, 11 o 12, los datos correspondientes no permitieron generarlos; revisar 01, 08 y 10.

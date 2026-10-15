@@ -1,0 +1,5 @@
+﻿archivo,ruta,serie,anio_inicio,anio_fin,nota
+Publicas_18_anios.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/Publicas_18_anios.csv,Matricula publica K-G12,2008,2025,G12 observado; el resto de grados permite revisar la base escolar.
+privadas_t.xlsx,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/privadas_t.xlsx,Matricula privada K-G12,2006,2023,"Extension hasta 2025: Monte Carlo, n=10000, semilla=123, ventana=5; medianas sin redondear."
+P_t.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/P_t.csv,Poblacion estimada de cinco anos,2000,2025,"P5 es poblacion de cinco anos, no percentil 5."
+poptotal_edades_sencillas.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/poptotal_edades_sencillas.csv,Poblacion proyectada a edad 17,2025,2070,Solo mediana. G12 futuro = base 2025 x cambio de poblacion de edad 17; interpolacion lineal anual sin extrapolacion.

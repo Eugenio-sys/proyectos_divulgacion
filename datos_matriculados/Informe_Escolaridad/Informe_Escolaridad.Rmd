@@ -1,0 +1,833 @@
+---
+output:
+  word_document:
+    reference_docx: estilo.docx
+number-sections: true
+number-depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dpi = 200)
+suppressPackageStartupMessages({
+  library(tidyverse); library(knitr); library(flextable)
+  library(readxl); library(scales); library(this.path)
+})
+options(scipen = 999)
+codigo <- this.path::this.dir()
+buscar <- function(nombre) {
+candidatos <- file.path(codigo, c(file.path("data", nombre), nombre))
+existe <- candidatos[file.exists(candidatos)]
+if (length(existe) == 0) {
+stop(paste("No se encontró", nombre, "ni en data/ ni junto al .Rmd."))
+}
+existe[1]
+}
+archivo_publicas <- buscar("Publicas_18_anios.csv")
+archivo_privadas <- buscar("privadas_t.xlsx")
+archivo_Pt       <- buscar("P_t.csv")
+archivo_proy     <- buscar("poptotal_edades_sencillas.csv")
+publicas <- read.csv(archivo_publicas, check.names = FALSE, stringsAsFactors = FALSE)
+privadas <- as.data.frame(read_excel(archivo_privadas))
+Pt <- read.csv(archivo_Pt, check.names = FALSE, stringsAsFactors = FALSE)
+pop_proy <- read.csv(archivo_proy, check.names = FALSE, stringsAsFactors = FALSE, row.names = 1)
+pop_proy <- pop_proy[pop_proy$variant == "median", ]
+rownames(pop_proy) <- pop_proy$age
+anios_proy_disp <- names(pop_proy)[grepl("^[0-9]{4}$", names(pop_proy))]
+names(privadas)[1] <- "anio"
+grados <- c("K", paste0("G", 1:12))
+if (!all(c("anio", grados) %in% names(publicas))) {
+stop("La base pública debe contener anio, K, G1, ..., G12.")
+}
+if (!all(c("anio", grados) %in% names(privadas))) {
+stop("La base privada debe contener anio, K, G1, ..., G12.")
+}
+if (!all(c("anio", "P5") %in% names(Pt))) {
+stop("P_t.csv debe contener, como mínimo, las columnas anio y P5.")
+}
+publicas <- publicas[, c("anio", grados)]
+privadas <- privadas[, c("anio", grados)]
+publicas$anio <- as.character(publicas$anio)
+privadas$anio <- as.character(privadas$anio)
+Pt$anio <- as.character(Pt$anio)
+publicas[grados] <- lapply(publicas[grados], as.numeric)
+privadas[grados] <- lapply(privadas[grados], as.numeric)
+Pt$P5 <- as.numeric(Pt$P5)
+ventana <- 5
+n_sim   <- 10000
+nivel   <- 0.95
+semilla <- 123
+edades_grado <- setNames(5:17, grados)
+anio_base <- "2025"
+anios_qq   <- c("2030", "2035", "2040", "2045", "2050")
+anio_zoom <- 2019
+origen  <- grados[1:12]
+destino <- grados[2:13]
+COL_PUBLICAS <- "#2F6690"
+COL_PRIVADAS <- "#D97706"
+COL_MC       <- "#2A9D8F"
+COL_BOOT     <- "#E76F51"
+COL_OBS      <- "#C62828"
+COL_GRID     <- "#DDE5EA"
+tema <- theme_minimal( base_size = 11, base_family = "serif"
+) +
+theme( panel.grid.minor = element_blank(), panel.grid.major = element_line( color = COL_GRID, linewidth = 0.35
+), axis.title = element_text(size = 10), legend.position = "bottom", legend.title = element_blank(), strip.text = element_text( face = "bold", size = 10
+)
+)
+validar_gpr_predictivo <- function( datos, Pt, anio_test, ventana = 10, n_sim = 10000, nivel = 0.95, semilla = 123) {
+i_T <- match(anio_test, datos$anio)
+if (is.na(i_T)) {
+stop(paste("No existe", anio_test, "en la serie de matrícula."))
+}
+if (!(anio_test %in% Pt$anio)) {
+stop(paste("No existe P5 para", anio_test, "en P_t.csv."))
+}
+if (i_T < 3) {
+stop("No hay suficientes años anteriores para validar.")
+}
+observado <- as.numeric(datos[i_T, grados])
+names(observado) <- grados
+datos_tr <- datos[1:(i_T - 1), ]
+n_tr <- nrow(datos_tr)
+origen  <- grados[1:12]
+destino <- grados[2:13]
+gpr_todos <- as.matrix( datos_tr[2:n_tr, destino]
+) /
+as.matrix( datos_tr[1:(n_tr - 1), origen]
+)
+colnames(gpr_todos) <- paste0(origen, "→", destino)
+rownames(gpr_todos) <- datos_tr$anio[1:(n_tr - 1)]
+gpr <- tail( gpr_todos, min(ventana, nrow(gpr_todos))
+)
+mean_gpr <- colMeans(gpr, na.rm = TRUE)
+sd_gpr <- apply(gpr, 2, sd, na.rm = TRUE)
+anios_comunes <- intersect( datos_tr$anio, Pt$anio
+)
+cobertura_df <- data.frame( anio = anios_comunes, K = datos_tr$K[
+match(anios_comunes, datos_tr$anio)
+], P5 = Pt$P5[
+match(anios_comunes, Pt$anio)
+]
+)
+cobertura_df$cobertura <-
+cobertura_df$K / cobertura_df$P5
+cobertura_fin <- cobertura_df$cobertura[
+is.finite(cobertura_df$cobertura)
+]
+r_q_base <- tail( cobertura_fin[-1] / cobertura_fin[-length(cobertura_fin)], min(ventana, length(cobertura_fin) - 1)
+)
+q_ult <- cobertura_fin[length(cobertura_fin)]
+r_q_mean <- mean(r_q_base)
+r_q_sd   <- sd(r_q_base)
+P5_test <- Pt$P5[
+match(anio_test, Pt$anio)
+]
+E_prev <- as.numeric( datos_tr[n_tr, origen]
+)
+set.seed(semilla)
+q_mc <- q_ult * rnorm( n_sim, mean = r_q_mean, sd = r_q_sd
+)
+q_mc <- pmax(q_mc, 0)
+K_mc <- P5_test * q_mc
+gpr_mc <- sapply( seq_along(mean_gpr), function(j) {
+x <- rnorm( n_sim, mean = mean_gpr[j], sd = sd_gpr[j]
+)
+pmax(x, 0)
+}
+)
+E_mc <- cbind( K_mc, sweep( gpr_mc, 2, E_prev, "*"
+)
+)
+colnames(E_mc) <- grados
+set.seed(semilla)
+q_boot <- q_ult * sample( r_q_base, size = n_sim, replace = TRUE
+)
+q_boot <- pmax(q_boot, 0)
+K_boot <- P5_test * q_boot
+gpr_boot <- sapply( seq_len(ncol(gpr)), function(j) {
+x <- gpr[, j]
+x <- x[is.finite(x)]
+sample( x, size = n_sim, replace = TRUE
+)
+}
+)
+gpr_boot <- pmax(gpr_boot, 0)
+E_boot <- cbind( K_boot, sweep( gpr_boot, 2, E_prev, "*"
+)
+)
+colnames(E_boot) <- grados
+alpha <- 1 - nivel
+probs <- c(alpha / 2, 1 - alpha / 2)
+resumir <- function(M, metodo) {
+int <- t( apply( M, 2, quantile, probs = probs, na.rm = TRUE, names = FALSE
+)
+)
+data.frame( Grado = grados, Metodo = metodo, Observado = observado, Proyectado = apply( M, 2, median, na.rm = TRUE
+), LI = int[, 1], LS = int[, 2], Dentro = observado >= int[, 1] &
+observado <= int[, 2]
+)
+}
+tabla <- bind_rows( resumir( E_mc, "Monte Carlo"
+), resumir( E_boot, "Bootstrap predictivo"
+)
+)
+metricas <- tabla %>%
+group_by(Metodo) %>%
+summarise( Cobertura = 100 * mean(Dentro), Ancho_medio = mean(LS - LI), .groups = "drop"
+)
+list( anio_test = anio_test, cobertura_df = cobertura_df, tabla = tabla, metricas = metricas
+)
+}
+res_pub <- validar_gpr_predictivo( datos = publicas, Pt = Pt, anio_test = tail(publicas$anio, 1), ventana = ventana, n_sim = n_sim, nivel = nivel, semilla = semilla
+)
+res_priv <- validar_gpr_predictivo( datos = privadas, Pt = Pt, anio_test = tail(privadas$anio, 1), ventana = ventana, n_sim = n_sim, nivel = nivel, semilla = semilla
+)
+ventanas_sens <- c(5, 7, 10)
+sensibilidad_ventana <- bind_rows( lapply( ventanas_sens, function(v) {
+rp <- validar_gpr_predictivo( datos = publicas, Pt = Pt, anio_test = tail(publicas$anio, 1), ventana = v, n_sim = n_sim, nivel = nivel, semilla = semilla
+)
+rr <- validar_gpr_predictivo( datos = privadas, Pt = Pt, anio_test = tail(privadas$anio, 1), ventana = v, n_sim = n_sim, nivel = nivel, semilla = semilla
+)
+bind_rows( rp$metricas %>%
+mutate( Sector = "Pública", Ventana = v
+), rr$metricas %>%
+mutate( Sector = "Privada", Ventana = v
+)
+)
+}
+)
+)
+hist_pub <- publicas %>%
+mutate( Total = rowSums( across(all_of(grados)), na.rm = TRUE
+), Sector = "Pública"
+)
+hist_priv <- privadas %>%
+mutate( Total = rowSums( across(all_of(grados)), na.rm = TRUE
+), Sector = "Privada"
+)
+hist_tot <- bind_rows( hist_pub, hist_priv
+) %>%
+mutate( Sector = factor( Sector, levels = c("Pública", "Privada")
+)
+)
+crear_cobertura_completa <- function(datos, Pt) {
+comunes <- intersect( datos$anio, Pt$anio
+)
+data.frame( anio = comunes, K = datos$K[
+match(comunes, datos$anio)
+], P5 = Pt$P5[
+match(comunes, Pt$anio)
+]
+) %>%
+mutate( cobertura = K / P5
+)
+}
+cob_pub_full <- crear_cobertura_completa( publicas, Pt
+)
+cob_priv_full <- crear_cobertura_completa( privadas, Pt
+)
+cob_tot <- bind_rows( cob_pub_full %>% mutate(Sector = "Pública"), cob_priv_full %>% mutate(Sector = "Privada")
+) %>%
+mutate( Sector = factor( Sector, levels = c("Pública", "Privada")
+)
+)
+etiqueta_qq <- function(a) {
+paste0(a, "-", substr(as.character(as.integer(a) + 1), 3, 4))
+}
+anio_base_esc <- etiqueta_qq(anio_base)
+if (!all(c(anio_base, anios_qq) %in% anios_proy_disp)) {
+stop("Faltan años quinquenales en poptotal_edades_sencillas.csv.")
+}
+if (!(anio_base_esc %in% publicas$anio)) {
+stop(paste("El año base", anio_base_esc, "no está en la serie pública."))
+}
+P_edades_base <- as.numeric( pop_proy[as.character(edades_grado), anio_base]
+)
+factores <- sapply( anios_qq, function(t) {
+as.numeric( pop_proy[as.character(edades_grado), t]
+) / P_edades_base
+}
+)
+rownames(factores) <- grados
+metodo_extension_priv <- "Monte Carlo"
+n_priv <- nrow(privadas)
+gpr_full_priv <- as.matrix( privadas[2:n_priv, destino]
+) /
+as.matrix( privadas[1:(n_priv - 1), origen]
+)
+gpr_vent_priv <- tail(gpr_full_priv, ventana)
+media_gpr_priv <- colMeans(gpr_vent_priv, na.rm = TRUE)
+sd_gpr_priv    <- apply(gpr_vent_priv, 2, sd, na.rm = TRUE)
+r_priv_full <- cob_priv_full$cobertura[-1] /
+cob_priv_full$cobertura[-nrow(cob_priv_full)]
+r_base_priv  <- tail(r_priv_full, ventana)
+r_medio_priv <- mean(r_base_priv)
+r_sd_priv    <- sd(r_base_priv)
+ult_priv_ini <- as.integer(substr(tail(privadas$anio, 1), 1, 4))
+if (ult_priv_ini < as.integer(anio_base)) {
+anios_extension_priv <- sapply( (ult_priv_ini + 1):as.integer(anio_base), etiqueta_qq
+)
+} else {
+anios_extension_priv <- character(0)
+}
+if (!all(anios_extension_priv %in% Pt$anio)) {
+stop("Falta P5 en P_t.csv para los años de la extensión privado.")
+}
+sortear_razones <- function(k) {
+if (metodo_extension_priv == "Monte Carlo") {
+r_q <- rnorm( k, mean = r_medio_priv, sd = r_sd_priv
+)
+gprs <- sapply( seq_along(media_gpr_priv), function(j) {
+rnorm( k, mean = media_gpr_priv[j], sd = sd_gpr_priv[j]
+)
+}
+)
+} else {
+r_q <- sample( r_base_priv, size = k, replace = TRUE
+)
+gprs <- sapply( seq_len(ncol(gpr_vent_priv)), function(j) {
+x <- gpr_vent_priv[, j]
+x <- x[is.finite(x)]
+sample(x, size = k, replace = TRUE)
+}
+)
+}
+list( r_q = r_q, gprs = pmax(gprs, 0)
+)
+}
+set.seed(semilla)
+q_sim <- rep( tail(cob_priv_full$cobertura, 1), n_sim
+)
+E_sim <- matrix( as.numeric(privadas[n_priv, grados]), nrow = n_sim, ncol = length(grados), byrow = TRUE
+)
+colnames(E_sim) <- grados
+extension_priv_sim <- list()
+for (a in anios_extension_priv) {
+sorteo <- sortear_razones(n_sim)
+q_sim  <- pmax(q_sim * sorteo$r_q, 0)
+K_sim  <- Pt$P5[match(a, Pt$anio)] * q_sim
+E_sim  <- cbind(K_sim, E_sim[, 1:12] * sorteo$gprs)
+colnames(E_sim) <- grados
+extension_priv_sim[[a]] <- E_sim
+}
+if (length(anios_extension_priv) > 0) {
+base_sim  <- extension_priv_sim[[anio_base_esc]]
+priv_base <- apply(base_sim, 2, median)
+} else {
+priv_base <- setNames( as.numeric( privadas[match(anio_base_esc, privadas$anio), grados]
+), grados
+)
+base_sim <- matrix( priv_base, nrow = 1, dimnames = list(NULL, grados)
+)
+}
+pub_base <- setNames( as.numeric( publicas[match(anio_base_esc, publicas$anio), grados]
+), grados
+)
+proyectar_qq <- function(base) {
+M <- sapply( seq_along(anios_qq), function(j) base * factores[, j]
+)
+M <- cbind(base, M)
+colnames(M) <- c( anio_base_esc, etiqueta_qq(anios_qq)
+)
+M
+}
+proy_pub  <- proyectar_qq(pub_base)
+proy_priv <- proyectar_qq(priv_base)
+tot_proy_pub  <- colSums(proy_pub)
+tot_proy_priv <- colSums(proy_priv)
+linea_extension_priv <- vapply( extension_priv_sim, function(M) sum(apply(M, 2, median)), numeric(1)
+)
+anio_ini <- function(x) {
+as.integer(substr(x, 1, 4))
+}
+x_priv_proy <- c( anio_ini(tail(privadas$anio, 1)), anio_ini(names(extension_priv_sim)), anio_ini(etiqueta_qq(anios_qq))
+)
+metricas_pub  <- res_pub$metricas
+metricas_priv <- res_priv$metricas
+cov_pub_mc <- metricas_pub$Cobertura[
+metricas_pub$Metodo == "Monte Carlo"
+]
+cov_pub_boot <- metricas_pub$Cobertura[
+metricas_pub$Metodo == "Bootstrap predictivo"
+]
+cov_priv_mc <- metricas_priv$Cobertura[
+metricas_priv$Metodo == "Monte Carlo"
+]
+cov_priv_boot <- metricas_priv$Cobertura[
+metricas_priv$Metodo == "Bootstrap predictivo"
+]
+ancho_pub_mc <- metricas_pub$Ancho_medio[
+metricas_pub$Metodo == "Monte Carlo"
+]
+ancho_pub_boot <- metricas_pub$Ancho_medio[
+metricas_pub$Metodo == "Bootstrap predictivo"
+]
+ancho_priv_mc <- metricas_priv$Ancho_medio[
+metricas_priv$Metodo == "Monte Carlo"
+]
+ancho_priv_boot <- metricas_priv$Ancho_medio[
+metricas_priv$Metodo == "Bootstrap predictivo"
+]
+descenso_pub <- 100 * ( 1 - tail(hist_pub$Total, 1) / hist_pub$Total[1]
+)
+descenso_priv <- 100 * ( 1 - tail(hist_priv$Total, 1) / hist_priv$Total[1]
+)
+caida_P5 <- 100 * ( 1 - tail(Pt$P5, 1) / Pt$P5[1]
+)
+q_pub_ini <- 100 * cob_pub_full$cobertura[1]
+q_pub_fin <- 100 * tail(cob_pub_full$cobertura, 1)
+q_priv_ini <- 100 * cob_priv_full$cobertura[1]
+q_priv_fin <- 100 * tail(cob_priv_full$cobertura, 1)
+fuera_metodo <- function(res, metodo) {
+res$tabla %>%
+filter( Metodo == metodo, !Dentro
+) %>%
+pull(Grado)
+}
+fuera_pub_mc    <- fuera_metodo(res_pub, "Monte Carlo")
+fuera_pub_boot  <- fuera_metodo(res_pub, "Bootstrap predictivo")
+fuera_priv_mc   <- fuera_metodo(res_priv, "Monte Carlo")
+fuera_priv_boot <- fuera_metodo(res_priv, "Bootstrap predictivo")
+texto_fuera <- function(x) {
+if (length(x) == 0) {
+"ninguno"
+} else {
+paste(x, collapse = ", ")
+}
+}
+ult_qq <- etiqueta_qq(tail(anios_qq, 1))
+caida_qq_pub <- 100 * ( 1 - tot_proy_pub[ult_qq] / tot_proy_pub[anio_base_esc]
+)
+caida_qq_priv <- 100 * ( 1 - tot_proy_priv[ult_qq] / tot_proy_priv[anio_base_esc]
+)
+pob_5_17 <- colSums( pop_proy[as.character(5:17), c(anio_base, anios_qq)]
+)
+caida_pob_5_17 <- 100 * ( 1 - tail(pob_5_17, 1) / pob_5_17[1]
+)
+fmt <- function(x) formatC(round(x), format = "d", big.mark = ",")
+pct1 <- function(x) sprintf("%.1f%%", x)
+ft_apa <- function(ft, tam = 10) {
+ft |>
+align(align = "center", part = "all") |>
+align(j = 1, align = "left", part = "all") |>
+font(fontname = "Times New Roman", part = "all") |>
+fontsize(size = tam, part = "all") |>
+set_table_properties(layout = "autofit", width = 1)
+}
+ft_proyeccion <- function(M) {
+M_tot <- rbind( M, Total = colSums(M)
+)
+df <- as_tibble(M_tot) %>%
+mutate( across(everything(), fmt)
+) %>%
+mutate( Grado = rownames(M_tot), .before = 1
+)
+flextable(df) |>
+bold(i = nrow(df), part = "body") |>
+ft_apa(tam = 9)
+}
+figura_validacion <- function(res) {
+graf <- res$tabla %>%
+mutate( Grado = factor( Grado, levels = grados
+), Metodo = factor( Metodo, levels = c( "Monte Carlo", "Bootstrap predictivo"
+)
+)
+)
+ggplot( graf, aes( x = Grado, y = Proyectado, color = Metodo
+)
+) +
+geom_errorbar( aes( ymin = LI, ymax = LS
+), width = 0.16, linewidth = 0.7
+) +
+geom_point( size = 1.9
+) +
+geom_point( data = graf %>%
+distinct( Grado, Observado
+), aes( x = Grado, y = Observado
+), inherit.aes = FALSE, color = COL_OBS, shape = 16, size = 2.2
+) +
+facet_wrap( ~ Metodo, ncol = 1
+) +
+scale_color_manual( values = c( "Monte Carlo" = COL_MC, "Bootstrap predictivo" = COL_BOOT
+)
+) +
+scale_y_continuous( labels = comma
+) +
+labs( x = "Grado", y = "Estudiantes"
+) +
+tema +
+theme( legend.position = "none", axis.text.x = element_text(size = 8)
+)
+}
+```
+
+# Proyección de la matrícula escolar mediante el GPR en escuelas públicas y privadas de Puerto Rico
+
+## Resumen
+
+Este informe estima la matrícula escolar por grado, de Kinder a duodécimo, para las escuelas públicas y privadas de Puerto Rico. La entrada a Kinder se relaciona con la población de 5 años mediante la razón de matrícula de Kinder respecto a esa cohorte demográfica, mientras que el paso entre grados se modela con razones de progresión de grado (GPR) estimadas de la experiencia histórica reciente. Para el horizonte de un año, la incertidumbre se cuantifica mediante intervalos predictivos del 95% obtenidos con simulación Monte Carlo paramétrica y bootstrap predictivo; ambos métodos se validan reproduciendo el último año escolar observado de cada sector. La cobertura empírica de los intervalos fue de `r pct1(cov_pub_mc)` (Monte Carlo) y `r pct1(cov_pub_boot)` (bootstrap) en el sector público, y de `r pct1(cov_priv_mc)` y `r pct1(cov_priv_boot)` en el privado.
+
+Para el largo plazo, la matrícula se proyecta por quinquenios hasta `r ult_qq` utilizando la mediana de las proyecciones de población por edad. Para cada grado se mantiene como referencia la relación entre su matrícula y la población de la edad correspondiente en 2025-26, de manera que las proyecciones reflejan principalmente el efecto de los cambios futuros en el tamaño de las cohortes.
+
+Palabras clave: proyección de matrícula, GPR, bootstrap predictivo, simulación Monte Carlo, proyecciones de población, Puerto Rico.
+
+## Introducción
+
+Puerto Rico atraviesa una contracción demográfica sostenida, caracterizada por niveles de fecundidad históricamente bajos, pérdida de población y envejecimiento demográfico. Las proyecciones bayesianas de la tasa global de fecundidad anticipan que este régimen de baja fecundidad se mantendrá durante las próximas décadas (Rosario-Santos et al., 2024), en línea con la tendencia observada en muchas sociedades de altos ingresos (OECD, 2024). Una de las consecuencias más directas de estos cambios es la reducción del tamaño de las cohortes infantiles que eventualmente ingresan al sistema educativo.
+
+Esta transformación ya es visible en la población en edad de entrada escolar. La población de 5 años pasó de `r fmt(Pt$P5[1])` en `r Pt$anio[1]` a `r fmt(tail(Pt$P5, 1))` en `r tail(Pt$anio, 1)`, lo que representa una disminución de `r pct1(caida_P5)`. La reducción de estas cohortes tiene implicaciones directas para la planificación del sistema educativo, tanto público como privado. Anticipar la matrícula futura resulta relevante para decisiones relacionadas con la distribución de maestros y recursos, la utilización y consolidación de planteles, la provisión de servicios educativos y, en el sector privado, la sostenibilidad de las instituciones.
+
+La matrícula escolar, sin embargo, no depende exclusivamente del tamaño de la población infantil. Entre un año escolar y el siguiente intervienen también la progresión de los estudiantes entre grados, las transferencias entre sectores o instituciones, la repetición, la migración y otros movimientos de entrada y salida del sistema. Por esta razón, los métodos de proyección basados en la progresión de cohortes constituyen una herramienta demográfica ampliamente utilizada para estimar la matrícula futura (Preston et al., 2001). En este trabajo se adopta el método *Grade Progression Ratio* (GPR), o razón de progresión de grado, siguiendo el desarrollo de sus proyecciones probabilísticas y métodos para representar la incertidumbre presentado en Rosario-Santos (2026).
+
+En este contexto, el presente estudio tiene como propósito estimar la matrícula escolar por grado para las escuelas públicas y privadas de Puerto Rico. La entrada a Kinder se relaciona con la población de 5 años mediante la razón entre la matrícula de ese grado y la cohorte demográfica de referencia, mientras que la progresión desde Kinder hasta duodécimo grado se estima a partir de los GPR observados históricamente. Para evaluar el desempeño del procedimiento, se realiza una validación fuera de muestra en la que se proyecta el último año observado de cada sector utilizando únicamente la información de los años anteriores, y la incertidumbre de estas proyecciones de corto plazo se representa mediante intervalos predictivos del 95%. Finalmente, la matrícula se proyecta por quinquenios hasta `r ult_qq`, ajustando cada grado de acuerdo con la evolución de la mediana de las proyecciones de población correspondiente a su edad de referencia. Para este horizonte se mantiene como referencia la relación entre la matrícula de cada grado y la población de su edad correspondiente en 2025-26, con el propósito de representar el efecto de los cambios demográficos proyectados.
+
+## Metodología
+
+### Fuentes de información
+
+Se utilizaron cuatro series (Tabla 1): la matrícula por grado de las escuelas públicas, la matrícula por grado de las escuelas privadas, la población de 5 años al 1 de julio de cada año —construida a partir de los estimados intercensales y del Population Estimates Program de la Oficina del Censo de los EE. UU. (U.S. Census Bureau, 2025)— y la mediana de las proyecciones probabilísticas de población por edades sencillas, en puntos quinquenales, suministrada por el equipo demográfico del proyecto. La serie privada disponible termina en `r tail(privadas$anio, 1)`, mientras que la pública y la de población llegan hasta `r tail(publicas$anio, 1)`.
+
+::: {custom-style="Figura APA"}
+**Tabla 1**
+
+*Series de información utilizadas*
+:::
+
+```{r tabla-fuentes}
+fuentes <- tibble( Serie = c( "Matrícula pública", "Matrícula privada", "Población de 5 años (P5)", "Proyecciones de población (mediana)"
+), Periodo = c( paste0(publicas$anio[1], " a ", tail(publicas$anio, 1)), paste0(privadas$anio[1], " a ", tail(privadas$anio, 1)), paste0(Pt$anio[1], " a ", tail(Pt$anio, 1)), paste0( min(anios_proy_disp), " a ", max(anios_proy_disp)
+)
+), Anios = c( nrow(publicas), nrow(privadas), nrow(Pt), length(anios_proy_disp)
+), Descripcion = c( "Matrícula por grado, K a G12", "Matrícula por grado, K a G12", "Estimados al 1 de julio de cada año", "Edades sencillas; puntos quinquenales"
+)
+)
+flextable(fuentes) |>
+set_header_labels( Serie = "Serie", Periodo = "Período", Anios = "Años", Descripcion = "Descripción"
+) |>
+ft_apa()
+```
+
+### Entrada a Kinder: razón matrícula--población
+
+La matrícula de Kinder se relaciona con el tamaño de la población de 5 años mediante
+
+$$q_t = \frac{K_t}{P5_t},$$
+
+donde $K_t$ es la matrícula de Kinder del año escolar $t$ y $P5_t$ la población de 5 años al 1 de julio del año en que comienza ese curso escolar. La cantidad $q_t$ se interpreta como una razón de matrícula respecto a la cohorte demográfica de referencia, y no como una probabilidad individual de estar matriculado, ya que la matrícula de Kinder puede incluir estudiantes que no tienen exactamente 5 años en la fecha de referencia poblacional.
+
+Para representar la evolución temporal de esta razón, se modela su cambio anual mediante
+
+$$r_q(t)=\frac{q_{t+1}}{q_t}.$$
+
+La matrícula de Kinder del año a proyectar, $T$, se obtiene aplicando a la razón observada en el año anterior su cambio relativo anual:
+
+$$K_T=P5_T \times q_{T-1}\times r_q(T-1),$$
+
+con $r_q$ sorteado en cada simulación según el método de incertidumbre correspondiente. Dado que $q_t$ es una razón y no una probabilidad estricta, en las simulaciones se restringe únicamente a valores no negativos.
+
+### Progresión entre grados
+
+Para el resto de los grados se utiliza la razón de progresión de grado (GPR), que compara la matrícula de un grado con la del grado anterior un año antes:
+
+$$\mathrm{GPR}(g \to g+1,\ t) = \frac{E_{g+1,\,t+1}}{E_{g,\,t}},$$
+
+donde $E_{g,t}$ es la matrícula del grado $g$ en el año $t$. La proyección de cada grado del año $T$ parte de la matrícula observada del grado anterior en $T-1$:
+
+$$E_{g+1,\,T} = E_{g,\,T-1} \times \mathrm{GPR}(g \to g+1).$$
+
+Todos los grados se proyectan para el mismo año escolar $T$, de modo que cada grado depende únicamente de la matrícula ya observada en $T-1$ y de la razón sorteada.
+
+### Cuantificación de la incertidumbre
+
+Tanto las razones $r_q$ como las GPR se estiman con una ventana de las últimas cinco transiciones observadas. A partir de estas razones se construyen proyecciones para un año escolar hacia adelante. En la validación, el año proyectado fue 2025-26 para el sector público y 2023-24 para el sector privado, utilizando únicamente la información disponible en los años anteriores. Sobre esa base se construyen intervalos predictivos del 95% mediante dos métodos alternativos, ejecutados por separado con 10,000 simulaciones cada uno. En ambos casos, la estimación puntual corresponde a la mediana de las simulaciones y los límites del intervalo se obtienen con los percentiles 2.5 y 97.5.
+
+#### Simulación Monte Carlo paramétrica
+
+Cada razón se modela con una distribución normal ajustada a su media y desviación estándar históricas dentro de la ventana: $r_q \sim \mathrm{Normal}(\bar{r}_q,\ SD_{r_q})$ y $\mathrm{GPR}(g \to g+1) \sim \mathrm{Normal}(\overline{\mathrm{GPR}}_g,\ SD_g)$. En cada iteración se sortean conjuntamente todas las razones y se calcula la matrícula resultante de cada grado.
+
+#### Bootstrap predictivo
+
+Cada simulación selecciona con reemplazo uno de los valores históricos de las razones observadas dentro de la ventana de análisis y lo utiliza como posible valor futuro. De esta manera, la distribución predictiva reproduce empíricamente la variabilidad reciente de las razones, por lo que sus intervalos quedan determinados por el rango de valores observado en dicha ventana.
+
+### Diseño de la validación
+
+Los dos métodos se validaron de manera supervisada con el último año observado de cada sector como conjunto de prueba: `r res_pub$anio_test` en el sector público y `r res_priv$anio_test` en el privado. Con la información de los años anteriores se proyectó ese año como si no se conociera y se comparó la matrícula observada de cada grado con su intervalo predictivo. El desempeño se resume con dos métricas por método: la cobertura empírica (porcentaje de los 13 grados cuya matrícula observada quedó dentro del intervalo) y el ancho medio de los intervalos. A igualdad de cobertura, es preferible el método con intervalos más angostos.
+
+### Proyección quinquenal ajustada por tendencias demográficas
+
+Para extender el horizonte más allá del corto plazo, las proyecciones escolares se ajustan directamente en puntos quinquenales utilizando la mediana de las proyecciones de población por edades sencillas. Este enfoque permite incorporar de manera directa la tendencia demográfica proyectada para la edad de referencia asociada con cada grado.
+
+El procedimiento asocia cada grado con una edad de referencia: 5 años para Kinder, 6 años para primer grado y así sucesivamente hasta 17 años para duodécimo grado. La matrícula correspondiente al año escolar 2025-26 se utiliza como año base de referencia para aplicar los cambios demográficos posteriores.
+
+Para cada grado $g$, se mantiene como referencia la relación entre su matrícula en 2025-26 y la población correspondiente a su edad de referencia. De esta manera, la proyección permite representar el efecto del cambio demográfico sobre la matrícula manteniendo la estructura observada en el año base. La matrícula proyectada se obtiene como
+
+$$
+E_g(t)
+=
+E_g(2025\text{-}26)
+\times
+\frac{P_{a_g}(t)}{P_{a_g}(2025)},
+$$
+
+donde $E_g(t)$ representa la matrícula proyectada del grado $g$ en el año $t$, $a_g$ es la edad de referencia asociada con ese grado y $P_{a_g}(t)$ es la población proyectada de esa edad en el año $t$. Los factores $P_{a_g}(t)/P_{a_g}(2025)$ se calculan dentro de la misma fuente de proyección, por lo que trasladan el cambio relativo de la población proyectada de cada edad entre 2025 y el quinquenio correspondiente.
+
+En el sector público, la matrícula observada de 2025-26 constituye la base de referencia. La serie privada termina en 2023-24, por lo que su matrícula correspondiente a 2025-26 se estima mediante dos pasos anuales consecutivos con el procedimiento GPR validado. En cada una de las 10,000 réplicas se sortean, año a año, la razón anual $r_q$ y las 12 GPR utilizando el método Monte Carlo. La mediana por grado de estas réplicas define la matrícula privada estimada para 2025-26 y se utiliza como base de referencia para las proyecciones quinquenales.
+
+A partir de este procedimiento, los resultados de largo plazo se interpretan como un escenario demográfico de referencia construido con la mediana de las proyecciones de población por edad. Su propósito es mostrar cómo evolucionaría la matrícula al mantener como referencia la estructura matrícula--población de 2025-26 y aplicar los cambios demográficos proyectados para cada edad.
+
+## Resultados
+
+### Evolución histórica de la matrícula
+
+La Figura 1 presenta la matrícula total de ambos sectores. El descenso es sostenido en los dos casos: la matrícula pública acumula una caída de `r pct1(descenso_pub)` entre `r publicas$anio[1]` y `r tail(publicas$anio, 1)`, al pasar de `r fmt(hist_pub$Total[1])` a `r fmt(tail(hist_pub$Total, 1))` estudiantes, mientras que la privada se reduce `r pct1(descenso_priv)` entre `r privadas$anio[1]` y `r tail(privadas$anio, 1)`, de `r fmt(hist_priv$Total[1])` a `r fmt(tail(hist_priv$Total, 1))` estudiantes.
+
+::: {custom-style="Figura APA"}
+**Figura 1**
+
+*Matrícula total por sector y año escolar*
+:::
+
+```{r fig-matricula-total, fig.width=6.5, fig.height=3.4}
+ggplot( hist_tot, aes( x = factor(anio, levels = sort(unique(anio))), y = Total, color = Sector, group = Sector
+)
+) +
+geom_line( linewidth = 1.1
+) +
+geom_point( size = 1.7
+) +
+scale_color_manual( values = c( "Pública" = COL_PUBLICAS, "Privada" = COL_PRIVADAS
+)
+) +
+scale_y_continuous( labels = comma, limits = c(0, NA)
+) +
+labs( x = "Año escolar", y = "Estudiantes"
+) +
+tema +
+theme( axis.text.x = element_text( angle = 50, hjust = 1, size = 7
+)
+)
+```
+
+### Entrada a Kinder
+
+La Figura 2 muestra la razón $q_t=K_t/P5_t$ de cada sector. En el sector público esta razón pasó de `r pct1(q_pub_ini)` en `r cob_pub_full$anio[1]` a `r pct1(q_pub_fin)` en `r tail(cob_pub_full$anio, 1)`; en el privado, de `r pct1(q_priv_ini)` a `r pct1(q_priv_fin)` durante el período `r cob_priv_full$anio[1]` a `r tail(cob_priv_full$anio, 1)`. El aumento de $q_t$ mientras la matrícula de Kinder disminuye indica que la población de 5 años se ha contraído a un ritmo mayor que la matrícula de entrada. 
+
+::: {custom-style="Figura APA"}
+**Figura 2**
+
+*Razón de matrícula de Kinder respecto a la población de 5 años, por sector*
+:::
+
+```{r fig-cobertura-k, fig.width=6.5, fig.height=3.4}
+ggplot( cob_tot, aes( x = factor(anio, levels = sort(unique(anio))), y = cobertura, color = Sector, group = Sector
+)
+) +
+geom_line( linewidth = 1.1
+) +
+geom_point( size = 1.7
+) +
+scale_color_manual( values = c( "Pública" = COL_PUBLICAS, "Privada" = COL_PRIVADAS
+)
+) +
+scale_y_continuous( labels = percent_format(accuracy = 1), limits = c(0, NA)
+) +
+labs( x = "Año escolar", y = "Razón K / P5"
+) +
+tema +
+theme( axis.text.x = element_text( angle = 50, hjust = 1, size = 7
+)
+)
+```
+
+### Validación del último año observado
+
+La Figura 3 compara la matrícula observada de `r res_pub$anio_test` en el sector público con los intervalos predictivos de ambos métodos, estimados con la información disponible hasta `r publicas$anio[nrow(publicas) - 1]`. La cobertura empírica fue de `r pct1(cov_pub_mc)` con Monte Carlo y de `r pct1(cov_pub_boot)` con el bootstrap predictivo; los grados fuera del intervalo fueron: `r texto_fuera(fuera_pub_mc)` (Monte Carlo) y `r texto_fuera(fuera_pub_boot)` (bootstrap). El ancho medio de los intervalos fue de `r fmt(ancho_pub_mc)` estudiantes con Monte Carlo frente a `r fmt(ancho_pub_boot)` con el bootstrap.
+
+::: {custom-style="Figura APA"}
+**Figura 3**
+
+*Sector público: matrícula observada de `r res_pub$anio_test` e intervalos predictivos del 95% por método*
+:::
+
+```{r fig-validacion-pub, fig.width=6.5, fig.height=5.2}
+figura_validacion(res_pub)
+```
+
+::: {custom-style="Nota"}
+*Nota.* Los puntos rojos indican la matrícula observada; el punto central de cada segmento, la mediana de las `r format(n_sim, big.mark = ",")` simulaciones, y el segmento, el intervalo predictivo del 95%.
+:::
+
+La Figura 4 presenta la misma validación para el sector privado, con `r res_priv$anio_test` como año de prueba. La cobertura empírica fue de `r pct1(cov_priv_mc)` con Monte Carlo y de `r pct1(cov_priv_boot)` con el bootstrap; los grados fuera del intervalo fueron: `r texto_fuera(fuera_priv_mc)` (Monte Carlo) y `r texto_fuera(fuera_priv_boot)` (bootstrap). Los anchos medios fueron de `r fmt(ancho_priv_mc)` y `r fmt(ancho_priv_boot)` estudiantes, respectivamente.
+
+::: {custom-style="Figura APA"}
+**Figura 4**
+
+*Sector privado: matrícula observada de `r res_priv$anio_test` e intervalos predictivos del 95% por método*
+:::
+
+```{r fig-validacion-priv, fig.width=6.5, fig.height=5.2}
+figura_validacion(res_priv)
+```
+
+::: {custom-style="Nota"}
+*Nota.* Los puntos rojos indican la matrícula observada; el punto central de cada segmento, la mediana de las `r format(n_sim, big.mark = ",")` simulaciones, y el segmento, el intervalo predictivo del 95%.
+:::
+
+La Tabla 2 resume las dos métricas de validación por sector y método. El patrón es consistente: el bootstrap produce intervalos más angostos que Monte Carlo en ambos sectores, con una cobertura empírica igual o levemente menor.
+
+::: {custom-style="Figura APA"}
+**Tabla 2**
+
+*Métricas de validación por sector y método*
+:::
+
+```{r tabla-metricas}
+metricas_comb <- bind_rows( metricas_pub %>% mutate(Sector = "Pública"), metricas_priv %>% mutate(Sector = "Privada")
+) %>%
+mutate( Cobertura = pct1(Cobertura), Ancho_medio = fmt(Ancho_medio)
+) %>%
+select(Sector, Metodo, Cobertura, Ancho_medio)
+flextable(metricas_comb) |>
+set_header_labels( Sector = "Sector", Metodo = "Método", Cobertura = "Cobertura empírica", Ancho_medio = "Ancho medio (estudiantes)"
+) |>
+merge_v(j = "Sector") |>
+valign(j = "Sector", valign = "top") |>
+ft_apa()
+```
+
+::: {custom-style="Nota"}
+*Nota.* La cobertura empírica es el porcentaje de los 13 grados cuya matrícula observada quedó dentro del intervalo predictivo del 95%.
+:::
+
+### Análisis de sensibilidad de la ventana histórica
+
+Como verificación de robustez, la validación se repitió utilizando ventanas de 5, 7 y 10 transiciones históricas. La ventana indica cuántos cambios consecutivos entre años escolares se utilizan para estimar las razones $r_q$ y las GPR. Por ejemplo, una ventana de 5 utiliza únicamente las cinco transiciones más recientes disponibles antes del año que se desea proyectar, mientras que las ventanas de 7 y 10 incorporan progresivamente una mayor cantidad de información histórica.
+
+La Tabla 3 compara, para cada ventana, la cobertura empírica y el ancho medio de los intervalos predictivos. Este análisis permite evaluar qué tan sensibles son los resultados a la cantidad de historia reciente utilizada para estimar las razones de progresión.
+
+::: {custom-style="Figura APA"}
+**Tabla 3**
+
+*Sensibilidad de la validación a la longitud de la ventana histórica*
+:::
+
+```{r tabla-sensibilidad}
+tabla_sens <- sensibilidad_ventana %>%
+mutate( Cobertura = pct1(Cobertura), Ancho_medio = fmt(Ancho_medio)
+) %>%
+select( Sector, Ventana, Metodo, Cobertura, Ancho_medio
+)
+flextable(tabla_sens) |>
+set_header_labels( Sector = "Sector", Ventana = "Ventana (transiciones)", Metodo = "Método", Cobertura = "Cobertura empírica", Ancho_medio = "Ancho medio (estudiantes)"
+) |>
+ft_apa(tam = 9)
+```
+
+::: {custom-style="Nota"}
+*Nota.* La cobertura empírica se calcula sobre los 13 grados evaluados, de Kinder a duodécimo. Así, 100.0% corresponde a 13 de 13 grados y 92.3% a 12 de 13. El ancho medio corresponde al promedio, entre los 13 grados, de la diferencia entre el límite superior y el límite inferior del intervalo predictivo.
+:::
+
+### Proyección quinquenal a 2050-51
+
+La Figura 5 presenta la matrícula total observada y la proyección quinquenal de ambos sectores; las Tablas 4 y 5 muestran el detalle por grado. Utilizando la mediana de las proyecciones de población por edad, la matrícula del sector público se reduciría de 225,174 estudiantes en 2025-26 a 145,079 en 2050-51, lo que representa una disminución de 35.6%. En el sector privado, la matrícula pasaría de 94,221 a 60,651 estudiantes durante el mismo período, también una reducción de 35.6%. Como referencia, la población proyectada de 5 a 17 años disminuiría 36.0% entre 2025 y 2050.
+
+La trayectoria proyectada presenta algunas variaciones entre quinquenios. La mediana de las proyecciones demográficas muestra un aumento transitorio en el tamaño de algunas cohortes infantiles durante la década de 2030. Este cambio se refleja primero en Kinder; por ejemplo, en el sector público la matrícula proyectada pasa de 12,009 estudiantes en 2030-31 a 13,998 en 2035-36. En los quinquenios posteriores, este cambio en el tamaño de las cohortes se traslada gradualmente hacia los grados superiores.
+
+::: {custom-style="Figura APA"}
+**Figura 5**
+
+*Matrícula total observada y proyectada por quinquenios, según sector*
+:::
+
+```{r fig-proyeccion-qq, fig.width=6.5, fig.height=5.6}
+serie_obs <- hist_tot %>%
+transmute( Sector, x = anio_ini(anio), Total, Tipo = "Observada"
+)
+serie_proy <- bind_rows( tibble( Sector = "Pública", x = anio_ini(colnames(proy_pub)), Total = tot_proy_pub
+), tibble( Sector = "Privada", x = x_priv_proy, Total = c( tail(hist_priv$Total, 1), linea_extension_priv, tot_proy_priv[etiqueta_qq(anios_qq)]
+)
+)
+) %>%
+mutate( Tipo = "Proyectada", Sector = factor( Sector, levels = c("Pública", "Privada")
+)
+)
+ggplot( bind_rows(serie_obs, serie_proy) %>%
+filter(x >= anio_zoom), aes( x = x, y = Total, color = Sector, linetype = Tipo
+)
+) +
+geom_line( linewidth = 1
+) +
+geom_point( data = serie_proy, size = 1.9
+) +
+facet_wrap( ~ Sector, ncol = 1, scales = "free_y"
+) +
+scale_color_manual( values = c( "Pública" = COL_PUBLICAS, "Privada" = COL_PRIVADAS
+), guide = "none"
+) +
+scale_linetype_manual( values = c( "Observada" = "solid", "Proyectada" = "22"
+)
+) +
+scale_x_continuous( breaks = seq(2020, 2070, 5)
+) +
+scale_y_continuous( labels = comma
+) +
+labs( x = "Año de inicio del año escolar", y = "Estudiantes"
+) +
+tema
+```
+
+::: {custom-style="Figura APA"}
+**Tabla 4**
+
+*Sector público: matrícula proyectada por grado y quinquenio*
+:::
+
+```{r tabla-proy-pub}
+ft_proyeccion(proy_pub)
+```
+
+::: {custom-style="Figura APA"}
+**Tabla 5**
+
+*Sector privado: matrícula proyectada por grado y quinquenio*
+:::
+
+```{r tabla-proy-priv}
+ft_proyeccion(proy_priv)
+```
+
+## Discusión
+
+La validación supervisada del último año observado indica que el procedimiento GPR, con la entrada a Kinder vinculada a la población de 5 años mediante la razón $q_t$, reproduce adecuadamente la matrícula por grado de ambos sectores. Los dos métodos de incertidumbre muestran un contraste entre amplitud y cobertura. El bootstrap predictivo genera intervalos más angostos, ya que remuestrea directamente los valores observados en la ventana reciente y refleja el rango empírico de esas razones. Monte Carlo permite una variabilidad mayor mediante las colas de la distribución normal, lo que produce intervalos más amplios y, en la validación presentada, una cobertura igual o superior. En particular, ambos métodos alcanzaron una cobertura de 100% en el sector público, mientras que en el sector privado Monte Carlo alcanzó 100% y el bootstrap predictivo 92.3%. Estos resultados respaldan el uso de Monte Carlo para estimar la matrícula privada de 2025-26 antes de realizar las proyecciones quinquenales.
+
+El análisis de sensibilidad con ventanas de 5, 7 y 10 transiciones permite evaluar cuánto dependen los resultados de la cantidad de información histórica utilizada. En las tres ventanas, la cobertura de Monte Carlo se mantuvo en 100% para ambos sectores; el bootstrap predictivo mantuvo 100% en el sector público y 92.3% en el privado. La principal diferencia se observó en el ancho de los intervalos. En general, las ventanas más largas produjeron intervalos más amplios, especialmente en el sector público, mientras que la ventana de cinco transiciones mantuvo la misma cobertura con intervalos más estrechos. Este resultado apoya el uso de cinco transiciones como especificación principal, además de priorizar el comportamiento reciente de la matrícula.
+
+La proyección quinquenal constituye una etapa distinta de la validación anual. En el corto plazo, el modelo GPR genera una distribución predictiva y permite comparar sus intervalos con un año efectivamente observado. Para el largo plazo, la matrícula se proyecta aplicando a cada grado el cambio relativo de la mediana de la población proyectada de su edad de referencia. Así, las cifras de 2030 a `r tail(anios_qq, 1)` representan un escenario demográfico de referencia construido a partir de la estructura de matrícula de 2025-26 y de la evolución proyectada de las cohortes por edad.
+
+La trayectoria quinquenal muestra que la reducción de la matrícula puede variar entre grados y períodos. Los cambios en el tamaño de las cohortes infantiles se reflejan primero en Kinder y posteriormente se trasladan hacia los grados superiores. Este desplazamiento temporal tiene implicaciones para la planificación, ya que las necesidades de salones, maestros y servicios pueden cambiar a ritmos distintos entre los niveles educativos.
+
+El ejercicio presenta varias limitaciones. Primero, las razones GPR y $r_q$ se sortean de manera independiente, de modo que la especificación no incorpora correlaciones entre grados ni entre la entrada a Kinder y la progresión posterior. Segundo, la serie privada termina en `r tail(privadas$anio, 1)`, por lo que la matrícula privada de `r anio_base_esc` se estima mediante dos pasos anuales consecutivos antes de iniciar la proyección quinquenal. Tercero, el escenario quinquenal mantiene como referencia la relación matrícula--población observada en 2025-26; cambios futuros en migración, decisiones familiares, transferencias entre sectores, modalidades educativas o políticas institucionales podrían modificar esa relación. Finalmente, la asociación de cada grado con una edad de referencia única simplifica la distribución real de edades dentro de cada grado.
+
+Como próximos pasos, la disponibilidad de percentiles o trayectorias probabilísticas de las proyecciones de población permitiría ampliar el análisis de la incertidumbre demográfica a largo plazo. También sería útil evaluar una interpolación anual de las proyecciones demográficas e investigar explícitamente la evolución de la relación matrícula--población por edad, especialmente en Kinder.
+
+## Conclusiones
+
+La matrícula escolar de Puerto Rico muestra una contracción sostenida en los sectores público y privado. Esta reducción ocurre en un contexto de disminución de las cohortes infantiles, cuya evolución constituye uno de los principales determinantes de la matrícula futura. Las proyecciones quinquenales muestran cómo podría evolucionar la matrícula al mantener como referencia la relación observada en 2025-26 entre la matrícula de cada grado y la población correspondiente a su edad de referencia.
+
+Para el horizonte de un año, el procedimiento basado en razones de progresión de grado produjo resultados satisfactorios al reproducir el último año observado de ambos sectores. Monte Carlo y bootstrap predictivo ofrecen representaciones complementarias de la incertidumbre: Monte Carlo produjo intervalos más amplios y alcanzó una cobertura de 100% en ambos sectores, mientras que el bootstrap predictivo generó intervalos más angostos, con cobertura de 100% en el sector público y 92.3% en el privado.
+
+Para el largo plazo, las proyecciones quinquenales sugieren una reducción adicional de la matrícula hasta 2050-51, aunque con variaciones en el ritmo de cambio entre grados y períodos. Estas estimaciones se construyen utilizando la mediana de las proyecciones de población por edad y manteniendo como referencia la estructura matrícula--población de 2025-26.
+
+La distinción entre ambos horizontes es importante para la interpretación. El corto plazo se evalúa mediante un modelo GPR con incertidumbre predictiva validada, mientras que el largo plazo se proyecta a partir de la evolución de la mediana de la población proyectada por edad. En conjunto, ambos componentes permiten combinar la dinámica reciente de progresión escolar con los cambios demográficos esperados y ofrecer una referencia cuantitativa para la planificación educativa.
+
+## Referencias
+
+OECD. (2024). *Society at a glance 2024: OECD social indicators*. OECD Publishing. https://doi.org/10.1787/918d8db3-en
+
+Preston, S. H., Heuveline, P., & Guillot, M. (2001). *Demography: Measuring and modeling population processes*. Blackwell Publishers.
+
+Rosario-Santos, A. M. (2026). *Grade progression ratio (GPR): Cálculo, proyecciones probabilísticas y métodos de incertidumbre* [Manuscrito no publicado].
+
+Rosario-Santos, A. M., Pericchi-Guerra, L., & Mattei, H. (2024). A Bayesian projection of the total fertility rate of Puerto Rico: 2020–2050. *Puerto Rico Health Sciences Journal, 43*(3), 125–131. https://prhsj.rcm.upr.edu/index.php/prhsj/article/view/3209
+
+U.S. Census Bureau. (2025). *Population Estimates Program (PEP): Annual estimates of the resident population by single year of age for Puerto Rico*. https://www.census.gov/programs-surveys/popest.html

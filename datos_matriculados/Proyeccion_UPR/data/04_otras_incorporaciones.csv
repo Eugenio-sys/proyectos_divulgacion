@@ -1,0 +1,109 @@
+﻿recinto,nivel,estado,incorporaciones_anuales,n_anos,ventana
+Aguadilla,Bach,1,0,5,5
+Aguadilla,Bach,2,2.6,5,5
+Aguadilla,Bach,3,7.4,5,5
+Aguadilla,Bach,4,6.2,5,5
+Aguadilla,Bach,5 o mas,31.4,5,5
+Aguadilla,Bach,Sin origen,68.6,5,5
+Aguadilla,Asoc,1,0,5,5
+Aguadilla,Asoc,2,0,5,5
+Aguadilla,Asoc,3,0.6,5,5
+Aguadilla,Asoc,4,0.8,5,5
+Aguadilla,Asoc,5 o mas,2,5,5
+Aguadilla,Asoc,Sin origen,13.2,5,5
+Arecibo,Bach,1,0,5,5
+Arecibo,Bach,2,7,5,5
+Arecibo,Bach,3,14.8,5,5
+Arecibo,Bach,4,10.4,5,5
+Arecibo,Bach,5 o mas,48.4,5,5
+Arecibo,Bach,Sin origen,98.6,5,5
+Arecibo,Asoc,1,0,5,5
+Arecibo,Asoc,2,0.8,5,5
+Arecibo,Asoc,3,0.4,5,5
+Arecibo,Asoc,4,0.8,5,5
+Arecibo,Asoc,5 o mas,2.6,5,5
+Arecibo,Asoc,Sin origen,17.2,5,5
+Bayamon,Bach,1,0,5,5
+Bayamon,Bach,2,7.4,5,5
+Bayamon,Bach,3,17,5,5
+Bayamon,Bach,4,11,5,5
+Bayamon,Bach,5 o mas,57,5,5
+Bayamon,Bach,Sin origen,60.6,5,5
+Bayamon,Asoc,1,0,5,5
+Bayamon,Asoc,2,0,5,5
+Bayamon,Asoc,3,0.4,5,5
+Bayamon,Asoc,4,0.6,5,5
+Bayamon,Asoc,5 o mas,0.6,5,5
+Bayamon,Asoc,Sin origen,4,5,5
+Carolina,Bach,1,0,5,5
+Carolina,Bach,2,22.8,5,5
+Carolina,Bach,3,40.8,5,5
+Carolina,Bach,4,21.8,5,5
+Carolina,Bach,5 o mas,65.8,5,5
+Carolina,Bach,Sin origen,68.6,5,5
+Carolina,Asoc,1,0,5,5
+Carolina,Asoc,2,0,5,5
+Carolina,Asoc,3,1.2,5,5
+Carolina,Asoc,4,0.4,5,5
+Carolina,Asoc,5 o mas,2.8,5,5
+Carolina,Asoc,Sin origen,22,5,5
+Cayey,Bach,1,0.2,5,5
+Cayey,Bach,2,4.2,5,5
+Cayey,Bach,3,15.4,5,5
+Cayey,Bach,4,9.8,5,5
+Cayey,Bach,5 o mas,31.4,5,5
+Cayey,Bach,Sin origen,25.8,5,5
+Ciencias_Medicas,Bach,1,0,5,5
+Ciencias_Medicas,Bach,2,0,5,5
+Ciencias_Medicas,Bach,3,29.4,5,5
+Ciencias_Medicas,Bach,4,16.8,5,5
+Ciencias_Medicas,Bach,5 o mas,46.6,5,5
+Ciencias_Medicas,Bach,Sin origen,25.6,5,5
+Ciencias_Medicas,Asoc,1,0,5,5
+Ciencias_Medicas,Asoc,2,4.8,5,5
+Ciencias_Medicas,Asoc,3,0.4,5,5
+Ciencias_Medicas,Asoc,4,0,5,5
+Ciencias_Medicas,Asoc,5 o mas,0.8,5,5
+Ciencias_Medicas,Asoc,Sin origen,26.4,5,5
+Humacao,Bach,1,0,5,5
+Humacao,Bach,2,5.8,5,5
+Humacao,Bach,3,12,5,5
+Humacao,Bach,4,15.8,5,5
+Humacao,Bach,5 o mas,36,5,5
+Humacao,Bach,Sin origen,38.6,5,5
+Humacao,Asoc,1,0,5,5
+Humacao,Asoc,2,0.2,5,5
+Humacao,Asoc,3,0.6,5,5
+Humacao,Asoc,4,0.2,5,5
+Humacao,Asoc,5 o mas,1.4,5,5
+Humacao,Asoc,Sin origen,20,5,5
+Ponce,Bach,1,0,5,5
+Ponce,Bach,2,2.6,5,5
+Ponce,Bach,3,16.4,5,5
+Ponce,Bach,4,13.4,5,5
+Ponce,Bach,5 o mas,30.4,5,5
+Ponce,Bach,Sin origen,66.8,5,5
+Ponce,Asoc,1,0,5,5
+Ponce,Asoc,2,0,5,5
+Ponce,Asoc,3,1,5,5
+Ponce,Asoc,4,0.2,5,5
+Ponce,Asoc,5 o mas,1.6,5,5
+Ponce,Asoc,Sin origen,21,5,5
+Rio_Piedras,Bach,1,0.2,5,5
+Rio_Piedras,Bach,2,14.2,5,5
+Rio_Piedras,Bach,3,77.4,5,5
+Rio_Piedras,Bach,4,54.2,5,5
+Rio_Piedras,Bach,5 o mas,179.4,5,5
+Rio_Piedras,Bach,Sin origen,183.4,5,5
+Utuado,Asoc,1,0,5,5
+Utuado,Asoc,2,0,5,5
+Utuado,Asoc,3,0.6,5,5
+Utuado,Asoc,4,1.4,5,5
+Utuado,Asoc,5 o mas,4,5,5
+Utuado,Asoc,Sin origen,22.2,5,5
+Utuado,Bach,1,0,5,5
+Utuado,Bach,2,0.8,5,5
+Utuado,Bach,3,2.2,5,5
+Utuado,Bach,4,1.6,5,5
+Utuado,Bach,5 o mas,5.4,5,5
+Utuado,Bach,Sin origen,21.8,5,5

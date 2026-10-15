@@ -1,0 +1,649 @@
+﻿estado_origen,estado_destino,recinto,nivel,ventana,corte,probabilidad,exposicion_local,fuente,exposicion_escasa
+1,1,Aguadilla,Bach,5,2025,0,2336,Recinto y grado,FALSE
+1,2,Aguadilla,Bach,5,2025,0.745719178082192,2336,Recinto y grado,FALSE
+1,3,Aguadilla,Bach,5,2025,0,2336,Recinto y grado,FALSE
+1,4,Aguadilla,Bach,5,2025,0,2336,Recinto y grado,FALSE
+1,5 o mas,Aguadilla,Bach,5,2025,0,2336,Recinto y grado,FALSE
+1,Sin origen,Aguadilla,Bach,5,2025,0,2336,Recinto y grado,FALSE
+2,1,Aguadilla,Bach,5,2025,0,1790,Recinto y grado,FALSE
+2,2,Aguadilla,Bach,5,2025,0,1790,Recinto y grado,FALSE
+2,3,Aguadilla,Bach,5,2025,0.743575418994413,1790,Recinto y grado,FALSE
+2,4,Aguadilla,Bach,5,2025,0,1790,Recinto y grado,FALSE
+2,5 o mas,Aguadilla,Bach,5,2025,0,1790,Recinto y grado,FALSE
+2,Sin origen,Aguadilla,Bach,5,2025,0,1790,Recinto y grado,FALSE
+3,1,Aguadilla,Bach,5,2025,0,1479,Recinto y grado,FALSE
+3,2,Aguadilla,Bach,5,2025,0,1479,Recinto y grado,FALSE
+3,3,Aguadilla,Bach,5,2025,0,1479,Recinto y grado,FALSE
+3,4,Aguadilla,Bach,5,2025,0.807302231237322,1479,Recinto y grado,FALSE
+3,5 o mas,Aguadilla,Bach,5,2025,0,1479,Recinto y grado,FALSE
+3,Sin origen,Aguadilla,Bach,5,2025,0,1479,Recinto y grado,FALSE
+4,1,Aguadilla,Bach,5,2025,0,1369,Recinto y grado,FALSE
+4,2,Aguadilla,Bach,5,2025,0,1369,Recinto y grado,FALSE
+4,3,Aguadilla,Bach,5,2025,0,1369,Recinto y grado,FALSE
+4,4,Aguadilla,Bach,5,2025,0,1369,Recinto y grado,FALSE
+4,5 o mas,Aguadilla,Bach,5,2025,0.720233747260774,1369,Recinto y grado,FALSE
+4,Sin origen,Aguadilla,Bach,5,2025,0,1369,Recinto y grado,FALSE
+5 o mas,1,Aguadilla,Bach,5,2025,0,1775,Recinto y grado,FALSE
+5 o mas,2,Aguadilla,Bach,5,2025,0,1775,Recinto y grado,FALSE
+5 o mas,3,Aguadilla,Bach,5,2025,0,1775,Recinto y grado,FALSE
+5 o mas,4,Aguadilla,Bach,5,2025,0,1775,Recinto y grado,FALSE
+5 o mas,5 o mas,Aguadilla,Bach,5,2025,0.295774647887324,1775,Recinto y grado,FALSE
+5 o mas,Sin origen,Aguadilla,Bach,5,2025,0,1775,Recinto y grado,FALSE
+Sin origen,1,Aguadilla,Bach,5,2025,0,710,Recinto y grado,FALSE
+Sin origen,2,Aguadilla,Bach,5,2025,0,710,Recinto y grado,FALSE
+Sin origen,3,Aguadilla,Bach,5,2025,0,710,Recinto y grado,FALSE
+Sin origen,4,Aguadilla,Bach,5,2025,0,710,Recinto y grado,FALSE
+Sin origen,5 o mas,Aguadilla,Bach,5,2025,0.0507042253521127,710,Recinto y grado,FALSE
+Sin origen,Sin origen,Aguadilla,Bach,5,2025,0.552112676056338,710,Recinto y grado,FALSE
+1,1,Aguadilla,Asoc,5,2025,0,240,Recinto y grado,FALSE
+1,2,Aguadilla,Asoc,5,2025,0.65,240,Recinto y grado,FALSE
+1,3,Aguadilla,Asoc,5,2025,0,240,Recinto y grado,FALSE
+1,4,Aguadilla,Asoc,5,2025,0,240,Recinto y grado,FALSE
+1,5 o mas,Aguadilla,Asoc,5,2025,0,240,Recinto y grado,FALSE
+1,Sin origen,Aguadilla,Asoc,5,2025,0,240,Recinto y grado,FALSE
+2,1,Aguadilla,Asoc,5,2025,0,167,Recinto y grado,FALSE
+2,2,Aguadilla,Asoc,5,2025,0,167,Recinto y grado,FALSE
+2,3,Aguadilla,Asoc,5,2025,0.461077844311377,167,Recinto y grado,FALSE
+2,4,Aguadilla,Asoc,5,2025,0,167,Recinto y grado,FALSE
+2,5 o mas,Aguadilla,Asoc,5,2025,0,167,Recinto y grado,FALSE
+2,Sin origen,Aguadilla,Asoc,5,2025,0,167,Recinto y grado,FALSE
+3,1,Aguadilla,Asoc,5,2025,0,97,Recinto y grado,FALSE
+3,2,Aguadilla,Asoc,5,2025,0,97,Recinto y grado,FALSE
+3,3,Aguadilla,Asoc,5,2025,0,97,Recinto y grado,FALSE
+3,4,Aguadilla,Asoc,5,2025,0.164948453608247,97,Recinto y grado,FALSE
+3,5 o mas,Aguadilla,Asoc,5,2025,0,97,Recinto y grado,FALSE
+3,Sin origen,Aguadilla,Asoc,5,2025,0,97,Recinto y grado,FALSE
+4,1,Aguadilla,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,2,Aguadilla,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,3,Aguadilla,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,4,Aguadilla,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,5 o mas,Aguadilla,Asoc,5,2025,0.19047619047619,21,Recinto y grado,FALSE
+4,Sin origen,Aguadilla,Asoc,5,2025,0,21,Recinto y grado,FALSE
+5 o mas,1,Aguadilla,Asoc,5,2025,0,26,Recinto y grado,FALSE
+5 o mas,2,Aguadilla,Asoc,5,2025,0,26,Recinto y grado,FALSE
+5 o mas,3,Aguadilla,Asoc,5,2025,0,26,Recinto y grado,FALSE
+5 o mas,4,Aguadilla,Asoc,5,2025,0,26,Recinto y grado,FALSE
+5 o mas,5 o mas,Aguadilla,Asoc,5,2025,0.307692307692308,26,Recinto y grado,FALSE
+5 o mas,Sin origen,Aguadilla,Asoc,5,2025,0,26,Recinto y grado,FALSE
+Sin origen,1,Aguadilla,Asoc,5,2025,0,124,Recinto y grado,FALSE
+Sin origen,2,Aguadilla,Asoc,5,2025,0,124,Recinto y grado,FALSE
+Sin origen,3,Aguadilla,Asoc,5,2025,0,124,Recinto y grado,FALSE
+Sin origen,4,Aguadilla,Asoc,5,2025,0,124,Recinto y grado,FALSE
+Sin origen,5 o mas,Aguadilla,Asoc,5,2025,0.00806451612903226,124,Recinto y grado,FALSE
+Sin origen,Sin origen,Aguadilla,Asoc,5,2025,0.42741935483871,124,Recinto y grado,FALSE
+1,1,Arecibo,Bach,5,2025,0,2987,Recinto y grado,FALSE
+1,2,Arecibo,Bach,5,2025,0.779377301640442,2987,Recinto y grado,FALSE
+1,3,Arecibo,Bach,5,2025,0,2987,Recinto y grado,FALSE
+1,4,Arecibo,Bach,5,2025,0,2987,Recinto y grado,FALSE
+1,5 o mas,Arecibo,Bach,5,2025,0,2987,Recinto y grado,FALSE
+1,Sin origen,Arecibo,Bach,5,2025,0,2987,Recinto y grado,FALSE
+2,1,Arecibo,Bach,5,2025,0,2393,Recinto y grado,FALSE
+2,2,Arecibo,Bach,5,2025,0,2393,Recinto y grado,FALSE
+2,3,Arecibo,Bach,5,2025,0.805683242791475,2393,Recinto y grado,FALSE
+2,4,Arecibo,Bach,5,2025,0,2393,Recinto y grado,FALSE
+2,5 o mas,Arecibo,Bach,5,2025,0,2393,Recinto y grado,FALSE
+2,Sin origen,Arecibo,Bach,5,2025,0,2393,Recinto y grado,FALSE
+3,1,Arecibo,Bach,5,2025,0,2102,Recinto y grado,FALSE
+3,2,Arecibo,Bach,5,2025,0,2102,Recinto y grado,FALSE
+3,3,Arecibo,Bach,5,2025,0,2102,Recinto y grado,FALSE
+3,4,Arecibo,Bach,5,2025,0.899143672692674,2102,Recinto y grado,FALSE
+3,5 o mas,Arecibo,Bach,5,2025,0,2102,Recinto y grado,FALSE
+3,Sin origen,Arecibo,Bach,5,2025,0,2102,Recinto y grado,FALSE
+4,1,Arecibo,Bach,5,2025,0,1999,Recinto y grado,FALSE
+4,2,Arecibo,Bach,5,2025,0,1999,Recinto y grado,FALSE
+4,3,Arecibo,Bach,5,2025,0,1999,Recinto y grado,FALSE
+4,4,Arecibo,Bach,5,2025,0,1999,Recinto y grado,FALSE
+4,5 o mas,Arecibo,Bach,5,2025,0.735367683841921,1999,Recinto y grado,FALSE
+4,Sin origen,Arecibo,Bach,5,2025,0,1999,Recinto y grado,FALSE
+5 o mas,1,Arecibo,Bach,5,2025,0,2683,Recinto y grado,FALSE
+5 o mas,2,Arecibo,Bach,5,2025,0,2683,Recinto y grado,FALSE
+5 o mas,3,Arecibo,Bach,5,2025,0,2683,Recinto y grado,FALSE
+5 o mas,4,Arecibo,Bach,5,2025,0,2683,Recinto y grado,FALSE
+5 o mas,5 o mas,Arecibo,Bach,5,2025,0.294819232202758,2683,Recinto y grado,FALSE
+5 o mas,Sin origen,Arecibo,Bach,5,2025,0,2683,Recinto y grado,FALSE
+Sin origen,1,Arecibo,Bach,5,2025,0,1347,Recinto y grado,FALSE
+Sin origen,2,Arecibo,Bach,5,2025,0,1347,Recinto y grado,FALSE
+Sin origen,3,Arecibo,Bach,5,2025,0,1347,Recinto y grado,FALSE
+Sin origen,4,Arecibo,Bach,5,2025,0,1347,Recinto y grado,FALSE
+Sin origen,5 o mas,Arecibo,Bach,5,2025,0.0489977728285078,1347,Recinto y grado,FALSE
+Sin origen,Sin origen,Arecibo,Bach,5,2025,0.556050482553823,1347,Recinto y grado,FALSE
+1,1,Arecibo,Asoc,5,2025,0,367,Recinto y grado,FALSE
+1,2,Arecibo,Asoc,5,2025,0.708446866485014,367,Recinto y grado,FALSE
+1,3,Arecibo,Asoc,5,2025,0,367,Recinto y grado,FALSE
+1,4,Arecibo,Asoc,5,2025,0,367,Recinto y grado,FALSE
+1,5 o mas,Arecibo,Asoc,5,2025,0,367,Recinto y grado,FALSE
+1,Sin origen,Arecibo,Asoc,5,2025,0,367,Recinto y grado,FALSE
+2,1,Arecibo,Asoc,5,2025,0,292,Recinto y grado,FALSE
+2,2,Arecibo,Asoc,5,2025,0,292,Recinto y grado,FALSE
+2,3,Arecibo,Asoc,5,2025,0.441780821917808,292,Recinto y grado,FALSE
+2,4,Arecibo,Asoc,5,2025,0,292,Recinto y grado,FALSE
+2,5 o mas,Arecibo,Asoc,5,2025,0,292,Recinto y grado,FALSE
+2,Sin origen,Arecibo,Asoc,5,2025,0,292,Recinto y grado,FALSE
+3,1,Arecibo,Asoc,5,2025,0,142,Recinto y grado,FALSE
+3,2,Arecibo,Asoc,5,2025,0,142,Recinto y grado,FALSE
+3,3,Arecibo,Asoc,5,2025,0,142,Recinto y grado,FALSE
+3,4,Arecibo,Asoc,5,2025,0.176056338028169,142,Recinto y grado,FALSE
+3,5 o mas,Arecibo,Asoc,5,2025,0,142,Recinto y grado,FALSE
+3,Sin origen,Arecibo,Asoc,5,2025,0,142,Recinto y grado,FALSE
+4,1,Arecibo,Asoc,5,2025,0,29,Recinto y grado,FALSE
+4,2,Arecibo,Asoc,5,2025,0,29,Recinto y grado,FALSE
+4,3,Arecibo,Asoc,5,2025,0,29,Recinto y grado,FALSE
+4,4,Arecibo,Asoc,5,2025,0,29,Recinto y grado,FALSE
+4,5 o mas,Arecibo,Asoc,5,2025,0.344827586206897,29,Recinto y grado,FALSE
+4,Sin origen,Arecibo,Asoc,5,2025,0,29,Recinto y grado,FALSE
+5 o mas,1,Arecibo,Asoc,5,2025,0,35,Recinto y grado,FALSE
+5 o mas,2,Arecibo,Asoc,5,2025,0,35,Recinto y grado,FALSE
+5 o mas,3,Arecibo,Asoc,5,2025,0,35,Recinto y grado,FALSE
+5 o mas,4,Arecibo,Asoc,5,2025,0,35,Recinto y grado,FALSE
+5 o mas,5 o mas,Arecibo,Asoc,5,2025,0.285714285714286,35,Recinto y grado,FALSE
+5 o mas,Sin origen,Arecibo,Asoc,5,2025,0,35,Recinto y grado,FALSE
+Sin origen,1,Arecibo,Asoc,5,2025,0,175,Recinto y grado,FALSE
+Sin origen,2,Arecibo,Asoc,5,2025,0,175,Recinto y grado,FALSE
+Sin origen,3,Arecibo,Asoc,5,2025,0,175,Recinto y grado,FALSE
+Sin origen,4,Arecibo,Asoc,5,2025,0,175,Recinto y grado,FALSE
+Sin origen,5 o mas,Arecibo,Asoc,5,2025,0.00571428571428571,175,Recinto y grado,FALSE
+Sin origen,Sin origen,Arecibo,Asoc,5,2025,0.451428571428571,175,Recinto y grado,FALSE
+1,1,Bayamon,Bach,5,2025,0,3517,Recinto y grado,FALSE
+1,2,Bayamon,Bach,5,2025,0.759738413420529,3517,Recinto y grado,FALSE
+1,3,Bayamon,Bach,5,2025,0,3517,Recinto y grado,FALSE
+1,4,Bayamon,Bach,5,2025,0,3517,Recinto y grado,FALSE
+1,5 o mas,Bayamon,Bach,5,2025,0,3517,Recinto y grado,FALSE
+1,Sin origen,Bayamon,Bach,5,2025,0,3517,Recinto y grado,FALSE
+2,1,Bayamon,Bach,5,2025,0,2870,Recinto y grado,FALSE
+2,2,Bayamon,Bach,5,2025,0,2870,Recinto y grado,FALSE
+2,3,Bayamon,Bach,5,2025,0.686759581881533,2870,Recinto y grado,FALSE
+2,4,Bayamon,Bach,5,2025,0,2870,Recinto y grado,FALSE
+2,5 o mas,Bayamon,Bach,5,2025,0,2870,Recinto y grado,FALSE
+2,Sin origen,Bayamon,Bach,5,2025,0,2870,Recinto y grado,FALSE
+3,1,Bayamon,Bach,5,2025,0,2197,Recinto y grado,FALSE
+3,2,Bayamon,Bach,5,2025,0,2197,Recinto y grado,FALSE
+3,3,Bayamon,Bach,5,2025,0,2197,Recinto y grado,FALSE
+3,4,Bayamon,Bach,5,2025,0.786071916249431,2197,Recinto y grado,FALSE
+3,5 o mas,Bayamon,Bach,5,2025,0,2197,Recinto y grado,FALSE
+3,Sin origen,Bayamon,Bach,5,2025,0,2197,Recinto y grado,FALSE
+4,1,Bayamon,Bach,5,2025,0,1873,Recinto y grado,FALSE
+4,2,Bayamon,Bach,5,2025,0,1873,Recinto y grado,FALSE
+4,3,Bayamon,Bach,5,2025,0,1873,Recinto y grado,FALSE
+4,4,Bayamon,Bach,5,2025,0,1873,Recinto y grado,FALSE
+4,5 o mas,Bayamon,Bach,5,2025,0.817405232247731,1873,Recinto y grado,FALSE
+4,Sin origen,Bayamon,Bach,5,2025,0,1873,Recinto y grado,FALSE
+5 o mas,1,Bayamon,Bach,5,2025,0,3439,Recinto y grado,FALSE
+5 o mas,2,Bayamon,Bach,5,2025,0,3439,Recinto y grado,FALSE
+5 o mas,3,Bayamon,Bach,5,2025,0,3439,Recinto y grado,FALSE
+5 o mas,4,Bayamon,Bach,5,2025,0,3439,Recinto y grado,FALSE
+5 o mas,5 o mas,Bayamon,Bach,5,2025,0.412619947659203,3439,Recinto y grado,FALSE
+5 o mas,Sin origen,Bayamon,Bach,5,2025,0,3439,Recinto y grado,FALSE
+Sin origen,1,Bayamon,Bach,5,2025,0,944,Recinto y grado,FALSE
+Sin origen,2,Bayamon,Bach,5,2025,0,944,Recinto y grado,FALSE
+Sin origen,3,Bayamon,Bach,5,2025,0,944,Recinto y grado,FALSE
+Sin origen,4,Bayamon,Bach,5,2025,0,944,Recinto y grado,FALSE
+Sin origen,5 o mas,Bayamon,Bach,5,2025,0.101694915254237,944,Recinto y grado,FALSE
+Sin origen,Sin origen,Bayamon,Bach,5,2025,0.537076271186441,944,Recinto y grado,FALSE
+1,1,Bayamon,Asoc,5,2025,0,126,Recinto y grado,FALSE
+1,2,Bayamon,Asoc,5,2025,0.492063492063492,126,Recinto y grado,FALSE
+1,3,Bayamon,Asoc,5,2025,0,126,Recinto y grado,FALSE
+1,4,Bayamon,Asoc,5,2025,0,126,Recinto y grado,FALSE
+1,5 o mas,Bayamon,Asoc,5,2025,0,126,Recinto y grado,FALSE
+1,Sin origen,Bayamon,Asoc,5,2025,0,126,Recinto y grado,FALSE
+2,1,Bayamon,Asoc,5,2025,0,81,Recinto y grado,FALSE
+2,2,Bayamon,Asoc,5,2025,0,81,Recinto y grado,FALSE
+2,3,Bayamon,Asoc,5,2025,0.481481481481482,81,Recinto y grado,FALSE
+2,4,Bayamon,Asoc,5,2025,0,81,Recinto y grado,FALSE
+2,5 o mas,Bayamon,Asoc,5,2025,0,81,Recinto y grado,FALSE
+2,Sin origen,Bayamon,Asoc,5,2025,0,81,Recinto y grado,FALSE
+3,1,Bayamon,Asoc,5,2025,0,57,Recinto y grado,FALSE
+3,2,Bayamon,Asoc,5,2025,0,57,Recinto y grado,FALSE
+3,3,Bayamon,Asoc,5,2025,0,57,Recinto y grado,FALSE
+3,4,Bayamon,Asoc,5,2025,0.421052631578947,57,Recinto y grado,FALSE
+3,5 o mas,Bayamon,Asoc,5,2025,0,57,Recinto y grado,FALSE
+3,Sin origen,Bayamon,Asoc,5,2025,0,57,Recinto y grado,FALSE
+4,1,Bayamon,Asoc,5,2025,0,39,Recinto y grado,FALSE
+4,2,Bayamon,Asoc,5,2025,0,39,Recinto y grado,FALSE
+4,3,Bayamon,Asoc,5,2025,0,39,Recinto y grado,FALSE
+4,4,Bayamon,Asoc,5,2025,0,39,Recinto y grado,FALSE
+4,5 o mas,Bayamon,Asoc,5,2025,0.230769230769231,39,Recinto y grado,FALSE
+4,Sin origen,Bayamon,Asoc,5,2025,0,39,Recinto y grado,FALSE
+5 o mas,1,Bayamon,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,2,Bayamon,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,3,Bayamon,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,4,Bayamon,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,5 o mas,Bayamon,Asoc,5,2025,0.277777777777778,18,Recinto y grado,TRUE
+5 o mas,Sin origen,Bayamon,Asoc,5,2025,0,18,Recinto y grado,TRUE
+Sin origen,1,Bayamon,Asoc,5,2025,0,37,Recinto y grado,FALSE
+Sin origen,2,Bayamon,Asoc,5,2025,0,37,Recinto y grado,FALSE
+Sin origen,3,Bayamon,Asoc,5,2025,0,37,Recinto y grado,FALSE
+Sin origen,4,Bayamon,Asoc,5,2025,0,37,Recinto y grado,FALSE
+Sin origen,5 o mas,Bayamon,Asoc,5,2025,0,37,Recinto y grado,FALSE
+Sin origen,Sin origen,Bayamon,Asoc,5,2025,0.324324324324324,37,Recinto y grado,FALSE
+1,1,Carolina,Bach,5,2025,0,2845,Recinto y grado,FALSE
+1,2,Carolina,Bach,5,2025,0.758875219683656,2845,Recinto y grado,FALSE
+1,3,Carolina,Bach,5,2025,0,2845,Recinto y grado,FALSE
+1,4,Carolina,Bach,5,2025,0,2845,Recinto y grado,FALSE
+1,5 o mas,Carolina,Bach,5,2025,0,2845,Recinto y grado,FALSE
+1,Sin origen,Carolina,Bach,5,2025,0.000351493848857645,2845,Recinto y grado,FALSE
+2,1,Carolina,Bach,5,2025,0,2177,Recinto y grado,FALSE
+2,2,Carolina,Bach,5,2025,0,2177,Recinto y grado,FALSE
+2,3,Carolina,Bach,5,2025,0.716582452916858,2177,Recinto y grado,FALSE
+2,4,Carolina,Bach,5,2025,0,2177,Recinto y grado,FALSE
+2,5 o mas,Carolina,Bach,5,2025,0,2177,Recinto y grado,FALSE
+2,Sin origen,Carolina,Bach,5,2025,0,2177,Recinto y grado,FALSE
+3,1,Carolina,Bach,5,2025,0,1742,Recinto y grado,FALSE
+3,2,Carolina,Bach,5,2025,0,1742,Recinto y grado,FALSE
+3,3,Carolina,Bach,5,2025,0,1742,Recinto y grado,FALSE
+3,4,Carolina,Bach,5,2025,0.783582089552239,1742,Recinto y grado,FALSE
+3,5 o mas,Carolina,Bach,5,2025,0,1742,Recinto y grado,FALSE
+3,Sin origen,Carolina,Bach,5,2025,0,1742,Recinto y grado,FALSE
+4,1,Carolina,Bach,5,2025,0,1473,Recinto y grado,FALSE
+4,2,Carolina,Bach,5,2025,0,1473,Recinto y grado,FALSE
+4,3,Carolina,Bach,5,2025,0,1473,Recinto y grado,FALSE
+4,4,Carolina,Bach,5,2025,0,1473,Recinto y grado,FALSE
+4,5 o mas,Carolina,Bach,5,2025,0.360488798370672,1473,Recinto y grado,FALSE
+4,Sin origen,Carolina,Bach,5,2025,0,1473,Recinto y grado,FALSE
+5 o mas,1,Carolina,Bach,5,2025,0,1446,Recinto y grado,FALSE
+5 o mas,2,Carolina,Bach,5,2025,0,1446,Recinto y grado,FALSE
+5 o mas,3,Carolina,Bach,5,2025,0,1446,Recinto y grado,FALSE
+5 o mas,4,Carolina,Bach,5,2025,0,1446,Recinto y grado,FALSE
+5 o mas,5 o mas,Carolina,Bach,5,2025,0.335408022130014,1446,Recinto y grado,FALSE
+5 o mas,Sin origen,Carolina,Bach,5,2025,0,1446,Recinto y grado,FALSE
+Sin origen,1,Carolina,Bach,5,2025,0,994,Recinto y grado,FALSE
+Sin origen,2,Carolina,Bach,5,2025,0,994,Recinto y grado,FALSE
+Sin origen,3,Carolina,Bach,5,2025,0,994,Recinto y grado,FALSE
+Sin origen,4,Carolina,Bach,5,2025,0,994,Recinto y grado,FALSE
+Sin origen,5 o mas,Carolina,Bach,5,2025,0.0533199195171026,994,Recinto y grado,FALSE
+Sin origen,Sin origen,Carolina,Bach,5,2025,0.47887323943662,994,Recinto y grado,FALSE
+1,1,Carolina,Asoc,5,2025,0,304,Recinto y grado,FALSE
+1,2,Carolina,Asoc,5,2025,0.569078947368421,304,Recinto y grado,FALSE
+1,3,Carolina,Asoc,5,2025,0,304,Recinto y grado,FALSE
+1,4,Carolina,Asoc,5,2025,0,304,Recinto y grado,FALSE
+1,5 o mas,Carolina,Asoc,5,2025,0,304,Recinto y grado,FALSE
+1,Sin origen,Carolina,Asoc,5,2025,0,304,Recinto y grado,FALSE
+2,1,Carolina,Asoc,5,2025,0,195,Recinto y grado,FALSE
+2,2,Carolina,Asoc,5,2025,0,195,Recinto y grado,FALSE
+2,3,Carolina,Asoc,5,2025,0.4,195,Recinto y grado,FALSE
+2,4,Carolina,Asoc,5,2025,0,195,Recinto y grado,FALSE
+2,5 o mas,Carolina,Asoc,5,2025,0,195,Recinto y grado,FALSE
+2,Sin origen,Carolina,Asoc,5,2025,0,195,Recinto y grado,FALSE
+3,1,Carolina,Asoc,5,2025,0,102,Recinto y grado,FALSE
+3,2,Carolina,Asoc,5,2025,0,102,Recinto y grado,FALSE
+3,3,Carolina,Asoc,5,2025,0,102,Recinto y grado,FALSE
+3,4,Carolina,Asoc,5,2025,0.176470588235294,102,Recinto y grado,FALSE
+3,5 o mas,Carolina,Asoc,5,2025,0,102,Recinto y grado,FALSE
+3,Sin origen,Carolina,Asoc,5,2025,0,102,Recinto y grado,FALSE
+4,1,Carolina,Asoc,5,2025,0,27,Recinto y grado,FALSE
+4,2,Carolina,Asoc,5,2025,0,27,Recinto y grado,FALSE
+4,3,Carolina,Asoc,5,2025,0,27,Recinto y grado,FALSE
+4,4,Carolina,Asoc,5,2025,0,27,Recinto y grado,FALSE
+4,5 o mas,Carolina,Asoc,5,2025,0.111111111111111,27,Recinto y grado,FALSE
+4,Sin origen,Carolina,Asoc,5,2025,0,27,Recinto y grado,FALSE
+5 o mas,1,Carolina,Asoc,5,2025,0,33,Recinto y grado,FALSE
+5 o mas,2,Carolina,Asoc,5,2025,0,33,Recinto y grado,FALSE
+5 o mas,3,Carolina,Asoc,5,2025,0,33,Recinto y grado,FALSE
+5 o mas,4,Carolina,Asoc,5,2025,0,33,Recinto y grado,FALSE
+5 o mas,5 o mas,Carolina,Asoc,5,2025,0.363636363636364,33,Recinto y grado,FALSE
+5 o mas,Sin origen,Carolina,Asoc,5,2025,0,33,Recinto y grado,FALSE
+Sin origen,1,Carolina,Asoc,5,2025,0,156,Recinto y grado,FALSE
+Sin origen,2,Carolina,Asoc,5,2025,0,156,Recinto y grado,FALSE
+Sin origen,3,Carolina,Asoc,5,2025,0,156,Recinto y grado,FALSE
+Sin origen,4,Carolina,Asoc,5,2025,0,156,Recinto y grado,FALSE
+Sin origen,5 o mas,Carolina,Asoc,5,2025,0.0192307692307692,156,Recinto y grado,FALSE
+Sin origen,Sin origen,Carolina,Asoc,5,2025,0.378205128205128,156,Recinto y grado,FALSE
+1,1,Cayey,Bach,5,2025,0,2572,Recinto y grado,FALSE
+1,2,Cayey,Bach,5,2025,0.767107309486781,2572,Recinto y grado,FALSE
+1,3,Cayey,Bach,5,2025,0,2572,Recinto y grado,FALSE
+1,4,Cayey,Bach,5,2025,0,2572,Recinto y grado,FALSE
+1,5 o mas,Cayey,Bach,5,2025,0,2572,Recinto y grado,FALSE
+1,Sin origen,Cayey,Bach,5,2025,0,2572,Recinto y grado,FALSE
+2,1,Cayey,Bach,5,2025,0,2082,Recinto y grado,FALSE
+2,2,Cayey,Bach,5,2025,0,2082,Recinto y grado,FALSE
+2,3,Cayey,Bach,5,2025,0.81940441882805,2082,Recinto y grado,FALSE
+2,4,Cayey,Bach,5,2025,0,2082,Recinto y grado,FALSE
+2,5 o mas,Cayey,Bach,5,2025,0,2082,Recinto y grado,FALSE
+2,Sin origen,Cayey,Bach,5,2025,0,2082,Recinto y grado,FALSE
+3,1,Cayey,Bach,5,2025,0,1835,Recinto y grado,FALSE
+3,2,Cayey,Bach,5,2025,0,1835,Recinto y grado,FALSE
+3,3,Cayey,Bach,5,2025,0,1835,Recinto y grado,FALSE
+3,4,Cayey,Bach,5,2025,0.879564032697548,1835,Recinto y grado,FALSE
+3,5 o mas,Cayey,Bach,5,2025,0,1835,Recinto y grado,FALSE
+3,Sin origen,Cayey,Bach,5,2025,0,1835,Recinto y grado,FALSE
+4,1,Cayey,Bach,5,2025,0,1851,Recinto y grado,FALSE
+4,2,Cayey,Bach,5,2025,0,1851,Recinto y grado,FALSE
+4,3,Cayey,Bach,5,2025,0,1851,Recinto y grado,FALSE
+4,4,Cayey,Bach,5,2025,0,1851,Recinto y grado,FALSE
+4,5 o mas,Cayey,Bach,5,2025,0.794165316045381,1851,Recinto y grado,FALSE
+4,Sin origen,Cayey,Bach,5,2025,0,1851,Recinto y grado,FALSE
+5 o mas,1,Cayey,Bach,5,2025,0,2809,Recinto y grado,FALSE
+5 o mas,2,Cayey,Bach,5,2025,0,2809,Recinto y grado,FALSE
+5 o mas,3,Cayey,Bach,5,2025,0,2809,Recinto y grado,FALSE
+5 o mas,4,Cayey,Bach,5,2025,0,2809,Recinto y grado,FALSE
+5 o mas,5 o mas,Cayey,Bach,5,2025,0.325382698469206,2809,Recinto y grado,FALSE
+5 o mas,Sin origen,Cayey,Bach,5,2025,0,2809,Recinto y grado,FALSE
+Sin origen,1,Cayey,Bach,5,2025,0,379,Recinto y grado,FALSE
+Sin origen,2,Cayey,Bach,5,2025,0,379,Recinto y grado,FALSE
+Sin origen,3,Cayey,Bach,5,2025,0,379,Recinto y grado,FALSE
+Sin origen,4,Cayey,Bach,5,2025,0,379,Recinto y grado,FALSE
+Sin origen,5 o mas,Cayey,Bach,5,2025,0.0606860158311346,379,Recinto y grado,FALSE
+Sin origen,Sin origen,Cayey,Bach,5,2025,0.525065963060686,379,Recinto y grado,FALSE
+1,1,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,2,Ciencias_Medicas,Bach,5,2025,0.782655753230062,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,3,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,4,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,5 o mas,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,Sin origen,Ciencias_Medicas,Bach,5,2025,3.38226341067442e-05,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,1,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,2,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,3,Ciencias_Medicas,Bach,5,2025,0.786094477711244,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,4,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,5 o mas,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,Sin origen,Ciencias_Medicas,Bach,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+3,1,Ciencias_Medicas,Bach,5,2025,0,174,Recinto y grado,FALSE
+3,2,Ciencias_Medicas,Bach,5,2025,0,174,Recinto y grado,FALSE
+3,3,Ciencias_Medicas,Bach,5,2025,0,174,Recinto y grado,FALSE
+3,4,Ciencias_Medicas,Bach,5,2025,0.96551724137931,174,Recinto y grado,FALSE
+3,5 o mas,Ciencias_Medicas,Bach,5,2025,0,174,Recinto y grado,FALSE
+3,Sin origen,Ciencias_Medicas,Bach,5,2025,0,174,Recinto y grado,FALSE
+4,1,Ciencias_Medicas,Bach,5,2025,0,292,Recinto y grado,FALSE
+4,2,Ciencias_Medicas,Bach,5,2025,0,292,Recinto y grado,FALSE
+4,3,Ciencias_Medicas,Bach,5,2025,0,292,Recinto y grado,FALSE
+4,4,Ciencias_Medicas,Bach,5,2025,0,292,Recinto y grado,FALSE
+4,5 o mas,Ciencias_Medicas,Bach,5,2025,0.386986301369863,292,Recinto y grado,FALSE
+4,Sin origen,Ciencias_Medicas,Bach,5,2025,0,292,Recinto y grado,FALSE
+5 o mas,1,Ciencias_Medicas,Bach,5,2025,0,543,Recinto y grado,FALSE
+5 o mas,2,Ciencias_Medicas,Bach,5,2025,0,543,Recinto y grado,FALSE
+5 o mas,3,Ciencias_Medicas,Bach,5,2025,0,543,Recinto y grado,FALSE
+5 o mas,4,Ciencias_Medicas,Bach,5,2025,0,543,Recinto y grado,FALSE
+5 o mas,5 o mas,Ciencias_Medicas,Bach,5,2025,0.320441988950276,543,Recinto y grado,FALSE
+5 o mas,Sin origen,Ciencias_Medicas,Bach,5,2025,0,543,Recinto y grado,FALSE
+Sin origen,1,Ciencias_Medicas,Bach,5,2025,0,288,Recinto y grado,FALSE
+Sin origen,2,Ciencias_Medicas,Bach,5,2025,0,288,Recinto y grado,FALSE
+Sin origen,3,Ciencias_Medicas,Bach,5,2025,0,288,Recinto y grado,FALSE
+Sin origen,4,Ciencias_Medicas,Bach,5,2025,0,288,Recinto y grado,FALSE
+Sin origen,5 o mas,Ciencias_Medicas,Bach,5,2025,0.0138888888888889,288,Recinto y grado,FALSE
+Sin origen,Sin origen,Ciencias_Medicas,Bach,5,2025,0.479166666666667,288,Recinto y grado,FALSE
+1,1,Ciencias_Medicas,Asoc,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,2,Ciencias_Medicas,Asoc,5,2025,0.633942558746736,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,3,Ciencias_Medicas,Asoc,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,4,Ciencias_Medicas,Asoc,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,5 o mas,Ciencias_Medicas,Asoc,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+1,Sin origen,Ciencias_Medicas,Asoc,5,2025,0,0,Conjunto del mismo grado: sin exposicion local,TRUE
+2,1,Ciencias_Medicas,Asoc,5,2025,0,28,Recinto y grado,FALSE
+2,2,Ciencias_Medicas,Asoc,5,2025,0,28,Recinto y grado,FALSE
+2,3,Ciencias_Medicas,Asoc,5,2025,0.0714285714285714,28,Recinto y grado,FALSE
+2,4,Ciencias_Medicas,Asoc,5,2025,0,28,Recinto y grado,FALSE
+2,5 o mas,Ciencias_Medicas,Asoc,5,2025,0,28,Recinto y grado,FALSE
+2,Sin origen,Ciencias_Medicas,Asoc,5,2025,0,28,Recinto y grado,FALSE
+3,1,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+3,2,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+3,3,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+3,4,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+3,5 o mas,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+3,Sin origen,Ciencias_Medicas,Asoc,5,2025,0,4,Recinto y grado,TRUE
+4,1,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+4,2,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+4,3,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+4,4,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+4,5 o mas,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+4,Sin origen,Ciencias_Medicas,Asoc,5,2025,0,1,Recinto y grado,TRUE
+5 o mas,1,Ciencias_Medicas,Asoc,5,2025,0,8,Recinto y grado,TRUE
+5 o mas,2,Ciencias_Medicas,Asoc,5,2025,0,8,Recinto y grado,TRUE
+5 o mas,3,Ciencias_Medicas,Asoc,5,2025,0,8,Recinto y grado,TRUE
+5 o mas,4,Ciencias_Medicas,Asoc,5,2025,0,8,Recinto y grado,TRUE
+5 o mas,5 o mas,Ciencias_Medicas,Asoc,5,2025,0.125,8,Recinto y grado,TRUE
+5 o mas,Sin origen,Ciencias_Medicas,Asoc,5,2025,0,8,Recinto y grado,TRUE
+Sin origen,1,Ciencias_Medicas,Asoc,5,2025,0,176,Recinto y grado,FALSE
+Sin origen,2,Ciencias_Medicas,Asoc,5,2025,0,176,Recinto y grado,FALSE
+Sin origen,3,Ciencias_Medicas,Asoc,5,2025,0,176,Recinto y grado,FALSE
+Sin origen,4,Ciencias_Medicas,Asoc,5,2025,0,176,Recinto y grado,FALSE
+Sin origen,5 o mas,Ciencias_Medicas,Asoc,5,2025,0,176,Recinto y grado,FALSE
+Sin origen,Sin origen,Ciencias_Medicas,Asoc,5,2025,0.102272727272727,176,Recinto y grado,FALSE
+1,1,Humacao,Bach,5,2025,0,2899,Recinto y grado,FALSE
+1,2,Humacao,Bach,5,2025,0.785443256295274,2899,Recinto y grado,FALSE
+1,3,Humacao,Bach,5,2025,0,2899,Recinto y grado,FALSE
+1,4,Humacao,Bach,5,2025,0,2899,Recinto y grado,FALSE
+1,5 o mas,Humacao,Bach,5,2025,0,2899,Recinto y grado,FALSE
+1,Sin origen,Humacao,Bach,5,2025,0,2899,Recinto y grado,FALSE
+2,1,Humacao,Bach,5,2025,0,2401,Recinto y grado,FALSE
+2,2,Humacao,Bach,5,2025,0,2401,Recinto y grado,FALSE
+2,3,Humacao,Bach,5,2025,0.7838400666389,2401,Recinto y grado,FALSE
+2,4,Humacao,Bach,5,2025,0,2401,Recinto y grado,FALSE
+2,5 o mas,Humacao,Bach,5,2025,0,2401,Recinto y grado,FALSE
+2,Sin origen,Humacao,Bach,5,2025,0,2401,Recinto y grado,FALSE
+3,1,Humacao,Bach,5,2025,0,1980,Recinto y grado,FALSE
+3,2,Humacao,Bach,5,2025,0,1980,Recinto y grado,FALSE
+3,3,Humacao,Bach,5,2025,0,1980,Recinto y grado,FALSE
+3,4,Humacao,Bach,5,2025,0.881818181818182,1980,Recinto y grado,FALSE
+3,5 o mas,Humacao,Bach,5,2025,0,1980,Recinto y grado,FALSE
+3,Sin origen,Humacao,Bach,5,2025,0,1980,Recinto y grado,FALSE
+4,1,Humacao,Bach,5,2025,0,1913,Recinto y grado,FALSE
+4,2,Humacao,Bach,5,2025,0,1913,Recinto y grado,FALSE
+4,3,Humacao,Bach,5,2025,0,1913,Recinto y grado,FALSE
+4,4,Humacao,Bach,5,2025,0,1913,Recinto y grado,FALSE
+4,5 o mas,Humacao,Bach,5,2025,0.74385781495034,1913,Recinto y grado,FALSE
+4,Sin origen,Humacao,Bach,5,2025,0,1913,Recinto y grado,FALSE
+5 o mas,1,Humacao,Bach,5,2025,0,2699,Recinto y grado,FALSE
+5 o mas,2,Humacao,Bach,5,2025,0,2699,Recinto y grado,FALSE
+5 o mas,3,Humacao,Bach,5,2025,0,2699,Recinto y grado,FALSE
+5 o mas,4,Humacao,Bach,5,2025,0,2699,Recinto y grado,FALSE
+5 o mas,5 o mas,Humacao,Bach,5,2025,0.33567988143757,2699,Recinto y grado,FALSE
+5 o mas,Sin origen,Humacao,Bach,5,2025,0,2699,Recinto y grado,FALSE
+Sin origen,1,Humacao,Bach,5,2025,0,588,Recinto y grado,FALSE
+Sin origen,2,Humacao,Bach,5,2025,0,588,Recinto y grado,FALSE
+Sin origen,3,Humacao,Bach,5,2025,0,588,Recinto y grado,FALSE
+Sin origen,4,Humacao,Bach,5,2025,0,588,Recinto y grado,FALSE
+Sin origen,5 o mas,Humacao,Bach,5,2025,0.0816326530612245,588,Recinto y grado,FALSE
+Sin origen,Sin origen,Humacao,Bach,5,2025,0.598639455782313,588,Recinto y grado,FALSE
+1,1,Humacao,Asoc,5,2025,0,297,Recinto y grado,FALSE
+1,2,Humacao,Asoc,5,2025,0.717171717171717,297,Recinto y grado,FALSE
+1,3,Humacao,Asoc,5,2025,0,297,Recinto y grado,FALSE
+1,4,Humacao,Asoc,5,2025,0,297,Recinto y grado,FALSE
+1,5 o mas,Humacao,Asoc,5,2025,0,297,Recinto y grado,FALSE
+1,Sin origen,Humacao,Asoc,5,2025,0,297,Recinto y grado,FALSE
+2,1,Humacao,Asoc,5,2025,0,206,Recinto y grado,FALSE
+2,2,Humacao,Asoc,5,2025,0,206,Recinto y grado,FALSE
+2,3,Humacao,Asoc,5,2025,0.354368932038835,206,Recinto y grado,FALSE
+2,4,Humacao,Asoc,5,2025,0,206,Recinto y grado,FALSE
+2,5 o mas,Humacao,Asoc,5,2025,0,206,Recinto y grado,FALSE
+2,Sin origen,Humacao,Asoc,5,2025,0,206,Recinto y grado,FALSE
+3,1,Humacao,Asoc,5,2025,0,99,Recinto y grado,FALSE
+3,2,Humacao,Asoc,5,2025,0,99,Recinto y grado,FALSE
+3,3,Humacao,Asoc,5,2025,0,99,Recinto y grado,FALSE
+3,4,Humacao,Asoc,5,2025,0.101010101010101,99,Recinto y grado,FALSE
+3,5 o mas,Humacao,Asoc,5,2025,0,99,Recinto y grado,FALSE
+3,Sin origen,Humacao,Asoc,5,2025,0,99,Recinto y grado,FALSE
+4,1,Humacao,Asoc,5,2025,0,12,Recinto y grado,TRUE
+4,2,Humacao,Asoc,5,2025,0,12,Recinto y grado,TRUE
+4,3,Humacao,Asoc,5,2025,0,12,Recinto y grado,TRUE
+4,4,Humacao,Asoc,5,2025,0,12,Recinto y grado,TRUE
+4,5 o mas,Humacao,Asoc,5,2025,0.0833333333333333,12,Recinto y grado,TRUE
+4,Sin origen,Humacao,Asoc,5,2025,0,12,Recinto y grado,TRUE
+5 o mas,1,Humacao,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,2,Humacao,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,3,Humacao,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,4,Humacao,Asoc,5,2025,0,18,Recinto y grado,TRUE
+5 o mas,5 o mas,Humacao,Asoc,5,2025,0.222222222222222,18,Recinto y grado,TRUE
+5 o mas,Sin origen,Humacao,Asoc,5,2025,0,18,Recinto y grado,TRUE
+Sin origen,1,Humacao,Asoc,5,2025,0,216,Recinto y grado,FALSE
+Sin origen,2,Humacao,Asoc,5,2025,0,216,Recinto y grado,FALSE
+Sin origen,3,Humacao,Asoc,5,2025,0,216,Recinto y grado,FALSE
+Sin origen,4,Humacao,Asoc,5,2025,0,216,Recinto y grado,FALSE
+Sin origen,5 o mas,Humacao,Asoc,5,2025,0.00462962962962963,216,Recinto y grado,FALSE
+Sin origen,Sin origen,Humacao,Asoc,5,2025,0.407407407407407,216,Recinto y grado,FALSE
+1,1,Ponce,Bach,5,2025,0,2659,Recinto y grado,FALSE
+1,2,Ponce,Bach,5,2025,0.787514103046258,2659,Recinto y grado,FALSE
+1,3,Ponce,Bach,5,2025,0,2659,Recinto y grado,FALSE
+1,4,Ponce,Bach,5,2025,0,2659,Recinto y grado,FALSE
+1,5 o mas,Ponce,Bach,5,2025,0,2659,Recinto y grado,FALSE
+1,Sin origen,Ponce,Bach,5,2025,0,2659,Recinto y grado,FALSE
+2,1,Ponce,Bach,5,2025,0,2052,Recinto y grado,FALSE
+2,2,Ponce,Bach,5,2025,0,2052,Recinto y grado,FALSE
+2,3,Ponce,Bach,5,2025,0.758284600389864,2052,Recinto y grado,FALSE
+2,4,Ponce,Bach,5,2025,0,2052,Recinto y grado,FALSE
+2,5 o mas,Ponce,Bach,5,2025,0,2052,Recinto y grado,FALSE
+2,Sin origen,Ponce,Bach,5,2025,0,2052,Recinto y grado,FALSE
+3,1,Ponce,Bach,5,2025,0,1590,Recinto y grado,FALSE
+3,2,Ponce,Bach,5,2025,0,1590,Recinto y grado,FALSE
+3,3,Ponce,Bach,5,2025,0,1590,Recinto y grado,FALSE
+3,4,Ponce,Bach,5,2025,0.830817610062893,1590,Recinto y grado,FALSE
+3,5 o mas,Ponce,Bach,5,2025,0,1590,Recinto y grado,FALSE
+3,Sin origen,Ponce,Bach,5,2025,0,1590,Recinto y grado,FALSE
+4,1,Ponce,Bach,5,2025,0,1401,Recinto y grado,FALSE
+4,2,Ponce,Bach,5,2025,0,1401,Recinto y grado,FALSE
+4,3,Ponce,Bach,5,2025,0,1401,Recinto y grado,FALSE
+4,4,Ponce,Bach,5,2025,0,1401,Recinto y grado,FALSE
+4,5 o mas,Ponce,Bach,5,2025,0.678800856531049,1401,Recinto y grado,FALSE
+4,Sin origen,Ponce,Bach,5,2025,0,1401,Recinto y grado,FALSE
+5 o mas,1,Ponce,Bach,5,2025,0,1826,Recinto y grado,FALSE
+5 o mas,2,Ponce,Bach,5,2025,0,1826,Recinto y grado,FALSE
+5 o mas,3,Ponce,Bach,5,2025,0,1826,Recinto y grado,FALSE
+5 o mas,4,Ponce,Bach,5,2025,0,1826,Recinto y grado,FALSE
+5 o mas,5 o mas,Ponce,Bach,5,2025,0.292442497261774,1826,Recinto y grado,FALSE
+5 o mas,Sin origen,Ponce,Bach,5,2025,0,1826,Recinto y grado,FALSE
+Sin origen,1,Ponce,Bach,5,2025,0,819,Recinto y grado,FALSE
+Sin origen,2,Ponce,Bach,5,2025,0,819,Recinto y grado,FALSE
+Sin origen,3,Ponce,Bach,5,2025,0,819,Recinto y grado,FALSE
+Sin origen,4,Ponce,Bach,5,2025,0,819,Recinto y grado,FALSE
+Sin origen,5 o mas,Ponce,Bach,5,2025,0.0415140415140415,819,Recinto y grado,FALSE
+Sin origen,Sin origen,Ponce,Bach,5,2025,0.612942612942613,819,Recinto y grado,FALSE
+1,1,Ponce,Asoc,5,2025,0,252,Recinto y grado,FALSE
+1,2,Ponce,Asoc,5,2025,0.678571428571429,252,Recinto y grado,FALSE
+1,3,Ponce,Asoc,5,2025,0,252,Recinto y grado,FALSE
+1,4,Ponce,Asoc,5,2025,0,252,Recinto y grado,FALSE
+1,5 o mas,Ponce,Asoc,5,2025,0,252,Recinto y grado,FALSE
+1,Sin origen,Ponce,Asoc,5,2025,0,252,Recinto y grado,FALSE
+2,1,Ponce,Asoc,5,2025,0,164,Recinto y grado,FALSE
+2,2,Ponce,Asoc,5,2025,0,164,Recinto y grado,FALSE
+2,3,Ponce,Asoc,5,2025,0.451219512195122,164,Recinto y grado,FALSE
+2,4,Ponce,Asoc,5,2025,0,164,Recinto y grado,FALSE
+2,5 o mas,Ponce,Asoc,5,2025,0,164,Recinto y grado,FALSE
+2,Sin origen,Ponce,Asoc,5,2025,0,164,Recinto y grado,FALSE
+3,1,Ponce,Asoc,5,2025,0,91,Recinto y grado,FALSE
+3,2,Ponce,Asoc,5,2025,0,91,Recinto y grado,FALSE
+3,3,Ponce,Asoc,5,2025,0,91,Recinto y grado,FALSE
+3,4,Ponce,Asoc,5,2025,0.208791208791209,91,Recinto y grado,FALSE
+3,5 o mas,Ponce,Asoc,5,2025,0,91,Recinto y grado,FALSE
+3,Sin origen,Ponce,Asoc,5,2025,0,91,Recinto y grado,FALSE
+4,1,Ponce,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,2,Ponce,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,3,Ponce,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,4,Ponce,Asoc,5,2025,0,21,Recinto y grado,FALSE
+4,5 o mas,Ponce,Asoc,5,2025,0.142857142857143,21,Recinto y grado,FALSE
+4,Sin origen,Ponce,Asoc,5,2025,0,21,Recinto y grado,FALSE
+5 o mas,1,Ponce,Asoc,5,2025,0,27,Recinto y grado,FALSE
+5 o mas,2,Ponce,Asoc,5,2025,0,27,Recinto y grado,FALSE
+5 o mas,3,Ponce,Asoc,5,2025,0,27,Recinto y grado,FALSE
+5 o mas,4,Ponce,Asoc,5,2025,0,27,Recinto y grado,FALSE
+5 o mas,5 o mas,Ponce,Asoc,5,2025,0.259259259259259,27,Recinto y grado,FALSE
+5 o mas,Sin origen,Ponce,Asoc,5,2025,0,27,Recinto y grado,FALSE
+Sin origen,1,Ponce,Asoc,5,2025,0,146,Recinto y grado,FALSE
+Sin origen,2,Ponce,Asoc,5,2025,0,146,Recinto y grado,FALSE
+Sin origen,3,Ponce,Asoc,5,2025,0,146,Recinto y grado,FALSE
+Sin origen,4,Ponce,Asoc,5,2025,0,146,Recinto y grado,FALSE
+Sin origen,5 o mas,Ponce,Asoc,5,2025,0.0136986301369863,146,Recinto y grado,FALSE
+Sin origen,Sin origen,Ponce,Asoc,5,2025,0.417808219178082,146,Recinto y grado,FALSE
+1,1,Rio_Piedras,Bach,5,2025,0,9534,Recinto y grado,FALSE
+1,2,Rio_Piedras,Bach,5,2025,0.813509544787078,9534,Recinto y grado,FALSE
+1,3,Rio_Piedras,Bach,5,2025,0,9534,Recinto y grado,FALSE
+1,4,Rio_Piedras,Bach,5,2025,0,9534,Recinto y grado,FALSE
+1,5 o mas,Rio_Piedras,Bach,5,2025,0,9534,Recinto y grado,FALSE
+1,Sin origen,Rio_Piedras,Bach,5,2025,0,9534,Recinto y grado,FALSE
+2,1,Rio_Piedras,Bach,5,2025,0,8144,Recinto y grado,FALSE
+2,2,Rio_Piedras,Bach,5,2025,0,8144,Recinto y grado,FALSE
+2,3,Rio_Piedras,Bach,5,2025,0.846758349705305,8144,Recinto y grado,FALSE
+2,4,Rio_Piedras,Bach,5,2025,0,8144,Recinto y grado,FALSE
+2,5 o mas,Rio_Piedras,Bach,5,2025,0,8144,Recinto y grado,FALSE
+2,Sin origen,Rio_Piedras,Bach,5,2025,0,8144,Recinto y grado,FALSE
+3,1,Rio_Piedras,Bach,5,2025,0,7564,Recinto y grado,FALSE
+3,2,Rio_Piedras,Bach,5,2025,0,7564,Recinto y grado,FALSE
+3,3,Rio_Piedras,Bach,5,2025,0,7564,Recinto y grado,FALSE
+3,4,Rio_Piedras,Bach,5,2025,0.888683236382866,7564,Recinto y grado,FALSE
+3,5 o mas,Rio_Piedras,Bach,5,2025,0,7564,Recinto y grado,FALSE
+3,Sin origen,Rio_Piedras,Bach,5,2025,0,7564,Recinto y grado,FALSE
+4,1,Rio_Piedras,Bach,5,2025,0,7330,Recinto y grado,FALSE
+4,2,Rio_Piedras,Bach,5,2025,0,7330,Recinto y grado,FALSE
+4,3,Rio_Piedras,Bach,5,2025,0,7330,Recinto y grado,FALSE
+4,4,Rio_Piedras,Bach,5,2025,0,7330,Recinto y grado,FALSE
+4,5 o mas,Rio_Piedras,Bach,5,2025,0.790995907230559,7330,Recinto y grado,FALSE
+4,Sin origen,Rio_Piedras,Bach,5,2025,0,7330,Recinto y grado,FALSE
+5 o mas,1,Rio_Piedras,Bach,5,2025,0,11385,Recinto y grado,FALSE
+5 o mas,2,Rio_Piedras,Bach,5,2025,0,11385,Recinto y grado,FALSE
+5 o mas,3,Rio_Piedras,Bach,5,2025,0,11385,Recinto y grado,FALSE
+5 o mas,4,Rio_Piedras,Bach,5,2025,0,11385,Recinto y grado,FALSE
+5 o mas,5 o mas,Rio_Piedras,Bach,5,2025,0.356785243741765,11385,Recinto y grado,FALSE
+5 o mas,Sin origen,Rio_Piedras,Bach,5,2025,0,11385,Recinto y grado,FALSE
+Sin origen,1,Rio_Piedras,Bach,5,2025,0,2677,Recinto y grado,FALSE
+Sin origen,2,Rio_Piedras,Bach,5,2025,0,2677,Recinto y grado,FALSE
+Sin origen,3,Rio_Piedras,Bach,5,2025,0,2677,Recinto y grado,FALSE
+Sin origen,4,Rio_Piedras,Bach,5,2025,0,2677,Recinto y grado,FALSE
+Sin origen,5 o mas,Rio_Piedras,Bach,5,2025,0.100859170713485,2677,Recinto y grado,FALSE
+Sin origen,Sin origen,Rio_Piedras,Bach,5,2025,0.535674262233844,2677,Recinto y grado,FALSE
+1,1,Utuado,Asoc,5,2025,0,329,Recinto y grado,FALSE
+1,2,Utuado,Asoc,5,2025,0.544072948328267,329,Recinto y grado,FALSE
+1,3,Utuado,Asoc,5,2025,0,329,Recinto y grado,FALSE
+1,4,Utuado,Asoc,5,2025,0,329,Recinto y grado,FALSE
+1,5 o mas,Utuado,Asoc,5,2025,0,329,Recinto y grado,FALSE
+1,Sin origen,Utuado,Asoc,5,2025,0,329,Recinto y grado,FALSE
+2,1,Utuado,Asoc,5,2025,0,212,Recinto y grado,FALSE
+2,2,Utuado,Asoc,5,2025,0,212,Recinto y grado,FALSE
+2,3,Utuado,Asoc,5,2025,0.415094339622642,212,Recinto y grado,FALSE
+2,4,Utuado,Asoc,5,2025,0,212,Recinto y grado,FALSE
+2,5 o mas,Utuado,Asoc,5,2025,0,212,Recinto y grado,FALSE
+2,Sin origen,Utuado,Asoc,5,2025,0,212,Recinto y grado,FALSE
+3,1,Utuado,Asoc,5,2025,0,123,Recinto y grado,FALSE
+3,2,Utuado,Asoc,5,2025,0,123,Recinto y grado,FALSE
+3,3,Utuado,Asoc,5,2025,0,123,Recinto y grado,FALSE
+3,4,Utuado,Asoc,5,2025,0.195121951219512,123,Recinto y grado,FALSE
+3,5 o mas,Utuado,Asoc,5,2025,0,123,Recinto y grado,FALSE
+3,Sin origen,Utuado,Asoc,5,2025,0,123,Recinto y grado,FALSE
+4,1,Utuado,Asoc,5,2025,0,46,Recinto y grado,FALSE
+4,2,Utuado,Asoc,5,2025,0,46,Recinto y grado,FALSE
+4,3,Utuado,Asoc,5,2025,0,46,Recinto y grado,FALSE
+4,4,Utuado,Asoc,5,2025,0,46,Recinto y grado,FALSE
+4,5 o mas,Utuado,Asoc,5,2025,0.173913043478261,46,Recinto y grado,FALSE
+4,Sin origen,Utuado,Asoc,5,2025,0,46,Recinto y grado,FALSE
+5 o mas,1,Utuado,Asoc,5,2025,0,41,Recinto y grado,FALSE
+5 o mas,2,Utuado,Asoc,5,2025,0,41,Recinto y grado,FALSE
+5 o mas,3,Utuado,Asoc,5,2025,0,41,Recinto y grado,FALSE
+5 o mas,4,Utuado,Asoc,5,2025,0,41,Recinto y grado,FALSE
+5 o mas,5 o mas,Utuado,Asoc,5,2025,0.195121951219512,41,Recinto y grado,FALSE
+5 o mas,Sin origen,Utuado,Asoc,5,2025,0,41,Recinto y grado,FALSE
+Sin origen,1,Utuado,Asoc,5,2025,0,153,Recinto y grado,FALSE
+Sin origen,2,Utuado,Asoc,5,2025,0,153,Recinto y grado,FALSE
+Sin origen,3,Utuado,Asoc,5,2025,0,153,Recinto y grado,FALSE
+Sin origen,4,Utuado,Asoc,5,2025,0,153,Recinto y grado,FALSE
+Sin origen,5 o mas,Utuado,Asoc,5,2025,0,153,Recinto y grado,FALSE
+Sin origen,Sin origen,Utuado,Asoc,5,2025,0.38562091503268,153,Recinto y grado,FALSE
+1,1,Utuado,Bach,5,2025,0,217,Recinto y grado,FALSE
+1,2,Utuado,Bach,5,2025,0.640552995391705,217,Recinto y grado,FALSE
+1,3,Utuado,Bach,5,2025,0,217,Recinto y grado,FALSE
+1,4,Utuado,Bach,5,2025,0,217,Recinto y grado,FALSE
+1,5 o mas,Utuado,Bach,5,2025,0,217,Recinto y grado,FALSE
+1,Sin origen,Utuado,Bach,5,2025,0,217,Recinto y grado,FALSE
+2,1,Utuado,Bach,5,2025,0,139,Recinto y grado,FALSE
+2,2,Utuado,Bach,5,2025,0,139,Recinto y grado,FALSE
+2,3,Utuado,Bach,5,2025,0.532374100719425,139,Recinto y grado,FALSE
+2,4,Utuado,Bach,5,2025,0,139,Recinto y grado,FALSE
+2,5 o mas,Utuado,Bach,5,2025,0,139,Recinto y grado,FALSE
+2,Sin origen,Utuado,Bach,5,2025,0,139,Recinto y grado,FALSE
+3,1,Utuado,Bach,5,2025,0,93,Recinto y grado,FALSE
+3,2,Utuado,Bach,5,2025,0,93,Recinto y grado,FALSE
+3,3,Utuado,Bach,5,2025,0,93,Recinto y grado,FALSE
+3,4,Utuado,Bach,5,2025,0.655913978494624,93,Recinto y grado,FALSE
+3,5 o mas,Utuado,Bach,5,2025,0,93,Recinto y grado,FALSE
+3,Sin origen,Utuado,Bach,5,2025,0,93,Recinto y grado,FALSE
+4,1,Utuado,Bach,5,2025,0,79,Recinto y grado,FALSE
+4,2,Utuado,Bach,5,2025,0,79,Recinto y grado,FALSE
+4,3,Utuado,Bach,5,2025,0,79,Recinto y grado,FALSE
+4,4,Utuado,Bach,5,2025,0,79,Recinto y grado,FALSE
+4,5 o mas,Utuado,Bach,5,2025,0.493670886075949,79,Recinto y grado,FALSE
+4,Sin origen,Utuado,Bach,5,2025,0,79,Recinto y grado,FALSE
+5 o mas,1,Utuado,Bach,5,2025,0,124,Recinto y grado,FALSE
+5 o mas,2,Utuado,Bach,5,2025,0,124,Recinto y grado,FALSE
+5 o mas,3,Utuado,Bach,5,2025,0,124,Recinto y grado,FALSE
+5 o mas,4,Utuado,Bach,5,2025,0,124,Recinto y grado,FALSE
+5 o mas,5 o mas,Utuado,Bach,5,2025,0.290322580645161,124,Recinto y grado,FALSE
+5 o mas,Sin origen,Utuado,Bach,5,2025,0,124,Recinto y grado,FALSE
+Sin origen,1,Utuado,Bach,5,2025,0,325,Recinto y grado,FALSE
+Sin origen,2,Utuado,Bach,5,2025,0,325,Recinto y grado,FALSE
+Sin origen,3,Utuado,Bach,5,2025,0,325,Recinto y grado,FALSE
+Sin origen,4,Utuado,Bach,5,2025,0,325,Recinto y grado,FALSE
+Sin origen,5 o mas,Utuado,Bach,5,2025,0.0461538461538462,325,Recinto y grado,FALSE
+Sin origen,Sin origen,Utuado,Bach,5,2025,0.489230769230769,325,Recinto y grado,FALSE

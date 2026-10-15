@@ -1,0 +1,29 @@
+﻿control,correcto,valor,unidad,etapa2
+"Estado v2, cierre y condiciones confirmados",TRUE,,control,cohortes_20261015_185817_12936
+Cortes temporales y banderas de censo verificados,TRUE,,control,cohortes_20261015_185817_12936
+Estado concilia registros_todos_periodos,TRUE,734081,conteo,cohortes_20261015_185817_12936
+Estado concilia registros_inicio_seleccionados,TRUE,355954,conteo,cohortes_20261015_185817_12936
+Estado concilia filas_persona_recinto_anio,TRUE,355062,conteo,cohortes_20261015_185817_12936
+Estado concilia identificadores_distintos_todos_anos_recintos,TRUE,120825,conteo,cohortes_20261015_185817_12936
+Estado concilia repeticiones_calendarios,TRUE,892,conteo,cohortes_20261015_185817_12936
+Estado concilia periodos_seleccionados,TRUE,130,conteo,cohortes_20261015_185817_12936
+Censo igual a union,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Periodos igual a registros iniciales de union,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Censo igual a resumen,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Subgrado,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Posgrado,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Subgrado_generico,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Escolar,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Otros,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Resumen del componente Multiples componentes,TRUE,100,grupos verificados,cohortes_20261015_185817_12936
+Subgrado igual a cohortes,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Subgrado igual a ingreso,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Censo igual a revision de ingreso y cohortes,TRUE,427,grupos verificados,cohortes_20261015_185817_12936
+Revision 14 igual a ingreso candidato,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Revision 14 igual a ingreso consistente,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Revision 14 igual a ingreso pendiente,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Censo igual a ingreso nuevo_ingreso_candidato,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Censo igual a ingreso nuevo_ingreso_consistente,TRUE,180,grupos verificados,cohortes_20261015_185817_12936
+Cobertura declarada verificada,TRUE,100,archivos recinto-ano,cohortes_20261015_185817_12936
+Recintos verificados,TRUE,10,recintos,cohortes_20261015_185817_12936
+Anos consecutivos verificados,TRUE,10,anos,cohortes_20261015_185817_12936

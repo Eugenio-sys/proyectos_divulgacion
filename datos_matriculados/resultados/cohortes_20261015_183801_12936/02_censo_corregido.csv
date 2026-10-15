@@ -1,0 +1,428 @@
+﻿recinto,anio,componente,nivel,provisional,personas,con_multiples_calendarios,nuevo_ingreso_secundaria,nuevo_ingreso_consistente
+Aguadilla,2017-2018,Subgrado,Bach,FALSE,2992,0,742,742
+Aguadilla,2017-2018,Otros,Sin definir,FALSE,39,0,0,0
+Aguadilla,2017-2018,Subgrado,Asoc,FALSE,188,0,73,73
+Arecibo,2017-2018,Subgrado,Bach,FALSE,3406,0,625,625
+Arecibo,2017-2018,Otros,Sin definir,FALSE,42,0,0,0
+Arecibo,2017-2018,Subgrado,Asoc,FALSE,216,0,63,63
+Bayamon,2017-2018,Subgrado,Bach,FALSE,3889,0,803,803
+Bayamon,2017-2018,Otros,Sin definir,FALSE,153,0,0,0
+Bayamon,2017-2018,Subgrado,Asoc,FALSE,179,0,66,66
+Carolina,2017-2018,Subgrado,Bach,FALSE,3131,0,625,625
+Carolina,2017-2018,Subgrado,Asoc,FALSE,342,0,133,133
+Carolina,2017-2018,Otros,Sin definir,FALSE,87,0,0,0
+Cayey,2017-2018,Subgrado,Bach,FALSE,3289,0,641,641
+Cayey,2017-2018,Otros,Sin definir,FALSE,27,0,0,0
+Ciencias_Medicas,2017-2018,Otros,Sin definir,FALSE,157,5,0,0
+Ciencias_Medicas,2017-2018,Posgrado,Doctor,FALSE,1112,23,0,0
+Ciencias_Medicas,2017-2018,Posgrado,Master,FALSE,718,40,0,0
+Ciencias_Medicas,2017-2018,Subgrado,Bach,FALSE,291,0,0,0
+Ciencias_Medicas,2017-2018,Otros,Bach,FALSE,37,0,0,0
+Ciencias_Medicas,2017-2018,Subgrado,Asoc,FALSE,65,0,0,0
+Humacao,2017-2018,Subgrado,Bach,FALSE,3261,0,601,601
+Humacao,2017-2018,Otros,Sin definir,FALSE,89,0,0,0
+Humacao,2017-2018,Subgrado,Asoc,FALSE,228,0,54,54
+Ponce,2017-2018,Subgrado,Bach,FALSE,2725,0,518,518
+Ponce,2017-2018,Subgrado,Asoc,FALSE,228,0,63,63
+Ponce,2017-2018,Otros,Sin definir,FALSE,39,0,0,0
+Rio_Piedras,2017-2018,Subgrado,Bach,FALSE,11277,0,1977,1977
+Rio_Piedras,2017-2018,Posgrado,Doctor,FALSE,723,0,0,0
+Rio_Piedras,2017-2018,Posgrado,Master,FALSE,1573,0,0,0
+Rio_Piedras,2017-2018,Posgrado,Juris,FALSE,638,0,0,0
+Rio_Piedras,2017-2018,Otros,Sin definir,FALSE,336,0,0,0
+Rio_Piedras,2017-2018,Posgrado,Master Semester Calendar,FALSE,42,0,0,0
+Rio_Piedras,2017-2018,Otros,Bach,FALSE,12,0,0,0
+Rio_Piedras,2017-2018,Subgrado_generico,Undergraduate Semester Calendar,FALSE,13,0,0,0
+Rio_Piedras,2017-2018,Otros,Master,FALSE,4,0,0,0
+Utuado,2017-2018,Subgrado,Asoc,FALSE,682,0,285,285
+Utuado,2017-2018,Subgrado,Bach,FALSE,344,0,80,80
+Utuado,2017-2018,Otros,Sin definir,FALSE,9,0,0,0
+Aguadilla,2018-2019,Subgrado,Bach,FALSE,2780,0,618,618
+Aguadilla,2018-2019,Subgrado,Asoc,FALSE,228,0,80,80
+Aguadilla,2018-2019,Otros,Sin definir,FALSE,50,0,0,0
+Arecibo,2018-2019,Subgrado,Bach,FALSE,3345,0,689,689
+Arecibo,2018-2019,Subgrado,Asoc,FALSE,228,0,101,101
+Arecibo,2018-2019,Otros,Sin definir,FALSE,15,0,0,0
+Bayamon,2018-2019,Subgrado,Bach,FALSE,3877,0,884,884
+Bayamon,2018-2019,Otros,Sin definir,FALSE,77,0,0,0
+Bayamon,2018-2019,Subgrado,Asoc,FALSE,152,0,65,65
+Carolina,2018-2019,Subgrado,Asoc,FALSE,333,0,136,136
+Carolina,2018-2019,Subgrado,Bach,FALSE,2899,0,564,564
+Carolina,2018-2019,Otros,Sin definir,FALSE,71,0,0,0
+Cayey,2018-2019,Subgrado,Bach,FALSE,3005,0,581,581
+Cayey,2018-2019,Otros,Sin definir,FALSE,25,0,0,0
+Ciencias_Medicas,2018-2019,Otros,Sin definir,FALSE,303,4,0,0
+Ciencias_Medicas,2018-2019,Posgrado,Doctor,FALSE,1111,20,0,0
+Ciencias_Medicas,2018-2019,Subgrado,Asoc,FALSE,73,0,0,0
+Ciencias_Medicas,2018-2019,Posgrado,Master,FALSE,683,32,0,0
+Ciencias_Medicas,2018-2019,Otros,Bach,FALSE,32,0,0,0
+Ciencias_Medicas,2018-2019,Subgrado,Bach,FALSE,289,0,0,0
+Humacao,2018-2019,Subgrado,Bach,FALSE,3038,0,588,588
+Humacao,2018-2019,Otros,Sin definir,FALSE,49,0,0,0
+Humacao,2018-2019,Subgrado,Asoc,FALSE,184,0,52,52
+Ponce,2018-2019,Subgrado,Bach,FALSE,2503,0,506,506
+Ponce,2018-2019,Subgrado,Asoc,FALSE,219,0,63,63
+Ponce,2018-2019,Otros,Sin definir,FALSE,32,0,0,0
+Rio_Piedras,2018-2019,Posgrado,Master,FALSE,1520,0,0,0
+Rio_Piedras,2018-2019,Posgrado,Juris,FALSE,607,0,0,0
+Rio_Piedras,2018-2019,Subgrado,Bach,FALSE,11282,0,2096,2096
+Rio_Piedras,2018-2019,Otros,Sin definir,FALSE,521,0,0,0
+Rio_Piedras,2018-2019,Posgrado,Doctor,FALSE,750,0,0,0
+Rio_Piedras,2018-2019,Otros,Bach,FALSE,47,0,0,0
+Rio_Piedras,2018-2019,Subgrado_generico,Undergraduate Semester Calendar,FALSE,19,0,0,0
+Rio_Piedras,2018-2019,Posgrado,Master Semester Calendar,FALSE,36,0,0,0
+Rio_Piedras,2018-2019,Otros,Master,FALSE,2,0,0,0
+Rio_Piedras,2018-2019,Otros,Juris,FALSE,1,0,0,0
+Utuado,2018-2019,Subgrado,Asoc,FALSE,523,0,185,185
+Utuado,2018-2019,Subgrado,Bach,FALSE,286,0,57,57
+Utuado,2018-2019,Otros,Sin definir,FALSE,7,0,0,0
+Aguadilla,2019-2020,Subgrado,Bach,FALSE,2461,0,533,533
+Aguadilla,2019-2020,Otros,Sin definir,FALSE,58,0,0,0
+Aguadilla,2019-2020,Subgrado,Asoc,FALSE,222,0,79,79
+Arecibo,2019-2020,Subgrado,Asoc,FALSE,240,0,84,84
+Arecibo,2019-2020,Subgrado,Bach,FALSE,3202,0,620,620
+Arecibo,2019-2020,Otros,Sin definir,FALSE,22,0,0,0
+Bayamon,2019-2020,Subgrado,Bach,FALSE,3643,0,818,818
+Bayamon,2019-2020,Subgrado,Asoc,FALSE,135,0,47,47
+Bayamon,2019-2020,Otros,Sin definir,FALSE,80,0,0,0
+Carolina,2019-2020,Subgrado,Bach,FALSE,2583,0,469,469
+Carolina,2019-2020,Otros,Sin definir,FALSE,120,0,0,0
+Carolina,2019-2020,Subgrado,Asoc,FALSE,265,0,90,90
+Cayey,2019-2020,Subgrado,Bach,FALSE,2800,0,543,543
+Cayey,2019-2020,Otros,Sin definir,FALSE,41,0,0,0
+Ciencias_Medicas,2019-2020,Subgrado,Bach,FALSE,276,0,0,0
+Ciencias_Medicas,2019-2020,Posgrado,Doctor,FALSE,1119,21,0,0
+Ciencias_Medicas,2019-2020,Posgrado,Master,FALSE,666,40,0,0
+Ciencias_Medicas,2019-2020,Subgrado,Asoc,FALSE,66,0,0,0
+Ciencias_Medicas,2019-2020,Otros,Sin definir,FALSE,244,4,0,0
+Ciencias_Medicas,2019-2020,Otros,Bach,FALSE,40,0,0,0
+Humacao,2019-2020,Subgrado,Bach,FALSE,2954,0,638,638
+Humacao,2019-2020,Subgrado,Asoc,FALSE,161,0,59,59
+Humacao,2019-2020,Otros,Sin definir,FALSE,67,0,0,0
+Ponce,2019-2020,Subgrado,Bach,FALSE,2307,0,472,472
+Ponce,2019-2020,Subgrado,Asoc,FALSE,156,0,38,38
+Ponce,2019-2020,Otros,Sin definir,FALSE,19,0,0,0
+Rio_Piedras,2019-2020,Subgrado,Bach,FALSE,10882,0,2133,2133
+Rio_Piedras,2019-2020,Posgrado,Master,FALSE,1520,0,0,0
+Rio_Piedras,2019-2020,Otros,Sin definir,FALSE,306,0,0,0
+Rio_Piedras,2019-2020,Posgrado,Juris,FALSE,561,0,0,0
+Rio_Piedras,2019-2020,Posgrado,Doctor,FALSE,759,0,0,0
+Rio_Piedras,2019-2020,Subgrado_generico,Undergraduate Semester Calendar,FALSE,49,0,0,0
+Rio_Piedras,2019-2020,Otros,Bach,FALSE,84,0,0,0
+Rio_Piedras,2019-2020,Posgrado,Master Semester Calendar,FALSE,30,0,0,0
+Rio_Piedras,2019-2020,Otros,Juris,FALSE,1,0,0,0
+Rio_Piedras,2019-2020,Otros,Master,FALSE,1,0,0,0
+Utuado,2019-2020,Subgrado,Bach,FALSE,269,0,43,43
+Utuado,2019-2020,Subgrado,Asoc,FALSE,356,0,108,108
+Utuado,2019-2020,Otros,Sin definir,FALSE,20,0,0,0
+Aguadilla,2020-2021,Subgrado,Bach,FALSE,2199,0,500,500
+Aguadilla,2020-2021,Subgrado,Asoc,FALSE,173,0,57,57
+Aguadilla,2020-2021,Otros,Sin definir,FALSE,39,0,0,0
+Arecibo,2020-2021,Subgrado,Bach,FALSE,3034,0,635,634
+Arecibo,2020-2021,Subgrado,Asoc,FALSE,249,0,97,97
+Arecibo,2020-2021,Otros,Sin definir,FALSE,13,0,0,0
+Bayamon,2020-2021,Subgrado,Bach,FALSE,3340,0,707,707
+Bayamon,2020-2021,Otros,Sin definir,FALSE,50,0,0,0
+Bayamon,2020-2021,Subgrado,Asoc,FALSE,115,0,43,43
+Carolina,2020-2021,Subgrado,Bach,FALSE,2269,0,448,448
+Carolina,2020-2021,Otros,Sin definir,FALSE,91,0,0,0
+Carolina,2020-2021,Subgrado,Asoc,FALSE,187,0,64,64
+Cayey,2020-2021,Subgrado,Bach,FALSE,2702,0,533,533
+Cayey,2020-2021,Otros,Sin definir,FALSE,37,0,0,0
+Ciencias_Medicas,2020-2021,Subgrado,Bach,FALSE,315,0,0,0
+Ciencias_Medicas,2020-2021,Posgrado,Doctor,FALSE,1141,18,0,0
+Ciencias_Medicas,2020-2021,Posgrado,Master,FALSE,599,39,0,0
+Ciencias_Medicas,2020-2021,Otros,Sin definir,FALSE,197,5,0,0
+Ciencias_Medicas,2020-2021,Subgrado,Asoc,FALSE,61,0,0,0
+Ciencias_Medicas,2020-2021,Otros,Bach,FALSE,41,0,0,0
+Ciencias_Medicas,2020-2021,Otros,Master,FALSE,1,0,0,0
+Humacao,2020-2021,Subgrado,Bach,FALSE,2797,0,630,630
+Humacao,2020-2021,Subgrado,Asoc,FALSE,217,0,65,65
+Humacao,2020-2021,Otros,Sin definir,FALSE,56,0,0,0
+Ponce,2020-2021,Subgrado,Bach,FALSE,2177,0,488,488
+Ponce,2020-2021,Subgrado,Asoc,FALSE,133,0,44,44
+Ponce,2020-2021,Otros,Sin definir,FALSE,11,0,0,0
+Rio_Piedras,2020-2021,Subgrado,Bach,FALSE,10520,0,2212,2212
+Rio_Piedras,2020-2021,Posgrado,Master,FALSE,1640,0,0,0
+Rio_Piedras,2020-2021,Posgrado,Doctor,FALSE,729,0,0,0
+Rio_Piedras,2020-2021,Posgrado,Juris,FALSE,517,0,0,0
+Rio_Piedras,2020-2021,Otros,Sin definir,FALSE,286,0,0,0
+Rio_Piedras,2020-2021,Otros,Bach,FALSE,28,0,0,0
+Rio_Piedras,2020-2021,Posgrado,Master Semester Calendar,FALSE,32,0,0,0
+Rio_Piedras,2020-2021,Subgrado_generico,Undergraduate Semester Calendar,FALSE,44,0,0,0
+Rio_Piedras,2020-2021,Otros,Master,FALSE,2,0,0,0
+Utuado,2020-2021,Subgrado,Asoc,FALSE,268,0,102,102
+Utuado,2020-2021,Subgrado,Bach,FALSE,245,0,57,57
+Utuado,2020-2021,Otros,Sin definir,FALSE,16,0,0,0
+Aguadilla,2021-2022,Subgrado,Bach,FALSE,2011,0,502,502
+Aguadilla,2021-2022,Subgrado,Asoc,FALSE,129,0,34,34
+Aguadilla,2021-2022,Otros,Sin definir,FALSE,32,0,0,0
+Arecibo,2021-2022,Subgrado,Bach,FALSE,2789,0,590,589
+Arecibo,2021-2022,Subgrado,Asoc,FALSE,237,0,90,90
+Arecibo,2021-2022,Otros,Sin definir,FALSE,10,0,0,0
+Bayamon,2021-2022,Subgrado,Bach,FALSE,3125,0,746,746
+Bayamon,2021-2022,Subgrado,Asoc,FALSE,88,0,38,38
+Bayamon,2021-2022,Otros,Sin definir,FALSE,60,0,0,0
+Carolina,2021-2022,Subgrado,Asoc,FALSE,167,0,70,70
+Carolina,2021-2022,Otros,Sin definir,FALSE,220,0,0,0
+Carolina,2021-2022,Subgrado,Bach,FALSE,2052,0,528,527
+Cayey,2021-2022,Otros,Sin definir,FALSE,30,0,0,0
+Cayey,2021-2022,Subgrado,Bach,FALSE,2473,0,559,559
+Ciencias_Medicas,2021-2022,Posgrado,Doctor,FALSE,1144,25,0,0
+Ciencias_Medicas,2021-2022,Otros,Sin definir,FALSE,196,0,0,0
+Ciencias_Medicas,2021-2022,Subgrado,Bach,FALSE,299,0,0,0
+Ciencias_Medicas,2021-2022,Posgrado,Master,FALSE,562,40,0,0
+Ciencias_Medicas,2021-2022,Otros,Bach,FALSE,41,0,0,0
+Ciencias_Medicas,2021-2022,Subgrado,Asoc,FALSE,55,0,0,0
+Humacao,2021-2022,Subgrado,Asoc,FALSE,183,0,60,60
+Humacao,2021-2022,Subgrado,Bach,FALSE,2565,0,590,590
+Humacao,2021-2022,Otros,Sin definir,FALSE,45,0,0,0
+Ponce,2021-2022,Subgrado,Bach,FALSE,2004,0,529,529
+Ponce,2021-2022,Subgrado,Asoc,FALSE,145,0,59,59
+Ponce,2021-2022,Otros,Sin definir,FALSE,61,0,0,0
+Ponce,2021-2022,Otros,Bach,FALSE,1,0,0,0
+Rio_Piedras,2021-2022,Subgrado,Bach,FALSE,9918,0,2076,2075
+Rio_Piedras,2021-2022,Posgrado,Doctor,FALSE,740,0,0,0
+Rio_Piedras,2021-2022,Posgrado,Master,FALSE,1623,0,0,0
+Rio_Piedras,2021-2022,Posgrado,Juris,FALSE,506,0,0,0
+Rio_Piedras,2021-2022,Subgrado_generico,Undergraduate Semester Calendar,FALSE,33,0,0,0
+Rio_Piedras,2021-2022,Otros,Sin definir,FALSE,308,0,0,0
+Rio_Piedras,2021-2022,Otros,Bach,FALSE,15,0,0,0
+Rio_Piedras,2021-2022,Posgrado,Master Semester Calendar,FALSE,33,0,0,0
+Rio_Piedras,2021-2022,Otros,Master,FALSE,1,0,0,0
+Utuado,2021-2022,Subgrado,Asoc,FALSE,202,0,75,75
+Utuado,2021-2022,Subgrado,Bach,FALSE,228,0,39,39
+Utuado,2021-2022,Otros,Sin definir,FALSE,5,0,0,0
+Aguadilla,2022-2023,Subgrado,Bach,FALSE,1810,0,431,431
+Aguadilla,2022-2023,Otros,Sin definir,FALSE,61,0,0,0
+Aguadilla,2022-2023,Subgrado,Asoc,FALSE,125,0,56,56
+Arecibo,2022-2023,Subgrado,Bach,FALSE,2601,0,582,582
+Arecibo,2022-2023,Subgrado,Asoc,FALSE,206,0,70,70
+Arecibo,2022-2023,Otros,Sin definir,FALSE,16,0,0,0
+Arecibo,2022-2023,Escolar,Sin definir,FALSE,8,0,0,0
+Bayamon,2022-2023,Subgrado,Bach,FALSE,2848,0,643,643
+Bayamon,2022-2023,Otros,Sin definir,FALSE,68,0,0,0
+Bayamon,2022-2023,Subgrado,Asoc,FALSE,60,0,18,18
+Carolina,2022-2023,Subgrado,Bach,FALSE,1984,0,607,607
+Carolina,2022-2023,Otros,Sin definir,FALSE,95,0,0,0
+Carolina,2022-2023,Subgrado,Asoc,FALSE,165,0,71,71
+Cayey,2022-2023,Otros,Bach,FALSE,11,0,0,0
+Cayey,2022-2023,Subgrado,Bach,FALSE,2151,0,470,469
+Cayey,2022-2023,Otros,Sin definir,FALSE,35,0,0,0
+Ciencias_Medicas,2022-2023,Posgrado,Doctor,FALSE,1129,15,0,0
+Ciencias_Medicas,2022-2023,Posgrado,Master,FALSE,503,10,0,0
+Ciencias_Medicas,2022-2023,Subgrado,Asoc,FALSE,41,0,0,0
+Ciencias_Medicas,2022-2023,Subgrado,Bach,FALSE,243,0,0,0
+Ciencias_Medicas,2022-2023,Otros,Sin definir,FALSE,272,1,0,0
+Ciencias_Medicas,2022-2023,Otros,Bach,FALSE,43,0,0,0
+Ciencias_Medicas,2022-2023,Posgrado,Odonto,FALSE,9,8,0,0
+Humacao,2022-2023,Subgrado,Bach,FALSE,2385,0,529,529
+Humacao,2022-2023,Subgrado,Asoc,FALSE,150,0,46,46
+Humacao,2022-2023,Otros,Sin definir,FALSE,191,0,0,0
+Ponce,2022-2023,Subgrado,Bach,FALSE,1960,0,538,538
+Ponce,2022-2023,Otros,Sin definir,FALSE,91,0,0,0
+Ponce,2022-2023,Subgrado,Asoc,FALSE,141,0,48,48
+Rio_Piedras,2022-2023,Subgrado,Bach,FALSE,8929,0,1674,1674
+Rio_Piedras,2022-2023,Posgrado,Master,FALSE,1472,0,0,0
+Rio_Piedras,2022-2023,Otros,Sin definir,FALSE,1244,0,0,0
+Rio_Piedras,2022-2023,Posgrado,Doctor,FALSE,721,0,0,0
+Rio_Piedras,2022-2023,Posgrado,Juris,FALSE,469,0,0,0
+Rio_Piedras,2022-2023,Subgrado_generico,Undergraduate Semester Calendar,FALSE,36,0,0,0
+Rio_Piedras,2022-2023,Posgrado,Master Semester Calendar,FALSE,32,0,0,0
+Rio_Piedras,2022-2023,Otros,Bach,FALSE,5,0,0,0
+Rio_Piedras,2022-2023,Otros,Juris,FALSE,4,0,0,0
+Rio_Piedras,2022-2023,Otros,Master,FALSE,1,0,0,0
+Utuado,2022-2023,Subgrado,Asoc,FALSE,146,0,42,42
+Utuado,2022-2023,Subgrado,Bach,FALSE,182,0,31,31
+Utuado,2022-2023,Otros,Sin definir,FALSE,2,0,0,0
+Aguadilla,2023-2024,Subgrado,Bach,FALSE,1699,0,431,431
+Aguadilla,2023-2024,Subgrado,Asoc,FALSE,120,0,39,39
+Aguadilla,2023-2024,Otros,Sin definir,FALSE,46,0,0,0
+Arecibo,2023-2024,Subgrado,Bach,FALSE,2552,0,600,600
+Arecibo,2023-2024,Subgrado,Asoc,FALSE,186,0,65,65
+Arecibo,2023-2024,Escolar,Sin definir,FALSE,5,0,0,0
+Arecibo,2023-2024,Posgrado,Master,FALSE,9,0,0,0
+Arecibo,2023-2024,Otros,Sin definir,FALSE,7,0,0,0
+Arecibo,2023-2024,Otros,Cert,FALSE,12,0,0,0
+Bayamon,2023-2024,Subgrado,Bach,FALSE,2805,0,738,738
+Bayamon,2023-2024,Subgrado,Asoc,FALSE,53,0,13,13
+Bayamon,2023-2024,Otros,Sin definir,FALSE,46,0,0,0
+Carolina,2023-2024,Subgrado,Bach,FALSE,2137,0,647,647
+Carolina,2023-2024,Subgrado,Asoc,FALSE,161,0,51,51
+Carolina,2023-2024,Otros,Sin definir,FALSE,90,0,0,0
+Cayey,2023-2024,Subgrado,Bach,FALSE,2157,0,544,544
+Cayey,2023-2024,Otros,Sin definir,FALSE,22,0,0,0
+Ciencias_Medicas,2023-2024,Posgrado,Master,FALSE,457,10,0,0
+Ciencias_Medicas,2023-2024,Posgrado,Doctor,FALSE,1157,20,0,0
+Ciencias_Medicas,2023-2024,Otros,Sin definir,FALSE,262,1,0,0
+Ciencias_Medicas,2023-2024,Subgrado,Bach,FALSE,209,0,0,0
+Ciencias_Medicas,2023-2024,Subgrado,Asoc,FALSE,35,0,0,0
+Ciencias_Medicas,2023-2024,Otros,Bach,FALSE,33,0,0,0
+Humacao,2023-2024,Subgrado,Bach,FALSE,2378,0,594,594
+Humacao,2023-2024,Subgrado,Asoc,FALSE,142,0,60,60
+Humacao,2023-2024,Otros,Sin definir,FALSE,57,0,0,0
+Ponce,2023-2024,Subgrado,Bach,FALSE,2061,0,544,544
+Ponce,2023-2024,Subgrado,Asoc,FALSE,133,0,43,43
+Ponce,2023-2024,Otros,Sin definir,FALSE,72,0,0,0
+Rio_Piedras,2023-2024,Otros,Sin definir,FALSE,316,0,0,0
+Rio_Piedras,2023-2024,Posgrado,Doctor,FALSE,720,0,0,0
+Rio_Piedras,2023-2024,Subgrado,Bach,FALSE,8647,0,1740,1740
+Rio_Piedras,2023-2024,Posgrado,Juris,FALSE,454,0,0,0
+Rio_Piedras,2023-2024,Posgrado,Master,FALSE,1447,0,0,0
+Rio_Piedras,2023-2024,Subgrado_generico,Undergraduate Semester Calendar,FALSE,32,0,0,0
+Rio_Piedras,2023-2024,Posgrado,Master Semester Calendar,FALSE,35,0,0,0
+Rio_Piedras,2023-2024,Otros,Bach,FALSE,7,0,0,0
+Rio_Piedras,2023-2024,Otros,Juris,FALSE,2,0,0,0
+Utuado,2023-2024,Subgrado,Asoc,FALSE,136,0,52,52
+Utuado,2023-2024,Subgrado,Bach,FALSE,161,0,40,40
+Utuado,2023-2024,Otros,Sin definir,FALSE,7,0,0,0
+Aguadilla,2024-2025,Subgrado,Bach,FALSE,1740,0,472,472
+Aguadilla,2024-2025,Otros,Sin definir,FALSE,66,0,0,0
+Aguadilla,2024-2025,Subgrado,Asoc,FALSE,128,0,54,54
+Arecibo,2024-2025,Subgrado,Bach,FALSE,2535,0,582,582
+Arecibo,2024-2025,Posgrado,Master,FALSE,16,0,0,0
+Arecibo,2024-2025,Subgrado,Asoc,FALSE,162,0,45,45
+Arecibo,2024-2025,Otros,Sin definir,FALSE,53,0,0,0
+Bayamon,2024-2025,Subgrado,Bach,FALSE,2722,0,683,683
+Bayamon,2024-2025,Escolar,Sin definir,FALSE,73,0,0,0
+Bayamon,2024-2025,Otros,Sin definir,FALSE,111,0,0,0
+Bayamon,2024-2025,Subgrado,Asoc,FALSE,42,0,14,14
+Carolina,2024-2025,Subgrado,Bach,FALSE,2235,0,616,616
+Carolina,2024-2025,Otros,Sin definir,FALSE,178,0,0,0
+Carolina,2024-2025,Subgrado,Asoc,FALSE,137,0,48,48
+Cayey,2024-2025,Subgrado,Bach,FALSE,2045,0,466,466
+Cayey,2024-2025,Otros,Sin definir,FALSE,57,0,0,0
+Ciencias_Medicas,2024-2025,Posgrado,Master,FALSE,430,4,0,0
+Ciencias_Medicas,2024-2025,Posgrado,Doctor,FALSE,1188,20,0,0
+Ciencias_Medicas,2024-2025,Otros,Sin definir,FALSE,250,0,0,0
+Ciencias_Medicas,2024-2025,Subgrado,Bach,FALSE,231,0,0,0
+Ciencias_Medicas,2024-2025,Otros,Bach,FALSE,35,0,0,0
+Ciencias_Medicas,2024-2025,Subgrado,Asoc,FALSE,25,0,0,0
+Humacao,2024-2025,Subgrado,Bach,FALSE,2355,0,556,556
+Humacao,2024-2025,Subgrado,Asoc,FALSE,156,0,66,66
+Humacao,2024-2025,Otros,Sin definir,FALSE,189,127,0,0
+Humacao,2024-2025,Otros,Asoc,FALSE,1,0,0,0
+Ponce,2024-2025,Subgrado,Bach,FALSE,2145,0,560,560
+Ponce,2024-2025,Subgrado,Asoc,FALSE,149,0,58,58
+Ponce,2024-2025,Otros,Sin definir,FALSE,155,0,0,0
+Ponce,2024-2025,Subgrado_generico,Undergraduate Semester Calendar,FALSE,1,0,0,0
+Rio_Piedras,2024-2025,Posgrado,Juris,FALSE,451,0,0,0
+Rio_Piedras,2024-2025,Subgrado,Bach,FALSE,8620,0,1832,1832
+Rio_Piedras,2024-2025,Posgrado,Master,FALSE,1476,0,0,0
+Rio_Piedras,2024-2025,Otros,Sin definir,FALSE,783,0,0,0
+Rio_Piedras,2024-2025,Posgrado,Doctor,FALSE,729,0,0,0
+Rio_Piedras,2024-2025,Subgrado_generico,Undergraduate Semester Calendar,FALSE,30,0,0,0
+Rio_Piedras,2024-2025,Otros,Bach,FALSE,6,0,0,0
+Rio_Piedras,2024-2025,Posgrado,Master Semester Calendar,FALSE,41,0,0,0
+Utuado,2024-2025,Subgrado,Asoc,FALSE,152,0,58,58
+Utuado,2024-2025,Subgrado,Bach,FALSE,161,0,50,50
+Utuado,2024-2025,Otros,Sin definir,FALSE,10,0,0,0
+Aguadilla,2025-2026,Subgrado,Bach,FALSE,1846,0,483,483
+Aguadilla,2025-2026,Otros,Sin definir,FALSE,116,0,0,0
+Aguadilla,2025-2026,Subgrado,Asoc,FALSE,114,0,35,35
+Arecibo,2025-2026,Subgrado,Bach,FALSE,2535,0,543,541
+Arecibo,2025-2026,Subgrado,Asoc,FALSE,154,0,52,52
+Arecibo,2025-2026,Otros,Sin definir,FALSE,98,0,0,0
+Arecibo,2025-2026,Posgrado,Master,FALSE,18,0,0,0
+Arecibo,2025-2026,Otros,Cert,FALSE,10,0,0,0
+Bayamon,2025-2026,Subgrado,Bach,FALSE,2579,0,581,581
+Bayamon,2025-2026,Subgrado,Asoc,FALSE,31,0,12,12
+Bayamon,2025-2026,Escolar,Bach,FALSE,376,225,0,0
+Bayamon,2025-2026,Otros,Sin definir,FALSE,45,0,0,0
+Carolina,2025-2026,Subgrado,Bach,FALSE,2351,0,633,633
+Carolina,2025-2026,Otros,Sin definir,FALSE,279,0,0,0
+Carolina,2025-2026,Subgrado,Asoc,FALSE,138,0,50,50
+Cayey,2025-2026,Subgrado,Bach,FALSE,2026,0,481,481
+Cayey,2025-2026,Otros,Sin definir,FALSE,91,0,0,0
+Cayey,2025-2026,Otros,Bach,FALSE,1,0,0,0
+Ciencias_Medicas,2025-2026,Subgrado,Bach,FALSE,207,0,0,0
+Ciencias_Medicas,2025-2026,Posgrado,Doctor,FALSE,1134,20,0,0
+Ciencias_Medicas,2025-2026,Posgrado,Master,FALSE,433,4,0,0
+Ciencias_Medicas,2025-2026,Otros,Sin definir,FALSE,293,0,0,0
+Ciencias_Medicas,2025-2026,Otros,Bach,FALSE,32,0,0,0
+Ciencias_Medicas,2025-2026,Subgrado,Asoc,FALSE,27,0,0,0
+Ciencias_Medicas,2025-2026,Otros,SS,FALSE,7,0,0,0
+Humacao,2025-2026,Subgrado,Bach,FALSE,2307,0,546,546
+Humacao,2025-2026,Otros,Sin definir,FALSE,528,0,0,0
+Humacao,2025-2026,Subgrado,Asoc,FALSE,161,0,58,58
+Ponce,2025-2026,Subgrado,Bach,FALSE,2229,0,588,588
+Ponce,2025-2026,Otros,Sin definir,FALSE,404,0,0,0
+Ponce,2025-2026,Subgrado,Asoc,FALSE,162,0,66,66
+Ponce,2025-2026,Subgrado_generico,Undergraduate Semester Calendar,FALSE,8,0,0,0
+Rio_Piedras,2025-2026,Posgrado,Master,FALSE,1463,0,0,0
+Rio_Piedras,2025-2026,Subgrado,Bach,FALSE,8392,0,1703,1703
+Rio_Piedras,2025-2026,Otros,Sin definir,FALSE,1545,0,0,0
+Rio_Piedras,2025-2026,Posgrado,Doctor,FALSE,729,0,0,0
+Rio_Piedras,2025-2026,Posgrado,Juris,FALSE,451,0,0,0
+Rio_Piedras,2025-2026,Posgrado,Master Semester Calendar,FALSE,41,0,0,0
+Rio_Piedras,2025-2026,Subgrado_generico,Undergraduate Semester Calendar,FALSE,24,0,0,0
+Rio_Piedras,2025-2026,Otros,Bach,FALSE,7,0,0,0
+Utuado,2025-2026,Subgrado,Bach,FALSE,159,0,49,49
+Utuado,2025-2026,Subgrado,Asoc,FALSE,135,0,37,37
+Utuado,2025-2026,Otros,Sin definir,FALSE,13,0,0,0
+Aguadilla,2026-2027,Subgrado,Bach,TRUE,1870,0,436,436
+Aguadilla,2026-2027,Otros,Sin definir,TRUE,314,0,0,0
+Aguadilla,2026-2027,Subgrado,Asoc,TRUE,136,0,59,59
+Arecibo,2026-2027,Subgrado,Asoc,TRUE,144,0,44,44
+Arecibo,2026-2027,Subgrado,Bach,TRUE,2435,0,536,536
+Arecibo,2026-2027,Otros,Sin definir,TRUE,41,0,0,0
+Arecibo,2026-2027,Posgrado,Master,TRUE,17,0,0,0
+Arecibo,2026-2027,Otros,Bach,TRUE,1,0,0,0
+Bayamon,2026-2027,Subgrado,Bach,TRUE,2535,0,624,624
+Bayamon,2026-2027,Escolar,Bach,TRUE,256,0,0,0
+Bayamon,2026-2027,Otros,Sin definir,TRUE,95,0,0,0
+Bayamon,2026-2027,Escolar,Sin definir,TRUE,116,0,0,0
+Bayamon,2026-2027,Subgrado,Asoc,TRUE,35,0,14,14
+Carolina,2026-2027,Subgrado,Bach,TRUE,2349,0,577,577
+Carolina,2026-2027,Otros,Sin definir,TRUE,120,0,0,0
+Carolina,2026-2027,Subgrado,Asoc,TRUE,161,0,69,69
+Cayey,2026-2027,Subgrado,Bach,TRUE,1973,0,441,441
+Cayey,2026-2027,Otros,Sin definir,TRUE,31,0,0,0
+Ciencias_Medicas,2026-2027,Otros,Sin definir,TRUE,206,0,0,0
+Ciencias_Medicas,2026-2027,Posgrado,Doctor,TRUE,1172,20,0,0
+Ciencias_Medicas,2026-2027,Subgrado,Bach,TRUE,210,0,0,0
+Ciencias_Medicas,2026-2027,Posgrado,Master,TRUE,417,4,0,0
+Ciencias_Medicas,2026-2027,Otros,SS,TRUE,20,0,0,0
+Ciencias_Medicas,2026-2027,Otros,Bach,TRUE,29,0,0,0
+Ciencias_Medicas,2026-2027,Subgrado,Asoc,TRUE,29,0,0,0
+Humacao,2026-2027,Subgrado,Bach,TRUE,2266,0,559,559
+Humacao,2026-2027,Subgrado,Asoc,TRUE,160,0,53,53
+Humacao,2026-2027,Otros,Sin definir,TRUE,53,0,0,0
+Humacao,2026-2027,Otros,SS,TRUE,39,0,0,0
+Ponce,2026-2027,Subgrado,Bach,TRUE,2258,0,593,593
+Ponce,2026-2027,Subgrado,Asoc,TRUE,149,0,42,42
+Ponce,2026-2027,Otros,Sin definir,TRUE,189,0,0,0
+Rio_Piedras,2026-2027,Otros,Sin definir,TRUE,933,0,0,0
+Rio_Piedras,2026-2027,Subgrado,Bach,TRUE,8044,0,1646,1646
+Rio_Piedras,2026-2027,Posgrado,Master,TRUE,1488,0,0,0
+Rio_Piedras,2026-2027,Posgrado,Juris,TRUE,434,0,0,0
+Rio_Piedras,2026-2027,Posgrado,Doctor,TRUE,691,0,0,0
+Rio_Piedras,2026-2027,Escolar,Sin definir,TRUE,260,0,0,0
+Rio_Piedras,2026-2027,Posgrado,Master Semester Calendar,TRUE,32,0,0,0
+Rio_Piedras,2026-2027,Otros,Bach,TRUE,5,0,0,0
+Rio_Piedras,2026-2027,Subgrado_generico,Undergraduate Semester Calendar,TRUE,10,0,0,0
+Utuado,2026-2027,Subgrado,Asoc,TRUE,124,0,43,43
+Utuado,2026-2027,Subgrado,Bach,TRUE,162,0,47,47
+Utuado,2026-2027,Otros,Sin definir,TRUE,9,0,0,0
+Ciencias_Medicas,2017-2018,Posgrado,Odonto,FALSE,10,10,0,0
+Ciencias_Medicas,2017-2018,Multiples componentes,Master,FALSE,1,1,0,0
+Ciencias_Medicas,2018-2019,Posgrado,Multiples niveles,FALSE,2,2,0,0
+Ciencias_Medicas,2018-2019,Posgrado,Odonto,FALSE,9,9,0,0
+Ciencias_Medicas,2019-2020,Posgrado,Odonto,FALSE,10,10,0,0
+Ciencias_Medicas,2019-2020,Posgrado,Multiples niveles,FALSE,1,1,0,0
+Ciencias_Medicas,2020-2021,Posgrado,Odonto,FALSE,9,9,0,0
+Ciencias_Medicas,2020-2021,Multiples componentes,Master,FALSE,1,1,0,0
+Ciencias_Medicas,2020-2021,Multiples componentes,Doctor,FALSE,1,1,0,0
+Ciencias_Medicas,2021-2022,Multiples componentes,Bach,FALSE,1,1,0,0
+Ciencias_Medicas,2021-2022,Posgrado,Odonto,FALSE,8,8,0,0
+Ciencias_Medicas,2021-2022,Multiples componentes,Doctor,FALSE,1,1,0,0
+Rio_Piedras,2021-2022,Multiples componentes,Multiples niveles,FALSE,1,1,0,0
+Ciencias_Medicas,2022-2023,Multiples componentes,Doctor,FALSE,1,1,0,0
+Ciencias_Medicas,2023-2024,Posgrado,Odonto,FALSE,7,7,0,0
+Ciencias_Medicas,2023-2024,Multiples componentes,Doctor,FALSE,1,1,0,0
+Ciencias_Medicas,2024-2025,Posgrado,Odonto,FALSE,7,7,0,0
+Ciencias_Medicas,2025-2026,Posgrado,Odonto,FALSE,7,7,0,0
+Ciencias_Medicas,2025-2026,Multiples componentes,Master,FALSE,1,1,0,0
+Ciencias_Medicas,2025-2026,Posgrado,Multiples niveles,FALSE,1,1,0,0
+Ciencias_Medicas,2026-2027,Posgrado,Odonto,TRUE,6,6,0,0
+Ciencias_Medicas,2026-2027,Posgrado,Multiples niveles,TRUE,1,1,0,0

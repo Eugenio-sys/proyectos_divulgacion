@@ -1,0 +1,13 @@
+﻿parametro,valor
+base,2025
+horizonte,2050
+ventana_principal,5
+ventanas_sensibilidad,"3, 5"
+umbral_auxiliar,100
+version,2.0
+etapa2,C:/Users/eugue/Desktop/datos_matriculados/resultados/cohortes_20261015_185817_12936
+objetivo,Matricula al inicio del ano: periodos iniciales y anual por calendario
+universo,Grado identificado y Otros no homologados por separado; Escolar excluido
+G12,Matricula G12 como insumo condicionado; no graduados; futura proporcional a poblacion17 mediana
+2026,"Censo inicial no certificado como consolidado; contraste provisional, no entrenamiento"
+validacion,Cortes universitarios sin informacion posterior; condicionada a G12 y archivos actuales

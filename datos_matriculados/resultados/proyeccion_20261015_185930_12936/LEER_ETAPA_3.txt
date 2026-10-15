@@ -1,0 +1,25 @@
+PROYECCION PRELIMINAR UPR - ETAPA 3 v2.0
+
+Abrir informe_preliminar.html en el navegador. Mantener los PNG junto al HTML.
+06 contiene la proyeccion central por recinto; 07 el agregado de los recintos disponibles.
+total_grado = subgrado + posgrado. total_no_escolar suma Otros no homologados; Escolar esta excluido.
+El agregado no representa personas unicas del sistema ni incluye Mayaguez.
+El ano base es 2025-2026. 2026-2027 se conserva como contraste porque no se ha certificado la consolidacion de su censo inicial.
+La falta del segundo semestre no invalida por si sola un censo de inicio; no se afirma que todos los periodos posteriores esten ausentes.
+La historia conserva total_registrado y Escolar para conciliar el archivo original; no se proyecta Escolar.
+Las proyecciones son valores esperados sin redondear. Redondear solo al presentarlas.
+La captacion usa matricula G12, no graduados efectivos, con desfase de un curso.
+Captacion central: ultimas cinco cohortes con denominador observado (ingreso2020-2024); las transiciones centrales usan2021-2025.
+Privada2024-2025 y2025-2026 se estima como en el informe escolar, pero no se trata como denominador observado para captacion.
+El G12 futuro es un escenario proporcional a poblacion de17 anos mediana, con proporcion publica/privada fija. No es una proyeccion nueva de GPR escolares.
+Se conservan cohortes desconocidas; no se repartieron entre los anos conocidos.
+Las otras incorporaciones, y las de componentes auxiliares, permanecen constantes en el escenario.
+Los auxiliares con poca historia conservan su stock de base; ver 04b.
+La ventana principal es cinco anos; tres anos es sensibilidad, no intervalo probabilistico.
+Cada retrospectiva ajusta con datos universitarios hasta su corte; no utiliza filas posteriores.
+Es condicionada a G12 del curso previo y a las versiones actuales de los archivos; no reproduce un archivo historico congelado.
+08b compara subgrado, posgrado, Otros, grado y total sin escolares contra conservar el stock del ultimo ano.
+Los resultados de sensibilidad3/5 no son percentiles ni escenarios probabilisticos.
+No se ha propagado toda la incertidumbre escolar, demografica o universitaria.
+
+Para revision: compartir TODOS los CSV, TXT, HTML y PNG. El RDS puede permanecer local. El informe y la presentacion finales se preparan despues de validar estas salidas.

@@ -1,0 +1,21 @@
+﻿recinto,auxiliar,ventana,corte,exposicion,persistencia_empirica,incorporaciones_empiricas,persistencia_aplicada,incorporaciones_aplicadas,stock_base,regla
+Aguadilla,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Aguadilla,Otros,5,2025,244,0.0655737704918033,61,0.0655737704918033,61,116,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Arecibo,Posgrado,5,2025,25,0.96,3.8,1,0,18,Stock del ano base constante: historia escasa o sin salidas observadas
+Arecibo,Otros,5,2025,111,0.0900900900900901,39.2,0.0900900900900901,39.2,108,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Bayamon,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Bayamon,Otros,5,2025,335,0.119402985074627,58,0.119402985074627,58,45,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Carolina,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Carolina,Otros,5,2025,674,0.108308605341246,157.8,0.108308605341246,157.8,279,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Cayey,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Cayey,Otros,5,2025,192,0.151041666666667,43.6,0.151041666666667,43.6,92,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Ciencias_Medicas,Posgrado,5,2025,8350,0.666826347305389,521.6,0.666826347305389,521.6,1575,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Ciencias_Medicas,Otros,5,2025,1377,0.0493827160493827,280.2,0.0493827160493827,280.2,333,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Humacao,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Humacao,Otros,5,2025,539,0.11317254174397,190,0.11317254174397,190,528,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Ponce,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Ponce,Otros,5,2025,392,0.211734693877551,142,0.211734693877551,142,412,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Rio_Piedras,Posgrado,5,2025,13867,0.674118410615129,857,0.674118410615129,857,2684,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Rio_Piedras,Otros,5,2025,3184,0.158291457286432,779.2,0.158291457286432,779.2,1576,Persistencia dentro del grado y promedio anual de incorporaciones constantes
+Utuado,Posgrado,5,2025,0,,0,1,0,0,Stock del ano base constante: historia escasa o sin salidas observadas
+Utuado,Otros,5,2025,40,0.1,6.6,1,0,13,Stock del ano base constante: historia escasa o sin salidas observadas

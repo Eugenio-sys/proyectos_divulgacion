@@ -1,0 +1,12 @@
+﻿parametro,valor
+version,2.0
+diagnostico,C:/Users/eugue/Desktop/datos_matriculados/resultados/diagnostico_20261015_180717_12936
+objetivo,Inicio del ano: union de periodos iniciales y anual por calendario
+identificador_estable,Confirmado por el usuario: estable entre anos y recintos
+ultimo_anio_calibracion,2025
+ventana_transiciones,5
+informacion_origen,Cada censo usa solo informacion hasta su propio ano
+reutilizacion,No se reutilizan paneles ni checkpoints anteriores
+escolar,Separado por clasificacion explicita Escuela Superior/High School
+nivel_SS,Se conserva sin homologar en Otros; requiere diccionario
+G12,Matricula observada de grado12 del curso previo; no graduados efectivos

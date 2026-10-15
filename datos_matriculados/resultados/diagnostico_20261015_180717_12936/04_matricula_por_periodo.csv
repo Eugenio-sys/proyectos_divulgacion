@@ -1,0 +1,371 @@
+﻿archivo_id,archivo,anio,recinto,codigo_sesion,sesion,regimen,registros,personas,sin_id,duplicados_persona_periodo,periodo_inicio_candidato,registros_seleccionados,periodo_ambiguo,estado_calidad
+1,Aguadilla_2017-2018.csv,2017-2018,Aguadilla,B71,First Semester 2017-2018,Semestre,3219,3219,0,0,TRUE,3219,FALSE,Estructura reconstruida
+1,Aguadilla_2017-2018.csv,2017-2018,Aguadilla,B72,"Second Semester,2017-18",Semestre,2926,2926,0,0,FALSE,0,FALSE,Estructura reconstruida
+1,Aguadilla_2017-2018.csv,2017-2018,Aguadilla,B73,Summer 2018,Verano,630,630,0,0,FALSE,0,FALSE,Estructura reconstruida
+2,Arecibo_2017-2018.csv,2017-2018,Arecibo,B71,First Semester 2017-2018,Semestre,3664,3664,0,0,TRUE,3664,FALSE,Estructura reconstruida
+2,Arecibo_2017-2018.csv,2017-2018,Arecibo,B72,"Second Semester,2017-18",Semestre,3420,3420,0,0,FALSE,0,FALSE,Estructura reconstruida
+2,Arecibo_2017-2018.csv,2017-2018,Arecibo,B73,Summer 2018,Verano,965,965,0,0,FALSE,0,FALSE,Estructura reconstruida
+3,Bayamon_2017-2018.csv,2017-2018,Bayamon,B72,"Second Semester,2017-18",Semestre,3914,3914,0,0,FALSE,0,FALSE,Estructura reconstruida
+3,Bayamon_2017-2018.csv,2017-2018,Bayamon,B71,First Semester 2017-2018,Semestre,4221,4221,0,0,TRUE,4221,FALSE,Estructura reconstruida
+3,Bayamon_2017-2018.csv,2017-2018,Bayamon,B73,Summer 2018,Verano,521,521,0,0,FALSE,0,FALSE,Estructura reconstruida
+4,Carolina_2017-2018.csv,2017-2018,Carolina,B7A,"Quarter 1, 2017-2018",Quarter,3560,3560,0,0,TRUE,3560,FALSE,Estructura reconstruida
+4,Carolina_2017-2018.csv,2017-2018,Carolina,B7C,"Quarter 3, 2017-2018",Quarter,2887,2887,0,0,FALSE,0,FALSE,Estructura reconstruida
+4,Carolina_2017-2018.csv,2017-2018,Carolina,B7B,"Quarter 2, 2017-2018",Quarter,3202,3202,0,0,FALSE,0,FALSE,Estructura reconstruida
+4,Carolina_2017-2018.csv,2017-2018,Carolina,B7D,Summer Quarter 2018,Verano,414,414,0,0,FALSE,0,FALSE,Estructura reconstruida
+5,Cayey_2017-2018.csv,2017-2018,Cayey,B71,First Semester 2017-2018,Semestre,3316,3316,0,0,TRUE,3316,FALSE,Estructura reconstruida
+5,Cayey_2017-2018.csv,2017-2018,Cayey,B72,"Second Semester,2017-18",Semestre,3063,3063,0,0,FALSE,0,FALSE,Estructura reconstruida
+5,Cayey_2017-2018.csv,2017-2018,Cayey,B73,Summer 2018,Verano,501,501,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B71,First Semester 2017-2018,Semestre,1135,1135,0,0,TRUE,1135,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B72,"Second Semester,2017-18",Semestre,1009,1009,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7Y,"Trimester 3,2017-18",Trimestre,593,593,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7M,"Annual,2017-2018",Anual,693,693,0,0,TRUE,693,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7X,"Trimester 2,2017-18",Trimestre,569,569,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B73,Summer 2018,Verano,266,266,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7Z,Summer Dentistry 2018,Verano,262,262,0,0,FALSE,0,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7W,Trimester 1 Dentistry 2017-2018,Trimestre,642,642,0,0,TRUE,642,FALSE,Estructura reconstruida
+6,Ciencias_Medicas_2017-2018.csv,2017-2018,Ciencias_Medicas,B7B,"Quarter 2, 2017-2018",Quarter,1,1,0,0,FALSE,0,FALSE,Estructura reconstruida
+7,Humacao_2017-2018.csv,2017-2018,Humacao,B72,"Second Semester,2017-18",Semestre,3246,3246,0,0,FALSE,0,FALSE,Estructura reconstruida
+7,Humacao_2017-2018.csv,2017-2018,Humacao,B73,Summer 2018,Verano,900,900,0,0,FALSE,0,FALSE,Estructura reconstruida
+7,Humacao_2017-2018.csv,2017-2018,Humacao,B71,First Semester 2017-2018,Semestre,3578,3578,0,0,TRUE,3578,FALSE,Estructura reconstruida
+8,Ponce_2017-2018.csv,2017-2018,Ponce,B72,"Second Semester,2017-18",Semestre,2794,2794,0,0,FALSE,0,FALSE,Estructura reconstruida
+8,Ponce_2017-2018.csv,2017-2018,Ponce,B71,First Semester 2017-2018,Semestre,2992,2992,0,0,TRUE,2992,FALSE,Estructura reconstruida
+8,Ponce_2017-2018.csv,2017-2018,Ponce,B73,Summer 2018,Verano,553,553,0,0,FALSE,0,FALSE,Estructura reconstruida
+9,Rio_Piedras_2017-2018.csv,2017-2018,Rio_Piedras,B71,First Semester 2017-2018,Semestre,14618,14618,0,0,TRUE,14618,FALSE,Estructura reconstruida
+9,Rio_Piedras_2017-2018.csv,2017-2018,Rio_Piedras,B72,"Second Semester,2017-18",Semestre,13942,13942,0,0,FALSE,0,FALSE,Estructura reconstruida
+9,Rio_Piedras_2017-2018.csv,2017-2018,Rio_Piedras,B73,Summer 2018,Verano,2485,2485,0,0,FALSE,0,FALSE,Estructura reconstruida
+10,Utuado_2017-2018.csv,2017-2018,Utuado,B71,First Semester 2017-2018,Semestre,1035,1035,0,0,TRUE,1035,FALSE,Estructura reconstruida
+10,Utuado_2017-2018.csv,2017-2018,Utuado,B73,Summer 2018,Verano,115,115,0,0,FALSE,0,FALSE,Estructura reconstruida
+10,Utuado_2017-2018.csv,2017-2018,Utuado,B72,"Second Semester,2017-18",Semestre,837,837,0,0,FALSE,0,FALSE,Estructura reconstruida
+11,Aguadilla_2018-2019.csv,2018-2019,Aguadilla,B83,Summer 2019,Verano,627,627,0,0,FALSE,0,FALSE,Estructura reconstruida
+11,Aguadilla_2018-2019.csv,2018-2019,Aguadilla,B82,"Second Semester,2018-19",Semestre,2718,2718,0,0,FALSE,0,FALSE,Estructura reconstruida
+11,Aguadilla_2018-2019.csv,2018-2019,Aguadilla,B81,First Semester 2018-2019,Semestre,3058,3058,0,0,TRUE,3058,FALSE,Estructura reconstruida
+12,Arecibo_2018-2019.csv,2018-2019,Arecibo,B81,First Semester 2018-2019,Semestre,3588,3588,0,0,TRUE,3588,FALSE,Estructura reconstruida
+12,Arecibo_2018-2019.csv,2018-2019,Arecibo,B82,"Second Semester,2018-19",Semestre,3396,3396,0,0,FALSE,0,FALSE,Estructura reconstruida
+12,Arecibo_2018-2019.csv,2018-2019,Arecibo,B83,Summer 2019,Verano,838,838,0,0,FALSE,0,FALSE,Estructura reconstruida
+13,Bayamon_2018-2019.csv,2018-2019,Bayamon,B82,"Second Semester,2018-19",Semestre,3749,3749,0,0,FALSE,0,FALSE,Estructura reconstruida
+13,Bayamon_2018-2019.csv,2018-2019,Bayamon,B83,Summer 2019,Verano,916,916,0,0,FALSE,0,FALSE,Estructura reconstruida
+13,Bayamon_2018-2019.csv,2018-2019,Bayamon,B81,First Semester 2018-2019,Semestre,4106,4106,0,0,TRUE,4106,FALSE,Estructura reconstruida
+14,Carolina_2018-2019.csv,2018-2019,Carolina,B8C,"Quarter 3, 2018-2019",Quarter,2638,2638,0,0,FALSE,0,FALSE,Estructura reconstruida
+14,Carolina_2018-2019.csv,2018-2019,Carolina,B8B,"Quarter 2, 2018-2019",Quarter,2967,2967,0,0,FALSE,0,FALSE,Estructura reconstruida
+14,Carolina_2018-2019.csv,2018-2019,Carolina,B8A,"Quarter 1, 2018-2019",Quarter,3303,3303,0,0,TRUE,3303,FALSE,Estructura reconstruida
+14,Carolina_2018-2019.csv,2018-2019,Carolina,B8D,Summer Quarter 2019,Verano,405,405,0,0,FALSE,0,FALSE,Estructura reconstruida
+15,Cayey_2018-2019.csv,2018-2019,Cayey,B82,"Second Semester,2018-19",Semestre,2827,2827,0,0,FALSE,0,FALSE,Estructura reconstruida
+15,Cayey_2018-2019.csv,2018-2019,Cayey,B83,Summer 2019,Verano,651,651,0,0,FALSE,0,FALSE,Estructura reconstruida
+15,Cayey_2018-2019.csv,2018-2019,Cayey,B81,First Semester 2018-2019,Semestre,3030,3030,0,0,TRUE,3030,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B8W,"Trimester 1,2018-19",Trimestre,630,630,0,0,TRUE,630,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B82,"Second Semester,2018-19",Semestre,1009,1009,0,0,FALSE,0,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B8M,"Annual,2018-19",Anual,840,840,0,0,TRUE,840,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B81,First Semester 2018-2019,Semestre,1099,1099,0,0,TRUE,1099,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B8X,"Trimester 2,2018-19",Trimestre,567,567,0,0,FALSE,0,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B8Y,"Trimester 3,2018-19",Trimestre,583,583,0,0,FALSE,0,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B83,Summer 2019,Verano,264,264,0,0,FALSE,0,FALSE,Estructura reconstruida
+16,Ciencias_Medicas_2018-2019.csv,2018-2019,Ciencias_Medicas,B8Z,Summer Dentistry 2019,Verano,221,221,0,0,FALSE,0,FALSE,Estructura reconstruida
+17,Humacao_2018-2019.csv,2018-2019,Humacao,B82,"Second Semester,2018-19",Semestre,3049,3049,0,0,FALSE,0,FALSE,Estructura reconstruida
+17,Humacao_2018-2019.csv,2018-2019,Humacao,B81,First Semester 2018-2019,Semestre,3271,3271,0,0,TRUE,3271,FALSE,Estructura reconstruida
+17,Humacao_2018-2019.csv,2018-2019,Humacao,B83,Summer 2019,Verano,744,744,0,0,FALSE,0,FALSE,Estructura reconstruida
+18,Ponce_2018-2019.csv,2018-2019,Ponce,B83,Summer 2019,Verano,556,556,0,0,FALSE,0,FALSE,Estructura reconstruida
+18,Ponce_2018-2019.csv,2018-2019,Ponce,B81,First Semester 2018-2019,Semestre,2754,2754,0,0,TRUE,2754,FALSE,Estructura reconstruida
+18,Ponce_2018-2019.csv,2018-2019,Ponce,B82,"Second Semester,2018-19",Semestre,2484,2484,0,0,FALSE,0,FALSE,Estructura reconstruida
+19,Rio_Piedras_2018-2019.csv,2018-2019,Rio_Piedras,B82,"Second Semester,2018-19",Semestre,13764,13764,0,0,FALSE,0,FALSE,Estructura reconstruida
+19,Rio_Piedras_2018-2019.csv,2018-2019,Rio_Piedras,B81,First Semester 2018-2019,Semestre,14785,14785,0,0,TRUE,14785,FALSE,Estructura reconstruida
+19,Rio_Piedras_2018-2019.csv,2018-2019,Rio_Piedras,B83,Summer 2019,Verano,2719,2719,0,0,FALSE,0,FALSE,Estructura reconstruida
+20,Utuado_2018-2019.csv,2018-2019,Utuado,B81,First Semester 2018-2019,Semestre,816,816,0,0,TRUE,816,FALSE,Estructura reconstruida
+20,Utuado_2018-2019.csv,2018-2019,Utuado,B82,"Second Semester,2018-19",Semestre,705,705,0,0,FALSE,0,FALSE,Estructura reconstruida
+20,Utuado_2018-2019.csv,2018-2019,Utuado,B83,Summer 2019,Verano,69,69,0,0,FALSE,0,FALSE,Estructura reconstruida
+21,Aguadilla_2019-2020.csv,2019-2020,Aguadilla,B91,First Semester 2019-2020,Semestre,2741,2741,0,0,TRUE,2741,FALSE,Estructura reconstruida
+21,Aguadilla_2019-2020.csv,2019-2020,Aguadilla,B92,"Second Semester,2019-20",Semestre,2488,2488,0,0,FALSE,0,FALSE,Estructura reconstruida
+21,Aguadilla_2019-2020.csv,2019-2020,Aguadilla,B93,Summer 2020,Verano,632,632,0,0,FALSE,0,FALSE,Estructura reconstruida
+22,Arecibo_2019-2020.csv,2019-2020,Arecibo,B92,"Second Semester,2019-20",Semestre,3293,3293,0,0,FALSE,0,FALSE,Estructura reconstruida
+22,Arecibo_2019-2020.csv,2019-2020,Arecibo,B91,First Semester 2019-2020,Semestre,3464,3464,0,0,TRUE,3464,FALSE,Estructura reconstruida
+22,Arecibo_2019-2020.csv,2019-2020,Arecibo,B93,Summer 2020,Verano,86,86,0,0,FALSE,0,FALSE,Estructura reconstruida
+23,Bayamon_2019-2020.csv,2019-2020,Bayamon,B92,"Second Semester,2019-20",Semestre,3515,3515,0,0,FALSE,0,FALSE,Estructura reconstruida
+23,Bayamon_2019-2020.csv,2019-2020,Bayamon,B91,First Semester 2019-2020,Semestre,3858,3858,0,0,TRUE,3858,FALSE,Estructura reconstruida
+23,Bayamon_2019-2020.csv,2019-2020,Bayamon,B93,Summer 2020,Verano,768,768,0,0,FALSE,0,FALSE,Estructura reconstruida
+24,Carolina_2019-2020.csv,2019-2020,Carolina,B9C,"Quarter 3, 2019-2020",Quarter,2285,2285,0,0,FALSE,0,FALSE,Estructura reconstruida
+24,Carolina_2019-2020.csv,2019-2020,Carolina,B9A,"Quarter 1, 2019-2020",Quarter,2968,2968,0,0,TRUE,2968,FALSE,Estructura reconstruida
+24,Carolina_2019-2020.csv,2019-2020,Carolina,B9B,"Quarter 2, 2019-2020",Quarter,2713,2713,0,0,FALSE,0,FALSE,Estructura reconstruida
+24,Carolina_2019-2020.csv,2019-2020,Carolina,B9D,Summer Quarter 2020,Verano,301,301,0,0,FALSE,0,FALSE,Estructura reconstruida
+25,Cayey_2019-2020.csv,2019-2020,Cayey,B92,"Second Semester,2019-20",Semestre,2677,2677,0,0,FALSE,0,FALSE,Estructura reconstruida
+25,Cayey_2019-2020.csv,2019-2020,Cayey,B91,First Semester 2019-2020,Semestre,2841,2841,0,0,TRUE,2841,FALSE,Estructura reconstruida
+25,Cayey_2019-2020.csv,2019-2020,Cayey,B93,Summer 2020,Verano,18,18,0,0,FALSE,0,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B91,First Semester 2019-2020,Semestre,1090,1090,0,0,TRUE,1090,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B92,"Second Semester,2019-20",Semestre,997,997,0,0,FALSE,0,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B9Y,"Trimester 3,2019-20",Trimestre,548,548,0,0,FALSE,0,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B9M,"Annual,2019-20",Anual,813,813,0,0,TRUE,813,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B9W,"Trimester 1,2019-20",Trimestre,595,595,0,0,TRUE,595,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B9X,"Trimester 2,2019-20",Trimestre,557,557,0,0,FALSE,0,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B9Z,"Summer,2020",Verano,281,281,0,0,FALSE,0,FALSE,Estructura reconstruida
+26,Ciencias_Medicas_2019-2020.csv,2019-2020,Ciencias_Medicas,B93,Summer 2020,Verano,213,213,0,0,FALSE,0,FALSE,Estructura reconstruida
+27,Humacao_2019-2020.csv,2019-2020,Humacao,B92,"Second Semester,2019-20",Semestre,2962,2962,0,0,FALSE,0,FALSE,Estructura reconstruida
+27,Humacao_2019-2020.csv,2019-2020,Humacao,B91,First Semester 2019-2020,Semestre,3182,3182,0,0,TRUE,3182,FALSE,Estructura reconstruida
+27,Humacao_2019-2020.csv,2019-2020,Humacao,B93,Summer 2020,Verano,642,642,0,0,FALSE,0,FALSE,Estructura reconstruida
+28,Ponce_2019-2020.csv,2019-2020,Ponce,B93,Summer 2020,Verano,459,459,0,0,FALSE,0,FALSE,Estructura reconstruida
+28,Ponce_2019-2020.csv,2019-2020,Ponce,B91,First Semester 2019-2020,Semestre,2482,2482,0,0,TRUE,2482,FALSE,Estructura reconstruida
+28,Ponce_2019-2020.csv,2019-2020,Ponce,B92,"Second Semester,2019-20",Semestre,2251,2251,0,0,FALSE,0,FALSE,Estructura reconstruida
+29,Rio_Piedras_2019-2020.csv,2019-2020,Rio_Piedras,B91,First Semester 2019-2020,Semestre,14193,14193,0,0,TRUE,14193,FALSE,Estructura reconstruida
+29,Rio_Piedras_2019-2020.csv,2019-2020,Rio_Piedras,B92,"Second Semester,2019-20",Semestre,13148,13148,0,0,FALSE,0,FALSE,Estructura reconstruida
+29,Rio_Piedras_2019-2020.csv,2019-2020,Rio_Piedras,B93,Summer 2020,Verano,2934,2934,0,0,FALSE,0,FALSE,Estructura reconstruida
+30,Utuado_2019-2020.csv,2019-2020,Utuado,B92,"Second Semester,2019-20",Semestre,544,544,0,0,FALSE,0,FALSE,Estructura reconstruida
+30,Utuado_2019-2020.csv,2019-2020,Utuado,B91,First Semester 2019-2020,Semestre,645,645,0,0,TRUE,645,FALSE,Estructura reconstruida
+30,Utuado_2019-2020.csv,2019-2020,Utuado,B93,Summer 2020,Verano,2,2,0,0,FALSE,0,FALSE,Estructura reconstruida
+31,Aguadilla_2020-2021.csv,2020-2021,Aguadilla,C01,First Semester 2020-21,Semestre,2411,2411,0,0,TRUE,2411,FALSE,Estructura reconstruida
+31,Aguadilla_2020-2021.csv,2020-2021,Aguadilla,C02,"Second Semester,2020-21",Semestre,2122,2122,0,0,FALSE,0,FALSE,Estructura reconstruida
+31,Aguadilla_2020-2021.csv,2020-2021,Aguadilla,C03,Summer 2021,Verano,329,329,0,0,FALSE,0,FALSE,Estructura reconstruida
+32,Arecibo_2020-2021.csv,2020-2021,Arecibo,C02,"Second Semester,2020-21",Semestre,3045,3045,0,0,FALSE,0,FALSE,Estructura reconstruida
+32,Arecibo_2020-2021.csv,2020-2021,Arecibo,C01,First Semester 2020-21,Semestre,3296,3296,0,0,TRUE,3296,FALSE,Estructura reconstruida
+32,Arecibo_2020-2021.csv,2020-2021,Arecibo,C03,Summer 2021,Verano,685,685,0,0,FALSE,0,FALSE,Estructura reconstruida
+33,Bayamon_2020-2021.csv,2020-2021,Bayamon,C01,First Semester 2020-21,Semestre,3505,3505,0,0,TRUE,3505,FALSE,Estructura reconstruida
+33,Bayamon_2020-2021.csv,2020-2021,Bayamon,C02,"Second Semester,2020-21",Semestre,3166,3166,0,0,FALSE,0,FALSE,Estructura reconstruida
+33,Bayamon_2020-2021.csv,2020-2021,Bayamon,C03,Summer 2021,Verano,607,607,0,0,FALSE,0,FALSE,Estructura reconstruida
+34,Carolina_2020-2021.csv,2020-2021,Carolina,C0C,"Quarter 3, 2020-2021",Quarter,2025,2025,0,0,FALSE,0,FALSE,Estructura reconstruida
+34,Carolina_2020-2021.csv,2020-2021,Carolina,C0A,"Quarter 1, 2020-2021",Quarter,2547,2547,0,0,TRUE,2547,FALSE,Estructura reconstruida
+34,Carolina_2020-2021.csv,2020-2021,Carolina,C0B,"Quarter 2, 2020-2021",Quarter,2307,2307,0,0,FALSE,0,FALSE,Estructura reconstruida
+34,Carolina_2020-2021.csv,2020-2021,Carolina,C0D,Summer Quarter 2021,Verano,104,104,0,0,FALSE,0,FALSE,Estructura reconstruida
+35,Cayey_2020-2021.csv,2020-2021,Cayey,C01,First Semester 2020-21,Semestre,2739,2739,0,0,TRUE,2739,FALSE,Estructura reconstruida
+35,Cayey_2020-2021.csv,2020-2021,Cayey,C02,"Second Semester,2020-21",Semestre,2501,2501,0,0,FALSE,0,FALSE,Estructura reconstruida
+35,Cayey_2020-2021.csv,2020-2021,Cayey,C03,Summer 2021,Verano,609,609,0,0,FALSE,0,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C01,First Semester 2020-21,Semestre,1121,1121,0,0,TRUE,1121,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C0M,"Annual,2020-21",Anual,759,759,0,0,TRUE,759,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C02,"Second Semester,2020-21",Semestre,1104,1104,0,0,FALSE,0,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C03,Summer 2021,Verano,277,277,0,0,FALSE,0,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C0W,"Trimester 1,2020-21",Trimestre,559,559,0,0,TRUE,559,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C0Z,Summer 2020-21,Verano,220,220,0,0,FALSE,0,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C0X,"Trimester 2,2020-21",Trimestre,498,498,0,0,FALSE,0,FALSE,Estructura reconstruida
+36,Ciencias_Medicas_2020-2021.csv,2020-2021,Ciencias_Medicas,C0Y,"Trimester 3,2020-21",Trimestre,492,492,0,0,FALSE,0,FALSE,Estructura reconstruida
+37,Humacao_2020-2021.csv,2020-2021,Humacao,C02,"Second Semester,2020-21",Semestre,2748,2748,0,0,FALSE,0,FALSE,Estructura reconstruida
+37,Humacao_2020-2021.csv,2020-2021,Humacao,C01,First Semester 2020-21,Semestre,3070,3070,0,0,TRUE,3070,FALSE,Estructura reconstruida
+37,Humacao_2020-2021.csv,2020-2021,Humacao,C03,Summer 2021,Verano,782,782,0,0,FALSE,0,FALSE,Estructura reconstruida
+38,Ponce_2020-2021.csv,2020-2021,Ponce,C01,First Semester 2020-21,Semestre,2321,2321,0,0,TRUE,2321,FALSE,Estructura reconstruida
+38,Ponce_2020-2021.csv,2020-2021,Ponce,C02,"Second Semester,2020-21",Semestre,2083,2083,0,0,FALSE,0,FALSE,Estructura reconstruida
+38,Ponce_2020-2021.csv,2020-2021,Ponce,C03,Summer 2021,Verano,345,345,0,0,FALSE,0,FALSE,Estructura reconstruida
+39,Rio_Piedras_2020-2021.csv,2020-2021,Rio_Piedras,C01,First Semester 2020-21,Semestre,13798,13798,0,0,TRUE,13798,FALSE,Estructura reconstruida
+39,Rio_Piedras_2020-2021.csv,2020-2021,Rio_Piedras,C02,"Second Semester,2020-21",Semestre,12808,12808,0,0,FALSE,0,FALSE,Estructura reconstruida
+39,Rio_Piedras_2020-2021.csv,2020-2021,Rio_Piedras,C03,Summer 2021,Verano,2615,2615,0,0,FALSE,0,FALSE,Estructura reconstruida
+40,Utuado_2020-2021.csv,2020-2021,Utuado,C02,"Second Semester,2020-21",Semestre,449,449,0,0,FALSE,0,FALSE,Estructura reconstruida
+40,Utuado_2020-2021.csv,2020-2021,Utuado,C01,First Semester 2020-21,Semestre,529,529,0,0,TRUE,529,FALSE,Estructura reconstruida
+40,Utuado_2020-2021.csv,2020-2021,Utuado,C03,Summer 2021,Verano,3,3,0,0,FALSE,0,FALSE,Estructura reconstruida
+41,Aguadilla_2021-2022.csv,2021-2022,Aguadilla,C12,"Second Semester,2021-22",Semestre,1931,1931,0,0,FALSE,0,FALSE,Estructura reconstruida
+41,Aguadilla_2021-2022.csv,2021-2022,Aguadilla,C11,"First Semester,2021-22",Semestre,2172,2172,0,0,TRUE,2172,FALSE,Estructura reconstruida
+41,Aguadilla_2021-2022.csv,2021-2022,Aguadilla,C13,Summer 2021-22,Verano,305,305,0,0,FALSE,0,FALSE,Estructura reconstruida
+42,Arecibo_2021-2022.csv,2021-2022,Arecibo,C11,"First Semester,2021-22",Semestre,3036,3036,0,0,TRUE,3036,FALSE,Estructura reconstruida
+42,Arecibo_2021-2022.csv,2021-2022,Arecibo,C12,"Second Semester,2021-22",Semestre,2813,2813,0,0,FALSE,0,FALSE,Estructura reconstruida
+42,Arecibo_2021-2022.csv,2021-2022,Arecibo,C13,Summer 2021-22,Verano,537,537,0,0,FALSE,0,FALSE,Estructura reconstruida
+43,Bayamon_2021-2022.csv,2021-2022,Bayamon,C12,"Second Semester,2021-22",Semestre,2824,2824,0,0,FALSE,0,FALSE,Estructura reconstruida
+43,Bayamon_2021-2022.csv,2021-2022,Bayamon,C11,"First Semester,2021-22",Semestre,3273,3273,0,0,TRUE,3273,FALSE,Estructura reconstruida
+43,Bayamon_2021-2022.csv,2021-2022,Bayamon,C13,Summer 2021-22,Verano,494,494,0,0,FALSE,0,FALSE,Estructura reconstruida
+44,Carolina_2021-2022.csv,2021-2022,Carolina,C1C,"Quarter 3, 2021-2022",Quarter,1824,1824,0,0,FALSE,0,FALSE,Estructura reconstruida
+44,Carolina_2021-2022.csv,2021-2022,Carolina,C1B,"Quarter 2, 2021-2022",Quarter,2139,2139,0,0,FALSE,0,FALSE,Estructura reconstruida
+44,Carolina_2021-2022.csv,2021-2022,Carolina,C1A,"Quarter 1, 2021-2022",Quarter,2439,2439,0,0,TRUE,2439,FALSE,Estructura reconstruida
+44,Carolina_2021-2022.csv,2021-2022,Carolina,C1D,Summer Quarter 2022,Verano,178,178,0,0,FALSE,0,FALSE,Estructura reconstruida
+45,Cayey_2021-2022.csv,2021-2022,Cayey,C11,"First Semester,2021-22",Semestre,2503,2503,0,0,TRUE,2503,FALSE,Estructura reconstruida
+45,Cayey_2021-2022.csv,2021-2022,Cayey,C12,"Second Semester,2021-22",Semestre,2226,2226,0,0,FALSE,0,FALSE,Estructura reconstruida
+45,Cayey_2021-2022.csv,2021-2022,Cayey,C13,Summer 2021-22,Verano,511,511,0,0,FALSE,0,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C1M,"Annual,2021-22",Anual,780,780,0,0,TRUE,780,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C12,"Second Semester,2021-22",Semestre,1050,1050,0,0,FALSE,0,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C1Z,"Summer C1Z,2021-22",Verano,230,230,0,0,FALSE,0,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C1Y,"Trimester 3,2021-22",Trimestre,446,446,0,0,FALSE,0,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C11,"First Semester,2021-22",Semestre,1095,1095,0,0,TRUE,1095,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C13,Summer 2021-22,Verano,289,289,0,0,FALSE,0,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C1W,"Trimester 1, 2021-2022",Trimestre,507,507,0,0,TRUE,507,FALSE,Estructura reconstruida
+46,Ciencias_Medicas_2021-2022.csv,2021-2022,Ciencias_Medicas,C1X,"Trimester 2,2021-22",Trimestre,452,452,0,0,FALSE,0,FALSE,Estructura reconstruida
+47,Humacao_2021-2022.csv,2021-2022,Humacao,C12,"Second Semester,2021-22",Semestre,2688,2688,0,0,FALSE,0,FALSE,Estructura reconstruida
+47,Humacao_2021-2022.csv,2021-2022,Humacao,C11,"First Semester,2021-22",Semestre,2793,2793,0,0,TRUE,2793,FALSE,Estructura reconstruida
+47,Humacao_2021-2022.csv,2021-2022,Humacao,C13,Summer 2021-22,Verano,836,836,0,0,FALSE,0,FALSE,Estructura reconstruida
+48,Ponce_2021-2022.csv,2021-2022,Ponce,C12,"Second Semester,2021-22",Semestre,1981,1981,0,0,FALSE,0,FALSE,Estructura reconstruida
+48,Ponce_2021-2022.csv,2021-2022,Ponce,C11,"First Semester,2021-22",Semestre,2211,2211,0,0,TRUE,2211,FALSE,Estructura reconstruida
+48,Ponce_2021-2022.csv,2021-2022,Ponce,C13,Summer 2021-22,Verano,247,247,0,0,FALSE,0,FALSE,Estructura reconstruida
+49,Rio_Piedras_2021-2022.csv,2021-2022,Rio_Piedras,C11,"First Semester,2021-22",Semestre,13155,13155,0,0,TRUE,13155,FALSE,Estructura reconstruida
+49,Rio_Piedras_2021-2022.csv,2021-2022,Rio_Piedras,C12,"Second Semester,2021-22",Semestre,12920,12920,0,0,FALSE,0,FALSE,Estructura reconstruida
+49,Rio_Piedras_2021-2022.csv,2021-2022,Rio_Piedras,C1Y,"Trimester 3,2021-22",Trimestre,45,45,0,0,FALSE,0,FALSE,Estructura reconstruida
+49,Rio_Piedras_2021-2022.csv,2021-2022,Rio_Piedras,C1W,"Trimester 1, 2021-2022",Trimestre,24,24,0,0,TRUE,24,FALSE,Estructura reconstruida
+49,Rio_Piedras_2021-2022.csv,2021-2022,Rio_Piedras,C1X,"Trimester 2,2021-22",Trimestre,24,24,0,0,FALSE,0,FALSE,Estructura reconstruida
+50,Utuado_2021-2022.csv,2021-2022,Utuado,C11,"First Semester,2021-22",Semestre,435,435,0,0,TRUE,435,FALSE,Estructura reconstruida
+50,Utuado_2021-2022.csv,2021-2022,Utuado,C12,"Second Semester,2021-22",Semestre,357,357,0,0,FALSE,0,FALSE,Estructura reconstruida
+50,Utuado_2021-2022.csv,2021-2022,Utuado,C13,Summer 2021-22,Verano,2,2,0,0,FALSE,0,FALSE,Estructura reconstruida
+51,Aguadilla_2022-2023.csv,2022-2023,Aguadilla,C22,"2nd Semester,2022-23",Semestre,1753,1753,0,0,FALSE,0,FALSE,Estructura reconstruida
+51,Aguadilla_2022-2023.csv,2022-2023,Aguadilla,C21,"1st Semester,2022-23(COVID-19)",Semestre,1996,1996,0,0,TRUE,1996,FALSE,Estructura reconstruida
+51,Aguadilla_2022-2023.csv,2022-2023,Aguadilla,C23,Summer C23 2023,Verano,406,406,0,0,FALSE,0,FALSE,Estructura reconstruida
+52,Arecibo_2022-2023.csv,2022-2023,Arecibo,C21,"1st Semester,2022-23(COVID-19)",Semestre,2831,2831,0,0,TRUE,2831,FALSE,Estructura reconstruida
+52,Arecibo_2022-2023.csv,2022-2023,Arecibo,C23,Summer C23 2023,Verano,684,684,0,0,FALSE,0,FALSE,Estructura reconstruida
+52,Arecibo_2022-2023.csv,2022-2023,Arecibo,C22,"2nd Semester,2022-23",Semestre,2627,2627,0,0,FALSE,0,FALSE,Estructura reconstruida
+53,Bayamon_2022-2023.csv,2022-2023,Bayamon,C22,"2nd Semester,2022-23",Semestre,2680,2680,0,0,FALSE,0,FALSE,Estructura reconstruida
+53,Bayamon_2022-2023.csv,2022-2023,Bayamon,C21,"1st Semester,2022-23(COVID-19)",Semestre,2976,2976,0,0,TRUE,2976,FALSE,Estructura reconstruida
+53,Bayamon_2022-2023.csv,2022-2023,Bayamon,C23,Summer C23 2023,Verano,544,544,0,0,FALSE,0,FALSE,Estructura reconstruida
+54,Carolina_2022-2023.csv,2022-2023,Carolina,C2A,"Quarter 1, 2022-2023",Quarter,2244,2244,0,0,TRUE,2244,FALSE,Estructura reconstruida
+54,Carolina_2022-2023.csv,2022-2023,Carolina,C2C,"Quarter 3, 2022-2023",Quarter,1799,1799,0,0,FALSE,0,FALSE,Estructura reconstruida
+54,Carolina_2022-2023.csv,2022-2023,Carolina,C2B,"Quarter 2, 2022-2023",Quarter,2049,2049,0,0,FALSE,0,FALSE,Estructura reconstruida
+54,Carolina_2022-2023.csv,2022-2023,Carolina,C2D,Summer C2D 2023,Verano,351,351,0,0,FALSE,0,FALSE,Estructura reconstruida
+55,Cayey_2022-2023.csv,2022-2023,Cayey,C22,"2nd Semester,2022-23",Semestre,2017,2017,0,0,FALSE,0,FALSE,Estructura reconstruida
+55,Cayey_2022-2023.csv,2022-2023,Cayey,C21,"1st Semester,2022-23(COVID-19)",Semestre,2197,2197,0,0,TRUE,2197,FALSE,Estructura reconstruida
+55,Cayey_2022-2023.csv,2022-2023,Cayey,C23,Summer C23 2023,Verano,443,443,0,0,FALSE,0,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C22,"2nd Semester,2022-23",Semestre,983,983,0,0,FALSE,0,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C2Y,"Trimester 3,2022-23",Trimestre,425,425,0,0,FALSE,0,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C2X,"Trimester 2,2022-23",Trimestre,424,424,0,0,FALSE,0,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C2M,"Annual,2022-23",Anual,802,802,0,0,TRUE,802,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C21,"1st Semester,2022-23(COVID-19)",Semestre,1018,1018,0,0,TRUE,1018,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C2Z,"Summer C2Z,2022-23",Verano,207,207,0,0,FALSE,0,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C2W,"Trimester 1,2022-23",Trimestre,456,456,0,0,TRUE,456,FALSE,Estructura reconstruida
+56,Ciencias_Medicas_2022-2023.csv,2022-2023,Ciencias_Medicas,C23,Summer C23 2023,Verano,248,248,0,0,FALSE,0,FALSE,Estructura reconstruida
+57,Humacao_2022-2023.csv,2022-2023,Humacao,C21,"1st Semester,2022-23(COVID-19)",Semestre,2726,2726,0,0,TRUE,2726,FALSE,Estructura reconstruida
+57,Humacao_2022-2023.csv,2022-2023,Humacao,C22,"2nd Semester,2022-23",Semestre,2374,2374,0,0,FALSE,0,FALSE,Estructura reconstruida
+57,Humacao_2022-2023.csv,2022-2023,Humacao,C23,Summer C23 2023,Verano,576,576,0,0,FALSE,0,FALSE,Estructura reconstruida
+58,Ponce_2022-2023.csv,2022-2023,Ponce,C21,"1st Semester,2022-23(COVID-19)",Semestre,2192,2192,0,0,TRUE,2192,FALSE,Estructura reconstruida
+58,Ponce_2022-2023.csv,2022-2023,Ponce,C23,Summer C23 2023,Verano,364,364,0,0,FALSE,0,FALSE,Estructura reconstruida
+58,Ponce_2022-2023.csv,2022-2023,Ponce,C22,"2nd Semester,2022-23",Semestre,1978,1978,0,0,FALSE,0,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C21,"1st Semester,2022-23(COVID-19)",Semestre,12845,12845,0,0,TRUE,12845,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C22,"2nd Semester,2022-23",Semestre,11227,11227,0,0,FALSE,0,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C23,Summer C23 2023,Verano,2239,2239,0,0,FALSE,0,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C2Y,"Trimester 3,2022-23",Trimestre,83,83,0,0,FALSE,0,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C2X,"Trimester 2,2022-23",Trimestre,65,65,0,0,FALSE,0,FALSE,Estructura reconstruida
+59,Rio_Piedras_2022-2023.csv,2022-2023,Rio_Piedras,C2W,"Trimester 1,2022-23",Trimestre,68,68,0,0,TRUE,68,FALSE,Estructura reconstruida
+60,Utuado_2022-2023.csv,2022-2023,Utuado,C21,"1st Semester,2022-23(COVID-19)",Semestre,330,330,0,0,TRUE,330,FALSE,Estructura reconstruida
+60,Utuado_2022-2023.csv,2022-2023,Utuado,C22,"2nd Semester,2022-23",Semestre,276,276,0,0,FALSE,0,FALSE,Estructura reconstruida
+60,Utuado_2022-2023.csv,2022-2023,Utuado,C23,Summer C23 2023,Verano,126,126,0,0,FALSE,0,FALSE,Estructura reconstruida
+61,Aguadilla_2023-2024.csv,2023-2024,Aguadilla,C32,"2nd Semester,2023-24",Semestre,1699,1699,0,0,FALSE,0,FALSE,Estructura reconstruida
+61,Aguadilla_2023-2024.csv,2023-2024,Aguadilla,C31,"1st Semester,2023-24",Semestre,1865,1865,0,0,TRUE,1865,FALSE,Estructura reconstruida
+61,Aguadilla_2023-2024.csv,2023-2024,Aguadilla,C33,Summer C33 2024,Verano,465,465,0,0,FALSE,0,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C32,"2nd Semester,2023-24",Semestre,2596,2596,0,0,FALSE,0,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C31,"1st Semester,2023-24",Semestre,2759,2759,0,0,TRUE,2759,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C3A,"Quarter 1, 2023-2024",Quarter,12,12,0,0,TRUE,12,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C3C,"Quarter 3, 2023-2024",Quarter,5,5,0,0,FALSE,0,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C3D,Summer C3D 2024,Verano,5,5,0,0,FALSE,0,FALSE,Estructura reconstruida
+62,Arecibo_2023-2024.csv,2023-2024,Arecibo,C3B,"Quarter 2, 2023-2024",Quarter,6,6,0,0,FALSE,0,FALSE,Estructura reconstruida
+63,Bayamon_2023-2024.csv,2023-2024,Bayamon,C31,"1st Semester,2023-24",Semestre,2904,2904,0,0,TRUE,2904,FALSE,Estructura reconstruida
+63,Bayamon_2023-2024.csv,2023-2024,Bayamon,C32,"2nd Semester,2023-24",Semestre,2677,2677,0,0,FALSE,0,FALSE,Estructura reconstruida
+63,Bayamon_2023-2024.csv,2023-2024,Bayamon,C33,Summer C33 2024,Verano,536,536,0,0,FALSE,0,FALSE,Estructura reconstruida
+64,Carolina_2023-2024.csv,2023-2024,Carolina,C3B,"Quarter 2, 2023-2024",Quarter,2248,2248,0,0,FALSE,0,FALSE,Estructura reconstruida
+64,Carolina_2023-2024.csv,2023-2024,Carolina,C3A,"Quarter 1, 2023-2024",Quarter,2388,2388,0,0,TRUE,2388,FALSE,Estructura reconstruida
+64,Carolina_2023-2024.csv,2023-2024,Carolina,C3C,"Quarter 3, 2023-2024",Quarter,2084,2084,0,0,FALSE,0,FALSE,Estructura reconstruida
+64,Carolina_2023-2024.csv,2023-2024,Carolina,C3D,Summer C3D 2024,Verano,457,457,0,0,FALSE,0,FALSE,Estructura reconstruida
+65,Cayey_2023-2024.csv,2023-2024,Cayey,C31,"1st Semester,2023-24",Semestre,2179,2179,0,0,TRUE,2179,FALSE,Estructura reconstruida
+65,Cayey_2023-2024.csv,2023-2024,Cayey,C32,"2nd Semester,2023-24",Semestre,2031,2031,0,0,FALSE,0,FALSE,Estructura reconstruida
+65,Cayey_2023-2024.csv,2023-2024,Cayey,C33,Summer C33 2024,Verano,199,199,0,0,FALSE,0,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C33,Summer C33 2024,Verano,243,243,0,0,FALSE,0,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C31,"1st Semester,2023-24",Semestre,969,969,0,0,TRUE,969,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C3Y,"Trimester 3,2023-24",Trimestre,421,421,0,0,FALSE,0,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C3X,"Trimester 2,2023-24",Trimestre,421,421,0,0,FALSE,0,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C3M,"Annual,2023-24",Anual,794,794,0,0,TRUE,794,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C3W,"Trimester 1, 2023-2024",Trimestre,437,437,0,0,TRUE,437,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C3Z,"Summer C3Z,2023-24",Verano,193,193,0,0,FALSE,0,FALSE,Estructura reconstruida
+66,Ciencias_Medicas_2023-2024.csv,2023-2024,Ciencias_Medicas,C32,"2nd Semester,2023-24",Semestre,950,950,0,0,FALSE,0,FALSE,Estructura reconstruida
+67,Humacao_2023-2024.csv,2023-2024,Humacao,C31,"1st Semester,2023-24",Semestre,2577,2577,0,0,TRUE,2577,FALSE,Estructura reconstruida
+67,Humacao_2023-2024.csv,2023-2024,Humacao,C32,"2nd Semester,2023-24",Semestre,2524,2524,0,0,FALSE,0,FALSE,Estructura reconstruida
+67,Humacao_2023-2024.csv,2023-2024,Humacao,C33,Summer C33 2024,Verano,600,600,0,0,FALSE,0,FALSE,Estructura reconstruida
+68,Ponce_2023-2024.csv,2023-2024,Ponce,C32,"2nd Semester,2023-24",Semestre,2163,2163,0,0,FALSE,0,FALSE,Estructura reconstruida
+68,Ponce_2023-2024.csv,2023-2024,Ponce,C31,"1st Semester,2023-24",Semestre,2266,2266,0,0,TRUE,2266,FALSE,Estructura reconstruida
+68,Ponce_2023-2024.csv,2023-2024,Ponce,C33,Summer C33 2024,Verano,727,727,0,0,FALSE,0,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C33,Summer C33 2024,Verano,2362,2362,0,0,FALSE,0,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C31,"1st Semester,2023-24",Semestre,11555,11555,0,0,TRUE,11555,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C32,"2nd Semester,2023-24",Semestre,11100,11100,0,0,FALSE,0,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C3Y,"Trimester 3,2023-24",Trimestre,113,113,0,0,FALSE,0,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C3W,"Trimester 1, 2023-2024",Trimestre,105,105,0,0,TRUE,105,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C3X,"Trimester 2,2023-24",Trimestre,103,103,0,0,FALSE,0,FALSE,Estructura reconstruida
+69,Rio_Piedras_2023-2024.csv,2023-2024,Rio_Piedras,C3Z,"Summer C3Z,2023-24",Verano,17,17,0,0,FALSE,0,FALSE,Estructura reconstruida
+70,Utuado_2023-2024.csv,2023-2024,Utuado,C31,"1st Semester,2023-24",Semestre,304,304,0,0,TRUE,304,FALSE,Estructura reconstruida
+70,Utuado_2023-2024.csv,2023-2024,Utuado,C32,"2nd Semester,2023-24",Semestre,282,282,0,0,FALSE,0,FALSE,Estructura reconstruida
+70,Utuado_2023-2024.csv,2023-2024,Utuado,C33,Summer C33 2024,Verano,5,5,0,0,FALSE,0,FALSE,Estructura reconstruida
+71,Aguadilla_2024-2025.csv,2024-2025,Aguadilla,C41,"1st Semester,2024-25",Semestre,1934,1934,0,0,TRUE,1934,FALSE,Estructura reconstruida
+71,Aguadilla_2024-2025.csv,2024-2025,Aguadilla,C42,"2nd Semester,2024-25",Semestre,1936,1936,0,0,FALSE,0,FALSE,Estructura reconstruida
+71,Aguadilla_2024-2025.csv,2024-2025,Aguadilla,C43,Summer C43 2025 (S),Verano,509,509,0,0,FALSE,0,FALSE,Estructura reconstruida
+72,Arecibo_2024-2025.csv,2024-2025,Arecibo,C42,"2nd Semester,2024-25",Semestre,2693,2693,0,0,FALSE,0,FALSE,Estructura reconstruida
+72,Arecibo_2024-2025.csv,2024-2025,Arecibo,C41,"1st Semester,2024-25",Semestre,2766,2766,0,0,TRUE,2766,FALSE,Estructura reconstruida
+72,Arecibo_2024-2025.csv,2024-2025,Arecibo,C43,Summer C43 2025 (S),Verano,469,469,0,0,FALSE,0,FALSE,Estructura reconstruida
+73,Bayamon_2024-2025.csv,2024-2025,Bayamon,C43,Summer C43 2025 (S),Verano,810,810,0,0,FALSE,0,FALSE,Estructura reconstruida
+73,Bayamon_2024-2025.csv,2024-2025,Bayamon,C41,"1st Semester,2024-25",Semestre,2948,2948,0,0,TRUE,2948,FALSE,Estructura reconstruida
+73,Bayamon_2024-2025.csv,2024-2025,Bayamon,C42,"2nd Semester,2024-25",Semestre,2855,2855,0,0,FALSE,0,FALSE,Estructura reconstruida
+73,Bayamon_2024-2025.csv,2024-2025,Bayamon,C4Y,"Trimester 3,2024-25",Trimestre,273,273,0,0,FALSE,0,FALSE,Estructura reconstruida
+73,Bayamon_2024-2025.csv,2024-2025,Bayamon,C4X,"Trimester 2,2024-25",Trimestre,290,290,0,0,FALSE,0,FALSE,Estructura reconstruida
+74,Carolina_2024-2025.csv,2024-2025,Carolina,C4A,"Quarter 1, 2024-2025",Quarter,2550,2550,0,0,TRUE,2550,FALSE,Estructura reconstruida
+74,Carolina_2024-2025.csv,2024-2025,Carolina,C4B,"Quarter 2, 2024-2025",Quarter,2461,2461,0,0,FALSE,0,FALSE,Estructura reconstruida
+74,Carolina_2024-2025.csv,2024-2025,Carolina,C4C,"Quarter 3, 2024-2025",Quarter,2163,2163,0,0,FALSE,0,FALSE,Estructura reconstruida
+74,Carolina_2024-2025.csv,2024-2025,Carolina,C4D,Summer C4D 2025,Verano,492,492,0,0,FALSE,0,FALSE,Estructura reconstruida
+75,Cayey_2024-2025.csv,2024-2025,Cayey,C42,"2nd Semester,2024-25",Semestre,1941,1941,0,0,FALSE,0,FALSE,Estructura reconstruida
+75,Cayey_2024-2025.csv,2024-2025,Cayey,C43,Summer C43 2025 (S),Verano,234,234,0,0,FALSE,0,FALSE,Estructura reconstruida
+75,Cayey_2024-2025.csv,2024-2025,Cayey,C41,"1st Semester,2024-25",Semestre,2102,2102,0,0,TRUE,2102,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C4W,1st Trimester 2024-2025,Trimestre,402,402,0,0,TRUE,402,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C4M,"Annual,2024-25",Anual,800,800,0,0,TRUE,800,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C43,Summer C43 2025 (S),Verano,281,281,0,0,FALSE,0,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C42,"2nd Semester,2024-25",Semestre,1000,1000,0,0,FALSE,0,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C41,"1st Semester,2024-25",Semestre,995,995,0,0,TRUE,995,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C4X,"Trimester 2,2024-25",Trimestre,393,393,0,0,FALSE,0,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C4Y,"Trimester 3,2024-25",Trimestre,395,395,0,0,FALSE,0,FALSE,Estructura reconstruida
+76,Ciencias_Medicas_2024-2025.csv,2024-2025,Ciencias_Medicas,C4Z,Summer C4Z 2025 (T),Verano,180,180,0,0,FALSE,0,FALSE,Estructura reconstruida
+77,Humacao_2024-2025.csv,2024-2025,Humacao,C41,"1st Semester,2024-25",Semestre,2694,2694,0,0,TRUE,2694,FALSE,Estructura reconstruida
+77,Humacao_2024-2025.csv,2024-2025,Humacao,C4W,1st Trimester 2024-2025,Trimestre,134,134,0,0,TRUE,134,FALSE,Estructura reconstruida
+77,Humacao_2024-2025.csv,2024-2025,Humacao,C42,"2nd Semester,2024-25",Semestre,2841,2841,0,0,FALSE,0,FALSE,Estructura reconstruida
+77,Humacao_2024-2025.csv,2024-2025,Humacao,C43,Summer C43 2025 (S),Verano,590,590,0,0,FALSE,0,FALSE,Estructura reconstruida
+78,Ponce_2024-2025.csv,2024-2025,Ponce,C42,"2nd Semester,2024-25",Semestre,2392,2392,0,0,FALSE,0,FALSE,Estructura reconstruida
+78,Ponce_2024-2025.csv,2024-2025,Ponce,C43,Summer C43 2025 (S),Verano,1924,1924,0,0,FALSE,0,FALSE,Estructura reconstruida
+78,Ponce_2024-2025.csv,2024-2025,Ponce,C41,"1st Semester,2024-25",Semestre,2450,2450,0,0,TRUE,2450,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C41,"1st Semester,2024-25",Semestre,12017,12017,0,0,TRUE,12017,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C42,"2nd Semester,2024-25",Semestre,11665,11665,0,0,FALSE,0,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C43,Summer C43 2025 (S),Verano,2336,2336,0,0,FALSE,0,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C4X,"Trimester 2,2024-25",Trimestre,139,139,0,0,FALSE,0,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C4Y,"Trimester 3,2024-25",Trimestre,138,138,0,0,FALSE,0,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C4W,1st Trimester 2024-2025,Trimestre,119,119,0,0,TRUE,119,FALSE,Estructura reconstruida
+79,Rio_Piedras_2024-2025.csv,2024-2025,Rio_Piedras,C4Z,Summer C4Z 2025 (T),Verano,20,20,0,0,FALSE,0,FALSE,Estructura reconstruida
+80,Utuado_2024-2025.csv,2024-2025,Utuado,C43,Summer C43 2025 (S),Verano,31,31,0,0,FALSE,0,FALSE,Estructura reconstruida
+80,Utuado_2024-2025.csv,2024-2025,Utuado,C42,"2nd Semester,2024-25",Semestre,289,289,0,0,FALSE,0,FALSE,Estructura reconstruida
+80,Utuado_2024-2025.csv,2024-2025,Utuado,C41,"1st Semester,2024-25",Semestre,323,323,0,0,TRUE,323,FALSE,Estructura reconstruida
+81,Aguadilla_2025-2026.csv,2025-2026,Aguadilla,C51,1st Semester 2025-2026,Semestre,2076,2076,0,0,TRUE,2076,FALSE,Estructura reconstruida
+81,Aguadilla_2025-2026.csv,2025-2026,Aguadilla,C52,2nd Semester 2025-2026,Semestre,1975,1975,0,0,FALSE,0,FALSE,Estructura reconstruida
+81,Aguadilla_2025-2026.csv,2025-2026,Aguadilla,C53,Summer C53 2026 (S),Verano,399,399,0,0,FALSE,0,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C51,1st Semester 2025-2026,Semestre,2805,2805,0,0,TRUE,2805,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C52,2nd Semester 2025-2026,Semestre,2538,2538,0,0,FALSE,0,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C5A,"Quarter 1, 2025-2026",Quarter,10,10,0,0,TRUE,10,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C5D,Summer C5D 2026,Verano,8,8,0,0,FALSE,0,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C5C,"Quarter 3, 2025-2026",Quarter,9,9,0,0,FALSE,0,FALSE,Estructura reconstruida
+82,Arecibo_2025-2026.csv,2025-2026,Arecibo,C5B,"Quarter 2, 2025-2026",Quarter,9,9,0,0,FALSE,0,FALSE,Estructura reconstruida
+83,Bayamon_2025-2026.csv,2025-2026,Bayamon,C52,2nd Semester 2025-2026,Semestre,2515,2515,0,0,FALSE,0,FALSE,Estructura reconstruida
+83,Bayamon_2025-2026.csv,2025-2026,Bayamon,C51,1st Semester 2025-2026,Semestre,3030,3030,0,0,TRUE,3030,FALSE,Estructura reconstruida
+83,Bayamon_2025-2026.csv,2025-2026,Bayamon,C5W,1st Trimester 2025-2026,Trimestre,226,226,0,0,TRUE,226,FALSE,Estructura reconstruida
+83,Bayamon_2025-2026.csv,2025-2026,Bayamon,C5X,2nd Trimester 2025-2026,Trimestre,301,301,0,0,FALSE,0,FALSE,Estructura reconstruida
+84,Carolina_2025-2026.csv,2025-2026,Carolina,C5A,"Quarter 1, 2025-2026",Quarter,2768,2768,0,0,TRUE,2768,FALSE,Estructura reconstruida
+84,Carolina_2025-2026.csv,2025-2026,Carolina,C5D,Summer C5D 2026,Verano,462,462,0,0,FALSE,0,FALSE,Estructura reconstruida
+84,Carolina_2025-2026.csv,2025-2026,Carolina,C5C,"Quarter 3, 2025-2026",Quarter,2157,2157,0,0,FALSE,0,FALSE,Estructura reconstruida
+84,Carolina_2025-2026.csv,2025-2026,Carolina,C5B,"Quarter 2, 2025-2026",Quarter,2630,2630,0,0,FALSE,0,FALSE,Estructura reconstruida
+85,Cayey_2025-2026.csv,2025-2026,Cayey,C51,1st Semester 2025-2026,Semestre,2118,2118,0,0,TRUE,2118,FALSE,Estructura reconstruida
+85,Cayey_2025-2026.csv,2025-2026,Cayey,C53,Summer C53 2026 (S),Verano,239,239,0,0,FALSE,0,FALSE,Estructura reconstruida
+85,Cayey_2025-2026.csv,2025-2026,Cayey,C52,2nd Semester 2025-2026,Semestre,1964,1964,0,0,FALSE,0,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C51,1st Semester 2025-2026,Semestre,990,990,0,0,TRUE,990,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C52,2nd Semester 2025-2026,Semestre,935,935,0,0,FALSE,0,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C5X,2nd Trimester 2025-2026,Trimestre,389,389,0,0,FALSE,0,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C5Y,3rd Trimester 2025-2026,Trimestre,385,385,0,0,FALSE,0,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C5W,1st Trimester 2025-2026,Trimestre,399,399,0,0,TRUE,399,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C53,Summer C53 2026 (S),Verano,284,284,0,0,FALSE,0,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C5M,Annual MEDICINA 2025-2026,Anual,786,786,0,0,TRUE,786,FALSE,Estructura reconstruida
+86,Ciencias_Medicas_2025-2026.csv,2025-2026,Ciencias_Medicas,C5Z,Summer C5Z 2026 (T),Verano,179,179,0,0,FALSE,0,FALSE,Estructura reconstruida
+87,Humacao_2025-2026.csv,2025-2026,Humacao,C51,1st Semester 2025-2026,Semestre,2996,2996,0,0,TRUE,2996,FALSE,Estructura reconstruida
+87,Humacao_2025-2026.csv,2025-2026,Humacao,C52,2nd Semester 2025-2026,Semestre,2373,2373,0,0,FALSE,0,FALSE,Estructura reconstruida
+87,Humacao_2025-2026.csv,2025-2026,Humacao,C53,Summer C53 2026 (S),Verano,616,616,0,0,FALSE,0,FALSE,Estructura reconstruida
+88,Ponce_2025-2026.csv,2025-2026,Ponce,C52,2nd Semester 2025-2026,Semestre,2372,2372,0,0,FALSE,0,FALSE,Estructura reconstruida
+88,Ponce_2025-2026.csv,2025-2026,Ponce,C51,1st Semester 2025-2026,Semestre,2803,2803,0,0,TRUE,2803,FALSE,Estructura reconstruida
+88,Ponce_2025-2026.csv,2025-2026,Ponce,C53,Summer C53 2026 (S),Verano,990,990,0,0,FALSE,0,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C51,1st Semester 2025-2026,Semestre,12527,12527,0,0,TRUE,12527,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C52,2nd Semester 2025-2026,Semestre,11251,11251,0,0,FALSE,0,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C53,Summer C53 2026 (S),Verano,2526,2526,0,0,FALSE,0,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C5W,1st Trimester 2025-2026,Trimestre,125,125,0,0,TRUE,125,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C5Y,3rd Trimester 2025-2026,Trimestre,142,142,0,0,FALSE,0,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C5X,2nd Trimester 2025-2026,Trimestre,145,145,0,0,FALSE,0,FALSE,Estructura reconstruida
+89,Rio_Piedras_2025-2026.csv,2025-2026,Rio_Piedras,C5Z,Summer C5Z 2026 (T),Verano,22,22,0,0,FALSE,0,FALSE,Estructura reconstruida
+90,Utuado_2025-2026.csv,2025-2026,Utuado,C52,2nd Semester 2025-2026,Semestre,278,278,0,0,FALSE,0,FALSE,Estructura reconstruida
+90,Utuado_2025-2026.csv,2025-2026,Utuado,C51,1st Semester 2025-2026,Semestre,307,307,0,0,TRUE,307,FALSE,Estructura reconstruida
+90,Utuado_2025-2026.csv,2025-2026,Utuado,C53,Summer C53 2026 (S),Verano,7,7,0,0,FALSE,0,FALSE,Estructura reconstruida
+91,Aguadilla_2026-2027.csv,2026-2027,Aguadilla,C61,1st Semester 2026-2027,Semestre,2320,2320,0,0,TRUE,2320,FALSE,Estructura reconstruida
+92,Arecibo_2026-2027.csv,2026-2027,Arecibo,C61,1st Semester 2026-2027,Semestre,2638,2638,0,0,TRUE,2638,FALSE,Estructura reconstruida
+93,Bayamon_2026-2027.csv,2026-2027,Bayamon,C61,1st Semester 2026-2027,Semestre,3037,3037,0,0,TRUE,3037,FALSE,Estructura reconstruida
+94,Carolina_2026-2027.csv,2026-2027,Carolina,C6A,"Quarter 1, 2026-2027",Quarter,2630,2630,0,0,TRUE,2630,FALSE,Estructura reconstruida
+95,Cayey_2026-2027.csv,2026-2027,Cayey,C62,2nd Semester 2026-2027,Semestre,1629,1629,0,0,FALSE,0,FALSE,Estructura reconstruida
+95,Cayey_2026-2027.csv,2026-2027,Cayey,C61,1st Semester 2026-2027,Semestre,2004,2004,0,0,TRUE,2004,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C6X,2nd Trimester 2026-2027,Trimestre,222,222,0,0,FALSE,0,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C6M,Annual MEDICINA 2026-2027,Anual,715,715,0,0,TRUE,715,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C61,1st Semester 2026-2027,Semestre,1028,1028,0,0,TRUE,1028,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C6W,1st Trimester 2026-2027,Trimestre,378,378,0,0,TRUE,378,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C6Y,3rd Trimester 2026-2027,Trimestre,31,31,0,0,FALSE,0,FALSE,Estructura reconstruida
+96,Ciencias_Medicas_2026-2027.csv,2026-2027,Ciencias_Medicas,C62,2nd Semester 2026-2027,Semestre,72,72,0,0,FALSE,0,FALSE,Estructura reconstruida
+97,Humacao_2026-2027.csv,2026-2027,Humacao,C61,1st Semester 2026-2027,Semestre,2518,2518,0,0,TRUE,2518,FALSE,Estructura reconstruida
+98,Ponce_2026-2027.csv,2026-2027,Ponce,C61,1st Semester 2026-2027,Semestre,2596,2596,0,0,TRUE,2596,FALSE,Estructura reconstruida
+98,Ponce_2026-2027.csv,2026-2027,Ponce,C62,2nd Semester 2026-2027,Semestre,85,85,0,0,FALSE,0,FALSE,Estructura reconstruida
+99,Rio_Piedras_2026-2027.csv,2026-2027,Rio_Piedras,C61,1st Semester 2026-2027,Semestre,11739,11739,0,0,TRUE,11739,FALSE,Estructura reconstruida
+99,Rio_Piedras_2026-2027.csv,2026-2027,Rio_Piedras,C6W,1st Trimester 2026-2027,Trimestre,158,158,0,0,TRUE,158,FALSE,Estructura reconstruida
+100,Utuado_2026-2027.csv,2026-2027,Utuado,C61,1st Semester 2026-2027,Semestre,295,295,0,0,TRUE,295,FALSE,Estructura reconstruida

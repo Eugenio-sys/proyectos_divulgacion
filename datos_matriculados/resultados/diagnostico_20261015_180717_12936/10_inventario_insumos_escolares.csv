@@ -1,0 +1,7 @@
+﻿archivo,ruta,existe,estado_lectura,detalle
+Informe_Escolaridad.Rmd,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/Informe_Escolaridad.Rmd,TRUE,No aplica,
+Informe_Escolaridad.docx,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/Informe_Escolaridad.docx,TRUE,No aplica,
+data/Publicas_18_anios.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/Publicas_18_anios.csv,TRUE,Leido,2008-2009 a 2025-2026
+data/privadas_t.xlsx,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/privadas_t.xlsx,TRUE,Leido,2006-2007 a 2023-2024
+data/P_t.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/P_t.csv,TRUE,No aplica,
+data/poptotal_edades_sencillas.csv,C:/Users/eugue/Desktop/datos_matriculados/Informe_Escolaridad/data/poptotal_edades_sencillas.csv,TRUE,Leido,Variantes: median; anos: 2025 | 2030 | 2035 | 2040 | 2045 | 2050 | 2055 | 2060 | 2065 | 2070. Se inventario la estructura; no se calcularon graduados ni proyecciones.
