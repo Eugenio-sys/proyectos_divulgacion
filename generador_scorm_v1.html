@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generador de paquetes SCORM para GeoGebra</title>
+<style>
+  :root{
+    --tinta:#1d2430; --suave:#5b6573; --borde:#d9dee6; --panel:#f5f7fa; --fondo:#eef1f5; --acento:#2b5fb3; --acento-fondo:#e8effa;
+    --ok:#1e7f4f; --ok-fondo:#e8f6ee; --mal:#b3261e; --mal-fondo:#fbeae8; --aviso:#7a5d00; --aviso-fondo:#fff6d6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--fondo);color:var(--tinta);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .pagina{max-width:1040px;margin:0 auto;padding:20px 16px 40px}
+  header h1{font-size:1.45rem;margin:0 0 4px}
+  header p{margin:0 0 18px;color:var(--suave);max-width:70ch}
+  main{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+  @media (max-width:860px){ main{grid-template-columns:1fr} aside .bloque{position:static} }
+  section.bloque{background:#fff;border:1px solid var(--borde);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+  section.bloque h2{font-size:1rem;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+  section.bloque h2 .n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--acento);color:#fff;font-size:.85rem;font-weight:700}
+  label.campo{display:block;margin:10px 0 0}
+  label.campo span.et{display:block;font-weight:600;font-size:.9rem;margin-bottom:3px}
+  label.campo small{display:block;color:var(--suave);font-size:.8rem;margin-top:2px}
+  input[type=text],input[type=number],textarea,select{font:inherit;width:100%;padding:7px 9px;border:1px solid var(--borde);border-radius:6px;background:#fff;color:var(--tinta)}
+  input[type=text].mono,textarea.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem}
+  textarea{min-height:76px;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--acento-fondo);border-color:var(--acento)}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  @media (max-width:560px){ .fila{grid-template-columns:1fr} }
+  .nota{margin:8px 0 0;font-size:.85rem;color:var(--suave)}
+  .nota.ok{color:var(--ok)} .nota.mal{color:var(--mal)} .nota.aviso{color:var(--aviso)}
+  .o{display:flex;align-items:center;gap:10px;margin:12px 0 2px;color:var(--suave);font-size:.85rem}
+  .o::before,.o::after{content:"";flex:1;border-top:1px solid var(--borde)}
+  .archivo{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+  .archivo input[type=file]{display:none}
+  button,.boton{font:inherit;padding:8px 14px;border-radius:7px;border:1px solid var(--borde);background:#fff;color:var(--tinta);cursor:pointer}
+  button:hover,.boton:hover{border-color:var(--acento);color:var(--acento)}
+  button.primario{background:var(--acento);border-color:var(--acento);color:#fff;font-weight:600}
+  button.primario:hover{background:#244f95;color:#fff}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  button.enlace{border:0;background:none;padding:0;color:var(--acento);text-decoration:underline;cursor:pointer}
+  details{margin-top:6px}
+  details summary{cursor:pointer;font-weight:600;font-size:.92rem;color:var(--acento)}
+  details[open] summary{margin-bottom:4px}
+  .check{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-size:.92rem}
+  .check input{margin-top:4px}
+  .acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+  .acciones .sec{font-size:.85rem;color:var(--suave)}
+  #estado{margin-top:10px;font-size:.9rem;min-height:1.2em}
+  aside .bloque{position:sticky;top:12px}
+  aside h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--suave);margin:0 0 8px}
+  dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.88rem}
+  dt{color:var(--suave)} dd{margin:0;word-break:break-word}
+  dd code{font-size:.85em;background:var(--panel);padding:1px 5px;border-radius:4px}
+  aside ol{margin:8px 0 0;padding-left:18px;font-size:.86rem;color:var(--tinta)}
+  aside ol li{margin:4px 0}
+  .objetos{font-size:.82rem;color:var(--suave);margin-top:6px;word-break:break-word}
+  .objetos code{font-size:.9em}
+</style>
+</head>
+<body>
+<div class="pagina">
+  <header>
+    <h1>Generador de paquetes SCORM para applets de GeoGebra</h1>
+    <p>Produce un paquete SCORM 1.2 que incrusta un applet de GeoGebra en Moodle y registra en el libro de calificaciones la puntuación que el propio applet calcula al pulsar su botón de envío.</p>
+  </header>
+
+  <main>
+    <div>
+      <section class="bloque">
+        <h2><span class="n">1</span>Applet</h2>
+        <label class="campo"><span class="et">Código de incrustación o enlace del material</span>
+          <textarea id="codigo" class="mono" spellcheck="false" placeholder="&lt;iframe src=&quot;https://www.geogebra.org/material/iframe/id/…&quot; …&gt;&lt;/iframe&gt;   o bien   https://www.geogebra.org/m/…"></textarea>
+          <small>Se toma del material publicado en geogebra.org («Compartir» → «Incrustar»). El material debe ser público o estar compartido por enlace.</small>
+        </label>
+        <p class="nota" id="nota-codigo"></p>
+        <div class="o">o bien</div>
+        <div class="archivo">
+          <label class="boton" for="ggb">Elegir un archivo .ggb</label>
+          <input type="file" id="ggb" accept=".ggb,application/vnd.geogebra.file">
+          <span id="nota-ggb" class="nota" style="margin:0"></span>
+          <button type="button" class="enlace" id="quitar-ggb" hidden>Quitar el archivo</button>
+        </div>
+        <p class="objetos" id="objetos"></p>
+        <p class="nota">Con un archivo .ggb el paquete no depende de la publicación del material; solo se descarga de geogebra.org el programa que lo ejecuta.</p>
+      </section>
+
+      <section class="bloque">
+        <h2><span class="n">2</span>Calificación</h2>
+        <div class="fila">
+          <label class="campo"><span class="et">Objeto con la puntuación</span>
+            <input type="text" id="objetoNota" class="mono" value="score" spellcheck="false" autocomplete="off">
+            <small>Número que el applet calcula al enviar la respuesta.</small>
+          </label>
+          <label class="campo"><span class="et">Valor máximo de la puntuación</span>
+            <input type="number" id="notaMaxima" value="100" min="1" step="any">
+            <small>Valor del objeto anterior que equivale a 100 puntos en Moodle.</small>
+          </label>
+          <label class="campo"><span class="et">Objeto que cambia al enviar</span>
+            <input type="text" id="objetoEnvio" class="mono" value="contador" spellcheck="false" autocomplete="off">
+            <small>Cualquier cambio de su valor se interpreta como envío de la respuesta.</small>
+          </label>
+          <label class="campo"><span class="et">Nota de aprobación (sobre 100)</span>
+            <input type="number" id="notaAprobacion" value="60" min="0" max="100" step="any">
+            <small>Desde esta nota el intento se marca como aprobado.</small>
+          </label>
+        </div>
+        <p class="nota" id="nota-objetos"></p>
+      </section>
+
+      <section class="bloque">
+        <h2><span class="n">3</span>Actividad</h2>
+        <label class="campo"><span class="et">Título</span>
+          <input type="text" id="titulo" value="" placeholder="Ejercicio" autocomplete="off">
+        </label>
+        <label class="campo"><span class="et">Instrucciones para el estudiante</span>
+          <textarea id="instrucciones">Marque su respuesta y pulse el botón Enviar dentro de la actividad. La calificación se registra en el momento del envío.</textarea>
+        </label>
+        <details>
+          <summary>Opciones avanzadas</summary>
+          <div class="fila">
+            <label class="campo"><span class="et">Aplicación</span>
+              <select id="appName">
+                <option value="classic">Classic</option>
+                <option value="graphing">Calculadora gráfica</option>
+                <option value="geometry">Geometría</option>
+                <option value="3d">Calculadora 3D</option>
+                <option value="suite">Suite</option>
+              </select>
+            </label>
+            <label class="campo"><span class="et">Identificador en el informe de interacciones</span>
+              <input type="text" id="idInteraccion" class="mono" placeholder="(se deriva del título)" spellcheck="false" autocomplete="off">
+            </label>
+            <label class="campo"><span class="et">Ancho del applet (px)</span>
+              <input type="number" id="ancho" value="854" min="200" step="1">
+            </label>
+            <label class="campo"><span class="et">Alto del applet (px)</span>
+              <input type="number" id="alto" value="439" min="150" step="1">
+            </label>
+            <label class="campo"><span class="et">Parámetros adicionales</span>
+              <input type="text" id="parametros" class="mono" placeholder="a, b, n" spellcheck="false" autocomplete="off">
+              <small>Objetos que deben conservarse al reanudar, además de los aleatorios detectados automáticamente. Separados por comas.</small>
+            </label>
+            <label class="campo"><span class="et">Objetos que no deben guardarse</span>
+              <input type="text" id="omitir" class="mono" placeholder="texto1, auxiliar" spellcheck="false" autocomplete="off">
+              <small>Se excluyen del guardado y de la restauración. Separados por comas.</small>
+            </label>
+            <label class="campo"><span class="et">Nombre del archivo</span>
+              <input type="text" id="nombreZip" class="mono" placeholder="(se deriva del título)" spellcheck="false" autocomplete="off">
+            </label>
+          </div>
+          <label class="check"><input type="checkbox" id="bloquear" checked> Bloquear el applet después del envío (las casillas, botones y deslizadores dejan de responder).</label>
+          <label class="check"><input type="checkbox" id="guardarParametros" checked> Conservar los valores aleatorios del applet al reanudar el intento.</label>
+          <label class="check"><input type="checkbox" id="guardarProgreso" checked> Conservar el progreso del estudiante (casillas, deslizadores, puntos libres, textos) al reanudar.</label>
+        </details>
+      </section>
+
+      <section class="bloque">
+        <h2><span class="n">4</span>Paquete</h2>
+        <div class="acciones">
+          <button type="button" class="primario" id="descargar" disabled>Descargar paquete SCORM</button>
+          <button type="button" id="probar" disabled>Probar en el navegador</button>
+          <span class="sec"><button type="button" class="enlace" id="descargar-simulador" disabled>Descargar el simulador</button> para probarlo más tarde.</span>
+        </div>
+        <p id="estado" class="nota"></p>
+      </section>
+    </div>
+
+    <aside>
+      <section class="bloque">
+        <h2>Resumen</h2>
+        <dl id="resumen"></dl>
+        <h2 style="margin-top:16px">Después, en Moodle</h2>
+        <ol>
+          <li>Añadir la actividad «Paquete SCORM» y subir el archivo zip.</li>
+          <li>Calificación: método «Calificación más alta»; calificación máxima 100.</li>
+          <li>Gestión de intentos: número de intentos «Ilimitado»; calificación de intentos «Intento más alto»; forzar nuevo intento «Cuando se haya completado el intento anterior».</li>
+          <li>Apariencia: omitir la página de estructura de contenidos «Siempre».</li>
+        </ol>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<script>
+/* Fuentes del paquete (index.html, scorm.js, imsmanifest.xml y el simulador), incorporadas por construir_generador.py. */
+const FUENTES = {"index": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Plantilla 1<\/title>\n<style>\n  :root{\n    --tinta:#1d2430; --suave:#5b6573; --borde:#d9dee6; --panel:#f5f7fa; --acento:#2b5fb3;\n    --ok:#1e7f4f; --ok-fondo:#e8f6ee; --ok-borde:#bfe3cd;\n    --mal:#b3261e; --mal-fondo:#fbeae8; --mal-borde:#f1c4bf;\n    --aviso:#7a5d00; --aviso-fondo:#fff6d6; --aviso-borde:#f0dc9a;\n  }\n  *{box-sizing:border-box}\n  html,body{margin:0;background:#fff;color:var(--tinta);font:16px/1.45 system-ui,-apple-system,\"Segoe UI\",Roboto,Arial,sans-serif}\n  .pagina{max-width:900px;margin:0 auto;padding:16px}\n  header h1{font-size:1.25rem;margin:0 0 4px}\n  header p{margin:0 0 12px;color:var(--suave)}\n  .applet{position:relative;width:100%;max-width:854px;min-height:140px;border:1px solid var(--borde);border-radius:8px;overflow:hidden;background:#fff}\n  .applet .espera{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;color:var(--suave);background:#fff;z-index:1}\n  .applet .espera.oculto{display:none}\n  .tarjeta{margin-top:14px;padding:14px 16px;border-radius:8px;border:1px solid var(--borde);background:var(--panel)}\n  .tarjeta[hidden]{display:none}\n  .tarjeta.ok{border-color:var(--ok-borde);background:var(--ok-fondo)}\n  .tarjeta.ok .nota{color:var(--ok)}\n  .tarjeta.mal{border-color:var(--mal-borde);background:var(--mal-fondo)}\n  .tarjeta.mal .nota{color:var(--mal)}\n  .tarjeta.aviso{border-color:var(--aviso-borde);background:var(--aviso-fondo)}\n  .tarjeta.aviso .nota{color:var(--aviso)}\n  .tarjeta .nota{font-size:1.7rem;font-weight:700;margin:0 0 4px;line-height:1.2}\n  .tarjeta p{margin:4px 0}\n  .tarjeta button{font:inherit;margin-top:8px;padding:6px 14px;border-radius:6px;border:1px solid var(--borde);background:#fff;color:var(--tinta);cursor:pointer}\n  .tarjeta button:hover{border-color:var(--acento);color:var(--acento)}\n  .estado{margin:12px 0 0;font-size:.9rem;color:var(--suave)}\n  .estado:empty{display:none}\n  .prueba{margin-top:12px;border:1px dashed var(--borde);border-radius:8px;padding:10px 12px;font-size:.85rem;color:var(--suave)}\n  .prueba[hidden]{display:none}\n  .prueba h2{font-size:.95rem;margin:0 0 6px;color:var(--tinta)}\n  .prueba p{margin:0 0 8px}\n  .prueba dl{margin:0 0 8px;display:grid;grid-template-columns:auto 1fr;gap:2px 10px}\n  .prueba dt{color:var(--tinta)}\n  .prueba dd{margin:0;word-break:break-word}\n  .prueba pre{margin:0;max-height:240px;overflow:auto;background:#fff;border:1px solid var(--borde);border-radius:6px;padding:8px;font-size:.78rem;line-height:1.4;white-space:pre-wrap;word-break:break-word}\n<\/style>\n<\/head>\n<body>\n<div class=\"pagina\">\n  <header>\n    <h1 id=\"titulo\">Plantilla 1<\/h1>\n    <p id=\"instrucciones\"><\/p>\n  <\/header>\n\n  <div class=\"applet\" id=\"caja\">\n    <div id=\"ggb\"><\/div>\n    <div class=\"espera\" id=\"espera\">Cargando la actividad…<\/div>\n  <\/div>\n\n  <section class=\"tarjeta\" id=\"resultado\" hidden aria-live=\"polite\"><\/section>\n  <p class=\"estado\" id=\"estado\"><\/p>\n\n  <section class=\"prueba\" id=\"prueba\" hidden>\n    <h2>Modo de prueba<\/h2>\n    <p>No se detectó una plataforma SCORM. Se muestran los datos que se habrían guardado y las llamadas que se habrían hecho a la plataforma.<\/p>\n    <dl>\n      <dt>Parámetros detectados<\/dt><dd id=\"pr-parametros\">—<\/dd>\n      <dt>Avisos<\/dt><dd id=\"pr-avisos\">—<\/dd>\n      <dt>Último guardado<\/dt><dd id=\"pr-guardado\">—<\/dd>\n    <\/dl>\n    <pre id=\"registro\"><\/pre>\n  <\/section>\n<\/div>\n\n<script src=\"scorm.js\"><\/script>\n<script>\n/* ============================== CONFIGURACIÓN ==============================\n   Esta es la única parte que cambia de un ejercicio a otro.                 */\nconst CONFIG = {\n  titulo: 'Plantilla 1',\n  instrucciones: 'Marque su respuesta y pulse el botón Enviar dentro de la actividad. La calificación se registra en el momento del envío.',\n\n  // Applet de GeoGebra: id del material publicado en geogebra.org\n  // (aparece en la dirección del material y en el código de incrustación).\n  // Como alternativa, ggbBase64 admite el contenido del archivo .ggb en base64.\n  materialId: 'pfvgwccf',\n  ggbBase64: '',\n  appName: 'classic',\n  ancho: 854,\n  alto: 439,\n\n  // Objetos del applet que utiliza esta página.\n  objetoEnvio: 'contador',   // cambia de valor cuando se pulsa el botón de envío del applet\n  objetoNota: 'score',       // contiene la calificación después del envío\n  notaMaxima: 100,           // valor de objetoNota que equivale a 100 puntos\n  notaAprobacion: 60,        // calificación (sobre 100) desde la cual el intento se considera aprobado\n  bloquearTrasEnvio: true,   // después del envío, los objetos del applet dejan de responder al ratón\n  idInteraccion: 'plantilla1', // identificador de la respuesta en el informe de interacciones\n\n  // Reanudación del intento (si el estudiante sale y vuelve, o se pierde la conexión).\n  guardarParametros: true,   // guarda los valores aleatorios del applet al cargar y los restaura al reabrir el intento\n  parametros: [],            // nombres de parámetros que deban conservarse además de los detectados automáticamente\n  guardarProgreso: true,     // guarda casillas, deslizadores, puntos libres y textos mientras se responde\n  omitir: []                 // objetos que no deben guardarse ni restaurarse\n};\n/* =========================================================================== */\n\n(function () {\n  'use strict';\n  const $ = function (id) { return document.getElementById(id); };\n  const LIMITE_SUSPEND = 4096;      // SCORM 1.2\n  let api = null;                   // API del applet de GeoGebra\n  let valorInicial = null;          // valor de objetoEnvio al cargar el applet\n  let enviado = false;\n  let temporizador = null;\n  const tCarga = Date.now();\n\n  let estado = null;                // contenido de cmi.suspend_data al iniciar\n  let parametros = [];              // objetos aleatorios que definen el ejercicio\n  let candidatos = [];              // objetos del estudiante que se guardan como progreso\n  let base = {};                    // valores de los candidatos al cargar (se guardan solo los cambios)\n  let restaurando = false;\n  let ultimoGuardado = '';          // último texto guardado en suspend_data\n  let tUltimo = 0, tGuardar = null;\n  let avisos = [];\n  let notaPendiente = null;         // calificación que la plataforma aún no confirmó\n  let progresoPendiente = false;\n  let reintento = null;\n\n  /* ---------- plataforma ---------- */\n  const hayPlataforma = SCORM.conectar();\n\n  function yaEnviado(s) { return !!(s && (s.e || s.enviado)); }\n  function notaDe(s) { return Number(s.n != null ? s.n : s.nota) || 0; }\n\n  function iniciar() {\n    document.title = CONFIG.titulo;\n    $('titulo').textContent = CONFIG.titulo;\n    $('instrucciones').textContent = CONFIG.instrucciones;\n\n    if (hayPlataforma) {\n      const st = SCORM.leer('cmi.core.lesson_status');\n      if (st === 'not attempted' || st === '') {\n        // Mientras no haya envío, el intento queda abierto y se reanuda al volver.\n        SCORM.escribir('cmi.core.lesson_status', 'incomplete');\n        SCORM.escribir('cmi.core.exit', 'suspend');\n        SCORM.guardar();\n      }\n      estado = SCORM.leerEstado();\n    } else {\n      $('prueba').hidden = false;\n      $('estado').textContent = 'Sin conexión con una plataforma: la calificación se mostrará en esta página, pero no quedará registrada.';\n      SCORM.alAnotar(mostrarRegistro);\n      mostrarRegistro();\n    }\n\n    if (yaEnviado(estado)) {\n      enviado = true;\n      mostrarResultado(notaDe(estado), { previo: true });\n    }\n    window.addEventListener('online', function () { setTimeout(reintentar, 500); });\n    cargarGeoGebra();\n  }\n\n  /* ---------- carga del applet ---------- */\n  function cargarGeoGebra() {\n    const s = document.createElement('script');\n    s.src = 'https://www.geogebra.org/apps/deployggb.js';\n    s.async = true;\n    temporizador = setTimeout(function () {\n      if (!api) avisoCarga('La actividad está tardando en cargar. Compruebe la conexión a Internet.');\n    }, 25000);\n    s.onload = function () {\n      const parametrosApplet = {\n        appName: CONFIG.appName,\n        width: CONFIG.ancho,\n        height: CONFIG.alto,\n        showToolBar: false,\n        showAlgebraInput: false,\n        showMenuBar: false,\n        showResetIcon: false,\n        enableRightClick: false,\n        enableLabelDrags: false,\n        enableShiftDragZoom: false,\n        showFullscreenButton: true,\n        scaleContainerClass: 'applet',\n        allowUpscale: false,\n        preventFocus: true,\n        appletOnLoad: alCargarApplet\n      };\n      if (CONFIG.ggbBase64) parametrosApplet.ggbBase64 = CONFIG.ggbBase64;\n      else parametrosApplet.material_id = CONFIG.materialId;\n      try {\n        new GGBApplet(parametrosApplet, true).inject('ggb');\n      } catch (e) {\n        avisoCarga('No se pudo iniciar GeoGebra. ' + (e && e.message ? e.message : ''));\n      }\n    };\n    s.onerror = function () {\n      clearTimeout(temporizador);\n      avisoCarga('No se pudo cargar GeoGebra. Compruebe la conexión a Internet y vuelva a cargar la página.');\n    };\n    document.head.appendChild(s);\n  }\n\n  function avisoCarga(mensaje) {\n    const e = $('espera');\n    e.classList.remove('oculto');\n    e.textContent = mensaje;\n  }\n\n  function alCargarApplet(a) {\n    api = a || window.ggbApplet;\n    clearTimeout(temporizador);\n    if (!api) { avisoCarga('No se pudo acceder al applet de GeoGebra.'); return; }\n    $('espera').classList.add('oculto');\n\n    const faltan = [CONFIG.objetoEnvio, CONFIG.objetoNota].filter(function (n) {\n      try { return !api.exists(n); } catch (e) { return true; }\n    });\n    if (faltan.length) {\n      avisoCarga('El applet no contiene el objeto «' + faltan.join('», «') + '». Revise la configuración de la página.');\n      return;\n    }\n    valorInicial = api.getValue(CONFIG.objetoEnvio);\n\n    // Reanudación: se fijan los parámetros guardados y el progreso del estudiante.\n    // Los valores de referencia (base) se toman antes de restaurar el progreso, de modo que\n    // lo restaurado siga contando como cambio y vuelva a guardarse.\n    if (CONFIG.guardarParametros) parametros = detectarParametros();\n    if (CONFIG.guardarProgreso) candidatos = detectarCandidatos();\n    const reanudar = !!(estado && !enviado);\n    restaurando = true;\n    try {\n      if (reanudar && CONFIG.guardarParametros && estado.par) restaurar(estado.par, 'parámetro');\n      base = leerValores(candidatos);\n      if (reanudar && CONFIG.guardarProgreso && estado.prog) restaurar(estado.prog, 'objeto');\n    } finally { restaurando = false; }\n\n    // GeoGebra invoca las funciones de escucha por su nombre global.\n    window.ggbAlCambiarEnvio = alCambiarEnvio;\n    api.registerObjectUpdateListener(CONFIG.objetoEnvio, 'ggbAlCambiarEnvio');\n    if (!enviado && (CONFIG.guardarParametros || CONFIG.guardarProgreso)) {\n      window.ggbAlActualizar = alActualizar;\n      api.registerUpdateListener('ggbAlActualizar');\n      guardarAhora();   // los parámetros quedan a salvo en cuanto el applet está listo\n    }\n    if (enviado && CONFIG.bloquearTrasEnvio) bloquear();\n    actualizarPanelPrueba();\n  }\n\n  /* ---------- parámetros y progreso ---------- */\n  const ALEATORIO = /random|aleatorio|shuffle|barajar|\\bsample\\b|\\bmuestra\\b/i;\n  const TIPOS_VALOR = { numeric: 1, angle: 1, boolean: 1, point: 1, point3d: 1, text: 1, list: 1 };\n\n  function nombres() { try { return api.getAllObjectNames() || []; } catch (e) { return []; } }\n  function tipoDe(n) { try { return api.getObjectType(n); } catch (e) { return ''; } }\n  function comando(n) {\n    let c = '';\n    try { c = api.getCommandString(n, false) || ''; } catch (e) { c = ''; }\n    if (!c) { try { c = api.getCommandString(n) || ''; } catch (e) { c = ''; } }\n    return c;\n  }\n  function reservado(n) { return n === CONFIG.objetoEnvio || n === CONFIG.objetoNota || (CONFIG.omitir || []).indexOf(n) >= 0; }\n\n  // Deslizador o número libre con la propiedad «aleatorio» activada.\n  function aleatorioLibre(n) {\n    const t = tipoDe(n);\n    if (t !== 'numeric' && t !== 'angle') return false;\n    try { return api.isIndependent(n) && /random=\"true\"/.test(api.getXML(n) || ''); } catch (e) { return false; }\n  }\n  // Objetos definidos con comandos aleatorios, más los indicados en CONFIG.parametros, en orden de construcción.\n  function detectarParametros() {\n    const todos = nombres();\n    const pedidos = {};\n    (CONFIG.parametros || []).forEach(function (n) { pedidos[n] = true; });\n    return todos.filter(function (n) {\n      if (reservado(n) || !TIPOS_VALOR[tipoDe(n)]) return false;\n      return pedidos[n] || ALEATORIO.test(comando(n)) || aleatorioLibre(n);\n    });\n  }\n  // Objetos libres que el estudiante puede modificar.\n  function detectarCandidatos() {\n    const esParametro = {};\n    parametros.forEach(function (n) { esParametro[n] = true; });\n    return nombres().filter(function (n) {\n      if (reservado(n) || esParametro[n]) return false;\n      const t = tipoDe(n);\n      if (!TIPOS_VALOR[t] || t === 'list') return false;\n      try { return api.isIndependent(n) || ((t === 'point' || t === 'point3d') && api.isMoveable(n)); } catch (e) { return false; }\n    });\n  }\n\n  function redondear(x) { return Math.abs(x) < 1e-12 ? 0 : +Number(x).toPrecision(12); }\n  function num(x) { return String(redondear(x)); }\n  function leerValor(n) {\n    const t = tipoDe(n);\n    if (t === 'numeric' || t === 'angle') return redondear(api.getValue(n));\n    if (t === 'boolean') return api.getValue(n) ? 1 : 0;\n    if (t === 'point' || t === 'point3d') {\n      const v = [redondear(api.getXcoord(n)), redondear(api.getYcoord(n))];\n      if (t === 'point3d' && api.getZcoord) v.push(redondear(api.getZcoord(n)));\n      return v;\n    }\n    if (t === 'text') return String(api.getValueString(n)).slice(0, 200);\n    if (t === 'list') { const s = String(api.getValueString(n)); const i = s.indexOf('{'); return i >= 0 ? s.slice(i) : s; }\n    return null;\n  }\n  function leerValores(lista) {\n    const r = {};\n    lista.forEach(function (n) { try { const v = leerValor(n); if (v !== null) r[n] = v; } catch (e) { /* objeto no legible */ } });\n    return r;\n  }\n  function iguales(a, b) {\n    if (Array.isArray(a) && Array.isArray(b)) return a.length === b.length && a.every(function (x, i) { return iguales(x, b[i]); });\n    if (typeof a === 'number' && typeof b === 'number') return Math.abs(a - b) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(b));\n    return a === b;\n  }\n  function cambios() {\n    const ahora = leerValores(candidatos), r = {};\n    Object.keys(ahora).forEach(function (n) { if (!iguales(ahora[n], base[n])) r[n] = ahora[n]; });\n    return r;\n  }\n\n  // Fija el valor de un objeto; admite números aleatorios (SetValue los deja fijos hasta que se recalculen).\n  function fijar(n, v) {\n    const t = tipoDe(n);\n    try {\n      if (t === 'boolean') api.setValue(n, v ? 1 : 0);\n      else if (t === 'numeric' || t === 'angle') {\n        api.setValue(n, v);\n        if (!iguales(leerValor(n), v)) api.evalCommand('SetValue(' + n + ', ' + num(v) + ')');\n      } else if (t === 'point' || t === 'point3d') {\n        let libre = false;\n        try { libre = api.isIndependent(n) || api.isMoveable(n); } catch (e) { libre = false; }\n        if (libre) api.setCoords.apply(api, [n].concat(v));\n        if (!iguales(leerValor(n), v)) api.evalCommand('SetValue(' + n + ', (' + v.map(num).join(', ') + '))');\n      } else if (t === 'text') api.setTextValue(n, v);\n      else if (t === 'list') api.evalCommand('SetValue(' + n + ', ' + v + ')');\n    } catch (e) { /* se comprueba a continuación */ }\n    try { return iguales(leerValor(n), v); } catch (e) { return false; }\n  }\n  function restaurar(valores, clase) {\n    const orden = nombres();\n    Object.keys(valores)\n      .filter(function (n) { return orden.indexOf(n) >= 0 && !reservado(n); })\n      .sort(function (a, b) { return orden.indexOf(a) - orden.indexOf(b); })\n      .forEach(function (n) { if (!fijar(n, valores[n])) avisos.push('El ' + clase + ' «' + n + '» no pudo restaurarse.'); });\n  }\n\n  function alActualizar() {\n    if (enviado || restaurando || !api) return;\n    clearTimeout(tGuardar);\n    const espera = Math.max(1000, 2500 - (Date.now() - tUltimo));\n    tGuardar = setTimeout(guardarAhora, espera);\n  }\n\n  // Guarda en suspend_data los parámetros y los cambios del estudiante (solo si algo cambió).\n  function guardarAhora() {\n    clearTimeout(tGuardar); tGuardar = null;\n    if (!api || enviado) return;\n    const s = { v: 2, e: 0 };\n    if (CONFIG.guardarParametros && parametros.length) s.par = leerValores(parametros);\n    if (CONFIG.guardarProgreso) { const c = cambios(); if (Object.keys(c).length) s.prog = c; }\n    if (!s.par && !s.prog) return;\n    let texto = JSON.stringify(s);\n    if (texto.length > LIMITE_SUSPEND && s.prog) { delete s.prog; texto = JSON.stringify(s); avisos.push('El progreso no cabe en el espacio de guardado; solo se conservan los parámetros.'); }\n    if (texto.length > LIMITE_SUSPEND) { avisos.push('Los parámetros no caben en el espacio de guardado (' + texto.length + ' caracteres).'); actualizarPanelPrueba(); return; }\n    if (texto === ultimoGuardado && !progresoPendiente) return;\n    tUltimo = Date.now();\n    const ok = SCORM.escribir('cmi.suspend_data', texto) && SCORM.guardar();\n    if (ok) { ultimoGuardado = texto; progresoPendiente = false; }\n    else { progresoPendiente = hayPlataforma; programarReintento(); }\n    actualizarPanelPrueba();\n  }\n\n  /* ---------- envío ---------- */\n  function alCambiarEnvio() {\n    if (enviado || !api) return;\n    let v;\n    try { v = api.getValue(CONFIG.objetoEnvio); } catch (e) { return; }\n    if (v === valorInicial) return;   // el objeto se recalculó sin cambiar de valor\n    enviado = true;\n    clearTimeout(tGuardar);\n    // Breve espera para que el guion del botón termine de actualizar todos los objetos del applet.\n    setTimeout(registrarEnvio, 60);\n  }\n\n  let estadoFinal = null;\n  function registrarEnvio() {\n    let bruta = 0;\n    try { bruta = Number(api.getValue(CONFIG.objetoNota)) || 0; } catch (e) { bruta = 0; }\n    const nota = Math.max(0, Math.min(100, Math.round(100 * bruta / CONFIG.notaMaxima)));\n    const respuesta = resumenRespuesta();\n    const aprobado = nota >= CONFIG.notaAprobacion;\n\n    SCORM.registrarInteraccion({\n      id: CONFIG.idInteraccion,\n      tipo: 'performance',\n      respuesta: respuesta,\n      resultado: aprobado ? 'correct' : 'wrong',\n      peso: 1,\n      latenciaMs: Date.now() - tCarga\n    });\n    estadoFinal = { v: 2, e: 1, n: nota, b: bruta, r: respuesta, f: new Date().toISOString() };\n    SCORM.guardarEstado(estadoFinal);\n    const ok = SCORM.registrarNota(nota, { aprobacion: CONFIG.notaAprobacion, final: true });\n\n    if (!hayPlataforma) mostrarResultado(nota, { sinPlataforma: true });\n    else if (ok) mostrarResultado(nota, { registrado: true });\n    else { notaPendiente = { nota: nota }; mostrarResultado(nota, { pendiente: true }); programarReintento(); }\n    if (CONFIG.bloquearTrasEnvio) bloquear();\n    actualizarPanelPrueba();\n  }\n\n  // Valores de las casillas (objetos booleanos) en el momento del envío, para el informe de interacciones.\n  function resumenRespuesta() {\n    try {\n      return nombres().filter(function (n) { return tipoDe(n) === 'boolean'; })\n        .map(function (n) { return n + '=' + (api.getValue(n) ? 1 : 0); }).join(';').slice(0, 250);\n    } catch (e) { return ''; }\n  }\n\n  // Impide seguir manipulando los objetos del applet (casillas, botones, deslizadores).\n  function bloquear() {\n    if (!api) return;\n    nombres().forEach(function (n) { try { api.setFixed(n, true, false); } catch (e) { /* objeto no bloqueable */ } });\n  }\n\n  /* ---------- reintentos cuando la plataforma no confirma ---------- */\n  function programarReintento() {\n    if (reintento || !hayPlataforma) return;\n    reintento = setInterval(reintentar, 15000);\n  }\n  function reintentar() {\n    if (!hayPlataforma) return;\n    if (notaPendiente) {\n      if (estadoFinal) SCORM.guardarEstado(estadoFinal);\n      const ok = SCORM.registrarNota(notaPendiente.nota, { aprobacion: CONFIG.notaAprobacion, final: true });\n      if (ok) { const n = notaPendiente.nota; notaPendiente = null; mostrarResultado(n, { registrado: true }); }\n    } else if (progresoPendiente) {\n      guardarAhora();\n    }\n    if (!notaPendiente && !progresoPendiente && reintento) { clearInterval(reintento); reintento = null; }\n    actualizarPanelPrueba();\n  }\n\n  /* ---------- resultado ---------- */\n  function mostrarResultado(nota, o) {\n    o = o || {};\n    const t = $('resultado');\n    const aprobado = nota >= CONFIG.notaAprobacion;\n    const partes = ['<p class=\"nota\">' + nota + ' / 100<\/p>'];\n    if (o.previo) {\n      t.className = 'tarjeta aviso';\n      partes.push('<p>Este intento ya fue calificado. Si la actividad permite más intentos, inicie uno nuevo desde la página de la actividad.<\/p>');\n    } else {\n      partes.push('<p>' + (nota >= 100 ? 'Respuesta correcta.' : nota <= 0 ? 'Respuesta incorrecta.' : 'Respuesta parcialmente correcta.') + '<\/p>');\n      if (o.pendiente) {\n        t.className = 'tarjeta aviso';\n        partes.push('<p>La calificación no pudo registrarse en la plataforma. Se reintentará automáticamente al recuperar la conexión; mantenga esta pestaña abierta.<\/p>');\n        partes.push('<button type=\"button\" id=\"reintentar\">Reintentar ahora<\/button>');\n      } else {\n        t.className = 'tarjeta ' + (aprobado ? 'ok' : 'mal');\n        partes.push('<p>' + (o.registrado ? 'Calificación registrada en la plataforma.' : 'Calificación no registrada: no hay conexión con una plataforma.') + '<\/p>');\n        if (!aprobado) partes.push('<p>Si la actividad permite más intentos, puede iniciar uno nuevo desde la página de la actividad.<\/p>');\n      }\n    }\n    t.innerHTML = partes.join('');\n    t.hidden = false;\n    const b = $('reintentar');\n    if (b) b.addEventListener('click', reintentar);\n    if (!o.previo && t.scrollIntoView) t.scrollIntoView({ block: 'nearest', behavior: 'smooth' });\n  }\n\n  /* ---------- modo de prueba ---------- */\n  function mostrarRegistro() {\n    const lineas = SCORM.registro.map(function (e) {\n      if (e.tipo === 'LMSSetValue') return e.tipo + '(\"' + e.clave + '\", \"' + e.valor + '\")';\n      if (e.tipo === 'LMSGetValue') return e.tipo + '(\"' + e.clave + '\") → \"' + e.valor + '\"';\n      return e.tipo + (e.resultado ? ' → ' + e.resultado : '');\n    });\n    $('registro').textContent = lineas.join('\\n');\n  }\n  function actualizarPanelPrueba() {\n    if (avisos.length) avisos.forEach(function (m) { console.warn(m); });\n    if (hayPlataforma) return;\n    $('pr-parametros').textContent = parametros.length ? parametros.map(function (n) { try { return n + ' = ' + JSON.stringify(leerValor(n)); } catch (e) { return n; } }).join(', ') : 'ninguno';\n    $('pr-avisos').textContent = avisos.length ? avisos.join(' ') : 'ninguno';\n    $('pr-guardado').textContent = ultimoGuardado || '—';\n  }\n\n  iniciar();\n\n  // Acceso para pruebas automatizadas.\n  if (window.SCO_TEST) window.__sco = {\n    get api() { return api; }, get enviado() { return enviado; }, get valorInicial() { return valorInicial; },\n    get parametros() { return parametros; }, get candidatos() { return candidatos; }, get base() { return base; },\n    get avisos() { return avisos; }, get notaPendiente() { return notaPendiente; }, get progresoPendiente() { return progresoPendiente; },\n    get ultimoGuardado() { return ultimoGuardado; }, CONFIG: CONFIG, bloquear: bloquear, guardarAhora: guardarAhora, reintentar: reintentar, cambios: cambios\n  };\n})();\n<\/script>\n<\/body>\n<\/html>\n", "scorm": "/* ============================================================================\n   scorm.js — enlace con la plataforma (SCORM 1.2)\n\n   Este archivo no requiere cambios. Localiza la API que el reproductor SCORM\n   de Moodle expone en la ventana que contiene la actividad y ofrece funciones\n   sencillas para leer y escribir el modelo de datos (cmi.*).\n\n   Si la página se abre fuera de una plataforma (por ejemplo, directamente en\n   el navegador), trabaja en «modo de prueba»: las llamadas se anotan en\n   SCORM.registro y se guardan en un almacén local, sin producir errores.\n\n   Uso desde la página:\n     SCORM.conectar()                     → true si hay plataforma\n     SCORM.leer('cmi.core.lesson_status')\n     SCORM.escribir('cmi.core.score.raw', 85)\n     SCORM.guardar()                      → LMSCommit\n     SCORM.registrarNota(85, {aprobacion: 60, final: true})\n     SCORM.registrarInteraccion({id:'p1', respuesta:'b', resultado:'correct'})\n     SCORM.leerEstado() / SCORM.guardarEstado(objeto)   → cmi.suspend_data\n   Al cerrarse la página se envían cmi.core.session_time y LMSFinish.\n   ============================================================================ */\nwindow.SCORM = (function () {\n  'use strict';\n\n  let api = null;          // objeto API del reproductor (null en modo de prueba)\n  let activo = false;      // true entre LMSInitialize y LMSFinish\n  let terminado = false;\n  let buscado = false;\n  const inicio = Date.now();\n  const registro = [];     // anotaciones de todas las llamadas\n  const oyentes = [];      // funciones avisadas en cada anotación\n  const simulado = {       // almacén del modo de prueba\n    'cmi.core.lesson_status': 'not attempted',\n    'cmi.core.entry': 'ab-initio',\n    'cmi.suspend_data': '',\n    'cmi.interactions._count': '0'\n  };\n\n  /* ---------- anotaciones ---------- */\n  function anotar(tipo, clave, valor, resultado) {\n    const e = { t: Date.now() - inicio, tipo: tipo, clave: clave || '', valor: valor == null ? '' : String(valor), resultado: resultado == null ? '' : String(resultado) };\n    registro.push(e);\n    oyentes.forEach(function (f) { try { f(e); } catch (err) { /* sin efecto */ } });\n  }\n\n  /* ---------- localización de la API ---------- */\n  // Recorre la cadena de ventanas padre (hasta 12 niveles) buscando un objeto API.\n  function buscarEn(ventana) {\n    let w = ventana, n = 0;\n    while (w && n < 12) {\n      try { if (w.API) return w.API; } catch (e) { /* ventana de otro origen: se sigue subiendo */ }\n      let padre = null;\n      try { padre = w.parent; } catch (e) { padre = null; }\n      if (!padre || padre === w) break;\n      w = padre; n++;\n    }\n    return null;\n  }\n  function buscar() {\n    let a = null;\n    try { a = buscarEn(window); } catch (e) { a = null; }\n    if (!a && window.opener) { try { a = buscarEn(window.opener); } catch (e) { a = null; } }\n    return a;\n  }\n\n  /* ---------- llamadas básicas ---------- */\n  function conectar() {\n    if (buscado) return activo;\n    buscado = true;\n    api = buscar();\n    if (!api) { anotar('sin plataforma', '', '', 'modo de prueba'); return false; }\n    let r = 'false';\n    try { r = String(api.LMSInitialize('')); } catch (e) { r = 'false'; }\n    activo = (r === 'true');\n    anotar('LMSInitialize', '', '', r);\n    if (!activo) api = null;\n    return activo;\n  }\n  function codigoError() {\n    if (!api) return '';\n    try { return String(api.LMSGetLastError()); } catch (e) { return ''; }\n  }\n  function leer(clave) {\n    if (!activo) {\n      const v = Object.prototype.hasOwnProperty.call(simulado, clave) ? simulado[clave] : '';\n      anotar('LMSGetValue', clave, v, 'simulado');\n      return v;\n    }\n    let v = '';\n    try { v = String(api.LMSGetValue(clave)); } catch (e) { v = ''; }\n    anotar('LMSGetValue', clave, v, codigoError());\n    return v;\n  }\n  function escribir(clave, valor) {\n    const v = valor == null ? '' : String(valor);\n    if (!activo) {\n      simulado[clave] = v;\n      const m = /^cmi\\.interactions\\.(\\d+)\\./.exec(clave);\n      if (m) {\n        const n = parseInt(m[1], 10) + 1, c = parseInt(simulado['cmi.interactions._count'], 10) || 0;\n        if (n > c) simulado['cmi.interactions._count'] = String(n);\n      }\n      anotar('LMSSetValue', clave, v, 'simulado');\n      return true;\n    }\n    let r = 'false';\n    try { r = String(api.LMSSetValue(clave, v)); } catch (e) { r = 'false'; }\n    anotar('LMSSetValue', clave, v, r === 'true' ? r : r + ' (' + codigoError() + ')');\n    return r === 'true';\n  }\n  function guardar() {\n    if (!activo) { anotar('LMSCommit', '', '', 'simulado'); return true; }\n    let r = 'false';\n    try { r = String(api.LMSCommit('')); } catch (e) { r = 'false'; }\n    anotar('LMSCommit', '', '', r);\n    return r === 'true';\n  }\n  function terminar() {\n    if (terminado) return true;\n    terminado = true;\n    if (!activo) { anotar('LMSFinish', '', '', 'simulado'); return true; }\n    let r = 'false';\n    try { r = String(api.LMSFinish('')); } catch (e) { r = 'false'; }\n    activo = false;\n    anotar('LMSFinish', '', '', r);\n    return r === 'true';\n  }\n\n  /* ---------- formatos de tiempo de SCORM 1.2 ---------- */\n  function dos(n) { return (n < 10 ? '0' : '') + n; }\n  // CMITimespan: HHHH:MM:SS.SS\n  function lapso(ms) {\n    ms = Math.max(0, ms || 0);\n    const s = Math.floor(ms / 1000);\n    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), seg = s % 60, cent = Math.floor((ms % 1000) / 10);\n    return String(h).padStart(4, '0') + ':' + dos(m) + ':' + dos(seg) + '.' + dos(cent);\n  }\n  // CMITime: HH:MM:SS\n  function horaActual() {\n    const d = new Date();\n    return dos(d.getHours()) + ':' + dos(d.getMinutes()) + ':' + dos(d.getSeconds());\n  }\n\n  /* ---------- estado propio de la página (cmi.suspend_data) ---------- */\n  // SCORM 1.2 limita suspend_data a 4096 caracteres.\n  function leerEstado() {\n    const s = leer('cmi.suspend_data');\n    if (!s) return null;\n    try { return JSON.parse(s); } catch (e) { return null; }\n  }\n  function guardarEstado(objeto) {\n    const s = JSON.stringify(objeto);\n    if (s.length > 4096) { anotar('aviso', 'cmi.suspend_data', s.length + ' caracteres', 'supera el límite de 4096'); }\n    return escribir('cmi.suspend_data', s);\n  }\n\n  /* ---------- calificación ---------- */\n  // nota: valor entre 0 y max (por omisión 0–100).\n  // opciones.aprobacion: nota mínima para «passed» (por omisión 60).\n  // opciones.final: true (por omisión) cierra el intento; false lo deja en «incomplete».\n  function registrarNota(nota, opciones) {\n    opciones = opciones || {};\n    const max = opciones.max != null ? Number(opciones.max) : 100;\n    const aprobacion = opciones.aprobacion != null ? Number(opciones.aprobacion) : 60;\n    const final = opciones.final !== false;\n    const raw = Math.max(0, Math.min(max, Math.round(Number(nota) || 0)));\n    escribir('cmi.core.score.min', '0');\n    escribir('cmi.core.score.max', String(max));\n    escribir('cmi.core.score.raw', String(raw));\n    escribir('cmi.core.lesson_status', final ? (raw >= aprobacion ? 'passed' : 'failed') : 'incomplete');\n    escribir('cmi.core.exit', final ? '' : 'suspend');\n    return guardar();\n  }\n\n  /* ---------- interacciones (informe de interacciones de Moodle) ---------- */\n  // datos: {id, tipo, respuesta, correcta, resultado, peso, latenciaMs}\n  //   tipo: true-false | choice | fill-in | matching | performance | sequencing | likert | numeric\n  //   resultado: correct | wrong | unanticipated | neutral\n  // Devuelve el índice asignado a la interacción.\n  function registrarInteraccion(datos) {\n    datos = datos || {};\n    let k = parseInt(leer('cmi.interactions._count'), 10);\n    if (isNaN(k) || k < 0) k = 0;\n    const p = 'cmi.interactions.' + k + '.';\n    const id = String(datos.id || ('interaccion-' + (k + 1))).replace(/[^\\x21-\\x7E]/g, '_').slice(0, 255);\n    escribir(p + 'id', id);\n    escribir(p + 'type', datos.tipo || 'performance');\n    escribir(p + 'time', horaActual());\n    if (datos.peso != null) escribir(p + 'weighting', String(datos.peso));\n    if (datos.correcta != null) escribir(p + 'correct_responses.0.pattern', String(datos.correcta).slice(0, 255));\n    if (datos.respuesta != null) escribir(p + 'student_response', String(datos.respuesta).slice(0, 255));\n    if (datos.resultado) escribir(p + 'result', String(datos.resultado));\n    if (datos.latenciaMs != null) escribir(p + 'latency', lapso(datos.latenciaMs));\n    return k;\n  }\n\n  /* ---------- cierre ---------- */\n  function cerrar() {\n    if (terminado) return;\n    if (activo) { escribir('cmi.core.session_time', lapso(Date.now() - inicio)); guardar(); }\n    terminar();\n  }\n  window.addEventListener('pagehide', cerrar);\n  window.addEventListener('beforeunload', cerrar);\n\n  return {\n    conectar: conectar,\n    activo: function () { return activo; },\n    enPrueba: function () { return buscado && !api; },\n    leer: leer,\n    escribir: escribir,\n    guardar: guardar,\n    terminar: terminar,\n    cerrar: cerrar,\n    leerEstado: leerEstado,\n    guardarEstado: guardarEstado,\n    registrarNota: registrarNota,\n    registrarInteraccion: registrarInteraccion,\n    lapso: lapso,\n    registro: registro,\n    alAnotar: function (f) { if (typeof f === 'function') oyentes.push(f); },\n    simulado: simulado\n  };\n})();\n", "manifiesto": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<manifest identifier=\"__ID__\" version=\"1.0\"\n  xmlns=\"http://www.imsproject.org/xsd/imscp_rootv1p1p2\"\n  xmlns:adlcp=\"http://www.adlnet.org/xsd/adlcp_rootv1p2\"\n  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xsi:schemaLocation=\"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd\n                      http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd\n                      http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd\">\n  <metadata>\n    <schema>ADL SCORM<\/schema>\n    <schemaversion>1.2<\/schemaversion>\n  <\/metadata>\n  <organizations default=\"org___ID__\">\n    <organization identifier=\"org___ID__\">\n      <title>__TITULO__<\/title>\n      <item identifier=\"item___ID__\" identifierref=\"res___ID__\" isvisible=\"true\">\n        <title>__TITULO__<\/title>\n        <adlcp:masteryscore>__MASTERY__<\/adlcp:masteryscore>\n      <\/item>\n    <\/organization>\n  <\/organizations>\n  <resources>\n    <resource identifier=\"res___ID__\" type=\"webcontent\" adlcp:scormtype=\"sco\" href=\"index.html\">\n      <file href=\"index.html\"/>\n      <file href=\"scorm.js\"/>\n    <\/resource>\n  <\/resources>\n<\/manifest>\n", "simulador": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Simulador de plataforma SCORM<\/title>\n<style>\n  :root{--tinta:#1d2430;--suave:#5b6573;--borde:#d9dee6;--panel:#f5f7fa;--acento:#2b5fb3;--mal:#b3261e}\n  *{box-sizing:border-box}\n  html,body{margin:0;height:100%;background:#eef1f5;color:var(--tinta);font:14px/1.45 system-ui,-apple-system,\"Segoe UI\",Roboto,Arial,sans-serif}\n  body{display:flex;flex-direction:column;min-height:100vh}\n  header{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:10px 16px;background:#fff;border-bottom:1px solid var(--borde)}\n  header h1{font-size:1rem;margin:0}\n  header .acciones{display:flex;gap:8px 14px;flex-wrap:wrap;align-items:center}\n  header label{display:flex;gap:6px;align-items:center;cursor:pointer}\n  header label.activo{color:var(--mal);font-weight:600}\n  button{font:inherit;padding:6px 12px;border-radius:6px;border:1px solid var(--borde);background:#fff;color:var(--tinta);cursor:pointer}\n  button:hover{border-color:var(--acento);color:var(--acento)}\n  main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:12px;padding:12px 16px 16px;min-height:0}\n  .sco{background:#fff;border:1px solid var(--borde);border-radius:8px;overflow:hidden;min-height:520px}\n  .sco iframe{display:block;border:0;width:100%;height:100%;min-height:520px}\n  aside{display:flex;flex-direction:column;gap:10px;min-height:0}\n  aside section{background:#fff;border:1px solid var(--borde);border-radius:8px;padding:10px 12px}\n  aside h2{font-size:.85rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.04em;color:var(--suave)}\n  #resumen{margin:0;font-weight:600}\n  #resumen .sin{color:var(--mal)}\n  table{width:100%;border-collapse:collapse;font-size:.8rem}\n  td{padding:3px 4px;border-top:1px solid #eef1f5;vertical-align:top;word-break:break-all}\n  td:first-child{color:var(--suave);white-space:nowrap;width:46%}\n  td.cambio{background:#fff6d6}\n  dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:.82rem}\n  dt{color:var(--suave)} dd{margin:0;word-break:break-word}\n  ol{margin:0;padding:0;list-style:none;max-height:260px;overflow:auto;font:.78rem/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}\n  ol li{padding:2px 0;border-top:1px solid #f1f3f6;word-break:break-all}\n  ol li .t{color:var(--suave);margin-right:6px}\n  ol li.sep{color:var(--acento);font-weight:600}\n  ol li.fallo{color:var(--mal)}\n  @media (max-width:900px){ main{grid-template-columns:1fr} aside{order:2} }\n<\/style>\n<\/head>\n<body>\n<header>\n  <h1>Simulador de plataforma SCORM 1.2<\/h1>\n  <div class=\"acciones\">\n    <label id=\"et-sinconexion\" title=\"Mientras está marcado, el servidor no recibe los datos: LMSCommit devuelve false\"><input type=\"checkbox\" id=\"sinconexion\"> Simular pérdida de conexión<\/label>\n    <button id=\"reabrir\" title=\"Vuelve a abrir la actividad conservando los datos del intento, como al salir y entrar de nuevo\">Reabrir el intento<\/button>\n    <button id=\"nuevo\" title=\"Borra los datos y abre la actividad como un intento nuevo\">Nuevo intento<\/button>\n  <\/div>\n<\/header>\n<main>\n  <section class=\"sco\"><iframe id=\"sco\" title=\"Actividad\"><\/iframe><\/section>\n  <aside>\n    <section><h2>Resumen<\/h2><p id=\"resumen\"><\/p><\/section>\n    <section><h2>Reanudación guardada<\/h2><dl id=\"reanudacion\"><\/dl><\/section>\n    <section><h2>Datos en el servidor (cmi.*)<\/h2><table id=\"datos\"><\/table><\/section>\n    <section><h2>Registro de llamadas<\/h2><ol id=\"registro\"><\/ol><\/section>\n  <\/aside>\n<\/main>\n<script>\n(function () {\n  'use strict';\n  // Contenido de la actividad (index.html con scorm.js incorporado), generado por empaquetar.py.\n  const SCO_HTML = /*__SCO_JSON__*/\"\";\n  const MASTERY = 60;\n  const $ = function (id) { return document.getElementById(id); };\n  const t0 = Date.now();\n  let intento = 1;\n  let servidor = datosIniciales();   // lo que la plataforma tiene guardado\n  let cliente = {};                  // copia de trabajo de la sesión abierta (como el modelo en memoria del reproductor)\n  let ultimoError = '0', anteriores = {};\n\n  function datosIniciales() {\n    return {\n      'cmi.core.student_id': 'estudiante1', 'cmi.core.student_name': 'Prueba, Estudiante',\n      'cmi.core.lesson_status': 'not attempted', 'cmi.core.entry': 'ab-initio',\n      'cmi.core.lesson_mode': 'normal', 'cmi.core.credit': 'credit', 'cmi.core.lesson_location': '',\n      'cmi.suspend_data': '', 'cmi.launch_data': '',\n      'cmi.core.score.raw': '', 'cmi.core.score.min': '', 'cmi.core.score.max': '',\n      'cmi.core.exit': '', 'cmi.core.session_time': '', 'cmi.core.total_time': '0000:00:00.00',\n      'cmi.student_data.mastery_score': String(MASTERY), 'cmi.interactions._count': '0'\n    };\n  }\n  function sinConexion() { return $('sinconexion').checked; }\n  function sello() { const s = (Date.now() - t0) / 1000; return (s < 10 ? '0' : '') + s.toFixed(1) + ' s'; }\n  function anotar(texto, clase) {\n    const li = document.createElement('li');\n    if (clase) li.className = clase;\n    li.innerHTML = '<span class=\"t\">' + sello() + '<\/span>' + texto.replace(/<\/g, '&lt;');\n    const ol = $('registro'); ol.appendChild(li); ol.scrollTop = ol.scrollHeight;\n  }\n  function segundos(lapso) {\n    const m = /^(\\d+):(\\d\\d):(\\d\\d)(?:\\.(\\d+))?$/.exec(lapso || '');\n    if (!m) return 0;\n    return (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]) + (m[4] ? parseFloat('0.' + m[4]) : 0);\n  }\n  function lapso(seg) {\n    const h = Math.floor(seg / 3600), mi = Math.floor((seg % 3600) / 60), s = Math.floor(seg % 60), c = Math.round((seg % 1) * 100);\n    const d = function (n) { return (n < 10 ? '0' : '') + n; };\n    return String(h).padStart(4, '0') + ':' + d(mi) + ':' + d(s) + '.' + d(c);\n  }\n  function pintar() {\n    const claves = Object.keys(servidor).sort();\n    $('datos').innerHTML = claves.map(function (k) {\n      const v = servidor[k], cambio = anteriores[k] !== v;\n      const corto = v.length > 60 ? v.slice(0, 60) + '…' : v;\n      return '<tr><td>' + k + '<\/td><td class=\"' + (cambio ? 'cambio' : '') + '\" title=\"' + v.replace(/\"/g, '&quot;') + '\">' + corto.replace(/<\/g, '&lt;') + '<\/td><\/tr>';\n    }).join('');\n    anteriores = Object.assign({}, servidor);\n    const raw = servidor['cmi.core.score.raw'];\n    $('resumen').innerHTML = 'Intento ' + intento + ' · estado: ' + servidor['cmi.core.lesson_status'] +\n      ' · calificación: ' + (raw === '' ? 'sin registrar' : raw + ' / ' + (servidor['cmi.core.score.max'] || '100')) +\n      ' · interacciones: ' + servidor['cmi.interactions._count'] + (sinConexion() ? ' · <span class=\"sin\">sin conexión<\/span>' : '');\n    let r = null;\n    try { r = servidor['cmi.suspend_data'] ? JSON.parse(servidor['cmi.suspend_data']) : null; } catch (e) { r = null; }\n    const filas = [];\n    if (!r) filas.push(['Estado', 'nada guardado']);\n    else {\n      filas.push(['Enviado', (r.e || r.enviado) ? 'sí (nota ' + (r.n != null ? r.n : r.nota) + ')' : 'no']);\n      if (r.par) filas.push(['Parámetros', Object.keys(r.par).map(function (k) { return k + ' = ' + JSON.stringify(r.par[k]); }).join(', ') || 'ninguno']);\n      if (r.prog) filas.push(['Progreso', Object.keys(r.prog).map(function (k) { return k + ' = ' + JSON.stringify(r.prog[k]); }).join(', ')]);\n      filas.push(['Tamaño', servidor['cmi.suspend_data'].length + ' / 4096 caracteres']);\n    }\n    $('reanudacion').innerHTML = filas.map(function (f) { return '<dt>' + f[0] + '<\/dt><dd>' + String(f[1]).replace(/<\/g, '&lt;') + '<\/dd>'; }).join('');\n  }\n\n  // API tal como la expone el reproductor de Moodle en la ventana que contiene la actividad.\n  // Los valores escritos quedan en la copia de trabajo; solo LMSCommit (y LMSFinish) los envían al servidor.\n  function confirmar() {\n    if (sinConexion()) { ultimoError = '101'; return false; }\n    Object.assign(servidor, cliente); ultimoError = '0'; return true;\n  }\n  window.API = {\n    LMSInitialize: function () {\n      cliente = Object.assign({}, servidor); ultimoError = '0';\n      anotar('LMSInitialize(\"\") → true'); return 'true';\n    },\n    LMSFinish: function () {\n      const ok = confirmar();\n      if (ok) {\n        // Comportamiento de Moodle al terminar: acumula el tiempo, fija la entrada del próximo\n        // lanzamiento y, si hay calificación, recalcula el estado con la nota de dominio.\n        servidor['cmi.core.total_time'] = lapso(segundos(servidor['cmi.core.total_time']) + segundos(servidor['cmi.core.session_time']));\n        servidor['cmi.core.entry'] = servidor['cmi.core.exit'] === 'suspend' ? 'resume' : '';\n        if (servidor['cmi.core.lesson_status'] === 'not attempted') servidor['cmi.core.lesson_status'] = 'completed';\n        if (servidor['cmi.core.score.raw'] !== '') servidor['cmi.core.lesson_status'] = Number(servidor['cmi.core.score.raw']) >= MASTERY ? 'passed' : 'failed';\n      }\n      anotar('LMSFinish(\"\") → ' + ok + (ok ? '' : '  [101: sin conexión]'), ok ? '' : 'fallo'); pintar(); return String(ok);\n    },\n    LMSGetValue: function (k) {\n      const existe = Object.prototype.hasOwnProperty.call(cliente, k);\n      ultimoError = existe ? '0' : '401';\n      const v = existe ? cliente[k] : '';\n      anotar('LMSGetValue(\"' + k + '\") → \"' + v + '\"' + (existe ? '' : '  [401]'));\n      return v;\n    },\n    LMSSetValue: function (k, v) {\n      cliente[k] = String(v); ultimoError = '0';\n      const m = /^cmi\\.interactions\\.(\\d+)\\./.exec(k);\n      if (m) { const n = parseInt(m[1], 10) + 1, c = parseInt(cliente['cmi.interactions._count'], 10) || 0; if (n > c) cliente['cmi.interactions._count'] = String(n); }\n      anotar('LMSSetValue(\"' + k + '\", \"' + String(v) + '\") → true'); return 'true';\n    },\n    LMSCommit: function () {\n      const ok = confirmar();\n      anotar('LMSCommit(\"\") → ' + ok + (ok ? '' : '  [101: sin conexión]'), ok ? '' : 'fallo'); pintar(); return String(ok);\n    },\n    LMSGetLastError: function () { return ultimoError; },\n    LMSGetErrorString: function (c) { return ({ '0': 'No error', '101': 'General exception', '401': 'Not implemented error' })[String(c)] || ''; },\n    LMSGetDiagnostic: function () { return ''; }\n  };\n\n  function cargar() { $('sco').srcdoc = SCO_HTML; }\n  function descargar(despues) {\n    // Se descarga primero la actividad abierta para que registre su cierre (session_time, LMSFinish).\n    $('sco').srcdoc = '<!DOCTYPE html><title>…<\/title>';\n    setTimeout(despues, 200);\n  }\n  $('reabrir').addEventListener('click', function () {\n    descargar(function () { anotar('— Reapertura del mismo intento —', 'sep'); cargar(); });\n  });\n  $('nuevo').addEventListener('click', function () {\n    descargar(function () {\n      intento++; servidor = datosIniciales(); anteriores = {}; $('registro').innerHTML = '';\n      anotar('— Intento ' + intento + ' —', 'sep'); pintar(); cargar();\n    });\n  });\n  $('sinconexion').addEventListener('change', function () {\n    $('et-sinconexion').classList.toggle('activo', sinConexion());\n    anotar(sinConexion() ? '— Conexión con el servidor interrumpida —' : '— Conexión con el servidor restablecida —', 'sep');\n    pintar();\n  });\n\n  window.__mock = { get datos() { return servidor; }, get cliente() { return cliente; }, get intento() { return intento; }, cargar: cargar };\n  pintar();\n  cargar();\n})();\n<\/script>\n<\/body>\n<\/html>\n"};
+</script>
+<script>
+(function () {
+  'use strict';
+  const $ = function (id) { return document.getElementById(id); };
+  const estado = { material: null, ancho: null, alto: null, tituloEmbebido: '', ggb: null, objetosGgb: null, tituloEditado: false };
+
+  /* ---------- utilidades ---------- */
+  function limpiar(s) { return String(s || '').trim(); }
+  function slug(s) {
+    return limpiar(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40) || 'ejercicio';
+  }
+  function escaparXml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function lista(s) { return limpiar(s).split(/[,\s;]+/).map(limpiar).filter(Boolean); }
+  const NOMBRE_VALIDO = /^[A-Za-zÀ-ɏͰ-Ͽ][A-Za-z0-9_À-ɏͰ-Ͽ{}']*$/;
+
+  /* ---------- lectura del código de incrustación ---------- */
+  function analizarCodigo(texto) {
+    const t = limpiar(texto);
+    if (!t) return null;
+    const r = { id: null, ancho: null, alto: null, titulo: '' };
+    let m = /\/id\/([A-Za-z0-9]{5,16})(?:[\/"'?#\s]|$)/.exec(t) ||
+      /geogebra\.org\/(?:m|classic|calculator|graphing|geometry|3d|cas|probability|scientific|suite)\/([A-Za-z0-9]{5,16})(?:[\/"'?#\s]|$)/.exec(t) ||
+      /material\/(?:show|edit)\/id\/([A-Za-z0-9]{5,16})/.exec(t);
+    if (m) r.id = m[1];
+    else if (/^[A-Za-z0-9]{5,16}$/.test(t)) r.id = t;
+    if (!r.id) return null;
+    m = /\/width\/(\d{2,5})\/height\/(\d{2,5})/.exec(t);
+    if (m) { r.ancho = +m[1]; r.alto = +m[2]; }
+    m = /title\s*=\s*"([^"]*)"/.exec(t) || /title\s*=\s*'([^']*)'/.exec(t);
+    if (m) r.titulo = m[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+    return r;
+  }
+
+  function alCambiarCodigo() {
+    const r = analizarCodigo($('codigo').value);
+    const nota = $('nota-codigo');
+    if (!limpiar($('codigo').value)) { estado.material = null; nota.textContent = ''; nota.className = 'nota'; }
+    else if (!r) { estado.material = null; nota.textContent = 'No se reconoce un identificador de material en el texto. Pegue el código de incrustación completo o el enlace del material.'; nota.className = 'nota mal'; }
+    else {
+      estado.material = r.id;
+      if (r.ancho && r.alto) { $('ancho').value = r.ancho; $('alto').value = r.alto; }
+      if (r.titulo && !estado.tituloEditado) { $('titulo').value = r.titulo; }
+      nota.textContent = 'Material ' + r.id + (r.ancho ? ' · ' + r.ancho + ' × ' + r.alto + ' px' : '') + (r.titulo ? ' · «' + r.titulo + '»' : '') + '.';
+      nota.className = 'nota ok';
+    }
+    actualizar();
+  }
+
+  /* ---------- archivo .ggb ---------- */
+  function aBase64(buffer) {
+    const bytes = new Uint8Array(buffer); let s = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(s);
+  }
+  // Extrae geogebra.xml del .ggb (un zip) para listar los objetos; si el navegador no puede, se omite.
+  async function objetosDeGgb(buffer) {
+    const dv = new DataView(buffer), u8 = new Uint8Array(buffer);
+    let fin = -1;
+    for (let i = u8.length - 22; i >= Math.max(0, u8.length - 70000); i--) { if (dv.getUint32(i, true) === 0x06054b50) { fin = i; break; } }
+    if (fin < 0) return null;
+    const n = dv.getUint16(fin + 10, true), inicioCentral = dv.getUint32(fin + 16, true);
+    const dec = new TextDecoder();
+    let p = inicioCentral;
+    for (let k = 0; k < n; k++) {
+      if (dv.getUint32(p, true) !== 0x02014b50) return null;
+      const metodo = dv.getUint16(p + 10, true), tamC = dv.getUint32(p + 20, true), tamN = dv.getUint16(p + 28, true), tamX = dv.getUint16(p + 30, true), tamCom = dv.getUint16(p + 32, true), offLocal = dv.getUint32(p + 42, true);
+      const nombre = dec.decode(u8.subarray(p + 46, p + 46 + tamN));
+      if (nombre === 'geogebra.xml') {
+        const tamNL = dv.getUint16(offLocal + 26, true), tamXL = dv.getUint16(offLocal + 28, true);
+        const datos = u8.subarray(offLocal + 30 + tamNL + tamXL, offLocal + 30 + tamNL + tamXL + tamC);
+        let xml;
+        if (metodo === 0) xml = dec.decode(datos);
+        else if (metodo === 8 && typeof DecompressionStream === 'function') {
+          const ds = new DecompressionStream('deflate-raw');
+          const w = ds.writable.getWriter(); w.write(datos); w.close();
+          xml = await new Response(ds.readable).text();
+        } else return null;
+        const doc = new DOMParser().parseFromString(xml, 'application/xml');
+        const objetos = [];
+        doc.querySelectorAll('element').forEach(function (e) {
+          const label = e.getAttribute('label'), tipo = e.getAttribute('type');
+          if (label && objetos.every(function (o) { return o.label !== label; })) objetos.push({ label: label, tipo: tipo });
+        });
+        return objetos;
+      }
+      p += 46 + tamN + tamX + tamCom;
+    }
+    return null;
+  }
+  async function alElegirGgb(ev) {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    const nota = $('nota-ggb');
+    if (f.size > 15 * 1024 * 1024) { nota.textContent = 'El archivo supera 15 MB.'; nota.className = 'nota mal'; return; }
+    const buffer = await f.arrayBuffer();
+    const u8 = new Uint8Array(buffer);
+    if (u8.length < 4 || u8[0] !== 0x50 || u8[1] !== 0x4b) { nota.textContent = 'El archivo no parece un .ggb válido.'; nota.className = 'nota mal'; return; }
+    estado.ggb = { nombre: f.name, base64: aBase64(buffer) };
+    estado.objetosGgb = null;
+    try { estado.objetosGgb = await objetosDeGgb(buffer); } catch (e) { estado.objetosGgb = null; }
+    nota.textContent = f.name + ' · ' + Math.round(f.size / 1024) + ' KB';
+    nota.className = 'nota ok';
+    $('quitar-ggb').hidden = false;
+    if (!estado.tituloEditado && !limpiar($('titulo').value)) $('titulo').value = f.name.replace(/\.ggb$/i, '');
+    actualizar();
+  }
+  function quitarGgb() {
+    estado.ggb = null; estado.objetosGgb = null;
+    $('ggb').value = ''; $('nota-ggb').textContent = ''; $('quitar-ggb').hidden = true;
+    actualizar();
+  }
+
+  /* ---------- configuración ---------- */
+  function leerFormulario() {
+    const titulo = limpiar($('titulo').value) || 'Ejercicio';
+    const c = {
+      titulo: titulo,
+      instrucciones: limpiar($('instrucciones').value),
+      materialId: estado.ggb ? '' : (estado.material || ''),
+      ggbBase64: estado.ggb ? estado.ggb.base64 : '',
+      appName: $('appName').value,
+      ancho: Math.max(200, parseInt($('ancho').value, 10) || 854),
+      alto: Math.max(150, parseInt($('alto').value, 10) || 439),
+      objetoEnvio: limpiar($('objetoEnvio').value),
+      objetoNota: limpiar($('objetoNota').value),
+      notaMaxima: parseFloat($('notaMaxima').value) || 100,
+      notaAprobacion: Math.max(0, Math.min(100, parseFloat($('notaAprobacion').value))) || 0,
+      bloquearTrasEnvio: $('bloquear').checked,
+      idInteraccion: limpiar($('idInteraccion').value) || slug(titulo),
+      guardarParametros: $('guardarParametros').checked,
+      parametros: lista($('parametros').value),
+      guardarProgreso: $('guardarProgreso').checked,
+      omitir: lista($('omitir').value)
+    };
+    if (isNaN(parseFloat($('notaAprobacion').value))) c.notaAprobacion = 60;
+    c.nombreZip = (limpiar($('nombreZip').value) || 'scorm_' + slug(titulo)).replace(/\.zip$/i, '').replace(/[\\\/:*?"<>|]+/g, '_') + '.zip';
+    c.idManifiesto = 'geogebra_' + slug(titulo);
+    return c;
+  }
+  function problemas(c) {
+    const p = [];
+    if (!c.materialId && !c.ggbBase64) p.push('Indique el código de incrustación, el enlace del material o un archivo .ggb.');
+    if (!NOMBRE_VALIDO.test(c.objetoNota)) p.push('El nombre del objeto con la puntuación no es válido.');
+    if (!NOMBRE_VALIDO.test(c.objetoEnvio)) p.push('El nombre del objeto que cambia al enviar no es válido.');
+    if (c.objetoNota && c.objetoNota === c.objetoEnvio) p.push('Los dos objetos deben ser distintos.');
+    if (!(c.notaMaxima > 0)) p.push('El valor máximo de la puntuación debe ser positivo.');
+    return p;
+  }
+  function avisosGgb(c) {
+    if (!estado.objetosGgb) return [];
+    const etiquetas = estado.objetosGgb.map(function (o) { return o.label; });
+    const a = [];
+    [c.objetoNota, c.objetoEnvio].forEach(function (n) { if (n && etiquetas.indexOf(n) < 0) a.push('El archivo no contiene un objeto llamado «' + n + '».'); });
+    return a;
+  }
+
+  // Sustituye el bloque CONFIG de index.html por el generado a partir del formulario.
+  function bloqueConfig(c) {
+    const j = function (v) { return JSON.stringify(v); };
+    return [
+      'const CONFIG = {',
+      '  titulo: ' + j(c.titulo) + ',',
+      '  instrucciones: ' + j(c.instrucciones) + ',',
+      '',
+      '  // Applet de GeoGebra: id del material publicado en geogebra.org o, en su lugar, el archivo .ggb en base64.',
+      '  materialId: ' + j(c.materialId) + ',',
+      '  ggbBase64: ' + j(c.ggbBase64) + ',',
+      '  appName: ' + j(c.appName) + ',',
+      '  ancho: ' + c.ancho + ',',
+      '  alto: ' + c.alto + ',',
+      '',
+      '  // Objetos del applet que utiliza esta página.',
+      '  objetoEnvio: ' + j(c.objetoEnvio) + ',   // cambia de valor cuando se pulsa el botón de envío del applet',
+      '  objetoNota: ' + j(c.objetoNota) + ',     // contiene la calificación después del envío',
+      '  notaMaxima: ' + c.notaMaxima + ',        // valor de objetoNota que equivale a 100 puntos',
+      '  notaAprobacion: ' + c.notaAprobacion + ', // calificación (sobre 100) desde la cual el intento se considera aprobado',
+      '  bloquearTrasEnvio: ' + c.bloquearTrasEnvio + ', // después del envío, los objetos del applet dejan de responder al ratón',
+      '  idInteraccion: ' + j(c.idInteraccion) + ', // identificador de la respuesta en el informe de interacciones',
+      '',
+      '  // Reanudación del intento (si el estudiante sale y vuelve, o se pierde la conexión).',
+      '  guardarParametros: ' + c.guardarParametros + ', // guarda los valores aleatorios del applet al cargar y los restaura al reabrir el intento',
+      '  parametros: ' + j(c.parametros) + ',   // parámetros que deben conservarse además de los detectados automáticamente',
+      '  guardarProgreso: ' + c.guardarProgreso + ',   // guarda casillas, deslizadores, puntos libres y textos mientras se responde',
+      '  omitir: ' + j(c.omitir) + '            // objetos que no deben guardarse ni restaurarse',
+      '};'
+    ].join('\n');
+  }
+  function construirIndex(c) {
+    const re = /const CONFIG = \{[\s\S]*?\n\};/;
+    if (!re.test(FUENTES.index)) throw new Error('La plantilla no contiene el bloque CONFIG.');
+    return FUENTES.index.replace(re, function () { return bloqueConfig(c); })
+      .replace(/<title>[^<]*<\/title>/, '<title>' + escaparXml(c.titulo) + '</title>');
+  }
+  function construirManifiesto(c) {
+    return FUENTES.manifiesto.split('__ID__').join(c.idManifiesto).split('__TITULO__').join(escaparXml(c.titulo)).split('__MASTERY__').join(String(Math.round(c.notaAprobacion)));
+  }
+  function construirSimulador(c) {
+    const sco = construirIndex(c).replace('<script src="scorm.js"><\/script>', '<script>\n' + FUENTES.scorm + '\n<\/script>');
+    const marca = '/*__SCO_JSON__*/""';
+    if (FUENTES.simulador.indexOf(marca) < 0) throw new Error('La plantilla del simulador no contiene la marca de sustitución.');
+    return FUENTES.simulador.replace(marca, function () { return JSON.stringify(sco).replace(/<\//g, '<\\/'); });
+  }
+
+  /* ---------- zip (sin compresión) ---------- */
+  const TABLA_CRC = (function () {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[n] = c >>> 0; }
+    return t;
+  })();
+  function crc32(bytes) {
+    let c = 0xFFFFFFFF;
+    for (let i = 0; i < bytes.length; i++) c = TABLA_CRC[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipear(archivos) {
+    const enc = new TextEncoder(), d = new Date();
+    const hora = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+    const fecha = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+    const partes = [], central = []; let desplazamiento = 0;
+    archivos.forEach(function (a) {
+      const nombre = enc.encode(a.nombre), datos = a.datos, crc = crc32(datos);
+      const local = new DataView(new ArrayBuffer(30));
+      local.setUint32(0, 0x04034b50, true); local.setUint16(4, 20, true); local.setUint16(6, 0x0800, true); local.setUint16(8, 0, true);
+      local.setUint16(10, hora, true); local.setUint16(12, fecha, true); local.setUint32(14, crc, true);
+      local.setUint32(18, datos.length, true); local.setUint32(22, datos.length, true); local.setUint16(26, nombre.length, true); local.setUint16(28, 0, true);
+      partes.push(new Uint8Array(local.buffer), nombre, datos);
+      const cen = new DataView(new ArrayBuffer(46));
+      cen.setUint32(0, 0x02014b50, true); cen.setUint16(4, 20, true); cen.setUint16(6, 20, true); cen.setUint16(8, 0x0800, true); cen.setUint16(10, 0, true);
+      cen.setUint16(12, hora, true); cen.setUint16(14, fecha, true); cen.setUint32(16, crc, true); cen.setUint32(20, datos.length, true); cen.setUint32(24, datos.length, true);
+      cen.setUint16(28, nombre.length, true); cen.setUint16(30, 0, true); cen.setUint16(32, 0, true); cen.setUint16(34, 0, true); cen.setUint16(36, 0, true); cen.setUint32(38, 0, true); cen.setUint32(42, desplazamiento, true);
+      central.push(new Uint8Array(cen.buffer), nombre);
+      desplazamiento += 30 + nombre.length + datos.length;
+    });
+    const tamCentral = central.reduce(function (s, p) { return s + p.length; }, 0);
+    const fin = new DataView(new ArrayBuffer(22));
+    fin.setUint32(0, 0x06054b50, true); fin.setUint16(4, 0, true); fin.setUint16(6, 0, true); fin.setUint16(8, archivos.length, true); fin.setUint16(10, archivos.length, true);
+    fin.setUint32(12, tamCentral, true); fin.setUint32(16, desplazamiento, true); fin.setUint16(20, 0, true);
+    return new Blob(partes.concat(central, [new Uint8Array(fin.buffer)]), { type: 'application/zip' });
+  }
+  function construirZip(c) {
+    const enc = new TextEncoder();
+    return zipear([
+      { nombre: 'imsmanifest.xml', datos: enc.encode(construirManifiesto(c)) },
+      { nombre: 'index.html', datos: enc.encode(construirIndex(c)) },
+      { nombre: 'scorm.js', datos: enc.encode(FUENTES.scorm) }
+    ]);
+  }
+  function descargarBlob(blob, nombre) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = nombre;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+  }
+
+  /* ---------- acciones ---------- */
+  function descargar() {
+    const c = leerFormulario(), p = problemas(c);
+    if (p.length) { mensaje(p[0], 'mal'); return; }
+    try {
+      descargarBlob(construirZip(c), c.nombreZip);
+      mensaje('Paquete ' + c.nombreZip + ' generado. Súbalo a Moodle como actividad «Paquete SCORM».', 'ok');
+    } catch (e) { mensaje('No se pudo generar el paquete: ' + e.message, 'mal'); }
+  }
+  function probar() {
+    const c = leerFormulario(), p = problemas(c);
+    if (p.length) { mensaje(p[0], 'mal'); return; }
+    try {
+      const blob = new Blob([construirSimulador(c)], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const v = window.open(url, '_blank');
+      if (!v) { mensaje('El navegador bloqueó la ventana emergente. Descargue el simulador y ábralo con doble clic.', 'aviso'); return; }
+      mensaje('El simulador se abrió en una pestaña nueva. Requiere conexión a Internet para cargar GeoGebra.', 'ok');
+    } catch (e) { mensaje('No se pudo abrir el simulador: ' + e.message, 'mal'); }
+  }
+  function descargarSimulador() {
+    const c = leerFormulario(), p = problemas(c);
+    if (p.length) { mensaje(p[0], 'mal'); return; }
+    try {
+      descargarBlob(new Blob([construirSimulador(c)], { type: 'text/html' }), c.nombreZip.replace(/\.zip$/, '') + '_simulador.html');
+      mensaje('Simulador descargado. Ábralo con doble clic; requiere conexión a Internet para cargar GeoGebra.', 'ok');
+    } catch (e) { mensaje('No se pudo generar el simulador: ' + e.message, 'mal'); }
+  }
+  function mensaje(texto, clase) { const e = $('estado'); e.textContent = texto; e.className = 'nota ' + (clase || ''); }
+
+  /* ---------- resumen y validación ---------- */
+  function actualizar() {
+    const c = leerFormulario(), p = problemas(c), av = avisosGgb(c);
+    const listo = p.length === 0;
+    $('descargar').disabled = !listo; $('probar').disabled = !listo; $('descargar-simulador').disabled = !listo;
+    const no = $('nota-objetos');
+    const pObj = p.filter(function (m) { return /objeto|distintos|puntuación/.test(m); });
+    no.textContent = pObj.length ? pObj.join(' ') : av.join(' ');
+    no.className = 'nota ' + (pObj.length ? 'mal' : av.length ? 'aviso' : '');
+    const ob = $('objetos');
+    if (estado.ggb && estado.objetosGgb) {
+      const num = estado.objetosGgb.filter(function (o) { return /^(numeric|angle|boolean)$/.test(o.tipo); }).map(function (o) { return o.label; });
+      ob.innerHTML = 'Números y casillas del archivo: ' + (num.length ? num.map(function (n) { return '<code>' + escaparXml(n) + '</code>'; }).join(', ') : 'ninguno') + '.';
+    } else ob.textContent = '';
+    const filas = [
+      ['Origen', estado.ggb ? 'archivo ' + estado.ggb.nombre : estado.material ? 'material <code>' + estado.material + '</code>' : '—'],
+      ['Tamaño', c.ancho + ' × ' + c.alto + ' px'],
+      ['Puntuación', '<code>' + escaparXml(c.objetoNota || '—') + '</code>, máximo ' + c.notaMaxima],
+      ['Envío', '<code>' + escaparXml(c.objetoEnvio || '—') + '</code>'],
+      ['Aprobación', c.notaAprobacion + ' / 100'],
+      ['Reanudación', (c.guardarParametros ? 'parámetros' : '') + (c.guardarParametros && c.guardarProgreso ? ' y ' : '') + (c.guardarProgreso ? 'progreso' : '') || 'desactivada'],
+      ['Archivo', '<code>' + escaparXml(c.nombreZip) + '</code>']
+    ];
+    $('resumen').innerHTML = filas.map(function (f) { return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>'; }).join('');
+  }
+
+  /* ---------- enlace de eventos ---------- */
+  $('codigo').addEventListener('input', alCambiarCodigo);
+  $('ggb').addEventListener('change', alElegirGgb);
+  $('quitar-ggb').addEventListener('click', quitarGgb);
+  $('titulo').addEventListener('input', function () { estado.tituloEditado = limpiar($('titulo').value) !== ''; actualizar(); });
+  ['objetoNota', 'objetoEnvio', 'notaMaxima', 'notaAprobacion', 'instrucciones', 'appName', 'idInteraccion', 'ancho', 'alto', 'parametros', 'omitir', 'nombreZip', 'bloquear', 'guardarParametros', 'guardarProgreso']
+    .forEach(function (id) { $(id).addEventListener('input', actualizar); $(id).addEventListener('change', actualizar); });
+  $('descargar').addEventListener('click', descargar);
+  $('probar').addEventListener('click', probar);
+  $('descargar-simulador').addEventListener('click', descargarSimulador);
+
+  if (!FUENTES || !FUENTES.index || !FUENTES.scorm || !FUENTES.manifiesto || !FUENTES.simulador) {
+    mensaje('Este archivo no contiene las plantillas del paquete; debe generarse con construir_generador.py.', 'mal');
+  }
+  actualizar();
+
+  if (window.GEN_TEST) window.__gen = { estado: estado, leerFormulario: leerFormulario, construirIndex: construirIndex, construirManifiesto: construirManifiesto, construirSimulador: construirSimulador, construirZip: construirZip, analizarCodigo: analizarCodigo, FUENTES: FUENTES };
+})();
+</script>
+</body>
+</html>
