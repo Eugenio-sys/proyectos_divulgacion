@@ -22,6 +22,7 @@ math{font-family:ExplorerMath,"Cambria Math",math;color:var(--ink);font-weight:4
 @media print{.parameters{display:block}.approximation{display:none}.workspace{grid-template-columns:250px 1fr;display:grid}.chart-grid{grid-template-columns:1fr}}
 .parameterization{border-bottom:1px solid var(--line);margin:0 0 18px;padding:0 0 12px}.mode-notation{font-size:.88rem;margin-top:7px}.derived-probability{font-size:.85rem;padding:3px 0 15px}.formulas-head{justify-content:flex-start}.formula-item:last-child .formula{padding-top:8px;padding-bottom:8px}
 .math-block mtable[columnalign="right left"] mtd:nth-child(odd){text-align:right}.math-block mtable[columnalign="right left"] mtd:nth-child(even){text-align:left}
+.chart-host .approx-mass{fill:none;stroke:var(--approx);stroke-width:1.5}.swatch:not(.swatch-mean){border-radius:50%}.swatch-approx{width:10px;height:10px;border:1.5px solid var(--approx);background:transparent}
 </style>
 <!-- THIRD-PARTY LICENSE NOTICES
 The MIT License (MIT)
@@ -239,7 +240,7 @@ upstream distribution of the Latin Modern fonts.
 <section class="plots" aria-label="Gráficas y fórmulas">
 <div class="summary" aria-live="polite" aria-atomic="true"><div class="summary-item"><span class="label">Valor esperado</span><span class="value" id="mean-value"></span></div><div class="summary-item"><span class="label">Varianza</span><span class="value" id="variance-value"></span></div><div class="summary-item support"><span class="label">Soporte de la distribución</span><span class="value" id="support-value"></span></div></div>
 <div class="chart-grid">
-<section class="chart-panel"><h2>Función de masa</h2><p id="pmf-subtitle" class="chart-subtitle"></p><div class="chart-host" id="pmf-host"><svg id="pmf-chart" role="img" aria-labelledby="pmf-title pmf-desc"><title id="pmf-title">Función de masa de probabilidad</title><desc id="pmf-desc">Las barras muestran las probabilidades de los valores enteros; el color destaca los valores menores o iguales que el seleccionado.</desc></svg></div></section>
+<section class="chart-panel"><h2>Función de masa</h2><p id="pmf-subtitle" class="chart-subtitle"></p><div class="chart-host" id="pmf-host"><svg id="pmf-chart" role="img" aria-labelledby="pmf-title pmf-desc"><title id="pmf-title">Función de masa de probabilidad</title><desc id="pmf-desc">Los puntos aislados muestran las probabilidades positivas en los valores del soporte; la función vale cero fuera del soporte. El color destaca los valores menores o iguales que el seleccionado.</desc></svg></div></section>
 <section class="chart-panel"><h2>Función de distribución</h2><p id="cdf-subtitle" class="chart-subtitle"></p><div class="chart-host" id="cdf-host"><svg id="cdf-chart" role="img" aria-labelledby="cdf-title cdf-desc"><title id="cdf-title">Función de distribución acumulada</title><desc id="cdf-desc">Función continua por la derecha, con saltos en los enteros del soporte. En escalas muy grandes se resume su trazado.</desc></svg></div></section>
 </div>
 <div class="legend"><span><i class="swatch" aria-hidden="true"></i><span id="legend-before"></span></span><span><i class="swatch swatch-other" aria-hidden="true"></i><span id="legend-after"></span></span><span><i class="swatch swatch-mean" aria-hidden="true"></i>Media</span><span id="comparison-legend" hidden><i class="swatch swatch-approx" aria-hidden="true"></i><span id="comparison-label"></span></span></div>
@@ -649,17 +650,16 @@ const api=Object.freeze({compute,probabilityAt,tailTolerance:TOL});if(root)root.
      marks.append(el('circle',{cx:x(item.k),cy:y(before),r:2.6,class:isApprox?'approx-open':'open'}));
      marks.append(el('circle',{cx:x(item.k),cy:y(item.cdf),r:2.6,class:isApprox?'approx-closed':'closed'}));
     });
-   }else if(isApprox){
-    const d=data.map((item,i)=>(i?'L':'M')+x(item.k)+','+y(item.p)).join('');marks.append(el('path',{d,class:'approx-line'}));
-    if(data.length<=70)data.forEach(item=>marks.append(el('circle',{cx:x(item.k),cy:y(item.p),r:2.5,class:'approx-open'})));
    }else{
-    const barWidth=Math.max(.6,Math.min(25,(right-left)/(high-low)*.65));
-    data.forEach(item=>{if(item.p>0)marks.append(el('rect',{x:x(item.k)-barWidth/2,y:y(item.p),width:barWidth,height:Math.max(0,bottom-y(item.p)),class:item.k<=selected?'mass':'mass-after'}))});
+    const gaps=data.slice(1).map((item,i)=>x(item.k)-x(data[i].k));
+    const spacing=gaps.length?Math.min(...gaps):Infinity;
+    const radius=Math.max(.7,Math.min(isApprox?4.4:3.2,spacing*(isApprox?.38:.28)));
+    data.forEach(item=>{if(item.p>0)marks.append(el('circle',{cx:x(item.k),cy:y(item.p),r:radius,class:isApprox?'approx-mass':item.k<=selected?'mass':'mass-after'}))});
    }
   }
   series(points,false);if(comparison)series(comparisonPoints,true);
   if(model.mean>=low&&model.mean<=high){marks.append(el('line',{x1:x(model.mean),x2:x(model.mean),y1:top,y2:bottom,class:'mean-line'}));svgMath(g,'\\mu='+number(model.mean,4),Math.max(left,Math.min(right-75,x(model.mean)+4)),top-10,75,22,'start',11)}
-  if(selected>=low&&selected<=high){const a=at(selected,null);marks.append(el('line',{x1:x(selected),x2:x(selected),y1:top,y2:bottom,class:'selection-line'}));marks.append(el('circle',{cx:x(selected),cy:y(cumulative?a.cdf:a.p),r:4,class:'selected'}))}
+  if(selected>=low&&selected<=high){const a=at(selected,null);if(cumulative)marks.append(el('line',{x1:x(selected),x2:x(selected),y1:top,y2:bottom,class:'selection-line'}));if(cumulative||a.p>0)marks.append(el('circle',{cx:x(selected),cy:y(cumulative?a.cdf:a.p),r:4,class:'selected'}))}
   const overlay=el('rect',{x:left,y:top,width:right-left,height:bottom-top,class:'hit','data-chart-hit':''});g.append(overlay);
   const value=event=>{const r=svg.getBoundingClientRect();return Math.round(low+((event.clientX-r.left)-left)/(right-left)*(high-low))};
   overlay.addEventListener('pointermove',event=>tooltip(host,event,value(event)));
@@ -672,7 +672,7 @@ const api=Object.freeze({compute,probabilityAt,tailTolerance:TOL});if(root)root.
   if(comparison){const b=at(k);t.innerHTML+='<br><span>Aproximación</span><br>'+htmlMath('P(Z='+v+')='+probability(b.p))+'<br>'+htmlMath('F_Z('+v+')='+probability(b.cdf))}
   t.hidden=false;const rect=host.getBoundingClientRect();t.style.left=Math.max(0,Math.min(host.clientWidth-t.offsetWidth,event.clientX-rect.left+10))+'px';t.style.top=Math.max(0,event.clientY-rect.top-t.offsetHeight-10)+'px';
  }
- function draw(){if(model){chart($('pmf-chart'),$('pmf-host'),false);chart($('cdf-chart'),$('cdf-host'),true)}}
+ function draw(){if(model){root.querySelectorAll('.tooltip').forEach(t=>t.hidden=true);chart($('pmf-chart'),$('pmf-host'),false);chart($('cdf-chart'),$('cdf-host'),true)}}
  $('distribution').addEventListener('change',()=>{type=$('distribution').value;fields();model=DiscreteModels.compute(type,modelParameters(),convention());selected=Math.round(model.mean);update()});
  $('mean-mode').addEventListener('change',()=>{meanMode=$('mean-mode').checked;fields(false);update()});
  $('compare').addEventListener('change',update);
