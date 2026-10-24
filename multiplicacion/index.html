@@ -32,7 +32,8 @@ button{font:inherit;font-size:.9rem;padding:5px 10px;border:1px solid var(--bord
 button:hover{border-color:#b9c3cf;background:#f7f9fb}
 button.activo{background:var(--acento);border-color:var(--acento);color:#fff}
 button.activo:hover{background:#1a4278}
-button.compacto{width:34px;padding:5px 0;font-weight:600}
+button.compacto{width:34px;padding:5px 0;font-weight:600;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+button.compacto:active{background:var(--acento);border-color:var(--acento);color:#fff}
 .valor{min-width:3.2em;text-align:right;font-variant-numeric:tabular-nums;color:var(--texto)}
 .opciones label{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.95rem}
 .tabla{max-height:280px;overflow:auto;font-variant-numeric:tabular-nums;font-size:.9rem;border:1px solid var(--borde);border-radius:8px}
@@ -142,7 +143,7 @@ footer{color:var(--texto2);font-size:.85rem;padding:0 0 28px}
 
 <section class="texto contenedor">
   <h2>Uso</h2>
-  <p>El deslizador <em>N</em> fija el número de puntos y el deslizador <em>k</em> el multiplicador; ambos pueden moverse manualmente, ajustarse con los botones − y +, escribirse como valor exacto o animarse con «Reproducir». El campo «Máximo del deslizador» amplía el recorrido de cada deslizador (<em>N</em> hasta 10 000 y <em>k</em> hasta 1000); con recorridos muy amplios, el valor exacto se fija con más comodidad en el campo numérico. Al situar el cursor sobre un punto de la circunferencia se resalta el segmento que parte de él y se muestra el cálculo correspondiente. La tabla recoge los productos <em>i</em>·<em>k</em> y sus residuos módulo <em>N</em>.</p>
+  <p>El deslizador <em>N</em> fija el número de puntos y el deslizador <em>k</em> el multiplicador; ambos pueden moverse manualmente, ajustarse con los botones − y + (una pulsación mantenida hace avanzar el valor por sí solo y, al cabo de un momento, lo acelera), escribirse como valor exacto o animarse con «Reproducir». El campo «Máximo del deslizador» amplía el recorrido de cada deslizador (<em>N</em> hasta 10 000 y <em>k</em> hasta 1000); con recorridos muy amplios, el valor exacto se fija con más comodidad en el campo numérico. Al situar el cursor sobre un punto de la circunferencia se resalta el segmento que parte de él y se muestra el cálculo correspondiente. La tabla recoge los productos <em>i</em>·<em>k</em> y sus residuos módulo <em>N</em>.</p>
 
   <h2>Cómo se construye la figura</h2>
   <p>Sobre una circunferencia se marcan <em>N</em> puntos equiespaciados, numerados 0, 1, …, <em>N</em> − 1 a partir del punto inferior y en sentido horario. Cada punto <em>i</em> se une mediante un segmento con el punto cuyo número es el residuo de <em>i</em>·<em>k</em> al dividirlo entre <em>N</em>, es decir, <em>i</em>·<em>k</em> (mod <em>N</em>). Cuando <em>i</em>·<em>k</em> ≡ <em>i</em> (mod <em>N</em>), como ocurre siempre con <em>i</em> = 0, el segmento se reduce a un punto y no se dibuja.</p>
@@ -357,12 +358,38 @@ function ajustarK(d){
   st.k = parseFloat(st.k.toFixed(decK()));
   sincronizarK(); cambio();
 }
+function ajustarN(d){ st.N = clamp(st.N + d, 1, st.Nmax); sincronizarN(); cambio(); }
+
+// Pulsación mantenida en un botón: un paso al pulsar y, tras una breve espera, pasos repetidos
+// que se aceleran gradualmente (accion recibe el multiplicador del paso)
+function autoRepetir(boton, accion){
+  let espera = null, ciclo = null, inicio = 0;
+  const parar = () => { clearTimeout(espera); clearInterval(ciclo); espera = ciclo = null; };
+  boton.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    if (boton.setPointerCapture) boton.setPointerCapture(e.pointerId);
+    parar();
+    accion(1);
+    inicio = performance.now();
+    espera = setTimeout(() => {
+      ciclo = setInterval(() => {
+        const t = performance.now() - inicio;
+        accion(t < 1200 ? 1 : Math.min(10, 1 + Math.floor((t - 1200) / 700)));
+      }, 60);
+    }, 400);
+  });
+  ['pointerup', 'pointercancel', 'pointerleave', 'lostpointercapture'].forEach(ev => boton.addEventListener(ev, parar));
+  window.addEventListener('blur', parar);
+  boton.addEventListener('contextmenu', e => e.preventDefault());
+  boton.addEventListener('click', e => { if (e.detail === 0) accion(1); }); // activación por teclado
+}
 
 // Controles de N
 $('sN').addEventListener('input', e => { st.N = clamp(parseInt(e.target.value, 10) || 1, 1, st.Nmax); $('nN').value = st.N; cambio(); });
 $('nN').addEventListener('change', e => { st.N = clamp(parseInt(e.target.value, 10) || 1, 1, st.Nmax); sincronizarN(); cambio(); });
-$('bNm').addEventListener('click', () => { st.N = clamp(st.N - 1, 1, st.Nmax); sincronizarN(); cambio(); });
-$('bNp').addEventListener('click', () => { st.N = clamp(st.N + 1, 1, st.Nmax); sincronizarN(); cambio(); });
+autoRepetir($('bNm'), m => ajustarN(-m));
+autoRepetir($('bNp'), m => ajustarN(m));
 $('pN').addEventListener('click', () => { st.playN = !st.playN; accN = 0; actualizarBotones(); });
 $('velN').addEventListener('input', e => { st.velN = parseFloat(e.target.value); $('vVelN').textContent = st.velN; });
 $('nNmax').addEventListener('change', e => fijarNmax(parseFloat(e.target.value)));
@@ -371,8 +398,8 @@ $('nNmax').addEventListener('change', e => fijarNmax(parseFloat(e.target.value))
 $('sK').addEventListener('input', e => { st.k = clamp(parseFloat(e.target.value) || 0, 0, st.Kmax); $('nK').value = fmtK(st.k); cambio(); });
 $('nK').addEventListener('change', e => { st.k = clamp(parseFloat(e.target.value) || 0, 0, st.Kmax); sincronizarK(); cambio(); });
 $('nK').addEventListener('blur', () => { $('nK').value = fmtK(st.k); });
-$('bKm').addEventListener('click', () => ajustarK(-st.pasoK));
-$('bKp').addEventListener('click', () => ajustarK(st.pasoK));
+autoRepetir($('bKm'), m => ajustarK(-m * st.pasoK));
+autoRepetir($('bKp'), m => ajustarK(m * st.pasoK));
 $('pK').addEventListener('click', () => { st.playK = !st.playK; actualizarBotones(); });
 $('velK').addEventListener('input', e => { st.velK = parseFloat(e.target.value); $('vVelK').textContent = st.velK.toFixed(2); });
 $('pasoK').addEventListener('change', e => {
