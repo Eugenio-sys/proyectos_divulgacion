@@ -317,7 +317,7 @@ if(typeof THREE==='undefined'){ const h=document.getElementById('hint'); h.textC
 // ---------- Escena ----------
 const canvas=document.getElementById('c'); const stage=document.getElementById('stage');
 const renderer=new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true}); renderer.setClearColor(0x000000, 0);
-const DPR=Math.min(window.devicePixelRatio||1, 1.5); renderer.setPixelRatio(DPR);
+const DPR=Math.min(window.devicePixelRatio||1, 2); renderer.setPixelRatio(DPR);
 renderer.shadowMap.enabled=false;
 renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=0.86;
 const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(36, 1, 0.5, 600);
@@ -552,7 +552,7 @@ function panCamera(dx,dy){
 }
 canvas.addEventListener('mousedown', function(ev){ if(ev.button===1) ev.preventDefault(); });
 canvas.addEventListener('contextmenu', function(ev){ ev.preventDefault(); });
-function setLowRes(on){ if(DPR<=1) return; renderer.setPixelRatio(on?1:DPR); resize(); }
+function setLowRes(on){ /* la resolución se mantiene constante durante la interacción, como en el simulador del motor */ }
 canvas.addEventListener('pointerdown', function(ev){
   canvas.setPointerCapture(ev.pointerId); pointers.set(ev.pointerId,{x:ev.clientX,y:ev.clientY});
   if(pointers.size===1 && !drawMode && fig.pts.length && hitsStylus(ev)){
