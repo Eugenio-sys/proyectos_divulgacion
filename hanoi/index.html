@@ -129,7 +129,7 @@
       }
       .controls-grid {
         display: grid;
-        grid-template-columns: 1fr auto auto;
+        grid-template-columns: minmax(0, 1fr) auto;
         gap: 12px;
         align-items: end;
         margin-bottom: 16px;
@@ -174,6 +174,8 @@
         box-shadow: 0 10px 20px rgba(15,23,42,0.09);
         background: #f8fafc;
       }
+      .action-group { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+      .control-button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; background: #ffffff; }
       .switch-card {
         min-width: 188px;
         display: flex;
@@ -632,6 +634,8 @@
       const els = {
         diskSelect: document.getElementById('disk-select'),
         resetBtn: document.getElementById('reset-game'),
+        undoBtn: document.getElementById('undo-move'),
+        redoBtn: document.getElementById('redo-move'),
         challengeToggle: document.getElementById('challenge-toggle'),
         challengePanel: document.getElementById('challenge-panel'),
         challengeGoalBoard: document.getElementById('challenge-goal-board'),
@@ -677,6 +681,8 @@
         dragging: null,
         suppressClick: false,
         pathStates: [],
+        redoStates: [],
+        undos: 0,
         challengeMode: false,
         challengeStartLabel: null,
         challengeGoalLabel: null,
@@ -906,7 +912,7 @@
 
       function renderStats() {
         els.statMoves.textContent = String(state.moves);
-        els.statMovesSub.textContent = state.challengeMode ? `reto óptimo: ${currentOptimalMoves()}` : `mínimo: ${minMovesNormal()}`;
+        els.statMovesSub.textContent = (state.challengeMode ? `reto óptimo: ${currentOptimalMoves()}` : `mínimo: ${minMovesNormal()}`) + (state.undos ? ` · retrocesos: ${state.undos}` : '');
         els.statTime.textContent = formatTime(state.seconds);
         els.statTimeSub.textContent = state.running ? 'cronómetro activo' : 'en pausa';
         els.statState.textContent = stateStringFromPegs();
@@ -1391,12 +1397,15 @@
         els.success.classList.remove('gold', 'silver', 'bronze');
         els.success.classList.add(info.tier);
         els.successTitle.innerHTML = `${info.icon}<span>${info.title}</span>`;
-        els.successText.innerHTML = `${info.text} La referencia óptima para este juego es <strong>${currentOptimalMoves()}</strong>.`;
+        const undoNote = state.undos ? (state.undos === 1 ? ' Se usó <strong>un</strong> retroceso.' : ` Se usaron <strong>${state.undos}</strong> retrocesos.`) : '';
+        els.successText.innerHTML = `${info.text}${undoNote} La referencia óptima para este juego es <strong>${currentOptimalMoves()}</strong>.`;
       }
 
       function render() {
         els.diskSelect.value = String(state.numDisks);
         els.challengeToggle.checked = state.challengeMode;
+        els.undoBtn.disabled = state.pathStates.length <= 1 || !!state.dragging;
+        els.redoBtn.disabled = !state.redoStates.length || !!state.dragging || state.solved;
         renderStats();
         renderChallengePanel();
         renderBoard();
@@ -1424,8 +1433,10 @@
         state.showOptimalGraphPath = false;
         state.optimalPathCache = {};
         state.pathStates = [state.challengeStartLabel];
+        state.redoStates = [];
+        state.undos = 0;
         if (timerId) { window.clearInterval(timerId); timerId = null; }
-        setMessage('Arrastra el disco superior o tócala y luego elige el poste de destino.');
+        setMessage('Arrastra el disco superior o tócalo y luego elige el poste de destino.');
         render();
       }
 
@@ -1447,6 +1458,8 @@
         state.dragging = null;
         state.suppressClick = false;
         state.pathStates = [state.challengeStartLabel];
+        state.redoStates = [];
+        state.undos = 0;
         if (timerId) { window.clearInterval(timerId); timerId = null; }
         setMessage(`Modo reto activo: parte de ${state.challengeStartLabel} y llega a ${state.challengeGoalLabel}.`);
         render();
@@ -1460,6 +1473,38 @@
         }
       }
 
+      function undoMove() {
+        if (state.pathStates.length <= 1 || state.dragging) return;
+        const undone = state.pathStates.pop();
+        state.redoStates.push(undone);
+        const previous = state.pathStates[state.pathStates.length - 1];
+        state.pegs = labelToPegs(previous);
+        state.moves = Math.max(0, state.moves - 1);
+        state.undos += 1;
+        state.selected = null;
+        if (state.solved) { state.solved = false; startTimer(); }
+        setMessage(`Movimiento deshecho: de vuelta en ${previous}.`);
+        render();
+      }
+
+      function redoMove() {
+        if (!state.redoStates.length || state.dragging || state.solved) return;
+        const next = state.redoStates.pop();
+        state.pathStates.push(next);
+        state.pegs = labelToPegs(next);
+        state.moves += 1;
+        state.selected = null;
+        startTimer();
+        if (next === currentGoalLabel()) {
+          state.solved = true;
+          stopTimer();
+          setMessage(`¡Lo lograste! Llegaste a ${currentGoalLabel()}.`);
+        } else {
+          setMessage(`Movimiento rehecho: posición ${next}.`);
+        }
+        render();
+      }
+
       function applyMove(from, to) {
         if (!canMove(from, to)) {
           setMessage('Movimiento no permitido: un disco grande no puede ir sobre uno pequeño.');
@@ -1470,6 +1515,7 @@
         state.pegs[to].push(disk);
         state.moves += 1;
         state.selected = null;
+        state.redoStates = [];
         startTimer();
         state.pathStates.push(stateStringFromPegs());
         if (stateStringFromPegs() === currentGoalLabel()) {
@@ -1542,6 +1588,16 @@
       els.resetBtn.addEventListener('click', function () {
         resetCurrentGame();
       });
+      els.undoBtn.addEventListener('click', undoMove);
+      els.redoBtn.addEventListener('click', redoMove);
+      document.addEventListener('keydown', function (e) {
+        const tag = (e.target && e.target.tagName) || '';
+        if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+        if (!(e.ctrlKey || e.metaKey)) return;
+        const key = e.key.toLowerCase();
+        if (key === 'z' && !e.shiftKey) { e.preventDefault(); undoMove(); }
+        else if (key === 'y' || (key === 'z' && e.shiftKey)) { e.preventDefault(); redoMove(); }
+      });
 
       function toggleOptimalRoute() {
         state.showOptimalGraphPath = !state.showOptimalGraphPath;
@@ -1585,7 +1641,7 @@
             <div class="section-icon">&#127918;</div>
             <div>
               <h2 class="section-title">Tablero de juego</h2>
-              <p class="section-subtitle">Usa el selector para elegir el número de discos. También puedes activar el modo reto para resolver una configuración aleatoria hacia una meta concreta en la menor cantidad posible de movimientos.</p>
+              <p class="section-subtitle">Usa el selector para elegir el número de discos. También puedes activar el modo reto para resolver una configuración aleatoria hacia una meta concreta en la menor cantidad posible de movimientos. Con «Retroceder» se deshace el último movimiento (también con Ctrl+Z) y con «Rehacer» se recupera (Ctrl+Y); los retrocesos quedan contados.</p>
             </div>
           </div>
           <div class="controls-grid">
@@ -1611,7 +1667,11 @@
                 </label>
               </div>
             </div>
-            <button id="reset-game" class="control-button">&#8635; Reiniciar</button>
+            <div class="action-group">
+              <button id="undo-move" class="control-button" type="button" disabled title="Deshacer el último movimiento (Ctrl+Z)">&#8630; Retroceder</button>
+              <button id="redo-move" class="control-button" type="button" disabled title="Rehacer el movimiento deshecho (Ctrl+Y)">&#8631; Rehacer</button>
+              <button id="reset-game" class="control-button" type="button">&#8635; Reiniciar</button>
+            </div>
           </div>
           <div id="challenge-panel" class="challenge-panel">
             <div class="challenge-grid">
@@ -1626,7 +1686,7 @@
               <div id="challenge-goal-board"></div>
             </div>
           </div>
-          <div id="message-box" class="message-box">Arrastra el disco superior o tócala y luego elige el poste de destino.</div>
+          <div id="message-box" class="message-box">Arrastra el disco superior o tócalo y luego elige el poste de destino.</div>
           <div id="board-wrap" class="board-wrap">
             <div id="board-grid" class="board-grid"></div>
             <div id="floating-layer"></div>
