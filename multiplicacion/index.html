@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiplicación en la circunferencia</title>
+<style>
+:root{--fondo:#f3f5f8;--panel:#ffffff;--texto:#1f2630;--texto2:#5b6675;--borde:#d7dde6;--acento:#1f4e8c;--acento2:#d94f1e;--resalte:#c0392b}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.5}
+.contenedor{max-width:1160px;margin:0 auto;padding:0 20px}
+header{padding:22px 0 6px}
+h1{margin:0;font-size:1.55rem;font-weight:650;letter-spacing:-.01em}
+.subtitulo{margin:4px 0 0;color:var(--texto2)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;padding:14px 0 22px;align-items:start}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+.lienzo{background:var(--panel);border:1px solid var(--borde);border-radius:12px;padding:12px}
+canvas{display:block;width:100%;aspect-ratio:1/1;border-radius:8px;cursor:crosshair;touch-action:none}
+.lectura{margin:10px 2px 0;font-variant-numeric:tabular-nums;color:var(--texto2);font-size:.95rem;min-height:1.5em}
+.lectura b{color:var(--texto);font-weight:600}
+.controles{display:flex;flex-direction:column;gap:12px}
+.bloque{background:var(--panel);border:1px solid var(--borde);border-radius:12px;padding:12px 14px}
+.bloque h2{font-size:1rem;margin:0 0 6px;font-weight:650}
+.fila{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+.fila label{font-size:.9rem;color:var(--texto2);display:flex;align-items:center;gap:6px;flex:1 1 160px}
+.fila label.fijo{flex:0 0 auto}
+input[type=range]{flex:1 1 110px;min-width:90px;accent-color:var(--acento);margin:0}
+input[type=number]{width:88px;padding:4px 6px;border:1px solid var(--borde);border-radius:6px;font:inherit;font-variant-numeric:tabular-nums}
+select{padding:4px 6px;border:1px solid var(--borde);border-radius:6px;font:inherit;background:#fff}
+button{font:inherit;font-size:.9rem;padding:5px 10px;border:1px solid var(--borde);border-radius:7px;background:#fff;color:var(--texto);cursor:pointer}
+button:hover{border-color:#b9c3cf;background:#f7f9fb}
+button.activo{background:var(--acento);border-color:var(--acento);color:#fff}
+button.activo:hover{background:#1a4278}
+button.compacto{width:34px;padding:5px 0;font-weight:600}
+.valor{min-width:3.2em;text-align:right;font-variant-numeric:tabular-nums;color:var(--texto)}
+.opciones label{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.95rem}
+.tabla{max-height:280px;overflow:auto;font-variant-numeric:tabular-nums;font-size:.9rem;border:1px solid var(--borde);border-radius:8px}
+.tabla table{border-collapse:collapse;width:100%}
+.tabla th{position:sticky;top:0;background:#f7f9fb;text-align:right;padding:4px 10px;font-weight:600;border-bottom:1px solid var(--borde)}
+.tabla td{text-align:right;padding:2px 10px;border-bottom:1px solid #eef1f5}
+.tabla .aviso{padding:10px 12px;color:var(--texto2);font-size:.9rem;margin:0}
+.nota{font-size:.85rem;color:var(--texto2);margin:6px 0 0}
+.texto{padding:6px 0 36px}
+.texto>*{max-width:840px}
+.texto h2{font-size:1.15rem;margin:22px 0 6px}
+.texto p,.texto li{margin:6px 0}
+.texto ul{padding-left:22px}
+footer{color:var(--texto2);font-size:.85rem;padding:0 0 28px}
+</style>
+</head>
+<body>
+
+<header class="contenedor">
+  <h1>Multiplicación en la circunferencia</h1>
+  <p class="subtitulo">Tablas de multiplicar módulo <em>N</em> y las curvas que emergen de ellas</p>
+</header>
+
+<main class="contenedor">
+  <section class="lienzo">
+    <canvas id="c" aria-label="Figura de la multiplicación módulo N"></canvas>
+    <div class="lectura"><b>N</b> = <span id="vN">10</span> &nbsp;·&nbsp; <b>k</b> = <span id="vK">2.00</span> &nbsp;·&nbsp; <span id="vS">9</span> segmentos<span id="vHover"></span></div>
+  </section>
+
+  <aside class="controles">
+    <div class="bloque">
+      <h2>Número de puntos (<em>N</em>)</h2>
+      <div class="fila">
+        <button id="bNm" class="compacto" title="Un punto menos">−</button>
+        <input type="range" id="sN" min="1" max="400" step="1" value="10" aria-label="Número de puntos">
+        <button id="bNp" class="compacto" title="Un punto más">+</button>
+        <input type="number" id="nN" min="1" max="400" step="1" value="10" aria-label="Número de puntos (valor exacto)">
+      </div>
+      <div class="fila">
+        <button id="pN">▶ Reproducir</button>
+        <label>Velocidad <input type="range" id="velN" min="1" max="200" step="1" value="3"> <span class="valor" id="vVelN">3</span> puntos/s</label>
+      </div>
+      <div class="fila">
+        <label class="fijo">Máximo del deslizador <input type="number" id="nNmax" min="10" max="10000" step="10" value="400" aria-label="Máximo del deslizador de N"></label>
+        <span class="nota" style="margin:0">(hasta 10 000)</span>
+      </div>
+      <div class="fila">
+        <span class="nota" style="margin:0">Valores rápidos:</span>
+        <button data-n="10">10</button>
+        <button data-n="100">100</button>
+        <button data-n="300">300</button>
+        <button data-n="1000">1000</button>
+        <button data-n="5000">5000</button>
+      </div>
+    </div>
+
+    <div class="bloque">
+      <h2>Multiplicador (<em>k</em>)</h2>
+      <div class="fila">
+        <button id="bKm" class="compacto" title="Disminuir k">−</button>
+        <input type="range" id="sK" min="0" max="100" step="0.01" value="2" aria-label="Multiplicador">
+        <button id="bKp" class="compacto" title="Aumentar k">+</button>
+        <input type="number" id="nK" min="0" max="100" step="0.01" value="2.00" aria-label="Multiplicador (valor exacto)">
+      </div>
+      <div class="fila">
+        <button id="pK">▶ Reproducir</button>
+        <label>Velocidad <input type="range" id="velK" min="0.01" max="10" step="0.01" value="0.2"> <span class="valor" id="vVelK">0.20</span> unidades/s</label>
+      </div>
+      <div class="fila">
+        <label class="fijo">Paso de − y +
+          <select id="pasoK" aria-label="Paso del multiplicador">
+            <option value="1">1</option>
+            <option value="0.1">0.1</option>
+            <option value="0.01" selected>0.01</option>
+            <option value="0.001">0.001</option>
+          </select>
+        </label>
+        <label class="fijo">Máximo del deslizador <input type="number" id="nKmax" min="1" max="1000" step="1" value="100" aria-label="Máximo del deslizador de k"></label>
+        <span class="nota" style="margin:0">(hasta 1000)</span>
+      </div>
+      <div class="fila">
+        <span class="nota" style="margin:0">Curvas:</span>
+        <button data-k="2" title="Cardioide">k = 2</button>
+        <button data-k="3" title="Nefroide">k = 3</button>
+        <button data-k="4">k = 4</button>
+        <button data-k="5">k = 5</button>
+      </div>
+    </div>
+
+    <div class="bloque opciones">
+      <h2>Opciones</h2>
+      <label><input type="checkbox" id="chkPuntos" checked> Mostrar los puntos (hasta <em>N</em> = 2000)</label>
+      <label><input type="checkbox" id="chkNumeros" checked> Mostrar los números (hasta <em>N</em> = 72)</label>
+      <label><input type="checkbox" id="chkColor"> Colorear los segmentos según el punto de partida</label>
+      <label><input type="checkbox" id="chkEnv"> Mostrar la envolvente (epicicloide)</label>
+      <label><input type="checkbox" id="chkTabla" checked> Mostrar la tabla (hasta <em>N</em> = 1000)</label>
+      <div class="fila" style="margin-top:8px"><button id="bReiniciar">Reiniciar (N = 10, k = 2)</button></div>
+    </div>
+
+    <div class="bloque" id="tablaBloque">
+      <h2>Tabla de productos</h2>
+      <div class="tabla" id="tabla"></div>
+      <p class="nota">Cada fila muestra el producto <em>i</em>·<em>k</em> y su residuo módulo <em>N</em>; el segmento une el punto <em>i</em> con el punto del residuo.</p>
+    </div>
+  </aside>
+</main>
+
+<section class="texto contenedor">
+  <h2>Uso</h2>
+  <p>El deslizador <em>N</em> fija el número de puntos y el deslizador <em>k</em> el multiplicador; ambos pueden moverse manualmente, ajustarse con los botones − y +, escribirse como valor exacto o animarse con «Reproducir». El campo «Máximo del deslizador» amplía el recorrido de cada deslizador (<em>N</em> hasta 10 000 y <em>k</em> hasta 1000); con recorridos muy amplios, el valor exacto se fija con más comodidad en el campo numérico. Al situar el cursor sobre un punto de la circunferencia se resalta el segmento que parte de él y se muestra el cálculo correspondiente. La tabla recoge los productos <em>i</em>·<em>k</em> y sus residuos módulo <em>N</em>.</p>
+
+  <h2>Cómo se construye la figura</h2>
+  <p>Sobre una circunferencia se marcan <em>N</em> puntos equiespaciados, numerados 0, 1, …, <em>N</em> − 1 a partir del punto inferior y en sentido horario. Cada punto <em>i</em> se une mediante un segmento con el punto cuyo número es el residuo de <em>i</em>·<em>k</em> al dividirlo entre <em>N</em>, es decir, <em>i</em>·<em>k</em> (mod <em>N</em>). Cuando <em>i</em>·<em>k</em> ≡ <em>i</em> (mod <em>N</em>), como ocurre siempre con <em>i</em> = 0, el segmento se reduce a un punto y no se dibuja.</p>
+  <p>Por ejemplo, con <em>N</em> = 10 y <em>k</em> = 2 se obtienen las uniones 1–2, 2–4, 3–6, 4–8, 5–0, 6–2, 7–4, 8–6 y 9–8, pues 5·2 = 10 ≡ 0, 6·2 = 12 ≡ 2, 7·2 = 14 ≡ 4, 8·2 = 16 ≡ 6 y 9·2 = 18 ≡ 8 (mod 10).</p>
+
+  <h2>Multiplicadores no enteros</h2>
+  <p>Si <em>k</em> no es entero, <em>i</em>·<em>k</em> (mod <em>N</em>) es un número real del intervalo [0, <em>N</em>) que señala igualmente un punto de la circunferencia: al valor <em>t</em> le corresponde el ángulo 2π<em>t</em>/<em>N</em> medido desde el punto 0 en sentido horario. Ese punto, en general, no coincide con ninguno de los <em>N</em> puntos marcados. Esta extensión permite variar <em>k</em> de forma continua y observar cómo cada figura se transforma en la siguiente.</p>
+
+  <h2>Las curvas que emergen</h2>
+  <p>Al aumentar <em>N</em>, los segmentos se acumulan a lo largo de una curva envolvente, a la que todos ellos son tangentes. Si <em>P</em>(<em>t</em>) denota el punto de la circunferencia asociado al valor <em>t</em>, la envolvente está formada por los puntos (<em>k</em>·<em>P</em>(<em>t</em>) + <em>P</em>(<em>k</em>·<em>t</em>))/(<em>k</em> + 1), con 0 ≤ <em>t</em> &lt; <em>N</em>; la opción «Mostrar la envolvente» la superpone al dibujo. Para <em>k</em> entero mayor que 1, esta curva es una epicicloide con <em>k</em> − 1 puntas: la cardioide para <em>k</em> = 2, la nefroide para <em>k</em> = 3, y así sucesivamente.</p>
+
+  <h2>Algunas propiedades</h2>
+  <ul>
+    <li><strong>Periodicidad.</strong> Los multiplicadores <em>k</em> y <em>k</em> + <em>N</em> producen la misma figura, pues <em>i</em>·(<em>k</em> + <em>N</em>) ≡ <em>i</em>·<em>k</em> (mod <em>N</em>) para todo entero <em>i</em>.</li>
+    <li><strong>Simetría.</strong> Los multiplicadores <em>k</em> y <em>N</em> − <em>k</em> producen figuras simétricas respecto del eje vertical, ya que <em>i</em>·(<em>N</em> − <em>k</em>) ≡ −<em>i</em>·<em>k</em> (mod <em>N</em>).</li>
+    <li><strong>Casos extremos.</strong> Con <em>k</em> = 1 cada punto se une consigo mismo y no aparece ningún segmento; con <em>k</em> = 0 todos los puntos se unen con el punto 0.</li>
+    <li><strong>Permutaciones.</strong> Si <em>k</em> es entero y mcd(<em>k</em>, <em>N</em>) = 1, la correspondencia <em>i</em> ↦ <em>i</em>·<em>k</em> (mod <em>N</em>) es una permutación de los <em>N</em> puntos; en caso contrario, varios puntos comparten el mismo extremo y otros no reciben ningún segmento.</li>
+  </ul>
+</section>
+
+<footer class="contenedor">Proyectos de divulgación matemática · Departamento de Matemáticas, Universidad de Puerto Rico, Recinto de Río Piedras</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas = $('c'), ctx = canvas.getContext('2d');
+const N_TOPE = 10000, K_TOPE = 1000;      // límites absolutos
+const N_ETIQUETAS = 72, N_PUNTOS = 2000, N_TABLA = 1000, N_COLOR_EXACTO = 360;
+const st = {N:10, k:2, Nmax:400, Kmax:100, playN:false, playK:false, velN:3, velK:0.2, pasoK:0.01,
+            puntos:true, numeros:true, color:false, env:false, tabla:true, hover:-1};
+let size = 0, dpr = 1, cx = 0, cy = 0, R = 0;
+let dirty = true, dirtyTabla = true, ultimaTabla = 0, accN = 0, tPrev = null;
+
+function mod(x, m){ return ((x % m) + m) % m; }
+function clamp(x, a, b){ return Math.min(b, Math.max(a, x)); }
+function decK(){ return st.pasoK >= 1 ? 0 : st.pasoK >= 0.1 ? 1 : st.pasoK >= 0.01 ? 2 : 3; }
+function fmtK(x){ return x.toFixed(decK()); }
+function kEntero(){ return Math.abs(st.k - Math.round(st.k)) < 1e-9; }
+function fmtV(x){ return kEntero() ? String(Math.round(x)) : x.toFixed(decK()); }
+// Punto de la circunferencia asociado al valor real t (0 en el polo sur, sentido horario)
+function pos(t, rad){
+  const a = Math.PI / 2 + 2 * Math.PI * t / st.N;
+  return [cx + rad * Math.cos(a), cy + rad * Math.sin(a)];
+}
+
+function redimensionar(){
+  const w = canvas.clientWidth;
+  if (!w) return;
+  size = w; dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
+  cx = cy = size / 2; R = size * 0.42;
+  dirty = true;
+}
+
+// Añade al trazo actual los segmentos de los puntos i0 ≤ i < i1; devuelve cuántos añadió
+function trazar(i0, i1){
+  const N = st.N, k = st.k;
+  let n = 0;
+  for (let i = i0; i < i1; i++){
+    const r = mod(i * k, N);
+    if (Math.abs(r - i) < 1e-9) continue;
+    const a = pos(i, R), b = pos(r, R);
+    ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+    n++;
+  }
+  return n;
+}
+
+function dibujar(){
+  const N = st.N, k = st.k;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
+  ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+
+  // Circunferencia
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+  ctx.strokeStyle = '#9aa6b3'; ctx.lineWidth = 1.2; ctx.stroke();
+
+  // Segmentos i — i·k (mod N): grosor y opacidad decrecen con N para que la figura no se sature
+  let nSeg = 0;
+  ctx.lineWidth = N <= 80 ? 1.3 : N <= 200 ? 0.9 : N <= 1000 ? 0.7 : 0.5;
+  const al = N <= 100 ? 0.85 : clamp(0.85 * Math.sqrt(100 / N), 0.04, 0.85);
+  if (st.color && N <= N_COLOR_EXACTO){
+    for (let i = 0; i < N; i++){
+      ctx.strokeStyle = 'hsla(' + (360 * i / N).toFixed(1) + ',78%,42%,' + al + ')';
+      ctx.beginPath(); nSeg += trazar(i, i + 1); ctx.stroke();
+    }
+  } else if (st.color){
+    const B = 90; // franjas de color para N grande (un trazo por franja)
+    for (let b = 0; b < B; b++){
+      ctx.strokeStyle = 'hsla(' + (360 * (b + 0.5) / B).toFixed(1) + ',78%,42%,' + al + ')';
+      ctx.beginPath(); nSeg += trazar(Math.ceil(b * N / B), Math.ceil((b + 1) * N / B)); ctx.stroke();
+    }
+  } else {
+    ctx.strokeStyle = 'rgba(31,78,140,' + al + ')';
+    ctx.beginPath(); nSeg = trazar(0, N); ctx.stroke();
+  }
+
+  // Envolvente: (k·P(t) + P(k·t)) / (k + 1)
+  if (st.env && k > 0){
+    const M = Math.min(20000, Math.max(800, Math.ceil(300 * k)));
+    ctx.beginPath();
+    for (let j = 0; j <= M; j++){
+      const t = N * j / M, a = pos(t, R), b = pos(k * t, R);
+      const x = (k * a[0] + b[0]) / (k + 1), y = (k * a[1] + b[1]) / (k + 1);
+      if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+    }
+    ctx.strokeStyle = '#d94f1e'; ctx.lineWidth = 2; ctx.stroke();
+  }
+
+  // Puntos
+  const rp = N <= 40 ? 4.5 : N <= 120 ? 3 : N <= 250 ? 2.2 : N <= 800 ? 1.6 : 1.2;
+  if (st.puntos && N <= N_PUNTOS){
+    ctx.fillStyle = '#2c3e50'; ctx.beginPath();
+    for (let i = 0; i < N; i++){
+      const p = pos(i, R);
+      ctx.moveTo(p[0] + rp, p[1]); ctx.arc(p[0], p[1], rp, 0, 2 * Math.PI);
+    }
+    ctx.fill();
+  }
+
+  // Números
+  const exteriores = st.numeros && N <= N_ETIQUETAS;
+  if (exteriores){
+    const fs = N <= 20 ? Math.max(12, size / 38) : N <= 40 ? Math.max(11, size / 46) : Math.max(9, size / 58);
+    ctx.font = '500 ' + fs.toFixed(1) + 'px system-ui, sans-serif';
+    ctx.fillStyle = '#2c3e50'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (let i = 0; i < N; i++){
+      const p = pos(i, R + rp + fs * 0.95);
+      ctx.fillText(String(i), p[0], p[1]);
+    }
+  }
+
+  // Segmento resaltado
+  if (st.hover >= 0 && st.hover < N){
+    const i = st.hover, r = mod(i * k, N), a = pos(i, R), b = pos(r, R);
+    ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 2.6;
+    ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+    ctx.fillStyle = '#c0392b';
+    ctx.beginPath(); ctx.arc(a[0], a[1], 5, 0, 2 * Math.PI); ctx.fill();
+    ctx.beginPath(); ctx.arc(b[0], b[1], 5, 0, 2 * Math.PI); ctx.fill();
+    const fs = Math.max(12, size / 36);
+    ctx.font = '600 ' + fs.toFixed(1) + 'px system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    // Etiquetas interiores solo cuando los números exteriores no bastan
+    const etiquetas = [];
+    if (!exteriores) etiquetas.push([String(i), pos(i, R - fs * 1.3)]);
+    if (!exteriores || Math.abs(r - Math.round(r)) > 1e-9) etiquetas.push([fmtV(r), pos(r, R - fs * 1.3)]);
+    for (const e of etiquetas){
+      ctx.lineWidth = 4; ctx.strokeStyle = '#ffffff'; ctx.strokeText(e[0], e[1][0], e[1][1]);
+      ctx.fillStyle = '#c0392b'; ctx.fillText(e[0], e[1][0], e[1][1]);
+    }
+  }
+
+  $('vS').textContent = nSeg;
+  actualizarLectura();
+}
+
+function actualizarLectura(){
+  $('vN').textContent = st.N;
+  $('vK').textContent = fmtK(st.k);
+  const h = $('vHover');
+  if (st.hover >= 0 && st.hover < st.N){
+    const i = st.hover, p = i * st.k, r = mod(p, st.N);
+    h.textContent = '  ·  ' + i + ' · ' + fmtV(st.k) + ' = ' + fmtV(p) + ' ≡ ' + fmtV(r) + ' (mod ' + st.N + ')';
+  } else {
+    h.textContent = '';
+  }
+}
+
+function construirTabla(){
+  const N = st.N, k = st.k;
+  if (N > N_TABLA){
+    $('tabla').innerHTML = '<p class="aviso">La tabla se muestra para <em>N</em> ≤ ' + N_TABLA + '.</p>';
+    return;
+  }
+  let h = '<table><thead><tr><th><em>i</em></th><th><em>i</em>·<em>k</em></th><th>mod <em>N</em></th></tr></thead><tbody>';
+  for (let i = 0; i < N; i++){
+    const p = i * k, r = mod(p, N);
+    h += '<tr><td>' + i + '</td><td>' + fmtV(p) + '</td><td>' + fmtV(r) + '</td></tr>';
+  }
+  h += '</tbody></table>';
+  $('tabla').innerHTML = h;
+}
+
+function sincronizarN(){ $('sN').value = st.N; $('nN').value = st.N; }
+function sincronizarK(){
+  $('sK').value = st.k;
+  if (document.activeElement !== $('nK')) $('nK').value = fmtK(st.k);
+}
+function fijarNmax(v){
+  st.Nmax = clamp(Math.round(v) || 10, 10, N_TOPE);
+  $('sN').max = st.Nmax; $('nN').max = st.Nmax; $('nNmax').value = st.Nmax;
+  if (st.N > st.Nmax){ st.N = st.Nmax; sincronizarN(); cambio(); }
+}
+function fijarKmax(v){
+  st.Kmax = clamp(Math.round(v) || 1, 1, K_TOPE);
+  $('sK').max = st.Kmax; $('nK').max = st.Kmax; $('nKmax').value = st.Kmax;
+  if (st.k > st.Kmax){ st.k = st.Kmax; sincronizarK(); cambio(); }
+}
+function cambio(){ dirty = true; dirtyTabla = true; if (st.hover >= st.N) st.hover = -1; }
+function actualizarBotones(){
+  $('pN').textContent = st.playN ? '❚❚ Pausar' : '▶ Reproducir';
+  $('pN').classList.toggle('activo', st.playN);
+  $('pK').textContent = st.playK ? '❚❚ Pausar' : '▶ Reproducir';
+  $('pK').classList.toggle('activo', st.playK);
+}
+function ajustarK(d){
+  const p = st.pasoK;
+  st.k = clamp(Math.round((st.k + d) / p) * p, 0, st.Kmax);
+  st.k = parseFloat(st.k.toFixed(decK()));
+  sincronizarK(); cambio();
+}
+
+// Controles de N
+$('sN').addEventListener('input', e => { st.N = clamp(parseInt(e.target.value, 10) || 1, 1, st.Nmax); $('nN').value = st.N; cambio(); });
+$('nN').addEventListener('change', e => { st.N = clamp(parseInt(e.target.value, 10) || 1, 1, st.Nmax); sincronizarN(); cambio(); });
+$('bNm').addEventListener('click', () => { st.N = clamp(st.N - 1, 1, st.Nmax); sincronizarN(); cambio(); });
+$('bNp').addEventListener('click', () => { st.N = clamp(st.N + 1, 1, st.Nmax); sincronizarN(); cambio(); });
+$('pN').addEventListener('click', () => { st.playN = !st.playN; accN = 0; actualizarBotones(); });
+$('velN').addEventListener('input', e => { st.velN = parseFloat(e.target.value); $('vVelN').textContent = st.velN; });
+$('nNmax').addEventListener('change', e => fijarNmax(parseFloat(e.target.value)));
+
+// Controles de k
+$('sK').addEventListener('input', e => { st.k = clamp(parseFloat(e.target.value) || 0, 0, st.Kmax); $('nK').value = fmtK(st.k); cambio(); });
+$('nK').addEventListener('change', e => { st.k = clamp(parseFloat(e.target.value) || 0, 0, st.Kmax); sincronizarK(); cambio(); });
+$('nK').addEventListener('blur', () => { $('nK').value = fmtK(st.k); });
+$('bKm').addEventListener('click', () => ajustarK(-st.pasoK));
+$('bKp').addEventListener('click', () => ajustarK(st.pasoK));
+$('pK').addEventListener('click', () => { st.playK = !st.playK; actualizarBotones(); });
+$('velK').addEventListener('input', e => { st.velK = parseFloat(e.target.value); $('vVelK').textContent = st.velK.toFixed(2); });
+$('pasoK').addEventListener('change', e => {
+  st.pasoK = parseFloat(e.target.value);
+  $('sK').step = st.pasoK; $('nK').step = st.pasoK;
+  sincronizarK(); cambio();
+});
+$('nKmax').addEventListener('change', e => fijarKmax(parseFloat(e.target.value)));
+
+// Valores rápidos
+document.querySelectorAll('button[data-k]').forEach(b => b.addEventListener('click', () => {
+  const v = parseFloat(b.dataset.k);
+  if (v > st.Kmax) fijarKmax(v);
+  st.k = v; st.playK = false; sincronizarK(); actualizarBotones(); cambio();
+}));
+document.querySelectorAll('button[data-n]').forEach(b => b.addEventListener('click', () => {
+  const v = parseInt(b.dataset.n, 10);
+  if (v > st.Nmax) fijarNmax(v);
+  st.N = v; st.playN = false; sincronizarN(); actualizarBotones(); cambio();
+}));
+$('bReiniciar').addEventListener('click', () => {
+  st.N = 10; st.k = 2; st.playN = false; st.playK = false; accN = 0;
+  sincronizarN(); sincronizarK(); actualizarBotones(); cambio();
+});
+
+// Opciones
+$('chkPuntos').addEventListener('change', e => { st.puntos = e.target.checked; dirty = true; });
+$('chkNumeros').addEventListener('change', e => { st.numeros = e.target.checked; dirty = true; });
+$('chkColor').addEventListener('change', e => { st.color = e.target.checked; dirty = true; });
+$('chkEnv').addEventListener('change', e => { st.env = e.target.checked; dirty = true; });
+$('chkTabla').addEventListener('change', e => {
+  st.tabla = e.target.checked;
+  $('tablaBloque').style.display = st.tabla ? '' : 'none';
+  dirtyTabla = true;
+});
+
+// Resaltado con el cursor
+function actualizarHover(mx, my){
+  const d = Math.hypot(mx - cx, my - cy);
+  let nuevo = -1;
+  if (Math.abs(d - R) <= Math.max(18, size * 0.035)){
+    const t = mod((Math.atan2(my - cy, mx - cx) - Math.PI / 2) / (2 * Math.PI) * st.N, st.N);
+    nuevo = Math.round(t) % st.N;
+  }
+  if (nuevo !== st.hover){ st.hover = nuevo; dirty = true; }
+}
+function coordenadas(ev){
+  const rect = canvas.getBoundingClientRect();
+  const esc = size / rect.width;
+  return [(ev.clientX - rect.left) * esc, (ev.clientY - rect.top) * esc];
+}
+canvas.addEventListener('mousemove', e => { const c = coordenadas(e); actualizarHover(c[0], c[1]); });
+canvas.addEventListener('mouseleave', () => { if (st.hover !== -1){ st.hover = -1; dirty = true; } });
+canvas.addEventListener('touchstart', e => { const c = coordenadas(e.touches[0]); actualizarHover(c[0], c[1]); e.preventDefault(); }, {passive:false});
+canvas.addEventListener('touchmove', e => { const c = coordenadas(e.touches[0]); actualizarHover(c[0], c[1]); e.preventDefault(); }, {passive:false});
+canvas.addEventListener('touchend', () => { if (st.hover !== -1){ st.hover = -1; dirty = true; } });
+
+// Animación
+function paso(ts){
+  if (tPrev === null) tPrev = ts;
+  let dt = (ts - tPrev) / 1000; tPrev = ts;
+  if (dt > 0.1) dt = 0.1;
+  if (st.playN){
+    accN += st.velN * dt;
+    const n = Math.floor(accN);
+    if (n > 0){
+      accN -= n;
+      st.N += n;
+      if (st.N > st.Nmax) st.N = 1 + ((st.N - 1) % st.Nmax);
+      sincronizarN(); cambio();
+    }
+  }
+  if (st.playK){
+    st.k += st.velK * dt;
+    if (st.k > st.Kmax) st.k -= st.Kmax;
+    sincronizarK(); cambio();
+  }
+  if (dirty){ dibujar(); dirty = false; }
+  if (dirtyTabla && st.tabla && ts - ultimaTabla > 150){ construirTabla(); ultimaTabla = ts; dirtyTabla = false; }
+  requestAnimationFrame(paso);
+}
+
+// Inicio
+if (window.ResizeObserver){
+  new ResizeObserver(() => redimensionar()).observe(canvas);
+} else {
+  window.addEventListener('resize', redimensionar);
+}
+fijarNmax(st.Nmax); fijarKmax(st.Kmax);
+sincronizarN(); sincronizarK(); actualizarBotones(); redimensionar(); construirTabla();
+requestAnimationFrame(paso);
+})();
+</script>
+</body>
+</html>
