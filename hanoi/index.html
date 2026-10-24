@@ -1,18 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <script type="application/shiny-singletons"></script>
-  <script type="application/html-dependencies">jquery[3.7.1];shiny-css[1.13.0];shiny-busy-indicators[1.13.0];shiny-javascript[1.13.0];bootstrap[3.4.1]</script>
-<script src="jquery-3.7.1/jquery.min.js"></script>
-<link href="shiny-css-1.13.0/shiny.min.css" rel="stylesheet" />
-<link href="shiny-busy-indicators-1.13.0/busy-indicators.css" rel="stylesheet" />
-<script src="shiny-javascript-1.13.0/shiny.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-<link href="bootstrap-3.4.1/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
-<script src="bootstrap-3.4.1/js/bootstrap.min.js"></script>
-<script src="bootstrap-3.4.1/accessibility/js/bootstrap-accessibility.min.js"></script>  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Torres de Hanoi</title>
   <style>
       * { box-sizing: border-box; }
       body {
@@ -541,6 +532,81 @@
         font-size: 14px;
         line-height: 1.7;
       }
+      .graph-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .zoom-group { display: inline-flex; align-items: center; gap: 6px; }
+      .zoom-button {
+        min-width: 42px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 10px 12px;
+        font-size: 14px;
+        font-weight: 800;
+        color: #334155;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+      }
+      .zoom-button:hover { background: #f8fafc; }
+      .zoom-level {
+        min-width: 52px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 800;
+        color: #64748b;
+        font-variant-numeric: tabular-nums;
+      }
+      .graph-box { position: relative; touch-action: none; cursor: grab; }
+      .graph-box.panning { cursor: grabbing; }
+      .graph-box svg text { font-family: inherit; font-weight: 800; fill: #334155; pointer-events: none; }
+      .graph-tip {
+        position: absolute;
+        z-index: 6;
+        pointer-events: none;
+        width: max-content;
+        max-width: 300px;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        background: rgba(255,255,255,0.97);
+        box-shadow: 0 14px 30px rgba(15,23,42,0.16);
+        padding: 10px 12px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #334155;
+      }
+      .graph-tip .tip-head { font-size: 14px; font-weight: 900; color: #0f172a; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+      .graph-tip .tip-code { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+      .graph-tip .tip-tag {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 1px 8px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+      .graph-tip .tip-tag.start { background: #16a34a; }
+      .graph-tip .tip-tag.goal { background: #ef4444; }
+      .graph-tip .tip-tag.current { background: #0f172a; }
+      .graph-tip .tip-sub { margin-top: 3px; color: #64748b; }
+      .graph-tip .tip-boards { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+      .graph-tip .tip-board { width: 112px; }
+      .graph-tip .tip-arrow { font-size: 16px; font-weight: 900; color: #7c3aed; }
+      .graph-tip .mini-board-wrap { padding: 6px; border-radius: 12px; box-shadow: none; }
+      .graph-tip .mini-board { height: 62px; gap: 4px; }
+      .graph-tip .mini-peg { border-radius: 10px; }
+      .graph-tip .mini-base { left: 5px; right: 5px; bottom: 6px; height: 5px; }
+      .graph-tip .mini-pole { bottom: 10px; width: 5px; height: 42px; }
+      .graph-tip .mini-disk { height: 7px; }
+      .graph-tip .mini-label { margin-top: 4px; text-align: center; font-size: 11px; font-weight: 800; color: #0f172a; }
+      .graph-help { margin: 10px 0 0; font-size: 12px; line-height: 1.6; color: #64748b; }
       @media (max-width: 1060px) { .play-grid { grid-template-columns: 1fr; } }
       @media (max-width: 950px) {
         .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -579,6 +645,11 @@
         floatingLayer: document.getElementById('floating-layer'),
         graphBox: document.getElementById('graph-box'),
         graphMeta: document.getElementById('graph-meta'),
+        graphTip: document.getElementById('graph-tip'),
+        zoomIn: document.getElementById('graph-zoom-in'),
+        zoomOut: document.getElementById('graph-zoom-out'),
+        zoomReset: document.getElementById('graph-zoom-reset'),
+        zoomLevel: document.getElementById('graph-zoom-level'),
         statMoves: document.getElementById('stat-moves'),
         statMovesSub: document.getElementById('stat-moves-sub'),
         statTime: document.getElementById('stat-time'),
@@ -803,13 +874,15 @@
         };
       }
 
-      function miniBoardHTML(label) {
+      function miniBoardHTML(label, compact) {
         const pegs = labelToPegs(label);
+        const step = compact ? 8 : 13;
+        const base = compact ? 6 : 10;
         let html = `<div class='mini-board'>`;
         pegs.forEach(function (peg) {
           html += `<div class='mini-peg'><div class='mini-base'></div><div class='mini-pole'></div>`;
           peg.forEach(function (disk, idx) {
-            html += `<div class='mini-disk disk-${((disk - 1) % 6) + 1}' style='width:${diskWidthPercent(disk, label.length)}%; bottom:${10 + idx * 13}px;'></div>`;
+            html += `<div class='mini-disk disk-${((disk - 1) % 6) + 1}' style='width:${diskWidthPercent(disk, label.length)}%; bottom:${base + idx * step}px;'></div>`;
           });
           html += `</div>`;
         });
@@ -994,67 +1067,318 @@
         return graphCache[n];
       }
 
+      // ---------------------------------------------------------------- grafo interactivo
+      const GRAPH_W = 500, GRAPH_H = 500, GRAPH_PAD = 22, GRAPH_MAX_ZOOM = 40;
+      const layoutCache = {};
+      const gview = { x: 0, y: 0, w: GRAPH_W, h: GRAPH_H };     // ventana visible, en unidades del lienzo
+      const ghover = { pick: null, pinned: false, px: 0, py: 0 };
+      let graphFrame = null;
+
+      function graphLayout(n) {
+        if (layoutCache[n]) return layoutCache[n];
+        const graph = generateGraph(n);
+        const sx = (GRAPH_W - 2 * GRAPH_PAD) / (graph.xmax - graph.xmin || 1);
+        const sy = (GRAPH_H - 2 * GRAPH_PAD) / (graph.ymax - graph.ymin || 1);
+        const nodes = graph.nodes.map(function (nd) {
+          return { label: nd.label, x: GRAPH_PAD + (nd.x - graph.xmin) * sx, y: GRAPH_H - GRAPH_PAD - (nd.y - graph.ymin) * sy };
+        });
+        const byLabel = new Map(nodes.map(function (nd) { return [nd.label, nd]; }));
+        let minSpacing = Infinity;
+        const edges = graph.edges.map(function (e) {
+          const a = byLabel.get(e.from), b = byLabel.get(e.to);
+          minSpacing = Math.min(minSpacing, Math.hypot(b.x - a.x, b.y - a.y));
+          return { from: e.from, to: e.to, x1: a.x, y1: a.y, x2: b.x, y2: b.y };
+        });
+        layoutCache[n] = { nodes: nodes, edges: edges, byLabel: byLabel, minSpacing: minSpacing };
+        return layoutCache[n];
+      }
+
+      function baseNodeRadius() {
+        return state.numDisks <= 2 ? 4.2 : (state.numDisks <= 4 ? 2.6 : (state.numDisks === 5 ? 1.6 : 1.15));
+      }
+      function graphBoxWidth() { return els.graphBox.clientWidth || GRAPH_W; }
+      function pxPerUnit() { return graphBoxWidth() / gview.w; }
+      function zoomFactor() { return GRAPH_W / gview.w; }
+      function nodeRadiusPx() {
+        const layout = graphLayout(state.numDisks);
+        const r0 = baseNodeRadius() * (graphBoxWidth() / GRAPH_W);
+        return Math.max(r0, Math.min(r0 * zoomFactor(), 0.3 * layout.minSpacing * pxPerUnit(), 10));
+      }
+      function labelsVisible() { return graphLayout(state.numDisks).minSpacing * pxPerUnit() >= 6.2 * state.numDisks + 8; }   // sitio para etiquetas de n cifras
+
+      function clampView() {
+        gview.w = Math.min(GRAPH_W, Math.max(GRAPH_W / GRAPH_MAX_ZOOM, gview.w));
+        gview.h = gview.w * GRAPH_H / GRAPH_W;
+        gview.x = Math.min(GRAPH_W - gview.w, Math.max(0, gview.x));
+        gview.y = Math.min(GRAPH_H - gview.h, Math.max(0, gview.y));
+      }
+      function resetGraphView() { gview.x = 0; gview.y = 0; gview.w = GRAPH_W; gview.h = GRAPH_H; scheduleGraph(); }
+      function zoomGraphAt(factor, ux, uy) {
+        const w0 = gview.w;
+        const w1 = Math.min(GRAPH_W, Math.max(GRAPH_W / GRAPH_MAX_ZOOM, w0 / factor));
+        if (Math.abs(w1 - w0) < 1e-9) return false;
+        const k = w1 / w0;
+        gview.x = ux - (ux - gview.x) * k;
+        gview.y = uy - (uy - gview.y) * k;
+        gview.w = w1;
+        clampView();
+        scheduleGraph();
+        return true;
+      }
+      function panGraph(dxPx, dyPx) {
+        const k = pxPerUnit();
+        gview.x -= dxPx / k;
+        gview.y -= dyPx / k;
+        clampView();
+        scheduleGraph();
+      }
+      function scheduleGraph() {
+        if (graphFrame) return;
+        graphFrame = window.requestAnimationFrame(function () { graphFrame = null; renderGraph(); });
+      }
+
+      function graphPoint(e) {
+        const svg = els.graphBox.querySelector('svg');
+        const box = els.graphBox.getBoundingClientRect();
+        const r = svg ? svg.getBoundingClientRect() : box;
+        return {
+          ux: gview.x + ((e.clientX - r.left) / r.width) * gview.w,
+          uy: gview.y + ((e.clientY - r.top) / r.height) * gview.h,
+          px: e.clientX - box.left,
+          py: e.clientY - box.top
+        };
+      }
+      function segmentDistance(x, y, e) {
+        const dx = e.x2 - e.x1, dy = e.y2 - e.y1;
+        const L2 = dx * dx + dy * dy || 1;
+        const t = Math.max(0, Math.min(1, ((x - e.x1) * dx + (y - e.y1) * dy) / L2));
+        return Math.hypot(x - (e.x1 + t * dx), y - (e.y1 + t * dy));
+      }
+      function pickGraph(pt) {
+        const layout = graphLayout(state.numDisks);
+        const k = pxPerUnit();
+        let best = null, bestD = Infinity;
+        layout.nodes.forEach(function (nd) {
+          const d = Math.hypot(nd.x - pt.ux, nd.y - pt.uy) * k;
+          if (d < bestD) { bestD = d; best = nd; }
+        });
+        if (best && bestD <= Math.max(9, nodeRadiusPx() + 4)) return { type: 'node', node: best };
+        let bestE = null, bestDE = Infinity;
+        layout.edges.forEach(function (e) {
+          const d = segmentDistance(pt.ux, pt.uy, e) * k;
+          if (d < bestDE) { bestDE = d; bestE = e; }
+        });
+        if (bestE && bestDE <= 7) return { type: 'edge', edge: bestE };
+        return null;
+      }
+      function samePick(a, b) {
+        if (!a || !b || a.type !== b.type) return false;
+        return a.type === 'node' ? a.node.label === b.node.label : (a.edge.from === b.edge.from && a.edge.to === b.edge.to);
+      }
+      function edgeMove(edge) {
+        for (let i = 0; i < edge.from.length; i += 1) {
+          if (edge.from[i] !== edge.to[i]) return { disk: edge.from.length - i, a: edge.from[i], b: edge.to[i] };
+        }
+        return null;
+      }
+
+      function nodeTags(label) {
+        const tags = [];
+        if (label === currentStartLabel()) tags.push(`<span class='tip-tag start'>inicio</span>`);
+        if (label === currentGoalLabel()) tags.push(`<span class='tip-tag goal'>meta</span>`);
+        if (label === stateStringFromPegs()) tags.push(`<span class='tip-tag current'>posición actual</span>`);
+        return tags.join('');
+      }
+      function tipBoard(label) {
+        return `<div class='tip-board'><div class='mini-board-wrap'>${miniBoardHTML(label, true)}</div><div class='mini-label'>${label}</div></div>`;
+      }
+      function tooltipHTML(pick) {
+        if (pick.type === 'node') {
+          const label = pick.node.label;
+          return `<div class='tip-head'>Nodo <span class='tip-code'>${label}</span>${nodeTags(label)}</div>` +
+            `<div class='tip-sub'>Cada cifra es el poste de un disco, del mayor (${state.numDisks}) al menor (1).</div>` +
+            `<div class='tip-boards'>${tipBoard(label)}</div>`;
+        }
+        const mv = edgeMove(pick.edge);
+        const moveText = mv ? `Mueve el disco <strong>${mv.disk}</strong> entre los postes <strong>${mv.a}</strong> y <strong>${mv.b}</strong>.` : '';
+        return `<div class='tip-head'>Arista <span class='tip-code'>${pick.edge.from}</span> – <span class='tip-code'>${pick.edge.to}</span></div>` +
+          `<div class='tip-sub'>${moveText}</div>` +
+          `<div class='tip-boards'>${tipBoard(pick.edge.from)}<span class='tip-arrow'>&#8596;</span>${tipBoard(pick.edge.to)}</div>`;
+      }
+
+      function renderGraphHover() {
+        const layer = els.graphBox.querySelector('#graph-hover');
+        const tip = els.graphTip;
+        if (!layer || !tip) return;
+        const pick = ghover.pick;
+        if (!pick) { layer.innerHTML = ''; tip.style.display = 'none'; return; }
+        const k = pxPerUnit();
+        const rU = nodeRadiusPx() / k;
+        const ring = function (x, y) {
+          return `<circle cx='${x}' cy='${y}' r='${rU + 3.5 / k}' fill='none' stroke='#7c3aed' stroke-width='2.4' vector-effect='non-scaling-stroke'></circle>`;
+        };
+        if (pick.type === 'node') {
+          layer.innerHTML = ring(pick.node.x, pick.node.y);
+        } else {
+          const e = pick.edge;
+          layer.innerHTML = `<line x1='${e.x1}' y1='${e.y1}' x2='${e.x2}' y2='${e.y2}' stroke='#7c3aed' stroke-width='5' stroke-linecap='round' opacity='0.9' vector-effect='non-scaling-stroke'></line>` + ring(e.x1, e.y1) + ring(e.x2, e.y2);
+        }
+        tip.innerHTML = tooltipHTML(pick);
+        tip.style.display = 'block';
+        const boxW = els.graphBox.clientWidth, boxH = els.graphBox.clientHeight;
+        let left = ghover.px + 16, top = ghover.py + 16;
+        if (left + tip.offsetWidth > boxW - 6) left = Math.max(6, ghover.px - 16 - tip.offsetWidth);
+        if (top + tip.offsetHeight > boxH - 6) top = Math.max(6, ghover.py - 16 - tip.offsetHeight);
+        tip.style.left = `${left}px`;
+        tip.style.top = `${top}px`;
+      }
+      function setGraphHover(pick, pt, pinned) {
+        ghover.pick = pick;
+        ghover.pinned = !!(pick && pinned);
+        if (pt) { ghover.px = pt.px; ghover.py = pt.py; }
+        renderGraphHover();
+      }
+
       function renderGraph() {
-        const graph = generateGraph(state.numDisks);
-        const width = 500;
-        const height = 500;
-        const pad = 22;
-        const sx = (width - 2 * pad) / (graph.xmax - graph.xmin || 1);
-        const sy = (height - 2 * pad) / (graph.ymax - graph.ymin || 1);
-        const mapX = function (x) { return pad + (x - graph.xmin) * sx; };
-        const mapY = function (y) { return height - pad - (y - graph.ymin) * sy; };
+        const layout = graphLayout(state.numDisks);
+        clampView();
+        const k = pxPerUnit();
+        const z = zoomFactor();
         const currentState = state.pathStates[state.pathStates.length - 1] || stateStringFromPegs();
         const startState = currentStartLabel();
         const goalState = currentGoalLabel();
         const playerPath = state.pathStates.slice();
         const optimalPath = state.showOptimalGraphPath ? currentOptimalPath() : [];
-        const nodeRadius = state.numDisks <= 2 ? 4.2 : (state.numDisks <= 4 ? 2.6 : (state.numDisks === 5 ? 1.6 : 1.15));
-        const currentRadius = nodeRadius + 1.4;
-        const nodeMap = new Map(graph.nodes.map(function (n) { return [n.label, n]; }));
+        const rU = nodeRadiusPx() / k;
+        const markU = rU + 1.4 / k;
+        const showLabels = labelsVisible();
+        const fontU = 9.5 / k;
+        const margin = 12 / k;
+        const inView = function (x, y) {
+          return x >= gview.x - margin && x <= gview.x + gview.w + margin && y >= gview.y - margin && y <= gview.y + gview.h + margin;
+        };
         const parts = [];
-        parts.push(`<svg viewBox='0 0 ${width} ${height}' aria-label='Grafo del juego'>`);
-        parts.push(`<rect x='0' y='0' width='100%' height='100%' fill='#ffffff'></rect>`);
-        graph.edges.forEach(function (edge) {
-          const from = nodeMap.get(edge.from);
-          const to = nodeMap.get(edge.to);
-          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#cbd5e1' stroke-width='1.15'></line>`);
+        parts.push(`<svg viewBox='${gview.x} ${gview.y} ${gview.w} ${gview.h}' role='img' aria-label='Grafo del juego'>`);
+        parts.push(`<rect x='${gview.x}' y='${gview.y}' width='${gview.w}' height='${gview.h}' fill='#ffffff'></rect>`);
+        layout.edges.forEach(function (e) {
+          parts.push(`<line x1='${e.x1}' y1='${e.y1}' x2='${e.x2}' y2='${e.y2}' stroke='#cbd5e1' stroke-width='1.15' vector-effect='non-scaling-stroke'></line>`);
         });
         for (let i = 1; i < optimalPath.length; i += 1) {
-          const from = nodeMap.get(optimalPath[i - 1]);
-          const to = nodeMap.get(optimalPath[i]);
+          const from = layout.byLabel.get(optimalPath[i - 1]);
+          const to = layout.byLabel.get(optimalPath[i]);
           if (!from || !to) continue;
-          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#f59e0b' stroke-width='6.2' stroke-linecap='round' opacity='0.96'></line>`);
+          parts.push(`<line x1='${from.x}' y1='${from.y}' x2='${to.x}' y2='${to.y}' stroke='#f59e0b' stroke-width='6.2' stroke-linecap='round' opacity='0.96' vector-effect='non-scaling-stroke'></line>`);
         }
         for (let i = 1; i < playerPath.length; i += 1) {
-          const from = nodeMap.get(playerPath[i - 1]);
-          const to = nodeMap.get(playerPath[i]);
+          const from = layout.byLabel.get(playerPath[i - 1]);
+          const to = layout.byLabel.get(playerPath[i]);
           if (!from || !to) continue;
-          parts.push(`<line x1='${mapX(from.x)}' y1='${mapY(from.y)}' x2='${mapX(to.x)}' y2='${mapY(to.y)}' stroke='#7c3aed' stroke-width='3.6' stroke-linecap='round'></line>`);
+          parts.push(`<line x1='${from.x}' y1='${from.y}' x2='${to.x}' y2='${to.y}' stroke='#7c3aed' stroke-width='3.6' stroke-linecap='round' vector-effect='non-scaling-stroke'></line>`);
         }
-        graph.nodes.forEach(function (node) {
-          const cx = mapX(node.x);
-          const cy = mapY(node.y);
-          parts.push(`<circle cx='${cx}' cy='${cy}' r='${nodeRadius}' fill='#ffffff' stroke='#334155' stroke-width='1.1'></circle>`);
+        layout.nodes.forEach(function (node) {
+          if (!inView(node.x, node.y)) return;
+          const cx = node.x, cy = node.y;
+          parts.push(`<circle cx='${cx}' cy='${cy}' r='${rU}' fill='#ffffff' stroke='#334155' stroke-width='1.1' vector-effect='non-scaling-stroke'></circle>`);
           if (node.label === startState) {
-            parts.push(`<circle cx='${cx}' cy='${cy}' r='${currentRadius}' fill='#16a34a' stroke='#16a34a' stroke-width='1.8'></circle>`);
+            parts.push(`<circle cx='${cx}' cy='${cy}' r='${markU}' fill='#16a34a' stroke='#16a34a' stroke-width='1.8' vector-effect='non-scaling-stroke'></circle>`);
           }
           if (node.label === goalState) {
-            const r = currentRadius;
-            const p1 = `${cx},${cy - r}`;
-            const p2 = `${cx - 0.92 * r},${cy + 0.68 * r}`;
-            const p3 = `${cx + 0.92 * r},${cy + 0.68 * r}`;
-            parts.push(`<polygon points='${p1} ${p2} ${p3}' fill='#ef4444' stroke='#ef4444' stroke-width='1.7'></polygon>`);
+            const r = markU;
+            parts.push(`<polygon points='${cx},${cy - r} ${cx - 0.92 * r},${cy + 0.68 * r} ${cx + 0.92 * r},${cy + 0.68 * r}' fill='#ef4444' stroke='#ef4444' stroke-width='1.7' vector-effect='non-scaling-stroke'></polygon>`);
           }
           if (node.label === currentState) {
-            parts.push(`<circle cx='${cx}' cy='${cy}' r='${currentRadius}' fill='#0f172a' stroke='#0f172a' stroke-width='2'></circle>`);
+            parts.push(`<circle cx='${cx}' cy='${cy}' r='${markU}' fill='#0f172a' stroke='#0f172a' stroke-width='2' vector-effect='non-scaling-stroke'></circle>`);
+          }
+          if (showLabels) {
+            parts.push(`<text x='${cx}' y='${cy - markU - 3 / k}' font-size='${fontU}' text-anchor='middle'>${node.label}</text>`);
           }
         });
+        parts.push(`<g id='graph-hover'></g>`);
         parts.push(`</svg>`);
         els.graphBox.innerHTML = parts.join('');
+        if (els.graphTip) els.graphBox.appendChild(els.graphTip);
+        if (els.zoomLevel) els.zoomLevel.textContent = `×${z >= 10 ? z.toFixed(0) : z.toFixed(1)}`;
+        renderGraphHover();
         els.graphMeta.innerHTML = state.challengeMode
           ? `Grafo <strong>H(${state.numDisks},3)</strong> · inicio <strong>${startState}</strong> · meta <strong>${goalState}</strong> · recorrido del jugador <strong>${Math.max(state.pathStates.length - 1, 0)}</strong> arista(s) · una ruta óptima ${state.showOptimalGraphPath ? '<strong>visible</strong>' : '<strong>oculta</strong>'}.`
           : `Grafo <strong>H(${state.numDisks},3)</strong> · inicio <strong>${startState}</strong> · meta <strong>${goalState}</strong> · recorrido del jugador <strong>${Math.max(state.pathStates.length - 1, 0)}</strong> arista(s) · ruta óptima ${state.showOptimalGraphPath ? '<strong>visible</strong>' : '<strong>oculta</strong>'}.`;
       }
+
+      // ---------------------------------------------------------------- interacción con el grafo: puntero, arrastre, rueda y pinza
+      const gpointers = new Map();
+      let gpan = null;     // { moved, lastX, lastY, pinch }
+      els.graphBox.addEventListener('pointerdown', function (e) {
+        if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+        els.graphBox.setPointerCapture(e.pointerId);
+        gpointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (gpointers.size === 1) {
+          gpan = { moved: false, lastX: e.clientX, lastY: e.clientY, startX: e.clientX, startY: e.clientY, pinch: 0 };
+        } else if (gpointers.size === 2) {
+          const a = Array.from(gpointers.values());
+          gpan = gpan || { moved: true, lastX: 0, lastY: 0, startX: 0, startY: 0, pinch: 0 };
+          gpan.pinch = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
+          gpan.moved = true;
+        }
+      });
+      els.graphBox.addEventListener('pointermove', function (e) {
+        if (gpointers.has(e.pointerId)) {
+          const prev = gpointers.get(e.pointerId);
+          const dx = e.clientX - prev.x, dy = e.clientY - prev.y;
+          gpointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (!gpan) return;
+          if (gpointers.size === 2) {
+            const a = Array.from(gpointers.values());
+            const d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
+            const mid = { clientX: (a[0].x + a[1].x) / 2, clientY: (a[0].y + a[1].y) / 2 };
+            const pt = graphPoint(mid);
+            if (gpan.pinch > 0 && d > 0) zoomGraphAt(d / gpan.pinch, pt.ux, pt.uy);
+            gpan.pinch = d;
+            panGraph(dx / 2, dy / 2);
+            gpan.moved = true;
+            return;
+          }
+          if (!gpan.moved && Math.hypot(e.clientX - gpan.startX, e.clientY - gpan.startY) > 4) {
+            gpan.moved = true;
+            els.graphBox.classList.add('panning');
+            setGraphHover(null);
+          }
+          if (gpan.moved) panGraph(dx, dy);
+          return;
+        }
+        if (e.pointerType !== 'mouse') return;
+        const pt = graphPoint(e);
+        const pick = pickGraph(pt);
+        if (ghover.pinned && (!pick || samePick(pick, ghover.pick))) return;   // una etiqueta fijada se mantiene hasta señalar otro elemento
+        setGraphHover(pick, pt, false);
+      });
+      function graphPointerEnd(e) {
+        if (!gpointers.has(e.pointerId)) return;
+        gpointers.delete(e.pointerId);
+        if (gpointers.size > 0) { if (gpan) gpan.pinch = 0; return; }
+        const pan = gpan; gpan = null;
+        els.graphBox.classList.remove('panning');
+        if (pan && !pan.moved) {
+          const pt = graphPoint(e);
+          const pick = pickGraph(pt);
+          if (pick && ghover.pinned && samePick(pick, ghover.pick)) setGraphHover(null);
+          else setGraphHover(pick, pt, true);
+        }
+      }
+      els.graphBox.addEventListener('pointerup', graphPointerEnd);
+      els.graphBox.addEventListener('pointercancel', graphPointerEnd);
+      els.graphBox.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'mouse' && !ghover.pinned && !gpan) setGraphHover(null);
+      });
+      els.graphBox.addEventListener('wheel', function (e) {
+        const pt = graphPoint(e);
+        const changed = zoomGraphAt(Math.exp(-e.deltaY * 0.0015), pt.ux, pt.uy);
+        if (changed) { e.preventDefault(); setGraphHover(null); }
+      }, { passive: false });
+      els.graphBox.addEventListener('dblclick', function (e) { e.preventDefault(); resetGraphView(); setGraphHover(null); });
+      els.zoomIn.addEventListener('click', function () { zoomGraphAt(1.6, gview.x + gview.w / 2, gview.y + gview.h / 2); });
+      els.zoomOut.addEventListener('click', function () { zoomGraphAt(1 / 1.6, gview.x + gview.w / 2, gview.y + gview.h / 2); });
+      els.zoomReset.addEventListener('click', function () { resetGraphView(); setGraphHover(null); });
+      window.addEventListener('resize', scheduleGraph);
 
       function renderSuccess() {
         if (!state.solved) {
@@ -1082,6 +1406,8 @@
       }
 
       function startNormalGame(nextDisks) {
+        setGraphHover(null);
+        if (nextDisks !== state.numDisks) resetGraphView();
         state.numDisks = nextDisks;
         state.pegs = buildInitialPegs(nextDisks);
         state.moves = 0;
@@ -1104,6 +1430,8 @@
       }
 
       function startChallengeGame(nextDisks) {
+        setGraphHover(null);
+        if (nextDisks !== state.numDisks) resetGraphView();
         state.numDisks = nextDisks;
         state.challengeMode = true;
         state.showOptimalGraphPath = false;
@@ -1227,8 +1555,7 @@
     });</script>
 </head>
 <body>
-  <div class="container-fluid">
-    <div id="hanoi-app" class="app-shell">
+  <div id="hanoi-app" class="app-shell">
       <div class="hero-card">
         <div class="badge">&#10022; Torres de Hanoi interactivo</div>
         <h1 class="hero-title">El Juego de las Torres de Hanoi</h1>
@@ -1314,15 +1641,21 @@
             <div class="section-icon">&#128279;</div>
             <div>
               <h2 class="section-title">Grafo del juego</h2>
-              <p class="section-subtitle">El caminito violeta muestra tus jugadas. En modo reto puedes superponer también una ruta óptima sobre el grafo.</p>
+              <p class="section-subtitle">El camino violeta muestra tus jugadas. En modo reto puedes superponer también una ruta óptima sobre el grafo. Acerca el grafo para leer las etiquetas de los nodos.</p>
             </div>
           </div>
           <div class="graph-shell">
-            <div class="challenge-actions" style="margin-top:0; margin-bottom:10px;">
+            <div class="graph-toolbar">
               <button id="graph-route-btn" class="control-button">Mostrar una ruta óptima</button>
+              <div class="zoom-group" role="group" aria-label="Zoom del grafo">
+                <button id="graph-zoom-out" class="zoom-button" type="button" aria-label="Alejar">&minus;</button>
+                <span id="graph-zoom-level" class="zoom-level">×1.0</span>
+                <button id="graph-zoom-in" class="zoom-button" type="button" aria-label="Acercar">+</button>
+                <button id="graph-zoom-reset" class="zoom-button" type="button">Vista completa</button>
+              </div>
             </div>
             <div id="graph-meta" class="graph-meta"></div>
-            <div id="graph-box" class="graph-box"></div>
+            <div id="graph-box" class="graph-box" aria-label="Grafo interactivo del juego"><div id="graph-tip" class="graph-tip" style="display:none;"></div></div>
             <div class="legend-row">
               <div class="legend-chip">
                 <span class="legend-dot" style="background:#7c3aed;"></span>
@@ -1345,10 +1678,10 @@
                 meta
               </div>
             </div>
+            <p class="graph-help">Al pasar el puntero por un nodo se muestra su configuración y, por una arista, los dos nodos que une y el disco que se mueve; en pantallas táctiles, basta con tocarlos. Rueda, pinza o botones: acercar y alejar. Arrastrar: desplazar la vista. Doble clic: vista completa.</p>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </body>
 </html>
