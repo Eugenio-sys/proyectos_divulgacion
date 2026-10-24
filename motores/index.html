@@ -112,10 +112,15 @@ canvas.plot { width: 100%; height: 150px; display: block; border: 1px solid var(
 select { font-family: var(--font-body); font-size: 13px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); max-width: 100%; }
 .hud.gear .big.small { font-size: 44px; }
 .hud.gear .lbl.small { font-size: 14px; }
-@media (max-width: 900px) { header.top { align-items: flex-start; flex-direction: column; } nav.tabs { align-self: stretch; } nav.tabs button { flex: 1; } }
+.top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+button.toggle.theme { white-space: nowrap; padding: 8px 12px; }
+@media (max-width: 900px) { header.top { align-items: flex-start; flex-direction: column; } .top-actions { align-self: stretch; } nav.tabs { flex: 1; } nav.tabs button { flex: 1; } }
 </style>
 </head>
 <body>
+<script>
+(function () { try { const t = localStorage.getItem('caja-motor-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+</script>
 
 <div class="app">
   <header class="top">
@@ -123,11 +128,14 @@ select { font-family: var(--font-body); font-size: 13px; padding: 6px 8px; borde
       <h1>Caja de cambios y motor V16</h1>
       <p>Simulador cinemático de una caja Technic de seis velocidades, de un motor de dieciséis cilindros y del conjunto acoplado.</p>
     </div>
-    <nav class="tabs" role="tablist" aria-label="Vistas del simulador">
-      <button type="button" role="tab" data-tab="caja" aria-selected="true" id="tabbtn-caja">Caja de cambios</button>
-      <button type="button" role="tab" data-tab="motor" aria-selected="false" id="tabbtn-motor">Motor V16</button>
-      <button type="button" role="tab" data-tab="acople" aria-selected="false" id="tabbtn-acople">Acoplamiento</button>
-    </nav>
+    <div class="top-actions">
+      <nav class="tabs" role="tablist" aria-label="Vistas del simulador">
+        <button type="button" role="tab" data-tab="caja" aria-selected="true" id="tabbtn-caja">Caja de cambios</button>
+        <button type="button" role="tab" data-tab="motor" aria-selected="false" id="tabbtn-motor">Motor V16</button>
+        <button type="button" role="tab" data-tab="acople" aria-selected="false" id="tabbtn-acople">Acoplamiento</button>
+      </nav>
+      <button type="button" class="toggle theme" id="theme-btn" aria-pressed="false" aria-label="Cambiar entre modo diurno y modo nocturno">Modo nocturno</button>
+    </div>
   </header>
 
   <!-- ============================================================ TAB 1: GEARBOX -->
@@ -174,6 +182,7 @@ select { font-family: var(--font-body); font-size: 13px; padding: 6px 8px; borde
       <section class="block">
         <h2>Visualización</h2>
         <label class="check"><input type="checkbox" id="g-chk-active"> Resaltar el tren de transmisión activo</label>
+        <label class="check"><input type="checkbox" id="g-chk-edges" checked> Contornos de las piezas</label>
         <div class="row"><label for="g-frame-op">Opacidad del bastidor</label><output id="g-frame-op-out" for="g-frame-op">100 %</output></div>
         <input type="range" id="g-frame-op" min="5" max="100" step="5" value="100" aria-label="Opacidad del bastidor">
         <div class="views">
@@ -258,6 +267,7 @@ select { font-family: var(--font-body); font-size: 13px; padding: 6px 8px; borde
         <div class="row"><label for="m-frame-op">Opacidad del bastidor</label><output id="m-frame-op-out" for="m-frame-op">100 %</output></div>
         <input type="range" id="m-frame-op" min="5" max="100" step="5" value="100" aria-label="Opacidad del bastidor">
         <label class="check"><input type="checkbox" id="m-chk-cyl"> Resaltar el cilindro observado</label>
+        <label class="check"><input type="checkbox" id="m-chk-edges" checked> Contornos de las piezas</label>
         <div class="views">
           <button type="button" data-view="iso">Vista isométrica</button><button type="button" data-view="front">Desde la hélice</button><button type="button" data-view="top">Vista superior</button><button type="button" data-view="side">Vista lateral</button>
         </div>
@@ -321,6 +331,7 @@ select { font-family: var(--font-body); font-size: 13px; padding: 6px 8px; borde
       <section class="block">
         <h2>Visualización</h2>
         <label class="check"><input type="checkbox" id="a-chk-active"> Resaltar el tren de transmisión activo</label>
+        <label class="check"><input type="checkbox" id="a-chk-edges" checked> Contornos de las piezas</label>
         <div class="row"><label for="a-cyl-op">Opacidad de los cilindros</label><output id="a-cyl-op-out" for="a-cyl-op">100 %</output></div>
         <input type="range" id="a-cyl-op" min="5" max="100" step="5" value="100" aria-label="Opacidad de los cilindros">
         <div class="row"><label for="a-frame-op">Opacidad de los bastidores</label><output id="a-frame-op-out" for="a-frame-op">100 %</output></div>
@@ -498,10 +509,23 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 const pmrem = new THREE.PMREMGenerator(renderer);
 const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 const floorMat = new THREE.MeshStandardMaterial({ color: 0xc9d0d7, roughness: 0.95, metalness: 0 });
-function syncTheme() { const v = getComputedStyle(document.documentElement).getPropertyValue('--floor').trim(); if (v) floorMat.color.set(v); }
+function isDark() {
+  const t = document.documentElement.getAttribute('data-theme');
+  if (t === 'dark') return true; if (t === 'light') return false;
+  try { return matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { return false; }
+}
+function syncTheme() {
+  const v = getComputedStyle(document.documentElement).getPropertyValue('--floor').trim(); if (v) floorMat.color.set(v);
+  const d = isDark(), b = $('theme-btn'); b.setAttribute('aria-pressed', String(d)); b.textContent = d ? 'Modo diurno' : 'Modo nocturno';
+}
 syncTheme();
 try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme); } catch (e) {}
 new MutationObserver(syncTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+$('theme-btn').addEventListener('click', () => {
+  const next = isDark() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('caja-motor-tema', next); } catch (e) {}
+});
 
 function makeScene(floorY) {
   const scene = new THREE.Scene(); scene.environment = envTex;
@@ -550,6 +574,7 @@ function setMaterials(it, kind, opacity) {
   }
   it.lines.material = lineMaterial(it.lines.userData.code, (kind === 'dim' || opacity < 0.5) ? 'dim' : 'solid');
 }
+function setEdges(instances, on) { for (const it of instances) it.lines.visible = on; }
 const tA = new THREE.Matrix4(), tB = new THREE.Matrix4(), tC = new THREE.Matrix4();
 
 // ================================================================ gearbox mechanism
@@ -702,6 +727,7 @@ let activeTab = null;
   $('g-dir-fwd').addEventListener('click', () => setDir(1)); $('g-dir-rev').addEventListener('click', () => setDir(-1));
   $('g-frame-op').addEventListener('input', (e) => { s.frameOpacity = +e.target.value / 100; $('g-frame-op-out').value = e.target.value + ' %'; gb.applyHighlight(); });
   $('g-chk-active').addEventListener('change', (e) => { s.highlight = e.target.checked; gb.applyHighlight(); });
+  $('g-chk-edges').addEventListener('change', (e) => setEdges(gb.instances, e.target.checked));
   $('g-btn-pause').addEventListener('click', () => { s.paused = !s.paused; $('g-btn-pause').setAttribute('aria-pressed', String(s.paused)); $('g-btn-pause').textContent = s.paused ? 'Reanudar' : 'Pausa'; });
   document.querySelectorAll('#tab-caja .views button').forEach((b) => b.addEventListener('click', () => setView(ctx, b.dataset.view)));
   ctx.onKey = (e) => {
@@ -742,6 +768,7 @@ let activeTab = null;
   $('m-cyl-op').addEventListener('input', (e) => { s.cylOpacity = +e.target.value / 100; $('m-cyl-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('m-frame-op').addEventListener('input', (e) => { s.frameOpacity = +e.target.value / 100; $('m-frame-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('m-chk-cyl').addEventListener('change', (e) => { s.highlight = e.target.checked; eng.applyDisplay(); });
+  $('m-chk-edges').addEventListener('change', (e) => setEdges(eng.instances, e.target.checked));
   cylSel.addEventListener('change', (e) => { s.watch = +e.target.value; eng.applyDisplay(); });
   document.querySelectorAll('#tab-motor .views button').forEach((b) => b.addEventListener('click', () => setView(ctx, b.dataset.view)));
   ctx.onKey = (e) => {
@@ -825,6 +852,7 @@ let activeTab = null;
   $('a-dir-fwd').addEventListener('click', () => setDir(1)); $('a-dir-rev').addEventListener('click', () => setDir(-1));
   $('a-btn-pause').addEventListener('click', () => { s.paused = !s.paused; $('a-btn-pause').setAttribute('aria-pressed', String(s.paused)); $('a-btn-pause').textContent = s.paused ? 'Reanudar' : 'Pausa'; });
   $('a-chk-active').addEventListener('change', (e) => { s.highlight = e.target.checked; gb.applyHighlight(); });
+  $('a-chk-edges').addEventListener('change', (e) => { setEdges(gb.instances, e.target.checked); setEdges(eng.instances, e.target.checked); });
   $('a-cyl-op').addEventListener('input', (e) => { es.cylOpacity = +e.target.value / 100; $('a-cyl-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('a-frame-op').addEventListener('input', (e) => { const v = +e.target.value / 100; s.frameOpacity = v; es.frameOpacity = v; $('a-frame-op-out').value = e.target.value + ' %'; gb.applyHighlight(); eng.applyDisplay(); });
   document.querySelectorAll('#tab-acople .views button').forEach((b) => b.addEventListener('click', () => setView(ctx, b.dataset.view)));
@@ -888,6 +916,10 @@ function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
   const ctx = activeTab; if (!ctx) return;
   ctx.update(dt);
+  // outlines fade out when a Technic module (20 LDU) spans only a few pixels, so a distant model does not turn into a grey haze
+  const dCam = ctx.camera.position.distanceTo(ctx.center); const pxMod = (canvas.clientHeight / 2) / (dCam * Math.tan(ctx.camera.fov * Math.PI / 360)) * 20;
+  const edgeOp = Math.max(0, Math.min(1, (pxMod - 4) / 7));
+  for (const k in matCache) if (k.charCodeAt(0) === 76 && k.endsWith(':solid')) { const m = matCache[k]; m.transparent = true; m.opacity = edgeOp; m.visible = edgeOp > 0.02; }
   ctx.controls.update(); renderer.render(ctx.scene, ctx.camera);
   uiClock += dt; if (uiClock >= 0.1) { uiClock = 0; ctx.readouts(); }
 }
