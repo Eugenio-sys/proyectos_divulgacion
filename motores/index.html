@@ -119,7 +119,7 @@ button.toggle.theme { white-space: nowrap; padding: 8px 12px; }
 </head>
 <body>
 <script>
-(function () { try { const t = localStorage.getItem('caja-motor-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+(function () { let t = null; try { t = localStorage.getItem('caja-motor-tema'); } catch (e) {} document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : 'dark'); })();   // modo nocturno por defecto; la elección del usuario se recuerda
 </script>
 
 <div class="app">
@@ -182,7 +182,7 @@ button.toggle.theme { white-space: nowrap; padding: 8px 12px; }
       <section class="block">
         <h2>Visualización</h2>
         <label class="check"><input type="checkbox" id="g-chk-active"> Resaltar el tren de transmisión activo</label>
-        <label class="check"><input type="checkbox" id="g-chk-edges" checked> Contornos de las piezas</label>
+        <label class="check"><input type="checkbox" id="g-chk-edges"> Contornos de las piezas</label>
         <div class="row"><label for="g-frame-op">Opacidad del bastidor</label><output id="g-frame-op-out" for="g-frame-op">100 %</output></div>
         <input type="range" id="g-frame-op" min="5" max="100" step="5" value="100" aria-label="Opacidad del bastidor">
         <div class="views">
@@ -267,7 +267,7 @@ button.toggle.theme { white-space: nowrap; padding: 8px 12px; }
         <div class="row"><label for="m-frame-op">Opacidad del bastidor</label><output id="m-frame-op-out" for="m-frame-op">100 %</output></div>
         <input type="range" id="m-frame-op" min="5" max="100" step="5" value="100" aria-label="Opacidad del bastidor">
         <label class="check"><input type="checkbox" id="m-chk-cyl"> Resaltar el cilindro observado</label>
-        <label class="check"><input type="checkbox" id="m-chk-edges" checked> Contornos de las piezas</label>
+        <label class="check"><input type="checkbox" id="m-chk-edges"> Contornos de las piezas</label>
         <div class="views">
           <button type="button" data-view="iso">Vista isométrica</button><button type="button" data-view="front">Desde la hélice</button><button type="button" data-view="top">Vista superior</button><button type="button" data-view="side">Vista lateral</button>
         </div>
@@ -331,7 +331,7 @@ button.toggle.theme { white-space: nowrap; padding: 8px 12px; }
       <section class="block">
         <h2>Visualización</h2>
         <label class="check"><input type="checkbox" id="a-chk-active"> Resaltar el tren de transmisión activo</label>
-        <label class="check"><input type="checkbox" id="a-chk-edges" checked> Contornos de las piezas</label>
+        <label class="check"><input type="checkbox" id="a-chk-edges"> Contornos de las piezas</label>
         <div class="row"><label for="a-cyl-op">Opacidad de los cilindros</label><output id="a-cyl-op-out" for="a-cyl-op">100 %</output></div>
         <input type="range" id="a-cyl-op" min="5" max="100" step="5" value="100" aria-label="Opacidad de los cilindros">
         <div class="row"><label for="a-frame-op">Opacidad de los bastidores</label><output id="a-frame-op-out" for="a-frame-op">100 %</output></div>
@@ -727,6 +727,7 @@ let activeTab = null;
   $('g-dir-fwd').addEventListener('click', () => setDir(1)); $('g-dir-rev').addEventListener('click', () => setDir(-1));
   $('g-frame-op').addEventListener('input', (e) => { s.frameOpacity = +e.target.value / 100; $('g-frame-op-out').value = e.target.value + ' %'; gb.applyHighlight(); });
   $('g-chk-active').addEventListener('change', (e) => { s.highlight = e.target.checked; gb.applyHighlight(); });
+  setEdges(gb.instances, false);
   $('g-chk-edges').addEventListener('change', (e) => setEdges(gb.instances, e.target.checked));
   $('g-btn-pause').addEventListener('click', () => { s.paused = !s.paused; $('g-btn-pause').setAttribute('aria-pressed', String(s.paused)); $('g-btn-pause').textContent = s.paused ? 'Reanudar' : 'Pausa'; });
   document.querySelectorAll('#tab-caja .views button').forEach((b) => b.addEventListener('click', () => setView(ctx, b.dataset.view)));
@@ -769,6 +770,7 @@ let activeTab = null;
   $('m-cyl-op').addEventListener('input', (e) => { s.cylOpacity = +e.target.value / 100; $('m-cyl-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('m-frame-op').addEventListener('input', (e) => { s.frameOpacity = +e.target.value / 100; $('m-frame-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('m-chk-cyl').addEventListener('change', (e) => { s.highlight = e.target.checked; eng.applyDisplay(); });
+  setEdges(eng.instances, false);
   $('m-chk-edges').addEventListener('change', (e) => setEdges(eng.instances, e.target.checked));
   cylSel.addEventListener('change', (e) => { s.watch = +e.target.value; eng.applyDisplay(); });
   document.querySelectorAll('#tab-motor .views button').forEach((b) => b.addEventListener('click', () => setView(ctx, b.dataset.view)));
@@ -853,6 +855,7 @@ let activeTab = null;
   $('a-dir-fwd').addEventListener('click', () => setDir(1)); $('a-dir-rev').addEventListener('click', () => setDir(-1));
   $('a-btn-pause').addEventListener('click', () => { s.paused = !s.paused; $('a-btn-pause').setAttribute('aria-pressed', String(s.paused)); $('a-btn-pause').textContent = s.paused ? 'Reanudar' : 'Pausa'; });
   $('a-chk-active').addEventListener('change', (e) => { s.highlight = e.target.checked; gb.applyHighlight(); });
+  setEdges(gb.instances, false); setEdges(eng.instances, false);
   $('a-chk-edges').addEventListener('change', (e) => { setEdges(gb.instances, e.target.checked); setEdges(eng.instances, e.target.checked); });
   $('a-cyl-op').addEventListener('input', (e) => { es.cylOpacity = +e.target.value / 100; $('a-cyl-op-out').value = e.target.value + ' %'; eng.applyDisplay(); });
   $('a-frame-op').addEventListener('input', (e) => { const v = +e.target.value / 100; s.frameOpacity = v; es.frameOpacity = v; $('a-frame-op-out').value = e.target.value + ' %'; gb.applyHighlight(); eng.applyDisplay(); });

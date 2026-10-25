@@ -136,7 +136,7 @@ input[type=range]:disabled{opacity:.4}
         <button class="btn" id="vtr">Trazador</button>
         <button class="btn" id="vcnt">Contador</button>
       </div>
-      <div class="row" style="justify-content:flex-start;gap:8px;margin-top:12px"><input type="checkbox" id="edges" checked style="width:auto;margin:0"><label for="edges" style="color:var(--ink)">Contornos de las piezas</label></div>
+      <div class="row" style="justify-content:flex-start;gap:8px;margin-top:12px"><input type="checkbox" id="edges" style="width:auto;margin:0"><label for="edges" style="color:var(--ink)">Contornos de las piezas</label></div>
       <p class="consts" style="margin-top:12px">Botón izquierdo o derecho: girar la cámara. Botón central (rueda pulsada) o dos dedos: desplazarla. Rueda o pinza: acercar.</p>
     </section>
 
@@ -323,7 +323,7 @@ renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmi
 const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(36, 1, 0.5, 600);
 function isDark(){ const t=document.documentElement.getAttribute('data-theme'); if(t==='dark') return true; if(t==='light') return false; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
 function syncThemeBtn(){ const b=document.getElementById('themeBtn'); if(!b) return; const d=isDark(); b.setAttribute('aria-pressed', String(d)); b.textContent=d?'Modo diurno':'Modo nocturno'; b.classList.toggle('active', d); }
-(function(){ try{ const saved=localStorage.getItem('planimetro-tema'); if(saved==='dark'||saved==='light') document.documentElement.setAttribute('data-theme', saved); }catch(e){} })();
+(function(){ let saved=null; try{ saved=localStorage.getItem('planimetro-tema'); }catch(e){} document.documentElement.setAttribute('data-theme', (saved==='dark'||saved==='light')? saved : 'dark'); })();   // modo nocturno por defecto; la elección del usuario se recuerda
 let tableMat=null;
 function applyTheme(){ scene.background=null; if(tableMat) tableMat.color.set(isDark()?0x1F2429:0xC9D0D7).convertSRGBToLinear(); }
 applyTheme(); syncThemeBtn(); if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ applyTheme(); syncThemeBtn(); }); }catch(e){} }
@@ -385,7 +385,7 @@ function edgeMatFor(color, alpha){ const key=color.join(',')+'|'+alpha; if(edgeM
   let c; if(alpha!==undefined && alpha<1) c=new THREE.Color(color[0]*0.66, color[1]*0.66, color[2]*0.66);   // piezas translúcidas: tono oscuro del propio color
   else c= lum<0.2? new THREE.Color(0x808080) : new THREE.Color(0x333333);                                   // gris medio en las piezas negras, gris oscuro en las demás
   const m=new THREE.LineBasicMaterial({color:c.convertSRGBToLinear(), transparent:true, opacity:1}); edgeMats[key]=m; return m; }
-const edgeState={on:true};
+const edgeState={on:false};
 function fadeEdges(){ // los contornos se atenúan cuando un módulo Technic (0,315 in) ocupa pocos píxeles
   const d=camera.position.distanceTo(carriage.position); const pxPerIn=(renderer.domElement.clientHeight/2)/(d*Math.tan(camera.fov*Math.PI/360)); const pxMod=pxPerIn*0.315;
   const op=Math.max(0, Math.min(1, (pxMod-2)/(5-2))); const vis=edgeState.on && op>0.02;
