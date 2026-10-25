@@ -716,7 +716,7 @@ let activeTab = null;
 {
   const ctx = makeScene(-3); const gb = createGearbox(ctx.root);
   ctx.center = new THREE.Vector3(78, 98, -38);
-  ctx.views = { iso: { dir: [0.62, 0.42, 0.95], R: 222 }, front: { dir: [0.02, 0.12, 1], R: 215 }, top: { dir: [0.0001, 1, 0.0001], R: 205 }, side: { dir: [1, 0.18, 0.02], R: 200 } };
+  ctx.views = { iso: { dir: [-0.64, 0.44, 0.64], R: 222 }, front: { dir: [0.02, 0.12, 1], R: 215 }, top: { dir: [0.0001, 1, 0.0001], R: 205 }, side: { dir: [1, 0.18, 0.02], R: 200 } };
   ctx.viewport = $('vp-caja'); ctx.gb = gb;
   const s = gb.state;
   const ORD = ['N', '1.ª', '2.ª', '3.ª', '4.ª', '5.ª', '6.ª'], LBL = ['Punto muerto', 'Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
@@ -741,9 +741,9 @@ let activeTab = null;
   ctx.readouts = () => {
     const rpmIn = Math.abs(s.omegaIn) * 60 / (2 * Math.PI), rpmOut = Math.abs(s.omegaOut) * 60 / (2 * Math.PI); const g = s.gear, eng = s.engaged;
     $('g-hud-gear').textContent = ORD[g]; $('g-hud-gear-lbl').textContent = LBL[g];
-    $('g-hud-in').textContent = fmt(rpmIn, 0) + ' rpm'; $('g-hud-out').textContent = fmt(rpmOut, 0) + ' rpm';
+    $('g-hud-in').textContent = fmt(rpmIn, 2) + ' rpm'; $('g-hud-out').textContent = fmt(rpmOut, 2) + ' rpm';
     $('g-hud-i').textContent = eng ? gb.RATIO_TXT[eng] + ' (' + fmt(gb.RATIO[eng], 3) + ')' : (rpmOut > 0.5 ? 'inercia' : '0');
-    $('g-r-in').textContent = fmt(rpmIn, 1) + ' rpm'; $('g-r-out').textContent = fmt(rpmOut, 1) + ' rpm';
+    $('g-r-in').textContent = fmt(rpmIn, 2) + ' rpm'; $('g-r-out').textContent = fmt(rpmOut, 2) + ' rpm';
     $('g-r-i').textContent = eng ? gb.RATIO_TXT[eng] + ' = ' + fmt(gb.RATIO[eng], 3) : '—'; $('g-r-red').textContent = eng ? fmt(1 / gb.RATIO[eng], 3) : '—';
     $('g-r-dir').textContent = eng ? 'contrario al motor' : (rpmOut > 0.5 ? 'contrario al motor (en inercia)' : '—');
     $('g-r-ring').textContent = eng ? 'R' + gb.ringOf(eng) + (gb.sideOf(eng) > 0 ? ' → lado del motor' : ' → lado de la hélice') : (s.anim || s.queue.length ? 'cambiando…' : 'ninguno');
@@ -756,7 +756,8 @@ let activeTab = null;
 {
   const ctx = makeScene(-78); const eng = createEngine(ctx.root);
   ctx.center = new THREE.Vector3(116, 4, 230);
-  ctx.views = { iso: { dir: [0.75, 0.45, 0.9], R: 235 }, front: { dir: [1, 0.1, 0.0001], R: 150 }, top: { dir: [0.0001, 1, 0.0001], R: 230 }, side: { dir: [0.0001, 0.25, 1], R: 230 } };
+  { const turn = new THREE.Group(); turn.rotation.y = Math.PI; turn.position.set(2 * 116, 0, 2 * 230); ctx.scene.remove(ctx.root); turn.add(ctx.root); ctx.scene.add(turn); }   // media vuelta sobre el centro: el motor queda como en el conjunto acoplado, con la hélice hacia -x
+  ctx.views = { iso: { dir: [-0.64, 0.44, 0.64], R: 235 }, front: { dir: [-1, 0.1, 0.0001], R: 150 }, top: { dir: [0.0001, 1, 0.0001], R: 230 }, side: { dir: [0.0001, 0.25, 1], R: 230 } };
   ctx.viewport = $('vp-motor'); ctx.eng = eng;
   const s = eng.state; const run = { rpm: 60, dir: -1, omega: 0, theta: 0, paused: false };
   const cylSel = $('m-cyl-sel');
@@ -840,7 +841,7 @@ let activeTab = null;
   ctx.root.add(engGroup);
   const eng = createEngine(engGroup);
   ctx.center = new THREE.Vector3(-80, 75, -40);
-  ctx.views = { iso: { dir: [0.55, 0.45, 0.95], R: 375 }, front: { dir: [-1, 0.12, 0.0001], R: 170 }, top: { dir: [0.0001, 1, 0.0001], R: 330 }, side: { dir: [0.0001, 0.22, 1], R: 330 } };
+  ctx.views = { iso: { dir: [-0.64, 0.44, 0.64], R: 375 }, front: { dir: [-1, 0.12, 0.0001], R: 170 }, top: { dir: [0.0001, 1, 0.0001], R: 330 }, side: { dir: [0.0001, 0.22, 1], R: 330 } };
   ctx.viewport = $('vp-acople'); ctx.gb = gb; ctx.eng = eng;
   const s = gb.state, es = eng.state;
   const ORD = ['N', '1.ª', '2.ª', '3.ª', '4.ª', '5.ª', '6.ª'], LBL = ['Punto muerto', 'Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
@@ -868,12 +869,12 @@ let activeTab = null;
     const rpmIn = Math.abs(s.omegaIn) * 60 / (2 * Math.PI), rpmOut = Math.abs(s.omegaOut) * 60 / (2 * Math.PI), rpmCrank = rpmOut * CP.ratio_engine;
     const g = s.gear, eng_ = s.engaged;
     $('a-hud-gear').textContent = ORD[g]; $('a-hud-gear-lbl').textContent = LBL[g];
-    $('a-hud-in').textContent = fmt(rpmIn, 0) + ' rpm'; $('a-hud-out').textContent = fmt(rpmOut, 0) + ' rpm'; $('a-hud-crank').textContent = fmt(rpmCrank, 0) + ' rpm';
+    $('a-hud-in').textContent = fmt(rpmIn, 2) + ' rpm'; $('a-hud-out').textContent = fmt(rpmOut, 2) + ' rpm'; $('a-hud-crank').textContent = fmt(rpmCrank, 2) + ' rpm';
     $('a-hud-i').textContent = eng_ ? TOT_TXT[eng_] + ' (' + fmt(gb.RATIO[eng_] * CP.ratio_engine, 3) + ')' : (rpmOut > 0.5 ? 'inercia' : '0');
-    $('a-r-in').textContent = fmt(rpmIn, 1) + ' rpm'; $('a-r-out').textContent = fmt(rpmOut, 1) + ' rpm';
+    $('a-r-in').textContent = fmt(rpmIn, 2) + ' rpm'; $('a-r-out').textContent = fmt(rpmOut, 2) + ' rpm';
     $('a-r-i').textContent = eng_ ? gb.RATIO_TXT[eng_] + ' = ' + fmt(gb.RATIO[eng_], 3) : '—';
     $('a-r-tot').textContent = eng_ ? TOT_TXT[eng_] + ' = ' + fmt(gb.RATIO[eng_] * CP.ratio_engine, 3) : '—';
-    $('a-r-crank').textContent = fmt(rpmCrank, 1) + ' rpm';
+    $('a-r-crank').textContent = fmt(rpmCrank, 2) + ' rpm';
     // propeller sense seen from the propeller (engine +x end = gearbox -x end): world rate about gearbox +x is -0.6*omegaOut;
     // a viewer at the -x end sees a positive rotation about +x as clockwise
     const wWorld = -CP.ratio_engine * s.omegaOut;
