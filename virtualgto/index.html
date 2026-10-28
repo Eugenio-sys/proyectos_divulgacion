@@ -30,7 +30,7 @@
 <main class="wrap">
 <nav class="uveg-tabs" role="tablist" aria-label="Tipo de mensaje"><button id="avisos-tab" type="button" role="tab" aria-controls="avisos-panel" aria-selected="true" tabindex="0">Avisos del módulo</button><button id="weekly-tab" type="button" role="tab" aria-controls="weekly-panel" aria-selected="false" tabindex="-1">Seguimiento semanal</button><button id="retro-tab" type="button" role="tab" aria-controls="retro-panel" aria-selected="false" tabindex="-1">Retroalimentaciones</button></nav>
 <section id="avisos-panel" role="tabpanel" aria-labelledby="avisos-tab">
-<p class="intro">Elige la fecha de inicio del módulo. Tus avisos se actualizan con sus cronogramas, reunión y cierre. Copia el título y el HTML por separado para publicarlos en el aula.</p>
+<p class="intro">Elige la fecha de inicio del módulo. Tus avisos se actualizan con sus cronogramas, reunión y cierre. Copia el título por separado y elige cómo pegar el mensaje en el aula.</p>
 <section class="panel avisos-setup">
  <div class="avisos-date-row">
   <div><label for="avisos-start">Fecha de inicio del módulo</label><input id="avisos-start" type="date" min="2000-01-01" max="2100-12-31"><p class="source-info">Selecciona el lunes de inicio.</p></div>
@@ -83,9 +83,11 @@
    <iframe id="avisos-preview" title="Vista previa del aviso del módulo" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
    <div id="avisos-message-errors" class="retro-errors" role="status" aria-live="polite"></div>
    <details id="avisos-code-details"><summary>Ver el código HTML para copiar</summary><label for="avisos-code" class="sr-only">HTML del aviso</label><textarea id="avisos-code" readonly rows="9" spellcheck="false"></textarea></details>
-   <div class="buttons"><button id="avisos-copy-html" type="button" class="primary">Copiar HTML</button></div>
+   <div class="buttons"><button id="avisos-copy-html" type="button" class="primary">Copiar HTML</button><button id="avisos-copy-text" type="button">Copiar texto</button><button id="avisos-copy-rich" type="button">Copiar con formato</button></div>
+   <textarea id="avisos-plain" readonly hidden aria-label="Texto del aviso"></textarea>
    <p id="avisos-copy-status" class="source-info" role="status" aria-live="polite"></p>
-   <p class="source-info">Pega el título en el asunto del aviso y el HTML en el modo de código del editor. La página prepara los mensajes; tú eliges cuándo publicarlos.</p>
+   <div id="avisos-rich-fallback" hidden aria-label="Mensaje con formato para copiar manualmente"></div>
+   <p class="source-info">Pega el título en el asunto del aviso. Usa <b>Copiar con formato</b> y pega normalmente en el editor de Moodle; <b>Copiar HTML</b> sirve para el modo de código y <b>Copiar texto</b> para pegar sin diseño. Tú eliges cuándo publicarlo.</p>
   </section>
  </div>
 </div>
@@ -208,10 +210,11 @@
   <iframe id="retro-preview" title="Vista previa de la retroalimentación individual" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
   <div id="retro-errors" class="retro-errors" role="status" aria-live="polite"></div>
   <details id="retro-code-details"><summary>Ver el código HTML para copiar</summary><label for="retro-code" class="sr-only">HTML de la retroalimentación</label><textarea id="retro-code" readonly spellcheck="false" rows="9"></textarea></details>
-  <div class="buttons"><button id="retro-copy-html" class="primary" type="button">Copiar HTML</button><button id="retro-copy-text" type="button">Copiar texto</button></div>
+  <div class="buttons"><button id="retro-copy-html" class="primary" type="button">Copiar HTML</button><button id="retro-copy-text" type="button">Copiar texto</button><button id="retro-copy-rich" type="button">Copiar con formato</button></div>
   <textarea id="retro-plain" readonly hidden aria-label="Texto de la retroalimentación"></textarea>
   <p id="retro-copy-status" class="source-info" role="status" aria-live="polite"></p>
-  <p class="source-info">Pega el HTML en el modo de código del editor del aula virtual. Si el filtro matemático está activo, las expresiones entre <code>\(</code> y <code>\)</code> se dibujarán allí. La página prepara el mensaje; no publica calificaciones ni envía correos.</p>
+  <div id="retro-rich-fallback" hidden aria-label="Retroalimentación con formato para copiar manualmente"></div>
+  <p class="source-info">Usa <b>Copiar con formato</b> y pega normalmente en el editor de Moodle; <b>Copiar HTML</b> sirve para el modo de código y <b>Copiar texto</b> para pegar sin diseño. Si el filtro matemático está activo, las expresiones entre <code>\(</code> y <code>\)</code> se dibujarán allí. La página prepara el mensaje; no publica calificaciones ni envía correos.</p>
  </section>
  <section class="panel">
   <details style="margin:0;padding:0;border:0"><summary>Precisiones incorporadas a los textos</summary>
@@ -693,6 +696,95 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
 })(typeof window!=='undefined'?window:globalThis);
 
 </script>
+<script id="uveg-rich-copy">
+(() => {
+ 'use strict';
+ // Keep the original HTML export intact. Only rich copy gets the compatibility attributes.
+ function color(value){
+  const rgb=value.match(/^rgba?\(\s*(\d+)[, ]+\s*(\d+)[, ]+\s*(\d+)/i);
+  return rgb?'#'+rgb.slice(1).map(n=>Number(n).toString(16).padStart(2,'0')).join(''):value;
+ }
+ function prepare(html){
+  const holder=document.createElement('div');holder.innerHTML=html;
+  const outer=holder.firstElementChild;
+  if(outer?.tagName==='DIV'&&outer.style.backgroundColor){
+   const table=document.createElement('table'),cell=table.insertRow().insertCell();
+   table.setAttribute('role','presentation');table.setAttribute('width','100%');table.setAttribute('cellpadding','12');
+   table.setAttribute('bgcolor',color(outer.style.backgroundColor));table.style.cssText=outer.style.cssText;
+   table.style.width='100%';table.style.padding='0';table.style.borderCollapse='collapse';
+   if(outer.lang)table.lang=outer.lang;
+   cell.style.padding=outer.style.padding;cell.style.border='0';cell.setAttribute('align','center');
+   while(outer.firstChild)cell.appendChild(outer.firstChild);outer.replaceWith(table);
+  }
+  for(const node of holder.querySelectorAll('table,td,th,p,h1,h2,h3,div')){
+   if(/^(TABLE|TD|TH)$/.test(node.tagName)&&node.style.backgroundColor)node.setAttribute('bgcolor',color(node.style.backgroundColor));
+   if(node.style.textAlign)node.setAttribute('align',node.style.textAlign);
+   if(/^(TD|TH)$/.test(node.tagName)&&node.style.verticalAlign)node.setAttribute('valign',node.style.verticalAlign);
+   if(node.tagName==='TABLE'){
+    if(!node.hasAttribute('border'))node.setAttribute('border','0');
+    if(!node.hasAttribute('cellspacing'))node.setAttribute('cellspacing','0');
+    if(node.style.width)node.setAttribute('width',node.style.width);
+    const pads=[...node.querySelectorAll('td,th')].filter(cell=>cell.closest('table')===node).map(cell=>parseFloat(cell.style.paddingTop)).filter(n=>n>0);
+    if(pads.length)node.setAttribute('cellpadding',String(Math.round(Math.min(...pads))));
+   }
+  }
+  const walker=document.createTreeWalker(holder,NodeFilter.SHOW_TEXT),nodes=[];
+  while(walker.nextNode())if(walker.currentNode.nodeValue.trim())nodes.push(walker.currentNode);
+  for(const node of nodes){
+   const values={};let bold=false,italic=false;
+   for(let parent=node.parentElement;parent&&parent!==holder;parent=parent.parentElement){
+    for(const key of ['color','fontSize','fontFamily','fontWeight','fontStyle'])if(!values[key]&&parent.style[key])values[key]=parent.style[key];
+    if(/^(STRONG|B)$/.test(parent.tagName))bold=true;
+    if(/^(EM|I)$/.test(parent.tagName))italic=true;
+   }
+   const font=document.createElement('font');
+   font.setAttribute('face',(values.fontFamily||'Arial, Helvetica, sans-serif').replace(/["']/g,''));
+   if(values.color){font.setAttribute('color',color(values.color));font.style.setProperty('color',values.color,'important');}
+   if(values.fontSize){const n=parseFloat(values.fontSize);font.setAttribute('size',String(n<=11?1:n<=14?2:n<=16?3:n<=20?4:n<=26?5:n<=36?6:7));font.style.fontSize=values.fontSize;}
+   node.replaceWith(font);let target=font;
+   if(!bold&&(values.fontWeight==='bold'||Number(values.fontWeight)>=600)){const strong=document.createElement('strong');target.appendChild(strong);target=strong;}
+   if(!italic&&values.fontStyle==='italic'){const em=document.createElement('em');target.appendChild(em);target=em;}
+   target.appendChild(node);
+  }
+  return holder.innerHTML;
+ }
+ function plainText(html){
+  const holder=document.createElement('div');holder.innerHTML=html;
+  function visit(node){
+   if(node.nodeType===Node.TEXT_NODE)return node.nodeValue;
+   if(node.nodeType!==Node.ELEMENT_NODE)return '';
+   if(node.tagName==='BR')return '\n';
+   let text=[...node.childNodes].map(visit).join('');
+   if(node.tagName==='A'&&node.getAttribute('href')!==text.trim())text+=' ('+node.getAttribute('href')+')';
+   if(node.tagName==='LI'){const siblings=[...node.parentElement.children].filter(child=>child.tagName==='LI');text=(node.parentElement.tagName==='OL'?(siblings.indexOf(node)+1)+'. ':'• ')+text.trim()+'\n';}
+   else if(/^(TD|TH)$/.test(node.tagName))text+='\t';
+   else if(node.tagName==='TR')text+='\n';
+   else if(/^(P|DIV|H[1-6]|UL|OL|TABLE)$/.test(node.tagName))text+='\n\n';
+   return text;
+  }
+  return visit(holder).replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+ }
+ function clear(host){host.hidden=true;host.replaceChildren();}
+ async function copy(html,text,host){
+  clear(host);const formatted=prepare(html);
+  try{
+   if(navigator.clipboard?.write&&typeof ClipboardItem!=='undefined'){
+    await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([formatted],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]);
+    return {copied:true,selected:false};
+   }
+  }catch{}
+  host.innerHTML=formatted;host.hidden=false;
+  const selection=window.getSelection();let selected=false,copied=false;
+  if(selection){const range=document.createRange();range.selectNodeContents(host);selection.removeAllRanges();selection.addRange(range);selected=true;
+   try{copied=document.execCommand('copy');}catch{}
+  }
+  if(copied)clear(host);
+  return {copied,selected};
+ }
+ function resultText(result){return result.copied?'Mensaje copiado con formato. Pégalo normalmente en Moodle.':result.selected?'El mensaje con formato quedó seleccionado debajo. Pulsa Ctrl+C o Command+C, o elige Copiar en tu dispositivo.':'Selecciona el mensaje que aparece debajo y elige Copiar.';}
+ window.UvegRichCopy={prepare,plainText,copy,clear,resultText};
+})();
+</script>
 <script id="uveg-retro-ui">
 (() => {
  'use strict';
@@ -705,8 +797,9 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
  function changed(template=false){state.revision++;if(template)state.dirty=true;feedback('');render();}
  function updateSaveState(){const node=el('retro-save-state');node.className='save-state'+(!state.dirty&&!state.storageWarning?' saved':'');node.textContent=state.storageWarning||(state.dirty?'Cambiaste los textos o los enlaces. Pulsa Guardar textos y enlaces para conservarlos.':'Textos disponibles. Guarda o exporta tus ajustes cuando los edites.');}
  function readDraft(){return {name:state.name,mode:state.mode,timely:state.timely,useLink:state.useLink,extra:state.extra,selected:state.selected};}
- function render(){
-  const report=C.makeMessage(current(),state.settings,readDraft());state.message=report;
+  function render(){
+   window.UvegRichCopy.clear(el('retro-rich-fallback'));
+   const report=C.makeMessage(current(),state.settings,readDraft());state.message=report;
   el('retro-observations-panel').hidden=state.mode!=='review';
   setText('retro-count',report.count+' '+(report.count===1?'seleccionada':'seleccionadas'));
   setText('retro-preview-label',state.mode==='correct'?'Entrega correcta':'Requiere ajustes');
@@ -714,7 +807,7 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
   el('retro-preview').srcdoc=C.documentHtml(report.preview);
   el('retro-code').value=report.html;el('retro-plain').value=report.text;
   el('retro-errors').replaceChildren();for(const message of report.errors.slice(0,5)){const p=document.createElement('p');p.textContent=message;el('retro-errors').appendChild(p);}
-  el('retro-copy-html').disabled=report.errors.length>0;el('retro-copy-text').disabled=report.errors.length>0;
+   el('retro-copy-html').disabled=report.errors.length>0;el('retro-copy-text').disabled=report.errors.length>0;el('retro-copy-rich').disabled=report.errors.length>0;
   el('retro-add').disabled=current().observations.length>=60;
   el('retro-select-all').disabled=!current().observations.length;el('retro-clear').disabled=!state.selected.length;
   updateSaveState();
@@ -790,6 +883,16 @@ Con el valor aproximado \(Z=2.74\), se rechaza la igualdad de medias al nivel \(
   feedback(ok?(revision===state.revision?(kind==='html'?'HTML':'Texto')+' copiado. Ya puedes pegarlo en el aula virtual.':'El mensaje cambió durante la copia. Vuelve a copiar la versión actual.'):'El navegador no permitió copiar. El texto está seleccionado: pulsa Ctrl+C o Command+C.');
  }
  el('retro-copy-html').addEventListener('click',()=>copy('html'));el('retro-copy-text').addEventListener('click',()=>copy('text'));
+  let richBusy=false;
+  el('retro-copy-rich').addEventListener('click',async()=>{
+   if(richBusy||!state.message||state.message.errors.length)return;
+   richBusy=true;const revision=state.revision,host=el('retro-rich-fallback');feedback('Copiando…');
+   try{
+    const result=await window.UvegRichCopy.copy(state.message.html,state.message.text,host);
+    if(revision!==state.revision){window.UvegRichCopy.clear(host);feedback('El mensaje cambió durante la copia. Vuelve a copiar la versión actual.');}
+    else feedback(window.UvegRichCopy.resultText(result));
+   }catch{feedback('No se pudo copiar el mensaje. Vuelve a intentarlo.');}finally{richBusy=false;}
+  });
  function activate(index){if(window.UvegTabs)window.UvegTabs.activate(index+1);}
  try{const stored=window.localStorage.getItem(key);if(stored){const data=C.parseConfiguration(stored);state.activities=data.activities;state.settings=data.settings;}}catch{state.storageWarning='No se pudieron recuperar los textos guardados. Puedes importar un respaldo.';}
  window.UvegRetro={state,current,render,renderObservations,configuration,switchActivity,move,remove,activate,save};
@@ -935,7 +1038,7 @@ window.UvegAvisosTemplates=[{"id":"pe-01","course":"pe","week":1,"code":"1.1","t
  function saveStatus(){text('save-status',state.saveMessage||(state.dirty?'Hay cambios sin guardar en tus ajustes o textos.':'Los textos están listos. Guarda tus cambios para conservarlos.'));el('save-status').className='save-state'+(!state.dirty?' saved':'');}
  function clearCopy(){text('copy-status','');state.revision++;}
  function changed(){state.dirty=true;state.saveMessage='';clearCopy();render();}
- function copyEnabled(value){el('copy-title').disabled=!value;el('copy-html').disabled=!value;}
+ function copyEnabled(value){for(const id of ['copy-title','copy-html','copy-text','copy-rich'])el(id).disabled=!value;}
  function errorBox(id,errors){el(id).replaceChildren();for(const item of errors.slice(0,5)){const p=document.createElement('p');p.textContent=item;el(id).appendChild(p);}}
  function renderCalendar(){
   el('custom-wrap').hidden=state.mode!=='custom';
@@ -951,9 +1054,10 @@ window.UvegAvisosTemplates=[{"id":"pe-01","course":"pe","week":1,"code":"1.1","t
   const prefix=state.course;text('meeting-summary','Reunión: '+A.format(cal.meeting)+' · '+A.time(state.settings[prefix+'Start'])+' a '+A.time(state.settings[prefix+'End'])+' · Ciudad de México.');
  }
  function render(){
+  window.UvegRichCopy.clear(el('rich-fallback'));el('plain').hidden=true;el('plain').value='';
   saveStatus();errorBox('date-error',[]);errorBox('message-errors',[]);state.message=null;copyEnabled(false);
   try{renderCalendar();}catch(error){errorBox('date-error',[error.message]);text('end-date','Revisa la fecha o los horarios');text('end-time','');el('periods').replaceChildren();text('meeting-summary','');text('calendar-note','');el('copy-title-value').value=current().title;el('code').value='';el('preview').srcdoc=R.documentHtml('<p style="padding:28px;font:16px/1.7 Arial;">'+A.esc(error.message)+'</p>');return;}
-  try{const report=A.makeMessage(current(),state.settings,state.calendar,state.numberTitle);state.message=report;el('copy-title-value').value=report.title;el('code').value=report.html;el('preview').srcdoc=R.documentHtml(report.preview);errorBox('message-errors',report.errors);copyEnabled(!report.errors.length);}catch(error){errorBox('message-errors',[error.message]);el('code').value='';}
+  try{const report=A.makeMessage(current(),state.settings,state.calendar,state.numberTitle);state.message=report;el('copy-title-value').value=report.title;el('code').value=report.html;el('plain').value=window.UvegRichCopy.plainText(report.html);el('preview').srcdoc=R.documentHtml(report.preview);errorBox('message-errors',report.errors);copyEnabled(!report.errors.length);}catch(error){errorBox('message-errors',[error.message]);el('code').value='';}
   const items=visible(),index=items.findIndex(m=>m.id===state.selected);text('position','Semana '+current().week+' · Aviso '+(index+1)+' de '+items.length);el('prev').disabled=index<=0;el('next').disabled=index<0||index===items.length-1;
   text('source-note',current().note);el('source-note').hidden=!current().note;
  }
@@ -987,12 +1091,22 @@ window.UvegAvisosTemplates=[{"id":"pe-01","course":"pe","week":1,"code":"1.1","t
  el('import').addEventListener('click',()=>el('file').click());
  el('file').addEventListener('change',async()=>{const file=el('file').files?.[0];if(!file)return;el('import').disabled=true;try{if(file.size>1000000)throw Error('El archivo supera 1 MB.');const data=A.parseConfig(await file.text());if(!confirm('¿Reemplazar la fecha, los horarios y los textos de Avisos del módulo con este respaldo?'))return;for(const key of ['start','mode','custom','settings','templates','numberTitle'])state[key]=data[key];state.dirty=true;populateSettings();filter();save();}catch(e){state.saveMessage='No se importó el respaldo: '+e.message;saveStatus();}finally{el('file').value='';el('import').disabled=false;}});
  async function copy(kind){
-  if(!state.message||state.message.errors.length)return;const field=el(kind==='title'?'copy-title-value':'code'),value=field.value,revision=state.revision;let ok=false;
+  if(!state.message||state.message.errors.length)return;const field=el(kind==='title'?'copy-title-value':kind==='text'?'plain':'code'),value=field.value,revision=state.revision;let ok=false;
   try{if(navigator.clipboard){await navigator.clipboard.writeText(value);ok=true;}}catch{}
-  if(!ok){if(kind==='html')el('code-details').open=true;field.focus();field.select();field.setSelectionRange(0,value.length);try{ok=document.execCommand('copy');}catch{}}
-  text('copy-status',ok?(revision===state.revision?(kind==='title'?'Título':'HTML')+' copiado.':'El mensaje cambió durante la copia. Copia de nuevo la versión actual.'):'El texto quedó seleccionado. Pulsa Ctrl+C o Command+C para copiarlo.');
+  if(!ok){if(kind==='html')el('code-details').open=true;field.hidden=false;field.focus();field.select();field.setSelectionRange(0,value.length);try{ok=document.execCommand('copy');}catch{}if(ok&&kind==='text')field.hidden=true;}
+  text('copy-status',ok?(revision===state.revision?(kind==='title'?'Título':kind==='text'?'Texto':'HTML')+' copiado.':'El mensaje cambió durante la copia. Copia de nuevo la versión actual.'):'El texto quedó seleccionado. Pulsa Ctrl+C o Command+C para copiarlo.');
  }
- el('copy-title').addEventListener('click',()=>copy('title'));el('copy-html').addEventListener('click',()=>copy('html'));
+ el('copy-title').addEventListener('click',()=>copy('title'));el('copy-html').addEventListener('click',()=>copy('html'));el('copy-text').addEventListener('click',()=>copy('text'));
+ let richBusy=false;
+ el('copy-rich').addEventListener('click',async()=>{
+  if(richBusy||!state.message||state.message.errors.length)return;
+  richBusy=true;const revision=state.revision,host=el('rich-fallback');text('copy-status','Copiando…');
+  try{
+   const result=await window.UvegRichCopy.copy(state.message.html,el('plain').value,host);
+   if(revision!==state.revision){window.UvegRichCopy.clear(host);text('copy-status','El mensaje cambió durante la copia. Copia de nuevo la versión actual.');}
+   else text('copy-status',window.UvegRichCopy.resultText(result));
+  }catch{text('copy-status','No se pudo copiar el mensaje. Vuelve a intentarlo.');}finally{richBusy=false;}
+ });
  try{const raw=window.localStorage.getItem(KEY);if(raw){const data=A.parseConfig(raw);for(const key of ['start','mode','custom','settings','templates','numberTitle'])state[key]=data[key];state.saveMessage='Se recuperaron tus ajustes y textos guardados.';}}catch{state.saveMessage='No se pudieron recuperar los ajustes. Se muestran los avisos originales; puedes importar un respaldo.';}
  window.UvegAvisos={state,current,visible,select,render,configuration,save,filter};
  populateSettings();populateEditor();renderList();render();
