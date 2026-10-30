@@ -1,0 +1,27 @@
+INFOGRAFÍAS «MOTOR V16 CON CAJA DE 6 VELOCIDADES» — ARCHIVOS EDITABLES
+
+Contenido
+  infografia_caja.html       Caja de cambios: cómo se forma la relación de cada marcha.
+  infografia_acoplado.html   Conjunto acoplado (motor eléctrico, caja y motor V16): relación total hasta el cigüeñal.
+  img/                       Imágenes de los modelos (PNG con fondo transparente, 1300 × 1000 px los paneles;
+                             las vistas generales, 2145 × 1399 y 1923 × 1374 px).
+  fonts/                     Fuentes: Barlow Semi Condensed (títulos), IBM Plex Sans (texto) e IBM Plex Mono (fórmulas).
+
+Cómo editar
+  Los archivos .html se abren con cualquier editor de texto. Cada bloque de la página está en su propio grupo de
+  líneas, en el mismo orden en que se lee: encabezado, «Así funciona» (imagen con marcadores y leyenda), «La regla»
+  (franja gris con las fórmulas), los seis paneles de marchas y el pie de página. Los estilos van en línea, junto a
+  cada elemento. Las posiciones de los marcadores numerados sobre la imagen general están en porcentajes (left, top).
+
+  La página mide 816 × 1056 px (carta a 96 ppp) con 40 px de margen interior; el contenido actual lo ocupa por
+  completo, así que, si un texto se alarga una línea, el pie de página puede salirse del margen. Conviene revisar la
+  vista previa de impresión después de cada cambio.
+
+  Para sustituir una imagen, basta con guardar el nuevo PNG con el mismo nombre en img/.
+
+Cómo obtener el PDF (texto vectorial, imágenes a resolución completa)
+  1. Abrir el archivo .html en Chrome o Edge.
+  2. Imprimir (Ctrl+P o Cmd+P).
+  3. Destino: «Guardar como PDF». Tamaño de papel: Carta. Márgenes: Ninguno. Escala: 100 %.
+  4. En «Más ajustes», activar «Gráficos de fondo».
+  5. Guardar.
