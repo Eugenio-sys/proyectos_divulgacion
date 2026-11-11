@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="claro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultados de competencia PRIML</title>
+<style>
+:root {
+  --papel: #EEF1F7;
+  --superficie: #FFFFFF;
+  --marca: #17235A;
+  --sobre-marca: #FFFFFF;
+  --titulo: #17235A;
+  --texto: #141B36;
+  --texto-suave: #55607F;
+  --linea: #CBD3E4;
+  --linea-fuerte: #8E9AB8;
+  --cab-tabla: #E4E9F5;
+  --fila-alt: #F6F8FC;
+  --oro: #C9962B;
+  --oro-suave: #F7ECCD;
+  --plata: #A9B2C4;
+  --bronce: #A7673A;
+  --sobre-bronce: #FFFFFF;
+  --alerta: #B3261E;
+  --alerta-suave: #FBE9E7;
+  --ok: #1E7A4F;
+  --enlace: #1E3A9A;
+  --foco: #17235A;
+  --f-num: "Bahnschrift", "DIN Alternate", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-texto: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+[data-tema="noche"] {
+  --papel: #0B1029;
+  --superficie: #131A3E;
+  --marca: #24338A;
+  --titulo: #DDE3FF;
+  --texto: #E6EAF8;
+  --texto-suave: #A4ADCC;
+  --linea: #2A3468;
+  --linea-fuerte: #4C5890;
+  --cab-tabla: #1B2452;
+  --fila-alt: #171F48;
+  --oro: #E3B34C;
+  --oro-suave: #3A3113;
+  --plata: #AEB7CB;
+  --bronce: #C98852;
+  --sobre-bronce: #1B1300;
+  --alerta: #FF8A80;
+  --alerta-suave: #4A1B1B;
+  --ok: #2F8F62;
+  --enlace: #B9C6FF;
+  --foco: #E3B34C;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--papel); color: var(--texto); font: 15px/1.45 var(--f-texto); }
+h1, h2, h3, h4 { font-family: var(--f-num); color: var(--titulo); margin: 0; font-weight: 600; letter-spacing: .01em; }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--enlace); }
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+.tenue { color: var(--texto-suave); }
+
+/* Cabecera */
+.cabecera { background: var(--marca); color: var(--sobre-marca); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding: 14px 22px 12px; border-bottom: 4px solid var(--oro); }
+.cabecera h1 { color: var(--sobre-marca); font-size: 1.6rem; line-height: 1.1; }
+.cabecera p { margin: 3px 0 0; font-size: .82rem; opacity: .82; }
+.herramientas { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cabecera :focus-visible { outline-color: #FFFFFF; }
+.btn-cab { background: transparent; color: var(--sobre-marca); border: 1px solid rgba(255,255,255,.5); border-radius: 4px; padding: 5px 11px; cursor: pointer; }
+.btn-cab:hover:not(:disabled) { background: rgba(255,255,255,.16); }
+.btn-cab:disabled { opacity: .4; cursor: default; }
+.interruptor { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.guardado { font-size: .8rem; opacity: .88; margin-right: 6px; width: 27em; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.guardado.mal { background: #B3261E; color: #FFFFFF; padding: 3px 8px; border-radius: 4px; opacity: 1; text-align: center; }
+
+/* Pestañas */
+.pestanas { display: flex; gap: 2px; padding: 0 14px; background: var(--superficie); border-bottom: 1px solid var(--linea); overflow-x: auto; }
+.pestanas a { display: inline-flex; align-items: baseline; gap: 7px; padding: 11px 13px 8px; text-decoration: none; color: var(--texto-suave); border-bottom: 3px solid transparent; white-space: nowrap; font-family: var(--f-num); font-size: 1.04rem; }
+.pestanas a:hover { color: var(--titulo); }
+.pestanas a.activa { color: var(--titulo); border-bottom-color: var(--oro); font-weight: 600; }
+.et { font-size: .72rem; padding: 1px 7px; border-radius: 9px; background: var(--papel); color: var(--texto-suave); font-family: var(--f-texto); font-weight: 400; }
+.et.ok { background: var(--ok); color: #FFFFFF; }
+.et.alerta { background: var(--oro); color: #1B1300; }
+
+main { padding: 20px 22px 70px; max-width: 1500px; margin: 0 auto; }
+.encabezado-vista { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 34px; margin-bottom: 14px; }
+.encabezado-vista h2 { font-size: 1.95rem; line-height: 1; }
+
+/* Pista de rondas */
+.pista { list-style: none; display: flex; align-items: center; gap: 4px; margin: 0; padding: 0; }
+.pista li { width: 30px; height: 30px; display: grid; place-items: center; font-family: var(--f-num); font-size: .98rem; border: 1.5px solid var(--linea-fuerte); color: var(--texto-suave); background: var(--superficie); }
+.pista li.hecha { background: var(--marca); border-color: var(--marca); color: var(--sobre-marca); }
+.pista li.actual { border-color: var(--oro); box-shadow: inset 0 0 0 2px var(--oro); color: var(--titulo); font-weight: 600; }
+.pista li.receso { width: auto; height: auto; border: 0; background: none; font-family: var(--f-texto); font-size: .7rem; color: var(--texto-suave); padding: 0 5px; }
+.estado-nivel { margin: 0 0 4px; min-height: 1.45em; color: var(--texto-suave); }
+
+/* Bloques */
+.bloque { margin: 24px 0 0; }
+.bloque > h3, .bloque > summary, .fila-titulo { border-bottom: 2px solid var(--titulo); margin-bottom: 8px; padding-bottom: 5px; }
+.bloque > h3, .fila-titulo h3 { font-size: 1.28rem; }
+.fila-titulo { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; }
+.bloque > summary { cursor: pointer; font-family: var(--f-num); font-size: 1.28rem; font-weight: 600; color: var(--titulo); }
+.bloque > summary .cuenta { margin-left: 10px; }
+.cuenta { font-family: var(--f-texto); font-size: .82rem; font-weight: 400; color: var(--texto-suave); margin-left: 8px; letter-spacing: 0; }
+.ayuda { margin: 0 0 10px; color: var(--texto-suave); font-size: .9rem; max-width: 80ch; }
+.vacio { padding: 18px; border: 1px dashed var(--linea-fuerte); color: var(--texto-suave); background: var(--superficie); margin: 0; }
+.acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 10px; }
+
+/* Avisos */
+.aviso-linea { padding: 8px 12px; border-left: 4px solid var(--titulo); background: var(--superficie); margin: 0; }
+.aviso-linea.atencion { border-left-color: var(--oro); background: var(--oro-suave); }
+.aviso-linea.grave { border-left-color: var(--alerta); background: var(--alerta-suave); }
+.solo-oculto { display: none; }
+.sin-escuelas .solo-oculto { display: block; }
+.sin-escuelas .solo-visible { display: none !important; }
+.sin-escuelas .col-escuela { display: none !important; }
+
+/* Tablas */
+.tabla-desliz { overflow-x: auto; border: 1px solid var(--linea-fuerte); background: var(--superficie); }
+.tabla-desliz.ajustada { width: fit-content; max-width: 100%; }
+table.hoja.fija { width: auto; }
+.hoja.fija .c-mesa { width: 84px; }
+.hoja.fija .c-p { width: 46px; }
+.hoja.fija .c-total { width: 72px; }
+.hoja.fija .c-pos { width: 124px; }
+.hoja.fija .c-esc { min-width: 220px; }
+.hoja .c-pos, .hoja .c-mesa { white-space: nowrap; }
+table.hoja { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.hoja th, .hoja td { border: 1px solid var(--linea); padding: 5px 8px; text-align: center; }
+.hoja thead th { background: var(--cab-tabla); color: var(--titulo); font-family: var(--f-num); font-weight: 600; font-size: .95rem; border-bottom: 2px solid var(--linea-fuerte); white-space: nowrap; }
+.hoja tbody tr:nth-child(even) { background: var(--fila-alt); }
+.hoja .c-esc { text-align: left; min-width: 150px; }
+.hoja .c-crit, .hoja .c-obs { text-align: left; }
+.hoja tbody th.c-mesa { position: sticky; left: 0; z-index: 1; background: var(--superficie); min-width: 60px; }
+.hoja tbody tr:nth-child(even) th.c-mesa { background: var(--fila-alt); }
+.hoja thead th.c-mesa { position: sticky; left: 0; z-index: 2; }
+.num-mesa { font-family: var(--f-num); font-size: 1.18rem; font-weight: 600; color: var(--titulo); }
+.hoja .c-total { font-family: var(--f-num); font-size: 1.14rem; font-weight: 600; }
+.hoja .c-p, .hoja td.c-d { font-family: var(--f-num); font-size: 1.04rem; }
+.hoja .receso { border-right: 3px double var(--linea-fuerte); }
+.hoja tr.premio td.c-total { color: var(--titulo); }
+.hoja tr.fila-dq td, .hoja tr.fila-dq th, .hoja tr.fila-dq .num-mesa, .hoja tr.fila-dq input { color: var(--texto-suave); }
+.marca-ap { margin-left: 6px; font-family: var(--f-texto); font-size: .7rem; font-weight: 400; color: var(--alerta); }
+
+/* Captura */
+.captura tbody th, .captura tbody td { height: 38px; padding-top: 0; padding-bottom: 0; }
+.captura td.c-p { padding: 0; width: 46px; min-width: 42px; }
+.captura td.c-p input { display: block; width: 100%; height: 37px; border: 0; border-radius: 0; background: transparent; text-align: center; font-family: var(--f-num); font-size: 1.12rem; padding: 0; }
+.captura td.pend input { color: var(--texto-suave); }
+.captura td.c-p input:hover { background: var(--cab-tabla); }
+.captura td.c-p input:focus { outline: 2px solid var(--foco); outline-offset: -2px; background: var(--oro-suave); }
+.captura td.c-p input.invalido { background: var(--alerta-suave); color: var(--alerta); outline-color: var(--alerta); }
+.captura thead th.hecha { box-shadow: inset 0 -3px 0 var(--marca); }
+[data-tema="noche"] .captura thead th.hecha { box-shadow: inset 0 -3px 0 var(--titulo); }
+.captura thead th.actual { box-shadow: inset 0 -3px 0 var(--oro); }
+.captura tbody tr:focus-within th.c-mesa { background: var(--marca); }
+.captura tbody tr:focus-within th.c-mesa .num-mesa { color: var(--sobre-marca); }
+
+/* Posiciones */
+.pos { display: inline-grid; place-items: center; min-width: 30px; height: 26px; vertical-align: middle; padding: 0 6px; font-family: var(--f-num); font-size: 1.08rem; font-weight: 600; }
+.pos.p1 { background: var(--oro); color: #1B1300; }
+.pos.p2 { background: var(--plata); color: #0F1424; }
+.pos.p3 { background: var(--bronce); color: var(--sobre-bronce); }
+.pos.p4, .pos.p5 { box-shadow: inset 0 0 0 2px var(--titulo); color: var(--titulo); }
+.emp { margin-left: 6px; font-size: .74rem; color: var(--texto-suave); }
+.pos-nula { color: var(--texto-suave); }
+.pos-dq { font-size: .8rem; color: var(--alerta); }
+
+/* Campos y botones */
+.campo { border: 1px solid var(--linea-fuerte); border-radius: 3px; background: var(--superficie); padding: 5px 8px; min-height: 32px; max-width: 100%; }
+.hoja td .campo { width: 100%; }
+.campo.num { width: 74px; text-align: center; font-family: var(--f-num); font-size: 1.05rem; }
+.hoja td .campo.num { width: 70px; }
+.campo.ancho { flex: 0 1 420px; width: 420px; min-width: 0; max-width: 100%; }
+.btn { background: var(--superficie); color: var(--titulo); border: 1.5px solid var(--titulo); border-radius: 4px; padding: 6px 13px; cursor: pointer; font-weight: 600; }
+.btn:hover { background: var(--cab-tabla); }
+.btn.primario { background: var(--marca); color: var(--sobre-marca); border-color: var(--marca); }
+.btn.primario:hover { filter: brightness(1.15); }
+.btn.peligro { color: var(--alerta); border-color: var(--alerta); }
+.btn.peligro-lleno { background: #B3261E; border-color: #B3261E; color: #FFFFFF; }
+.btn-texto { background: none; border: 0; color: var(--enlace); cursor: pointer; padding: 2px 4px; text-decoration: underline; }
+.etiqueta-campo { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.etiqueta-campo.larga { display: flex; flex-wrap: wrap; }
+
+/* Configuración */
+.rejilla-niveles { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0 26px; align-items: start; }
+.nota-niveles { margin: 18px 0 -12px; }
+.panel-escuelas .tabla-desliz { max-width: 860px; }
+
+/* Desempates */
+.grupo { border-left: 4px solid var(--oro); padding: 2px 0 2px 14px; margin: 0 0 18px; }
+.grupo h4 { font-size: 1.08rem; margin-bottom: 4px; }
+.grupo ul { margin: 8px 0 0; padding-left: 18px; }
+.grupo td.c-d { width: 120px; }
+.grupo .c-crit { min-width: 210px; }
+
+/* Vista pública */
+.barra-publica { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-bottom: 16px; }
+.segmento { display: inline-flex; }
+.segmento button { border: 1.5px solid var(--titulo); background: var(--superficie); color: var(--titulo); padding: 6px 14px; cursor: pointer; margin-left: -1.5px; font-family: var(--f-num); font-size: 1.02rem; }
+.segmento button:first-child { margin-left: 0; }
+.segmento button.activo { background: var(--marca); border-color: var(--marca); color: var(--sobre-marca); }
+.segmento button:disabled { opacity: .45; cursor: default; }
+.lienzo-publico { background: var(--papel); font-size: clamp(15px, 1.3vw, 26px); }
+.lienzo-publico:fullscreen { padding: 3vh 3vw; overflow: auto; }
+.cab-publica { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 22px; border-bottom: 4px solid var(--oro); padding-bottom: 8px; margin-bottom: 12px; }
+.cab-publica h2 { font-size: 2.2em; line-height: 1.05; }
+.cab-publica .evento { margin: 0; width: 100%; color: var(--texto-suave); font-size: .92em; }
+.cab-publica .estado { margin: 0; font-size: 1.05em; }
+.lienzo-publico .hoja th, .lienzo-publico .hoja td { padding: .34em .5em; font-size: 1em; }
+.lienzo-publico .hoja .c-total, .lienzo-publico .num-mesa { font-size: 1.2em; }
+.lienzo-publico .hoja .c-p { font-size: 1.05em; }
+.lienzo-publico .pos { font-size: 1.1em; min-width: 1.9em; height: 1.75em; }
+.lienzo-publico .emp, .lienzo-publico .pos-dq { font-size: .68em; }
+.notas-publicas { margin: 12px 0 0; padding-left: 20px; color: var(--texto-suave); font-size: .82em; }
+
+/* Reglas */
+.criterios { margin: 0; padding-left: 20px; max-width: 86ch; }
+.criterios > li { margin-bottom: 8px; }
+.criterios ol { margin: 4px 0; }
+
+/* Avisos emergentes y diálogos */
+.avisos { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; gap: 6px; z-index: 50; pointer-events: none; }
+.globo { background: #141B36; color: #FFFFFF; padding: 9px 16px; border-radius: 4px; box-shadow: 0 4px 14px rgba(10,16,48,.4); max-width: min(90vw, 580px); border-left: 4px solid var(--oro); }
+#capa-dialogo { position: fixed; inset: 0; background: rgba(8,12,38,.6); display: grid; place-items: center; z-index: 60; padding: 16px; }
+#capa-dialogo[hidden] { display: none; }
+.dialogo { background: var(--superficie); color: var(--texto); max-width: 540px; width: 100%; padding: 20px 22px; border-top: 5px solid var(--oro); box-shadow: 0 18px 50px rgba(5,9,30,.55); max-height: 90vh; overflow: auto; }
+.dialogo h2 { font-size: 1.35rem; margin-bottom: 10px; }
+.dlg-cuerpo p { margin: 0 0 10px; }
+.dlg-cuerpo fieldset { border: 1px solid var(--linea); margin: 0 0 6px; padding: 8px 12px; }
+.dlg-cuerpo label { display: block; margin: 4px 0; cursor: pointer; }
+.dlg-cuerpo .sub { margin-left: 24px; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.dlg-acciones { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+
+@media (max-width: 720px) {
+  main { padding: 14px 10px 60px; }
+  .cabecera { padding: 12px 12px 10px; }
+  .herramientas { margin-left: 0; }
+  .guardado { flex: 1 0 100%; width: auto; text-align: left; margin-right: 0; }
+  .encabezado-vista h2 { font-size: 1.6rem; }
+  .hoja .c-esc, .hoja.fija .c-esc { min-width: 120px; }
+  .estado-nivel { min-height: 2.9em; }
+  .pista { gap: 3px; }
+  .pista li { width: 25px; height: 25px; font-size: .86rem; }
+  .pista li.receso { padding: 0 2px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .globo { animation: entra .18s ease-out; }
+  @keyframes entra { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+@media print {
+  :root, [data-tema="noche"] {
+    --papel: #FFFFFF; --superficie: #FFFFFF; --marca: #17235A; --titulo: #000000; --texto: #000000; --texto-suave: #333333;
+    --linea: #999999; --linea-fuerte: #555555; --cab-tabla: #EEEEEE; --fila-alt: #FFFFFF; --oro: #C9962B; --oro-suave: #FFFFFF;
+    --alerta: #8A1C16; --alerta-suave: #FFFFFF; --plata: #C8CDD8; --bronce: #C99A78; --sobre-bronce: #000000;
+  }
+  .herramientas, .pestanas, .no-imprimir, .avisos, .btn, .btn-texto, .ayuda, #capa-dialogo { display: none !important; }
+  body { font-size: 10.5pt; }
+  .cabecera { background: none; color: #000000; border-bottom: 2px solid #000000; padding: 0 0 6px; }
+  .cabecera h1 { color: #000000; }
+  main { padding: 10px 0 0; max-width: none; }
+  .tabla-desliz { overflow: visible; border: 0; }
+  .hoja tbody th.c-mesa, .hoja thead th.c-mesa { position: static; }
+  .captura tbody th, .captura tbody td { height: 26px; }
+  .captura td.c-p input { height: 25px; }
+  .bloque { break-inside: avoid-page; }
+  details.bloque:not([open]) { display: none; }
+  .pista li.hecha { color: #000000; background: #DDDDDD; border-color: #000000; }
+  .tabla-desliz.ajustada { width: auto; }
+  .pos { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<noscript><p style="padding:20px">Esta página requiere JavaScript.</p></noscript>
+<div id="marco"></div>
+<main id="vista"></main>
+<div id="avisos" class="avisos" role="status" aria-live="polite"></div>
+<div id="capa-dialogo" hidden></div>
+<input type="file" id="archivo-respaldo" accept=".json,application/json" hidden>
+<script>
+(function () {
+'use strict';
+
+/* <LOGICA> */
+const NIVELES = [
+  { id: 'elemental', nombre: 'Elemental' },
+  { id: 'intermedia', nombre: 'Intermedia' },
+  { id: 'superior', nombre: 'Superior' }
+];
+const N_PROB = 10;     // problemas de la competencia regular (regla 8)
+const MAX_PTS = 10;    // puntuación máxima por problema (regla 8)
+const PREMIADAS = 5;   // posiciones premiadas (regla 24)
+const ESTADOS_APELACION = ['', 'pendiente', 'aceptada', 'denegada'];
+const TEXTO_APELACION = { '': 'Sin apelación', pendiente: 'Pendiente', aceptada: 'Aceptada', denegada: 'Denegada' };
+
+let contadorId = 0;
+function nuevoId(prefijo) {
+  contadorId += 1;
+  return prefijo + Date.now().toString(36) + contadorId.toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+function normalizarNombre(s) {
+  return String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+}
+function limpiarNombre(s) {
+  return String(s == null ? '' : s).replace(/\s+/g, ' ').trim().slice(0, 120);
+}
+function esPunto(v) {
+  return Number.isInteger(v) && v >= 0 && v <= MAX_PTS;
+}
+// '' -> null (sin calificar); entero de 0 a MAX_PTS -> número; cualquier otro texto -> undefined
+function leerPunto(texto) {
+  const t = String(texto == null ? '' : texto).trim();
+  if (t === '') return null;
+  if (!/^\d{1,2}$/.test(t)) return undefined;
+  const n = parseInt(t, 10);
+  return n <= MAX_PTS ? n : undefined;
+}
+
+function nuevaMesa(numero) {
+  const p = [];
+  for (let j = 0; j < N_PROB; j++) p.push(null);
+  return { id: nuevoId('m'), numero: numero, escuelaId: null, p: p, d: [null, null], dj: null, dgs: [null, null, null], dq: false, ap: ['', ''], obs: '' };
+}
+function estadoInicial() {
+  return { v: 1, evento: 'Competencia PRIML', escuelas: [], niveles: { elemental: { mesas: [] }, intermedia: { mesas: [] }, superior: { mesas: [] } } };
+}
+
+// Orden alfabético sin distinguir mayúsculas ni tildes, con los números en orden numérico.
+function compararNombres(a, b) {
+  const x = normalizarNombre(a).match(/\d+|\D+/g) || [];
+  const y = normalizarNombre(b).match(/\d+|\D+/g) || [];
+  for (let i = 0; i < x.length && i < y.length; i++) {
+    const nx = /^\d/.test(x[i]);
+    const ny = /^\d/.test(y[i]);
+    if (nx && ny) {
+      const d = parseInt(x[i], 10) - parseInt(y[i], 10);
+      if (d) return d;
+    } else if (x[i] !== y[i]) return x[i] < y[i] ? -1 : 1;
+  }
+  return x.length - y.length || (String(a) < String(b) ? -1 : (String(a) > String(b) ? 1 : 0));
+}
+
+// Las escuelas se guardan siempre en el mismo orden (por identificador) para que dos equipos que aplican
+// los mismos cambios obtengan exactamente el mismo estado.
+function ordenarEscuelas(estado) {
+  estado.escuelas.sort(function (a, b) { return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0); });
+}
+
+// Devuelve una mesa válida a partir de un objeto cualquiera (número 0 si no trae uno admisible); null si no es un objeto.
+function mesaSaneada(x, idEscuela) {
+  if (!x || typeof x !== 'object') return null;
+  const numero = parseInt(x.numero, 10);
+  const m = nuevaMesa(numero >= 1 && numero <= 9999 ? numero : 0);
+  if (typeof x.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(x.id)) m.id = x.id;
+  m.escuelaId = idEscuela(x.escuelaId);
+  if (Array.isArray(x.p)) for (let j = 0; j < N_PROB; j++) m.p[j] = esPunto(x.p[j]) ? x.p[j] : null;
+  if (Array.isArray(x.d)) for (let j = 0; j < 2; j++) m.d[j] = esPunto(x.d[j]) ? x.d[j] : null;
+  m.dj = Number.isInteger(x.dj) && x.dj >= 1 && x.dj <= 99 ? x.dj : null;
+  if (Array.isArray(x.dgs)) for (let j = 0; j < 3; j++) m.dgs[j] = typeof x.dgs[j] === 'string' ? x.dgs[j].slice(0, 6000) : null;
+  m.dq = !!x.dq;
+  if (Array.isArray(x.ap)) for (let j = 0; j < 2; j++) m.ap[j] = ESTADOS_APELACION.indexOf(x.ap[j]) >= 0 ? x.ap[j] : '';
+  m.obs = typeof x.obs === 'string' ? x.obs.slice(0, 300) : '';
+  return m;
+}
+
+// Devuelve un estado válido a partir de un objeto leído del almacenamiento, de un archivo o del servicio; null si no es reconocible.
+function sanear(obj) {
+  if (!obj || typeof obj !== 'object' || !obj.niveles || typeof obj.niveles !== 'object') return null;
+  const e = estadoInicial();
+  if (typeof obj.evento === 'string' && limpiarNombre(obj.evento)) e.evento = limpiarNombre(obj.evento);
+  const mapaIds = new Map();
+  const porNombre = new Map();
+  const idsUsados = new Set();
+  (Array.isArray(obj.escuelas) ? obj.escuelas : []).slice(0, 600).forEach(function (x) {
+    if (!x || typeof x !== 'object') return;
+    const nombre = limpiarNombre(x.nombre);
+    if (!nombre) return;
+    const clave = normalizarNombre(nombre);
+    const idOrigen = typeof x.id === 'string' && x.id && x.id.length <= 60 ? x.id : '';
+    const existente = porNombre.get(clave);
+    if (existente) {
+      if (x.descalificada) existente.descalificada = true;
+      if (idOrigen && !mapaIds.has(idOrigen)) mapaIds.set(idOrigen, existente.id);
+      return;
+    }
+    let id = idOrigen;
+    if (!id || idsUsados.has(id)) id = nuevoId('e');
+    else mapaIds.set(idOrigen, id);
+    idsUsados.add(id);
+    const escuela = { id: id, nombre: nombre, descalificada: !!x.descalificada };
+    e.escuelas.push(escuela);
+    porNombre.set(clave, escuela);
+  });
+  const idEscuela = function (id) { return mapaIds.has(id) ? mapaIds.get(id) : null; };
+  NIVELES.forEach(function (nv) {
+    const origen = obj.niveles[nv.id];
+    const lista = origen && Array.isArray(origen.mesas) ? origen.mesas.slice(0, 300) : [];
+    const mesas = [];
+    let mayor = 0;
+    lista.forEach(function (x) {
+      const m = mesaSaneada(x, idEscuela);
+      if (!m) return;
+      mesas.push(m);
+      if (m.numero > mayor) mayor = m.numero;
+    });
+    const numeros = new Set();
+    const ids = new Set();
+    mesas.forEach(function (m) {
+      if (!m.numero || numeros.has(m.numero)) { mayor += 1; m.numero = mayor; }
+      numeros.add(m.numero);
+      if (ids.has(m.id)) m.id = nuevoId('m');
+      ids.add(m.id);
+      e.niveles[nv.id].mesas.push(m);
+    });
+    e.niveles[nv.id].mesas.sort(function (a, b) { return a.numero - b.numero; });
+  });
+  ordenarEscuelas(e);
+  return e;
+}
+
+function sumaHasta(p, k) {
+  let s = 0;
+  for (let j = 0; j < k; j++) s += p[j] || 0;
+  return s;
+}
+// Número de rondas calificadas para todas las mesas indicadas (consecutivas desde la primera).
+function rondasCompletas(mesas) {
+  if (!mesas.length) return 0;
+  let k = 0;
+  while (k < N_PROB && mesas.every(function (m) { return m.p[k] != null; })) k += 1;
+  return k;
+}
+// Regla 23: comparación desde el Problema 10 hacia atrás. dif > 0 si b supera a a.
+function compararProblemas(a, b) {
+  for (let j = N_PROB - 1; j >= 0; j--) {
+    if (a.p[j] !== b.p[j]) return { dif: b.p[j] - a.p[j], problema: j + 1 };
+  }
+  return { dif: 0, problema: 0 };
+}
+function porNumero(a, b) { return a.mesa.numero - b.mesa.numero; }
+function firmaIds(filas) {
+  return filas.map(function (f) { return f.mesa.id; }).sort().join(',');
+}
+function numerosDe(filas) {
+  return filas.map(function (f) { return f.mesa.numero; }).sort(function (a, b) { return a - b; });
+}
+
+// Resuelve un grupo de mesas con el mismo total, a partir de la posición `inicio`.
+// etapa 1: primera ronda de desempate; 2: segunda ronda; 3: regla 23; 4: empate total.
+// Las rondas de desempate solo se aplican si el empate afecta posiciones premiadas.
+// Cada puntuación de desempate queda ligada a la composición del grupo para el que se registró (firma):
+// si el grupo cambia, la puntuación anterior deja de considerarse.
+function resolverEmpate(grupo, inicio, etapa, g, firmaPadre) {
+  if (grupo.length === 1) { grupo[0].pos = inicio; return; }
+  const premiado = inicio <= PREMIADAS;
+  if (etapa <= 2 && !premiado) etapa = 3;
+
+  if (etapa <= 2) {
+    const idx = etapa - 1;
+    const firma = (etapa === 1 ? 'D1|' + g.total : 'D2|' + firmaPadre) + '|' + firmaIds(grupo);
+    grupo.forEach(function (f) {
+      const v = f.mesa.dgs[idx] === firma && esPunto(f.mesa.d[idx]) ? f.mesa.d[idx] : null;
+      if (etapa === 1) { f.pideD1 = true; f.sig1 = firma; f.d1 = v; }
+      else { f.pideD2 = true; f.sig2 = firma; f.d2 = v; }
+    });
+    const valor = function (f) { return etapa === 1 ? f.d1 : f.d2; };
+    if (grupo.some(function (f) { return valor(f) == null; })) {
+      grupo.forEach(function (f) { f.pos = inicio; f.empate = true; f.pendiente = etapa; f.criterio = 'pendiente' + etapa; });
+      g.pendientes.push({ etapa: etapa, inicio: inicio, filas: grupo.slice().sort(porNumero) });
+      return;
+    }
+    const orden = grupo.slice().sort(function (a, b) { return valor(b) - valor(a) || porNumero(a, b); });
+    let i = 0;
+    let pos = inicio;
+    while (i < orden.length) {
+      let j = i;
+      while (j < orden.length && valor(orden[j]) === valor(orden[i])) j += 1;
+      const sub = orden.slice(i, j);
+      if (sub.length === 1) { sub[0].pos = pos; sub[0].criterio = 'd' + etapa; }
+      else resolverEmpate(sub, pos, etapa + 1, g, firma + '=' + valor(sub[0]));
+      pos += sub.length;
+      i = j;
+    }
+    return;
+  }
+
+  if (etapa === 3) {
+    const orden = grupo.slice().sort(function (a, b) { return compararProblemas(a.mesa, b.mesa).dif || porNumero(a, b); });
+    const tramos = [];
+    orden.forEach(function (f) {
+      const ultimo = tramos[tramos.length - 1];
+      if (ultimo && compararProblemas(ultimo[0].mesa, f.mesa).dif === 0) ultimo.push(f);
+      else tramos.push([f]);
+    });
+    let pos = inicio;
+    tramos.forEach(function (tramo, t) {
+      if (tramos.length > 1) {
+        const vecino = t > 0 ? tramos[t - 1][0] : tramos[1][0];
+        const c = compararProblemas(tramo[0].mesa, vecino.mesa);
+        tramo.forEach(function (f) { f.problemaDecisivo = c.problema; });
+        if (t > 0) {
+          g.notas.push({
+            arriba: numerosDe(tramos[t - 1]), abajo: numerosDe(tramo), problema: c.problema,
+            ptsArriba: tramos[t - 1][0].mesa.p[c.problema - 1], ptsAbajo: tramo[0].mesa.p[c.problema - 1]
+          });
+        }
+      }
+      if (tramo.length === 1) { tramo[0].pos = pos; tramo[0].criterio = 'r23'; }
+      else resolverEmpate(tramo, pos, 4, g, firmaPadre);
+      pos += tramo.length;
+    });
+    return;
+  }
+
+  // Etapa 4: puntuaciones idénticas en los diez problemas (y en los desempates, si los hubo).
+  if (!premiado) {
+    grupo.forEach(function (f) { f.pos = inicio; f.empate = true; f.criterio = 'igual'; });
+    return;
+  }
+  const firmaJ = 'DJ|' + g.total + '|' + grupo[0].mesa.p.join('.') + '|' + firmaPadre + '|' + firmaIds(grupo);
+  grupo.forEach(function (f) {
+    f.pideDJ = true;
+    f.sigJ = firmaJ;
+    f.dj = f.mesa.dgs[2] === firmaJ && Number.isInteger(f.mesa.dj) ? f.mesa.dj : null;
+  });
+  if (grupo.some(function (f) { return f.dj == null; })) {
+    grupo.forEach(function (f) { f.pos = inicio; f.empate = true; f.criterio = 'igual'; });
+    g.sinResolver.push({ inicio: inicio, filas: grupo.slice().sort(porNumero) });
+    return;
+  }
+  const ordenJ = grupo.slice().sort(function (a, b) { return a.dj - b.dj || porNumero(a, b); });
+  let i = 0;
+  let pos = inicio;
+  while (i < ordenJ.length) {
+    let j = i;
+    while (j < ordenJ.length && ordenJ[j].dj === ordenJ[i].dj) j += 1;
+    const sub = ordenJ.slice(i, j);
+    sub.forEach(function (f) { f.pos = pos; f.criterio = 'jueces'; f.empate = sub.length > 1; });
+    pos += sub.length;
+    i = j;
+  }
+}
+
+function clasificarNivel(estado, nivelId) {
+  const mesas = estado.niveles[nivelId].mesas;
+  const mapaEsc = new Map(estado.escuelas.map(function (e) { return [e.id, e]; }));
+  const filas = mesas.map(function (m) {
+    const esc = m.escuelaId ? mapaEsc.get(m.escuelaId) || null : null;
+    const dqEscuela = !!(esc && esc.descalificada);
+    return {
+      mesa: m, escuela: esc, dqEscuela: dqEscuela, activa: !m.dq && !dqEscuela,
+      totalVivo: sumaHasta(m.p, N_PROB), calificadas: m.p.filter(function (v) { return v != null; }).length,
+      total: 0, pos: null, empate: false, criterio: '', pendiente: 0, problemaDecisivo: 0,
+      d1: null, d2: null, dj: null, sig1: '', sig2: '', sigJ: '', pideD1: false, pideD2: false, pideDJ: false
+    };
+  });
+  const activas = filas.filter(function (f) { return f.activa; });
+  const k = rondasCompletas(activas.map(function (f) { return f.mesa; }));
+  filas.forEach(function (f) { f.total = sumaHasta(f.mesa.p, k); });
+  const res = {
+    nivelId: nivelId, k: k, filas: filas, orden: [], nMesas: filas.length, nActivas: activas.length,
+    grupos: [], faltantes: null, adelantadas: false, estado: 'vacio', hayPremiado: false, sinResolver: false, apelacionesPendientes: 0
+  };
+
+  if (activas.length && k < N_PROB) {
+    const sin = activas.filter(function (f) { return f.mesa.p[k] == null; });
+    res.faltantes = { ronda: k + 1, mesas: numerosDe(sin), calificadas: activas.length - sin.length };
+    res.adelantadas = activas.some(function (f) { return f.mesa.p.some(function (v, j) { return j > k && v != null; }); });
+  }
+
+  if (k > 0) {
+    const orden = activas.slice().sort(function (a, b) { return b.total - a.total || porNumero(a, b); });
+    let i = 0;
+    while (i < orden.length) {
+      let j = i;
+      while (j < orden.length && orden[j].total === orden[i].total) j += 1;
+      const grupo = orden.slice(i, j);
+      const inicio = i + 1;
+      if (grupo.length === 1) grupo[0].pos = inicio;
+      else if (k < N_PROB) grupo.forEach(function (f) { f.pos = inicio; f.empate = true; });
+      else {
+        const g = { inicio: inicio, total: grupo[0].total, filas: grupo.slice().sort(porNumero), premiado: inicio <= PREMIADAS, pendientes: [], notas: [], sinResolver: [] };
+        res.grupos.push(g);
+        resolverEmpate(grupo, inicio, 1, g, '');
+      }
+      i = j;
+    }
+  }
+
+  const inactivas = filas.filter(function (f) { return !f.activa; }).sort(porNumero);
+  res.orden = activas.slice().sort(function (a, b) {
+    const pa = a.pos == null ? Infinity : a.pos;
+    const pb = b.pos == null ? Infinity : b.pos;
+    return (pa === pb ? 0 : pa - pb) || porNumero(a, b);
+  }).concat(inactivas);
+
+  res.hayPremiado = res.grupos.some(function (g) { return g.premiado; });
+  res.sinResolver = res.grupos.some(function (g) { return g.sinResolver.length > 0; });
+  res.apelacionesPendientes = filas.reduce(function (n, f) { return n + f.mesa.ap.filter(function (a) { return a === 'pendiente'; }).length; }, 0);
+  const pendiente = res.grupos.some(function (g) { return g.pendientes.length > 0; });
+  if (!filas.length) res.estado = 'vacio';
+  else if (!activas.length) res.estado = 'sin-activas';
+  else if (k < N_PROB) res.estado = activas.some(function (f) { return f.calificadas > 0; }) ? 'en-curso' : 'sin-iniciar';
+  else res.estado = pendiente ? 'desempate' : 'final';
+  return res;
+}
+
+function criterioTexto(f) {
+  switch (f.criterio) {
+    case 'pendiente1': return 'Desempate 1 pendiente';
+    case 'pendiente2': return 'Desempate 2 pendiente';
+    case 'd1': return 'Desempate 1';
+    case 'd2': return 'Desempate 2';
+    case 'r23': return 'Regla 23 (Problema ' + f.problemaDecisivo + ')';
+    case 'jueces': return 'Determinación de los jueces';
+    case 'igual': return 'Empate total';
+    default: return '';
+  }
+}
+
+// Copa: suma de los totales de las mesas activas de cada escuela en los tres niveles.
+// Las escuelas con el mismo total comparten posición y la siguiente recibe el número consecutivo.
+function clasificarCopa(estado, clasPorNivel) {
+  const clas = clasPorNivel || {};
+  NIVELES.forEach(function (nv) { if (!clas[nv.id]) clas[nv.id] = clasificarNivel(estado, nv.id); });
+  const acumulado = new Map();
+  let sinEscuela = 0;
+  NIVELES.forEach(function (nv) {
+    clas[nv.id].filas.forEach(function (f) {
+      if (!f.escuela) { if (f.activa) sinEscuela += 1; return; }
+      let a = acumulado.get(f.escuela.id);
+      if (!a) {
+        a = { escuela: f.escuela, porNivel: { elemental: 0, intermedia: 0, superior: 0 }, mesasNivel: { elemental: 0, intermedia: 0, superior: 0 }, total: 0, mesas: 0, mesasDq: 0, pos: null, empate: false };
+        acumulado.set(f.escuela.id, a);
+      }
+      a.mesas += 1;
+      a.mesasNivel[nv.id] += 1;
+      if (f.activa) { a.porNivel[nv.id] += f.total; a.total += f.total; }
+      else if (!f.dqEscuela) a.mesasDq += 1;
+    });
+  });
+  const porNombre = function (a, b) { return compararNombres(a.escuela.nombre, b.escuela.nombre); };
+  const lista = Array.from(acumulado.values());
+  const activas = lista.filter(function (a) { return !a.escuela.descalificada; }).sort(function (a, b) { return b.total - a.total || porNombre(a, b); });
+  const hayDatos = NIVELES.some(function (nv) { return clas[nv.id].k > 0; });
+  if (hayDatos) {
+    let pos = 0;
+    let previo = null;
+    activas.forEach(function (a) {
+      if (previo === null || a.total !== previo) { pos += 1; previo = a.total; }
+      a.pos = pos;
+    });
+    activas.forEach(function (a) { a.empate = activas.filter(function (b) { return b.pos === a.pos; }).length > 1; });
+  }
+  const descalificadas = lista.filter(function (a) { return a.escuela.descalificada; }).sort(porNombre);
+  const provisional = NIVELES.some(function (nv) { const c = clas[nv.id]; return c.nActivas > 0 && c.k < N_PROB; });
+  const apelaciones = NIVELES.reduce(function (n, nv) { return n + clas[nv.id].apelacionesPendientes; }, 0);
+  return { filas: activas.concat(descalificadas), sinEscuela: sinEscuela, provisional: provisional, hayDatos: hayDatos, apelaciones: apelaciones };
+}
+
+// Sustituye en `actual` los niveles indicados por los de `importado`; las escuelas se emparejan por nombre.
+function incorporarNiveles(actual, importado, ids) {
+  const res = sanear(JSON.parse(JSON.stringify(actual)));
+  const mapa = new Map();
+  const porNombre = new Map(res.escuelas.map(function (e) { return [normalizarNombre(e.nombre), e]; }));
+  function idLocal(idImportado) {
+    if (!idImportado) return null;
+    if (mapa.has(idImportado)) return mapa.get(idImportado);
+    const origen = importado.escuelas.find(function (e) { return e.id === idImportado; });
+    if (!origen) return null;
+    const clave = normalizarNombre(origen.nombre);
+    let destino = porNombre.get(clave);
+    if (!destino) {
+      destino = { id: nuevoId('e'), nombre: origen.nombre, descalificada: !!origen.descalificada };
+      res.escuelas.push(destino);
+      porNombre.set(clave, destino);
+    } else if (origen.descalificada) destino.descalificada = true;
+    mapa.set(idImportado, destino.id);
+    return destino.id;
+  }
+  ids.forEach(function (nid) {
+    if (!res.niveles[nid] || !importado.niveles[nid]) return;
+    res.niveles[nid].mesas = importado.niveles[nid].mesas.map(function (m) {
+      const copia = JSON.parse(JSON.stringify(m));
+      copia.escuelaId = idLocal(m.escuelaId);
+      return copia;
+    });
+  });
+  ordenarEscuelas(res);
+  return res;
+}
+
+function matrizNivel(estado, nivelId) {
+  const c = clasificarNivel(estado, nivelId);
+  const cab = ['Posición', 'Mesa', 'Escuela'];
+  for (let j = 0; j < N_PROB; j++) cab.push('P' + (j + 1));
+  cab.push('Total', 'Desempate 1', 'Desempate 2', 'Criterio de desempate', 'Estado', 'Apelación (problemas 1 a 5)', 'Apelación (problemas 6 a 10)', 'Observaciones', 'Rondas completas');
+  const filas = [cab];
+  c.orden.forEach(function (f) {
+    const m = f.mesa;
+    const fila = [f.activa && f.pos != null ? f.pos : '', m.numero, f.escuela ? f.escuela.nombre : ''];
+    for (let j = 0; j < N_PROB; j++) fila.push(m.p[j] == null ? '' : m.p[j]);
+    fila.push(f.total, f.d1 == null ? '' : f.d1, f.d2 == null ? '' : f.d2, criterioTexto(f),
+      f.activa ? 'Activa' : (f.dqEscuela ? 'Escuela descalificada' : 'Descalificada'),
+      TEXTO_APELACION[m.ap[0]], TEXTO_APELACION[m.ap[1]], m.obs, c.k);
+    filas.push(fila);
+  });
+  return filas;
+}
+function matrizCopa(estado) {
+  const copa = clasificarCopa(estado);
+  const filas = [['Posición', 'Escuela', 'Elemental', 'Intermedia', 'Superior', 'Total', 'Mesas', 'Estado']];
+  copa.filas.forEach(function (a) {
+    const dq = a.escuela.descalificada;
+    filas.push([dq || a.pos == null ? '' : a.pos, a.escuela.nombre,
+      dq ? '' : a.porNivel.elemental, dq ? '' : a.porNivel.intermedia, dq ? '' : a.porNivel.superior, dq ? '' : a.total,
+      a.mesas, dq ? 'Descalificada' : 'Activa']);
+  });
+  return filas;
+}
+// Un texto que comienza con =, +, - o @ se antepone con un apóstrofo para que una hoja de cálculo no lo tome por fórmula.
+function textoSeguro(s) {
+  return /^[=+\-@\t\r]/.test(s) ? "'" + s : s;
+}
+function celdaCsv(v) {
+  const s = v == null ? '' : (typeof v === 'string' ? textoSeguro(v) : String(v));
+  return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function aCsv(matriz) {
+  return '﻿' + matriz.map(function (fila) { return fila.map(celdaCsv).join(','); }).join('\r\n') + '\r\n';
+}
+function csvNivel(estado, nivelId) { return aCsv(matrizNivel(estado, nivelId)); }
+function csvCopa(estado) { return aCsv(matrizCopa(estado)); }
+
+// ---- Operaciones ----
+// Todo cambio de los datos es una operación con forma {t: tipo, ...}. La misma función la aplica en la página y en el
+// servicio de sincronización. Devuelve la lista de operaciones que deshacen el cambio (vacía si no hubo cambio).
+function aplicarOp(estado, op) {
+  if (!op || typeof op !== 'object') return [];
+  const nivel = typeof op.n === 'string' && Object.prototype.hasOwnProperty.call(estado.niveles, op.n) ? estado.niveles[op.n] : null;
+  const mesa = nivel && typeof op.id === 'string' ? nivel.mesas.find(function (m) { return m.id === op.id; }) || null : null;
+  const escuela = function (id) { return typeof id === 'string' ? estado.escuelas.find(function (e) { return e.id === id; }) || null : null; };
+  const escuelaLlamada = function (nombre) {
+    const clave = normalizarNombre(nombre);
+    return estado.escuelas.find(function (e) { return normalizarNombre(e.nombre) === clave; }) || null;
+  };
+  switch (op.t) {
+    case 'punto': {
+      if (!mesa || !Number.isInteger(op.c) || op.c < 0 || op.c >= N_PROB) return [];
+      const v = op.v == null ? null : op.v;
+      if (v !== null && !esPunto(v)) return [];
+      const previo = mesa.p[op.c];
+      if (previo === v) return [];
+      mesa.p[op.c] = v;
+      return [{ t: 'punto', n: op.n, id: op.id, c: op.c, v: previo }];
+    }
+    case 'des': {
+      if (!mesa || (op.i !== 0 && op.i !== 1)) return [];
+      const v = op.v == null ? null : op.v;
+      if (v !== null && !esPunto(v)) return [];
+      const sig = v !== null && typeof op.sig === 'string' ? op.sig.slice(0, 6000) : null;
+      const pv = mesa.d[op.i];
+      const ps = mesa.dgs[op.i];
+      if (pv === v && ps === sig) return [];
+      mesa.d[op.i] = v;
+      mesa.dgs[op.i] = sig;
+      return [{ t: 'des', n: op.n, id: op.id, i: op.i, v: pv, sig: ps }];
+    }
+    case 'jue': {
+      if (!mesa) return [];
+      const v = op.v == null ? null : op.v;
+      if (v !== null && !(Number.isInteger(v) && v >= 1 && v <= 99)) return [];
+      const sig = v !== null && typeof op.sig === 'string' ? op.sig.slice(0, 6000) : null;
+      const pv = mesa.dj;
+      const ps = mesa.dgs[2];
+      if (pv === v && ps === sig) return [];
+      mesa.dj = v;
+      mesa.dgs[2] = sig;
+      return [{ t: 'jue', n: op.n, id: op.id, v: pv, sig: ps }];
+    }
+    case 'mesa': {
+      if (!mesa) return [];
+      const inversa = function (v) { return [{ t: 'mesa', n: op.n, id: op.id, campo: op.campo, v: v }]; };
+      if (op.campo === 'dq') {
+        const v = !!op.v;
+        if (mesa.dq === v) return [];
+        mesa.dq = v;
+        return inversa(!v);
+      }
+      if (op.campo === 'obs') {
+        const v = typeof op.v === 'string' ? op.v.slice(0, 300) : '';
+        const previo = mesa.obs;
+        if (previo === v) return [];
+        mesa.obs = v;
+        return inversa(previo);
+      }
+      if (op.campo === 'ap0' || op.campo === 'ap1') {
+        const i = op.campo === 'ap0' ? 0 : 1;
+        if (ESTADOS_APELACION.indexOf(op.v) < 0) return [];
+        const previo = mesa.ap[i];
+        if (previo === op.v) return [];
+        mesa.ap[i] = op.v;
+        return inversa(previo);
+      }
+      if (op.campo === 'numero') {
+        const v = op.v;
+        if (!Number.isInteger(v) || v < 1 || v > 9999 || mesa.numero === v) return [];
+        if (nivel.mesas.some(function (x) { return x !== mesa && x.numero === v; })) return [];
+        const previo = mesa.numero;
+        mesa.numero = v;
+        nivel.mesas.sort(function (a, b) { return a.numero - b.numero; });
+        return inversa(previo);
+      }
+      return [];
+    }
+    case 'mesaEsc': {
+      // Asigna la escuela por nombre; si no existe, la registra con el identificador propuesto.
+      if (!mesa) return [];
+      const nombre = limpiarNombre(op.nombre);
+      const previo = mesa.escuelaId;
+      if (!nombre) {
+        if (previo === null) return [];
+        mesa.escuelaId = null;
+        return [{ t: 'mesaEscId', n: op.n, id: op.id, eid: previo }];
+      }
+      const inv = [];
+      let e = escuelaLlamada(nombre);
+      if (!e) {
+        if (estado.escuelas.length >= 600) return [];
+        const eid = typeof op.eid === 'string' && op.eid && op.eid.length <= 60 && !escuela(op.eid) ? op.eid : nuevoId('e');
+        e = { id: eid, nombre: nombre, descalificada: false };
+        estado.escuelas.push(e);
+        ordenarEscuelas(estado);
+        inv.push({ t: 'escBorrar', id: eid });
+      }
+      if (previo !== e.id) {
+        mesa.escuelaId = e.id;
+        inv.unshift({ t: 'mesaEscId', n: op.n, id: op.id, eid: previo });
+      }
+      return inv;
+    }
+    case 'mesaEscId': {
+      if (!mesa) return [];
+      const eid = op.eid == null ? null : op.eid;
+      if (eid !== null && !escuela(eid)) return [];
+      const previo = mesa.escuelaId;
+      if (previo === eid) return [];
+      mesa.escuelaId = eid;
+      return [{ t: 'mesaEscId', n: op.n, id: op.id, eid: previo }];
+    }
+    case 'mesaNueva': {
+      if (!nivel || nivel.mesas.length >= 300) return [];
+      const m = mesaSaneada(op.mesa, function (id) { return escuela(id) ? id : null; });
+      if (!m || !op.mesa || m.id !== op.mesa.id) return [];
+      if (nivel.mesas.some(function (x) { return x.id === m.id; })) return [];
+      if (!m.numero || nivel.mesas.some(function (x) { return x.numero === m.numero; })) {
+        m.numero = nivel.mesas.reduce(function (mx, x) { return Math.max(mx, x.numero); }, 0) + 1;
+      }
+      nivel.mesas.push(m);
+      nivel.mesas.sort(function (a, b) { return a.numero - b.numero; });
+      return [{ t: 'mesaBorrar', n: op.n, id: m.id }];
+    }
+    case 'mesaBorrar': {
+      if (!mesa) return [];
+      nivel.mesas = nivel.mesas.filter(function (x) { return x !== mesa; });
+      return [{ t: 'mesaNueva', n: op.n, mesa: JSON.parse(JSON.stringify(mesa)) }];
+    }
+    case 'escNueva': {
+      const nombre = limpiarNombre(op.nombre);
+      if (!nombre || typeof op.id !== 'string' || !op.id || op.id.length > 60) return [];
+      if (escuela(op.id) || escuelaLlamada(nombre) || estado.escuelas.length >= 600) return [];
+      estado.escuelas.push({ id: op.id, nombre: nombre, descalificada: !!op.descalificada });
+      ordenarEscuelas(estado);
+      return [{ t: 'escBorrar', id: op.id }];
+    }
+    case 'esc': {
+      const e = escuela(op.id);
+      if (!e) return [];
+      if (op.campo === 'nombre') {
+        const nombre = limpiarNombre(op.v);
+        if (!nombre || nombre === e.nombre) return [];
+        const otra = escuelaLlamada(nombre);
+        if (otra && otra !== e) return [];
+        const previo = e.nombre;
+        e.nombre = nombre;
+        return [{ t: 'esc', id: op.id, campo: 'nombre', v: previo }];
+      }
+      if (op.campo === 'descalificada') {
+        const v = !!op.v;
+        if (e.descalificada === v) return [];
+        e.descalificada = v;
+        return [{ t: 'esc', id: op.id, campo: 'descalificada', v: !v }];
+      }
+      return [];
+    }
+    case 'escBorrar': {
+      const e = escuela(op.id);
+      if (!e) return [];
+      const inv = [{ t: 'escNueva', id: e.id, nombre: e.nombre, descalificada: e.descalificada }];
+      NIVELES.forEach(function (nv) {
+        estado.niveles[nv.id].mesas.forEach(function (m) {
+          if (m.escuelaId === e.id) { m.escuelaId = null; inv.push({ t: 'mesaEscId', n: nv.id, id: m.id, eid: e.id }); }
+        });
+      });
+      estado.escuelas = estado.escuelas.filter(function (x) { return x !== e; });
+      return inv;
+    }
+    case 'escCombinar': {
+      // Las mesas de la escuela «de» pasan a la escuela «a» y la primera se elimina.
+      const de = escuela(op.de);
+      const a = escuela(op.a);
+      if (!de || !a || de === a) return [];
+      const inv = [{ t: 'escNueva', id: de.id, nombre: de.nombre, descalificada: de.descalificada }];
+      NIVELES.forEach(function (nv) {
+        estado.niveles[nv.id].mesas.forEach(function (m) {
+          if (m.escuelaId === de.id) { m.escuelaId = a.id; inv.push({ t: 'mesaEscId', n: nv.id, id: m.id, eid: de.id }); }
+        });
+      });
+      if (de.descalificada && !a.descalificada) { a.descalificada = true; inv.push({ t: 'esc', id: a.id, campo: 'descalificada', v: false }); }
+      estado.escuelas = estado.escuelas.filter(function (x) { return x !== de; });
+      return inv;
+    }
+    case 'evento': {
+      const v = limpiarNombre(op.v);
+      if (!v || v === estado.evento) return [];
+      const previo = estado.evento;
+      estado.evento = v;
+      return [{ t: 'evento', v: previo }];
+    }
+    case 'todo': {
+      // Sustituye todos los datos (carga de respaldo, borrado, datos de ejemplo).
+      const nuevo = sanear(op.estado);
+      if (!nuevo) return [];
+      const previo = JSON.parse(JSON.stringify({ evento: estado.evento, escuelas: estado.escuelas, niveles: estado.niveles }));
+      if (JSON.stringify(previo) === JSON.stringify({ evento: nuevo.evento, escuelas: nuevo.escuelas, niveles: nuevo.niveles })) return [];
+      estado.evento = nuevo.evento;
+      estado.escuelas = nuevo.escuelas;
+      estado.niveles = nuevo.niveles;
+      return [{ t: 'todo', estado: previo }];
+    }
+    default:
+      return [];
+  }
+}
+// Aplica varias operaciones en orden; las inversas quedan en el orden en que deben aplicarse para deshacerlas.
+function aplicarOps(estado, ops) {
+  let inversas = [];
+  (Array.isArray(ops) ? ops : []).forEach(function (op) { inversas = aplicarOp(estado, op).concat(inversas); });
+  return inversas;
+}
+
+const Logica = {
+  NIVELES: NIVELES, N_PROB: N_PROB, MAX_PTS: MAX_PTS, PREMIADAS: PREMIADAS,
+  nuevoId: nuevoId, normalizarNombre: normalizarNombre, limpiarNombre: limpiarNombre, compararNombres: compararNombres,
+  esPunto: esPunto, leerPunto: leerPunto, nuevaMesa: nuevaMesa, estadoInicial: estadoInicial, sanear: sanear,
+  rondasCompletas: rondasCompletas, clasificarNivel: clasificarNivel, clasificarCopa: clasificarCopa, criterioTexto: criterioTexto,
+  incorporarNiveles: incorporarNiveles, matrizNivel: matrizNivel, matrizCopa: matrizCopa, textoSeguro: textoSeguro,
+  csvNivel: csvNivel, csvCopa: csvCopa, aplicarOp: aplicarOp, aplicarOps: aplicarOps
+};
+/* </LOGICA> */
+
+/* ---------- Estado de la interfaz ---------- */
+const CLAVE = 'priml_resultados_estado';
+const CLAVE_UI = 'priml_resultados_ui';
+const CLAVE_SINC = 'priml_resultados_sinc';
+const PESTANAS = ['config', 'elemental', 'intermedia', 'superior', 'copa', 'publica', 'datos'];
+const TITULOS = { config: 'Mesas y escuelas', elemental: 'Elemental', intermedia: 'Intermedia', superior: 'Superior', copa: 'Copa', publica: 'Vista pública', datos: 'Datos y reglas' };
+
+let estado = estadoInicial();
+let guardadoOk = true;
+let horaGuardado = null;
+let cambiosSinRespaldo = false;
+const pilaDeshacer = [];
+const pilaRehacer = [];
+let ultimaClave = '';
+let ultimaHora = 0;
+let temporizadorAviso = null;
+const ui = { tab: 'config', tema: 'claro', ocultarEscuelas: false, acumulado: false, pubNivel: 'elemental', pubOrden: 'posicion', pubEscuelas: false };
+const sinc = { url: '', clave: '', rev: -1, epoca: '', cola: [], enviando: false, consultando: false, detenida: false, error: '', reintentos: 0, ultimaSinc: null, ultimoCambio: Date.now(), temporizador: null };
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function plural(n, uno, varios) { return n === 1 ? uno : varios; }
+function listaNumeros(nums) {
+  const a = nums.map(String);
+  return a.length <= 1 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1];
+}
+function fraseMesas(nums) {
+  return nums.length === 1 ? 'la mesa ' + nums[0] : 'las mesas ' + listaNumeros(nums);
+}
+function mayuscula(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function dosDigitos(n) { return String(n).padStart(2, '0'); }
+
+function buscarMesa(nivelId, id) {
+  const nv = estado.niveles[nivelId];
+  return nv ? nv.mesas.find(function (m) { return m.id === id; }) || null : null;
+}
+function escuelaPorId(id) {
+  return estado.escuelas.find(function (e) { return e.id === id; }) || null;
+}
+function escuelaPorNombre(nombre, exceptoId) {
+  const clave = normalizarNombre(nombre);
+  return estado.escuelas.find(function (e) { return e.id !== exceptoId && normalizarNombre(e.nombre) === clave; }) || null;
+}
+function hayDatos() {
+  return estado.escuelas.length > 0 || NIVELES.some(function (nv) { return estado.niveles[nv.id].mesas.length > 0; });
+}
+
+/* ---------- Guardado ---------- */
+function probarAlmacen() {
+  try {
+    localStorage.setItem(CLAVE + '_prueba', '1');
+    localStorage.removeItem(CLAVE + '_prueba');
+    return true;
+  } catch (e) { return false; }
+}
+function guardar() {
+  try {
+    localStorage.setItem(CLAVE, JSON.stringify(estado));
+    guardadoOk = true;
+    horaGuardado = new Date();
+  } catch (e) { guardadoOk = false; }
+}
+function leerUi() {
+  try {
+    const u = JSON.parse(localStorage.getItem(CLAVE_UI) || '{}');
+    if (u.tema === 'noche' || u.tema === 'claro') ui.tema = u.tema;
+    ui.ocultarEscuelas = !!u.ocultarEscuelas;
+    ui.acumulado = !!u.acumulado;
+  } catch (e) { /* preferencias no disponibles */ }
+  try {
+    const s = JSON.parse(sessionStorage.getItem(CLAVE_UI) || '{}');
+    if (s.pubNivel && (s.pubNivel === 'copa' || NIVELES.some(function (nv) { return nv.id === s.pubNivel; }))) ui.pubNivel = s.pubNivel;
+    if (s.pubOrden === 'mesa' || s.pubOrden === 'posicion') ui.pubOrden = s.pubOrden;
+  } catch (e) { /* preferencias no disponibles */ }
+}
+function guardarUi() {
+  try { localStorage.setItem(CLAVE_UI, JSON.stringify({ tema: ui.tema, ocultarEscuelas: ui.ocultarEscuelas, acumulado: ui.acumulado })); } catch (e) { /* sin almacenamiento */ }
+  try { sessionStorage.setItem(CLAVE_UI, JSON.stringify({ pubNivel: ui.pubNivel, pubOrden: ui.pubOrden })); } catch (e) { /* sin almacenamiento */ }
+}
+function horaTexto(d) {
+  return dosDigitos(d.getHours()) + ':' + dosDigitos(d.getMinutes()) + ':' + dosDigitos(d.getSeconds());
+}
+function textoGuardado() {
+  if (sincActiva()) {
+    const n = sinc.cola.length;
+    if (sinc.detenida) return mensajeDeFallo(new Error('reinicio'));
+    if (sinc.error) return sinc.error + (n ? ': ' + n + ' ' + plural(n, 'cambio pendiente', 'cambios pendientes') : '');
+    if (n) return 'En línea: enviando ' + n + ' ' + plural(n, 'cambio', 'cambios');
+    return sinc.ultimaSinc ? 'En línea: sincronizado a las ' + horaTexto(sinc.ultimaSinc) : 'En línea: conectando';
+  }
+  if (!guardadoOk) return 'Sin guardado automático: descargue un respaldo';
+  if (!horaGuardado) return 'Datos guardados en este navegador';
+  return 'Guardado a las ' + horaTexto(horaGuardado);
+}
+function guardadoConProblema() {
+  return sincActiva() ? !!sinc.error || sinc.detenida : !guardadoOk;
+}
+
+/* ---------- Cambios, deshacer y rehacer ---------- */
+// Todo cambio es una lista de operaciones (véase aplicarOp): se aplican aquí y, con la sincronización activa,
+// se añaden a la cola de envío al servicio.
+function registrarCambio(ops) {
+  cambiosSinRespaldo = true;
+  if (sincActiva()) {
+    modificarCola(function (cola) { return cola.concat([{ id: nuevoId('b'), ops: ops }]); });
+    sinc.ultimoCambio = Date.now();
+  }
+  guardar();
+  render();
+  if (sincActiva()) programar(700);
+}
+function ejecutar(ops, clave) {
+  const inversas = aplicarOps(estado, ops);
+  if (!inversas.length) { render(); return false; }
+  const ahora = Date.now();
+  const cima = pilaDeshacer[pilaDeshacer.length - 1];
+  if (clave && clave === ultimaClave && ahora - ultimaHora < 2500 && cima) cima.ops = ops;
+  else {
+    pilaDeshacer.push({ inv: inversas, ops: ops });
+    if (pilaDeshacer.length > 100) pilaDeshacer.shift();
+  }
+  pilaRehacer.length = 0;
+  ultimaClave = clave || '';
+  ultimaHora = ahora;
+  registrarCambio(ops);
+  return true;
+}
+function deshacer() {
+  const e = pilaDeshacer.pop();
+  if (!e) return;
+  aplicarOps(estado, e.inv);
+  pilaRehacer.push(e);
+  ultimaClave = '';
+  registrarCambio(e.inv);
+  aviso('Cambio deshecho.');
+}
+function rehacer() {
+  const e = pilaRehacer.pop();
+  if (!e) return;
+  const inversas = aplicarOps(estado, e.ops);
+  pilaDeshacer.push({ inv: inversas.length ? inversas : e.inv, ops: e.ops });
+  ultimaClave = '';
+  registrarCambio(e.ops);
+  aviso('Cambio rehecho.');
+}
+
+/* ---------- Sincronización en línea ---------- */
+// Cada equipo conserva su copia de los datos y una cola de cambios por enviar. El servicio aplica los cambios en
+// el orden en que llegan y devuelve el estado común, que sustituye la copia local; los cambios aún no enviados
+// se vuelven a aplicar encima. Sin conexión, la captura continúa y la cola se envía al recuperarla.
+function sincActiva() { return !!sinc.url; }
+function colaValida(c) {
+  return Array.isArray(c) ? c.filter(function (l) { return l && typeof l.id === 'string' && Array.isArray(l.ops); }) : [];
+}
+function leerSinc() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(CLAVE_SINC) || 'null'); } catch (e) { return; }
+  if (s && typeof s.url === 'string' && s.url) {
+    sinc.url = s.url;
+    sinc.clave = String(s.clave || '');
+    sinc.rev = Number.isInteger(s.rev) ? s.rev : -1;
+    sinc.epoca = typeof s.epoca === 'string' ? s.epoca : '';
+    sinc.cola = colaValida(s.cola);
+    sinc.detenida = !!s.detenida;
+  } else {
+    sinc.url = ''; sinc.clave = ''; sinc.rev = -1; sinc.epoca = ''; sinc.cola = []; sinc.detenida = false;
+  }
+}
+function guardarSinc() {
+  try {
+    if (sincActiva()) localStorage.setItem(CLAVE_SINC, JSON.stringify({ url: sinc.url, clave: sinc.clave, rev: sinc.rev, epoca: sinc.epoca, cola: sinc.cola, detenida: sinc.detenida }));
+    else localStorage.removeItem(CLAVE_SINC);
+  } catch (e) { /* sin almacenamiento */ }
+}
+// La cola guardada es común a las ventanas del mismo navegador: se lee, se modifica y se guarda en un solo paso.
+function modificarCola(fn) {
+  let base = sinc.cola;
+  try {
+    const s = JSON.parse(localStorage.getItem(CLAVE_SINC) || 'null');
+    if (s && s.url === sinc.url && Array.isArray(s.cola)) base = colaValida(s.cola);
+  } catch (e) { /* se usa la cola en memoria */ }
+  sinc.cola = fn(base);
+  guardarSinc();
+}
+function direccionValida(url) {
+  return /^https:\/\/\S+$/i.test(url) || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/\S*)?$/i.test(url);
+}
+function servidorDe(url) {
+  try { return new URL(url).host; } catch (e) { return url; }
+}
+function pedir(metodo, url, clave, datos) {
+  const control = typeof AbortController === 'function' ? new AbortController() : null;
+  const limite = setTimeout(function () { if (control) control.abort(); }, metodo === 'GET' ? 20000 : 45000);
+  const opciones = { method: metodo, redirect: 'follow' };
+  if (control) opciones.signal = control.signal;
+  let destino = url;
+  if (metodo === 'GET') {
+    destino += (url.indexOf('?') < 0 ? '?' : '&') + 'k=' + encodeURIComponent(clave) + '&rev=' + encodeURIComponent(datos.rev) + '&t=' + Date.now();
+  } else {
+    // Tipo de contenido simple: la petición no requiere verificación previa entre orígenes.
+    opciones.headers = { 'Content-Type': 'text/plain;charset=utf-8' };
+    opciones.body = JSON.stringify(datos);
+  }
+  const fin = function () { clearTimeout(limite); };
+  return fetch(destino, opciones).then(function (r) {
+    if (!r.ok) throw new Error('red');
+    return r.text();
+  }).then(function (texto) {
+    fin();
+    let o = null;
+    try { o = JSON.parse(texto); } catch (e) { o = null; }
+    if (!o || typeof o !== 'object') throw new Error('respuesta');
+    if (!o.ok) throw new Error('servicio:' + (o.error || ''));
+    return o;
+  }, function (e) { fin(); throw e; });
+}
+function mensajeDeFallo(e) {
+  const m = e && e.message ? e.message : '';
+  if (m === 'servicio:clave') return 'Clave del servicio incorrecta';
+  if (m === 'servicio:clave-sin-configurar') return 'El servicio conserva la clave de ejemplo';
+  if (m === 'servicio:ocupado') return 'Servicio ocupado';
+  if (m === 'reinicio') return 'El servicio se reinició: conecte de nuevo';
+  if (m.indexOf('servicio:') === 0 || m === 'respuesta') return 'Respuesta no válida del servicio';
+  return 'Sin conexión con el servicio';
+}
+// Adopta la respuesta del servicio. Devuelve true si los datos visibles cambiaron.
+function adoptar(r) {
+  const epoca = typeof r.epoca === 'string' ? r.epoca : '';
+  if (sinc.epoca && epoca !== sinc.epoca) {
+    // El almacén del servicio no es el mismo de antes: no se adopta nada para no perder los datos locales.
+    sinc.detenida = true;
+    throw new Error('reinicio');
+  }
+  if (epoca) sinc.epoca = epoca;
+  let cambio = false;
+  if (r.estado) {
+    const nuevo = sanear(r.estado);
+    if (nuevo) {
+      sinc.cola.forEach(function (l) { aplicarOps(nuevo, l.ops); });
+      cambio = JSON.stringify(nuevo) !== JSON.stringify(estado);
+      estado = nuevo;
+    }
+  }
+  if (Number.isInteger(r.rev)) sinc.rev = r.rev;
+  return cambio;
+}
+// La casilla en edición no se toca al actualizar la página. Si todo lo escrito en ella ya fue recibido por el
+// servicio y otro equipo la cambió, se muestra el valor común.
+function sincronizarCasillaActiva() {
+  const el = document.activeElement;
+  if (!el || !el.matches || !el.matches('input[data-acc="punto"]') || el.classList.contains('invalido') || sinc.cola.length) return;
+  const m = buscarMesa(el.dataset.n, el.dataset.id);
+  const v = m ? m.p[+el.dataset.c] : null;
+  const texto = v == null ? '' : String(v);
+  if (el.value !== texto) { el.value = texto; el.select(); }
+}
+function exitoDeSinc() {
+  sinc.error = '';
+  sinc.reintentos = 0;
+  sinc.ultimaSinc = new Date();
+}
+function falloDeSinc(e) {
+  sinc.error = mensajeDeFallo(e);
+  sinc.reintentos += 1;
+  if (sinc.detenida) guardarSinc();
+  renderMarco();
+}
+function enviarCola() {
+  if (!sincActiva() || sinc.detenida || sinc.enviando || !sinc.cola.length) return;
+  sinc.enviando = true;
+  const url = sinc.url;
+  const lotes = sinc.cola.slice(0, 40);
+  const ids = lotes.map(function (l) { return l.id; });
+  pedir('POST', url, sinc.clave, { k: sinc.clave, rev: sinc.rev, lotes: lotes }).then(function (r) {
+    if (sinc.url !== url) return;
+    modificarCola(function (cola) { return cola.filter(function (l) { return ids.indexOf(l.id) < 0; }); });
+    adoptar(r);
+    exitoDeSinc();
+    guardar();
+    guardarSinc();
+    render();
+    sincronizarCasillaActiva();
+  }).catch(falloDeSinc).then(function () {
+    sinc.enviando = false;
+    programar();
+  });
+}
+function consultar() {
+  if (!sincActiva() || sinc.detenida || sinc.enviando || sinc.consultando) return;
+  sinc.consultando = true;
+  const url = sinc.url;
+  const rev = sinc.rev;
+  pedir('GET', url, sinc.clave, { rev: rev }).then(function (r) {
+    if (sinc.url !== url || sinc.rev !== rev) return;   // respuesta atrasada: llegó después de un envío
+    const cambio = adoptar(r);
+    exitoDeSinc();
+    if (cambio) {
+      sinc.ultimoCambio = Date.now();
+      guardar();
+      guardarSinc();
+      render();
+      sincronizarCasillaActiva();
+    } else {
+      if (sinc.rev !== rev) guardarSinc();
+      renderMarco();
+    }
+  }).catch(falloDeSinc).then(function () {
+    sinc.consultando = false;
+    programar();
+  });
+}
+function cicloDeSinc() {
+  if (!sincActiva() || sinc.detenida || sinc.enviando || sinc.consultando) return;
+  if (sinc.cola.length) enviarCola();
+  else consultar();
+}
+// Programa el próximo ciclo: pronto si hay cambios por enviar, más espaciado si no hay actividad o hubo fallos.
+function programar(espera) {
+  clearTimeout(sinc.temporizador);
+  if (!sincActiva() || sinc.detenida) return;
+  let ms = espera;
+  if (ms == null) {
+    if (sinc.error) ms = Math.min(30000, 2500 * Math.pow(2, Math.min(sinc.reintentos, 4)));
+    else if (sinc.cola.length) ms = 300;
+    else if (document.hidden) ms = 20000;
+    else ms = Date.now() - sinc.ultimoCambio < 120000 ? 4000 : 10000;
+  }
+  sinc.temporizador = setTimeout(cicloDeSinc, ms);
+}
+function tieneDatos(e) {
+  return e.escuelas.length > 0 || NIVELES.some(function (nv) { return e.niveles[nv.id].mesas.length > 0; });
+}
+function resumenDatos(e) {
+  const m = NIVELES.reduce(function (n, nv) { return n + e.niveles[nv.id].mesas.length; }, 0);
+  return m + ' ' + plural(m, 'mesa', 'mesas') + ' y ' + e.escuelas.length + ' ' + plural(e.escuelas.length, 'escuela', 'escuelas');
+}
+function conectar(url, clave) {
+  url = String(url || '').trim();
+  clave = String(clave || '').trim();
+  if (!direccionValida(url)) { aviso('La dirección del servicio debe comenzar con https://'); return; }
+  if (!clave) { aviso('Escriba la clave del servicio.'); return; }
+  aviso('Conectando con el servicio…');
+  pedir('GET', url, clave, { rev: -1 }).then(function (r) {
+    const remoto = sanear(r.estado);
+    if (!remoto) throw new Error('respuesta');
+    const activar = function (subir) {
+      const local = JSON.parse(JSON.stringify(estado));
+      clearTimeout(sinc.temporizador);
+      sinc.url = url;
+      sinc.clave = clave;
+      sinc.rev = Number.isInteger(r.rev) ? r.rev : -1;
+      sinc.epoca = typeof r.epoca === 'string' ? r.epoca : '';
+      sinc.cola = subir ? [{ id: nuevoId('b'), ops: [{ t: 'todo', estado: local }] }] : [];
+      sinc.error = '';
+      sinc.reintentos = 0;
+      sinc.detenida = false;
+      sinc.ultimaSinc = new Date();
+      sinc.ultimoCambio = Date.now();
+      if (!subir) estado = remoto;
+      pilaDeshacer.length = 0;
+      pilaRehacer.length = 0;
+      ultimaClave = '';
+      guardar();
+      guardarSinc();
+      render();
+      programar(100);
+      aviso('Equipo conectado al servicio de sincronización.');
+    };
+    const local = sanear(JSON.parse(JSON.stringify(estado)));
+    if (!hayDatos() || JSON.stringify(local) === JSON.stringify(remoto)) { activar(false); return; }
+    const hayRemoto = tieneDatos(remoto);
+    dialogo({
+      titulo: 'Conectar este equipo',
+      cuerpoHtml: '<p>Este equipo tiene ' + resumenDatos(estado) + '; el servicio tiene ' + resumenDatos(remoto) + '.</p>' +
+        '<fieldset><legend>Datos que se conservan</legend>' +
+        '<label><input type="radio" name="origen" value="linea"' + (hayRemoto ? ' checked' : '') + '> Los datos en línea; los de este equipo se sustituyen</label>' +
+        '<label><input type="radio" name="origen" value="subir"' + (hayRemoto ? '' : ' checked') + '> Los de este equipo; sustituyen los datos en línea en todos los equipos conectados</label></fieldset>',
+      aceptar: 'Conectar',
+      leer: function (dlg) { return dlg.querySelector('input[name="origen"]:checked').value; }
+    }).then(function (v) { if (v) activar(v === 'subir'); });
+  }).catch(function (e) { aviso(mensajeDeFallo(e) + '.'); });
+}
+function desconectar() {
+  const n = sinc.cola.length;
+  dialogo({
+    titulo: 'Desconectar este equipo',
+    cuerpoHtml: '<p>El equipo deja de sincronizarse y conserva una copia de los datos actuales.' +
+      (n ? ' Hay ' + n + ' ' + plural(n, 'cambio que no se ha enviado', 'cambios que no se han enviado') + ' al servicio.' : '') + '</p>',
+    aceptar: 'Desconectar', peligro: true
+  }).then(function (ok) {
+    if (!ok) return;
+    clearTimeout(sinc.temporizador);
+    sinc.url = ''; sinc.clave = ''; sinc.rev = -1; sinc.epoca = ''; sinc.cola = []; sinc.error = ''; sinc.ultimaSinc = null; sinc.detenida = false;
+    guardarSinc();
+    render();
+    aviso('Equipo desconectado.');
+  });
+}
+// Enlace de invitación: la dirección de esta página con los datos de conexión en el fragmento (no viaja al servidor de la página).
+function enlaceDeInvitacion() {
+  const datos = JSON.stringify({ u: sinc.url, k: sinc.clave });
+  const codigo = btoa(unescape(encodeURIComponent(datos))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return location.href.split('#')[0] + '#conectar=' + codigo;
+}
+function leerInvitacion(codigo) {
+  try {
+    let b = codigo.replace(/-/g, '+').replace(/_/g, '/');
+    while (b.length % 4) b += '=';
+    const o = JSON.parse(decodeURIComponent(escape(atob(b))));
+    if (o && typeof o.u === 'string' && typeof o.k === 'string') return { url: o.u, clave: o.k };
+  } catch (e) { /* código no válido */ }
+  return null;
+}
+function copiarInvitacion() {
+  const enlace = enlaceDeInvitacion();
+  const mostrar = function () {
+    dialogo({
+      titulo: 'Enlace de invitación',
+      cuerpoHtml: '<p>Quien abra este enlace conecta su equipo con estos datos y puede modificarlos.</p>' +
+        '<input type="text" class="campo" style="width:100%" readonly aria-label="Enlace de invitación" value="' + esc(enlace) + '">',
+      aceptar: 'Cerrar'
+    });
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(enlace).then(function () { aviso('Enlace de invitación copiado.'); }, mostrar);
+  } else mostrar();
+}
+function atenderInvitacion() {
+  const m = /^#conectar=([A-Za-z0-9_-]+)$/.exec(location.hash);
+  if (!m) return;
+  const inv = leerInvitacion(m[1]);
+  try { history.replaceState(null, '', location.href.split('#')[0] + '#' + ui.tab); } catch (e) { /* sin historial disponible */ }
+  if (!inv || !direccionValida(inv.url)) { aviso('El enlace de invitación no es válido.'); return; }
+  if (sincActiva() && sinc.url === inv.url && sinc.clave === inv.clave) { aviso('Este equipo ya está conectado a ese servicio.'); return; }
+  dialogo({
+    titulo: 'Conectar este equipo',
+    cuerpoHtml: '<p>El enlace conecta este equipo con el servicio de sincronización alojado en «' + esc(servidorDe(inv.url)) + '». Los resultados se comparten con los demás equipos conectados.</p>',
+    aceptar: 'Conectar'
+  }).then(function (ok) { if (ok) conectar(inv.url, inv.clave); });
+}
+
+/* ---------- Actualización del documento sin reemplazar los nodos existentes ---------- */
+function claveNodo(n) {
+  return n.nodeType === 1 ? (n.getAttribute('data-k') || '') + '#' + (n.id || '') : '';
+}
+function mismaClase(a, b) {
+  if (a.nodeType !== b.nodeType) return false;
+  if (a.nodeType !== 1) return true;
+  return a.tagName === b.tagName && claveNodo(a) === claveNodo(b);
+}
+function morphNodo(a, b) {
+  if (a.nodeType !== 1) {
+    if (a.nodeValue !== b.nodeValue) a.nodeValue = b.nodeValue;
+    return;
+  }
+  const esCampo = a.tagName === 'INPUT' || a.tagName === 'SELECT' || a.tagName === 'TEXTAREA';
+  const enUso = esCampo && a === document.activeElement;
+  const omitir = function (nombre) {
+    return (nombre === 'open' && a.tagName === 'DETAILS') || (enUso && (nombre === 'value' || nombre === 'class'));
+  };
+  for (let i = a.attributes.length - 1; i >= 0; i--) {
+    const nombre = a.attributes[i].name;
+    if (!b.hasAttribute(nombre) && !omitir(nombre)) a.removeAttribute(nombre);
+  }
+  for (let i = 0; i < b.attributes.length; i++) {
+    const nombre = b.attributes[i].name;
+    const valor = b.attributes[i].value;
+    if (!omitir(nombre) && a.getAttribute(nombre) !== valor) a.setAttribute(nombre, valor);
+  }
+  if (a.tagName !== 'TEXTAREA') morphHijos(a, b);
+  if (esCampo && !enUso && !a.hasAttribute('data-libre')) {
+    if (a.tagName === 'INPUT') {
+      if (a.type === 'checkbox' || a.type === 'radio') {
+        const marcado = b.hasAttribute('checked');
+        if (a.checked !== marcado) a.checked = marcado;
+      } else if (a.type !== 'file') {
+        const v = b.getAttribute('value') || '';
+        if (a.value !== v) a.value = v;
+      }
+    } else if (a.tagName === 'SELECT') {
+      const op = b.querySelector('option[selected]');
+      const v = op ? op.value : (b.options.length ? b.options[0].value : '');
+      if (a.value !== v) a.value = v;
+    }
+  }
+}
+function morphHijos(a, b) {
+  let ca = a.firstChild;
+  let cb = b.firstChild;
+  while (cb) {
+    const sigB = cb.nextSibling;
+    if (ca && mismaClase(ca, cb)) {
+      morphNodo(ca, cb);
+      ca = ca.nextSibling;
+    } else {
+      let hallado = null;
+      if (cb.nodeType === 1 && claveNodo(cb) !== '#') {
+        for (let n = ca; n; n = n.nextSibling) {
+          if (mismaClase(n, cb)) { hallado = n; break; }
+        }
+      }
+      if (hallado && hallado.contains(document.activeElement)) {
+        // El nodo que contiene el foco no se mueve: se apartan los que lo preceden.
+        while (ca !== hallado) {
+          const sigA = ca.nextSibling;
+          a.appendChild(ca);
+          ca = sigA;
+        }
+        morphNodo(ca, cb);
+        ca = ca.nextSibling;
+      } else if (hallado) {
+        a.insertBefore(hallado, ca);
+        morphNodo(hallado, cb);
+      } else if (ca && !(ca.nodeType === 1 && claveNodo(ca) !== '#')) {
+        const sigA = ca.nextSibling;
+        a.replaceChild(cb, ca);
+        ca = sigA;
+      } else {
+        a.insertBefore(cb, ca);
+      }
+    }
+    cb = sigB;
+  }
+  while (ca) {
+    const sigA = ca.nextSibling;
+    a.removeChild(ca);
+    ca = sigA;
+  }
+}
+function morph(destino, html) {
+  const plantilla = document.createElement('template');
+  plantilla.innerHTML = html;
+  morphHijos(destino, plantilla.content);
+}
+
+/* ---------- Avisos y diálogos ---------- */
+function aviso(texto) {
+  const caja = document.getElementById('avisos');
+  caja.innerHTML = '<div class="globo">' + esc(texto) + '</div>';
+  clearTimeout(temporizadorAviso);
+  temporizadorAviso = setTimeout(function () { caja.innerHTML = ''; }, 4500);
+}
+// Devuelve una promesa: null si se cancela; en caso contrario, true o el valor de opc.leer(dialogo).
+function dialogo(opc) {
+  return new Promise(function (resolver) {
+    const capa = document.getElementById('capa-dialogo');
+    const previo = document.activeElement;
+    capa.innerHTML = '<div class="dialogo" role="dialog" aria-modal="true" aria-labelledby="dlg-titulo">' +
+      '<h2 id="dlg-titulo">' + esc(opc.titulo) + '</h2><div class="dlg-cuerpo">' + opc.cuerpoHtml + '</div>' +
+      '<div class="dlg-acciones"><button type="button" class="btn" data-dlg="cancelar">' + esc(opc.cancelar || 'Cancelar') + '</button>' +
+      '<button type="button" class="btn ' + (opc.peligro ? 'peligro-lleno' : 'primario') + '" data-dlg="aceptar">' + esc(opc.aceptar || 'Aceptar') + '</button></div></div>';
+    capa.hidden = false;
+    const cerrar = function (aceptado) {
+      const dlg = capa.firstElementChild;
+      let valor = null;
+      if (aceptado) {
+        valor = opc.leer ? opc.leer(dlg) : true;
+        if (valor === undefined) return;
+      }
+      capa.hidden = true;
+      capa.innerHTML = '';
+      capa.onclick = null;
+      capa.onkeydown = null;
+      if (previo && previo.focus && document.contains(previo)) previo.focus();
+      resolver(valor);
+    };
+    capa.onclick = function (ev) {
+      const b = ev.target.closest('[data-dlg]');
+      if (b) cerrar(b.dataset.dlg === 'aceptar');
+      else if (ev.target === capa) cerrar(false);
+    };
+    capa.onkeydown = function (ev) {
+      if (ev.key === 'Escape') { ev.preventDefault(); cerrar(false); return; }
+      if (ev.key !== 'Tab') return;
+      const focos = Array.from(capa.querySelectorAll('button, input, select')).filter(function (x) { return !x.disabled; });
+      if (!focos.length) return;
+      const primero = focos[0];
+      const ultimo = focos[focos.length - 1];
+      if (ev.shiftKey && document.activeElement === primero) { ev.preventDefault(); ultimo.focus(); }
+      else if (!ev.shiftKey && document.activeElement === ultimo) { ev.preventDefault(); primero.focus(); }
+    };
+    capa.querySelector('[data-dlg="cancelar"]').focus();
+  });
+}
+
+/* ---------- Fragmentos comunes ---------- */
+function etiquetaPos(f) {
+  if (!f.activa) return '<span class="pos-dq">' + (f.dqEscuela ? 'Escuela descalificada' : 'Descalificada') + '</span>';
+  if (f.pos == null) return '<span class="pos-nula">—</span>';
+  return '<span class="pos' + (f.pos <= PREMIADAS ? ' p' + f.pos : '') + '">' + f.pos + '</span>' + (f.empate ? ' <span class="emp">empate</span>' : '');
+}
+function nombreEscuela(f) {
+  return f.escuela ? esc(f.escuela.nombre) : '<span class="tenue">Sin asignar</span>';
+}
+function textoEstadoNivel(c) {
+  const partes = [];
+  switch (c.estado) {
+    case 'sin-activas': partes.push('Todas las mesas están descalificadas.'); break;
+    case 'sin-iniciar': partes.push('Sin puntuaciones registradas.'); break;
+    case 'en-curso': partes.push(c.k > 0 ? 'Ronda ' + c.k + ' de ' + N_PROB + ' completada.' : 'Ninguna ronda completada.'); break;
+    case 'desempate': partes.push('Diez rondas completadas. Desempate pendiente en posiciones premiadas.'); break;
+    case 'final': partes.push(c.apelacionesPendientes ? 'Diez rondas completadas. Resultados sujetos a apelaciones pendientes.' : 'Diez rondas completadas. Resultados finales.'); break;
+    default:
+  }
+  const f = c.faltantes;
+  if (f && (f.calificadas > 0 || c.adelantadas)) {
+    let t = 'Ronda ' + f.ronda + ': ' + f.calificadas + ' de ' + c.nActivas + ' mesas calificadas; ';
+    t += f.mesas.length <= 10 ? plural(f.mesas.length, 'falta ', 'faltan ') + fraseMesas(f.mesas) + '.' : 'faltan ' + f.mesas.length + ' mesas.';
+    if (c.adelantadas) t += ' Las puntuaciones de rondas posteriores no cuentan hasta completar esta ronda.';
+    partes.push(t);
+  }
+  if (c.sinResolver) partes.push('Persiste un empate total en posiciones premiadas.');
+  if (c.apelacionesPendientes && c.estado !== 'final') partes.push(plural(c.apelacionesPendientes, '1 apelación pendiente.', c.apelacionesPendientes + ' apelaciones pendientes.'));
+  return partes.join(' ');
+}
+function notasDesempate(g) {
+  const partes = [];
+  g.pendientes.forEach(function (p) {
+    const mesas = fraseMesas(numerosDe(p.filas));
+    partes.push(p.etapa === 1
+      ? 'Corresponde la primera ronda de desempate entre ' + mesas + '.'
+      : 'Persiste el empate entre ' + mesas + ' tras la primera ronda: corresponde la segunda ronda de desempate.');
+  });
+  g.notas.forEach(function (n) {
+    partes.push('Regla 23: ' + mayuscula(fraseMesas(n.arriba)) + ' ' + plural(n.arriba.length, 'supera', 'superan') + ' a ' + fraseMesas(n.abajo) +
+      ' en el Problema ' + n.problema + ' (' + n.ptsArriba + ' frente a ' + n.ptsAbajo + ').');
+  });
+  g.sinResolver.forEach(function (s) {
+    partes.push(mayuscula(fraseMesas(numerosDe(s.filas))) + ' coinciden en todas las puntuaciones. La posición ' + s.inicio +
+      ' queda compartida, salvo determinación de los jueces (regla 21).');
+  });
+  return partes;
+}
+
+/* ---------- Marco: cabecera y pestañas ---------- */
+function etiquetaPestana(id, clas) {
+  const c = clas[id];
+  if (!c || c.estado === 'vacio') return '';
+  if (c.estado === 'final') return '<span class="et ok">final</span>';
+  if (c.estado === 'desempate') return '<span class="et alerta">desempate</span>';
+  if (c.estado === 'sin-activas') return '';
+  return '<span class="et">' + c.k + '/' + N_PROB + '</span>';
+}
+function htmlMarco(clas) {
+  const pestanas = PESTANAS.map(function (id) {
+    const activa = ui.tab === id;
+    return '<a href="#' + id + '" data-tab="' + id + '"' + (activa ? ' class="activa" aria-current="page"' : '') + '>' + TITULOS[id] + etiquetaPestana(id, clas) + '</a>';
+  }).join('');
+  return '<header class="cabecera">' +
+    '<div><h1>' + esc(estado.evento) + '</h1><p>Resultados por nivel y Copa de escuelas</p></div>' +
+    '<div class="herramientas">' +
+    '<span class="guardado' + (guardadoConProblema() ? ' mal' : '') + '" title="' + esc(textoGuardado()) + '">' + esc(textoGuardado()) + '</span>' +
+    '<button type="button" class="btn-cab" data-acc="deshacer"' + (pilaDeshacer.length ? '' : ' disabled') + '>Deshacer</button>' +
+    '<button type="button" class="btn-cab" data-acc="rehacer"' + (pilaRehacer.length ? '' : ' disabled') + '>Rehacer</button>' +
+    '<label class="interruptor"><input type="checkbox" data-acc="ocultar-escuelas"' + (ui.ocultarEscuelas ? ' checked' : '') + '> Ocultar escuelas</label>' +
+    '<button type="button" class="btn-cab" data-acc="tema">' + (ui.tema === 'noche' ? 'Modo día' : 'Modo noche') + '</button>' +
+    '<button type="button" class="btn-cab" data-acc="imprimir">Imprimir</button>' +
+    '</div></header>' +
+    '<nav class="pestanas" aria-label="Secciones">' + pestanas + '</nav>';
+}
+
+/* ---------- Vista: mesas y escuelas ---------- */
+function vistaConfig() {
+  const escuelas = estado.escuelas.slice().sort(function (a, b) { return compararNombres(a.nombre, b.nombre); });
+  const filasEsc = escuelas.map(function (e) {
+    const cuenta = NIVELES.map(function (nv) {
+      const n = estado.niveles[nv.id].mesas.filter(function (m) { return m.escuelaId === e.id; }).length;
+      return '<td>' + (n || '<span class="tenue">0</span>') + '</td>';
+    }).join('');
+    return '<tr data-k="' + esc(e.id) + '"' + (e.descalificada ? ' class="fila-dq"' : '') + '>' +
+      '<td class="c-esc"><input type="text" class="campo" maxlength="120" aria-label="Nombre de la escuela" data-acc="escuela-nombre" data-id="' + esc(e.id) + '" value="' + esc(e.nombre) + '"></td>' +
+      cuenta +
+      '<td><input type="checkbox" aria-label="Descalificar la escuela ' + esc(e.nombre) + '" data-acc="escuela-dq" data-id="' + esc(e.id) + '"' + (e.descalificada ? ' checked' : '') + '></td>' +
+      '<td><button type="button" class="btn-texto" data-acc="del-escuela" data-id="' + esc(e.id) + '" aria-label="Eliminar la escuela ' + esc(e.nombre) + '">Eliminar</button></td></tr>';
+  }).join('');
+  const tablaEsc = escuelas.length
+    ? '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col" class="c-esc">Escuela</th>' +
+      '<th scope="col" title="Mesas en el nivel Elemental">Elemental</th><th scope="col" title="Mesas en el nivel Intermedia">Intermedia</th><th scope="col" title="Mesas en el nivel Superior">Superior</th>' +
+      '<th scope="col">Descalificada</th><th scope="col"><span class="tenue">Acción</span></th></tr></thead><tbody>' + filasEsc + '</tbody></table></div>'
+    : '<p class="vacio">No hay escuelas registradas.</p>';
+
+  const niveles = NIVELES.map(function (nv) {
+    const mesas = estado.niveles[nv.id].mesas;
+    const filas = mesas.map(function (m) {
+      const e = m.escuelaId ? escuelaPorId(m.escuelaId) : null;
+      return '<tr data-k="' + esc(m.id) + '">' +
+        '<td><input type="text" inputmode="numeric" maxlength="4" class="campo num" aria-label="Número de la mesa ' + m.numero + '" data-acc="mesa-numero" data-n="' + nv.id + '" data-id="' + esc(m.id) + '" value="' + m.numero + '"></td>' +
+        '<td class="col-escuela c-esc"><input type="text" class="campo" list="lista-escuelas" maxlength="120" placeholder="Sin asignar" aria-label="Escuela de la mesa ' + m.numero + '" data-acc="mesa-escuela" data-n="' + nv.id + '" data-id="' + esc(m.id) + '" value="' + (e ? esc(e.nombre) : '') + '"></td>' +
+        '<td><button type="button" class="btn-texto" data-acc="del-mesa" data-n="' + nv.id + '" data-id="' + esc(m.id) + '" aria-label="Eliminar la mesa ' + m.numero + ' del nivel ' + nv.nombre + '">Eliminar</button></td></tr>';
+    }).join('');
+    return '<section class="bloque" data-k="cfg-' + nv.id + '">' +
+      '<h3>' + nv.nombre + '<span class="cuenta">' + mesas.length + ' ' + plural(mesas.length, 'mesa', 'mesas') + '</span></h3>' +
+      '<div class="acciones"><label class="etiqueta-campo">Cantidad <input type="number" class="campo num" id="cantidad-' + nv.id + '" data-libre min="1" max="100" value="1"></label>' +
+      '<button type="button" class="btn" data-acc="add-mesas" data-n="' + nv.id + '">Añadir mesas</button></div>' +
+      (mesas.length
+        ? '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th><th scope="col"><span class="tenue">Acción</span></th></tr></thead><tbody>' + filas + '</tbody></table></div>'
+        : '<p class="vacio">Sin mesas registradas.</p>') +
+      '</section>';
+  }).join('');
+
+  return '<div class="vista" data-k="v-config">' +
+    '<div class="encabezado-vista"><h2>Mesas y escuelas</h2></div>' +
+    '<p class="aviso-linea solo-oculto">Las escuelas están ocultas. Para registrarlas o asignarlas a las mesas, desactive «Ocultar escuelas».</p>' +
+    '<section class="bloque" data-k="cfg-evento"><h3>Evento</h3>' +
+    '<label class="etiqueta-campo larga">Nombre del evento <input type="text" class="campo ancho" maxlength="120" data-acc="evento" value="' + esc(estado.evento) + '"></label></section>' +
+    '<p class="ayuda nota-niveles solo-visible">La escuela de cada mesa se escribe en su fila; un nombre nuevo queda registrado automáticamente.</p>' +
+    '<div class="rejilla-niveles">' + niveles + '</div>' +
+    '<section class="bloque panel-escuelas solo-visible" data-k="cfg-escuelas"><h3>Registro de escuelas<span class="cuenta">' + escuelas.length + ' ' + plural(escuelas.length, 'registrada', 'registradas') + '</span></h3>' +
+    '<p class="ayuda">Desde aquí se registran escuelas por adelantado, se corrigen nombres y se descalifica una escuela. Al cambiar un nombre por el de otra escuela registrada, ambas se combinan.</p>' +
+    '<div class="acciones"><input type="text" class="campo ancho" id="nueva-escuela" data-libre maxlength="120" placeholder="Nombre de la escuela" aria-label="Nombre de la escuela nueva">' +
+    '<button type="button" class="btn" data-acc="add-escuela">Añadir escuela</button></div>' + tablaEsc + '</section>' +
+    '<datalist id="lista-escuelas">' + escuelas.map(function (e) { return '<option value="' + esc(e.nombre) + '"></option>'; }).join('') + '</datalist>' +
+    '</div>';
+}
+
+/* ---------- Vista: nivel ---------- */
+function pistaRondas(c) {
+  let items = '';
+  for (let i = 1; i <= N_PROB; i++) {
+    const cls = i <= c.k ? 'hecha' : (i === c.k + 1 && c.nActivas ? 'actual' : '');
+    if (i === 6) items += '<li class="receso" aria-hidden="true">receso</li>';
+    items += '<li' + (cls ? ' class="' + cls + '"' : '') + '>' + i + '</li>';
+  }
+  return '<ol class="pista" aria-label="Rondas completadas: ' + c.k + ' de ' + N_PROB + '">' + items + '</ol>';
+}
+function seccionCaptura(nv, c) {
+  let cab = '';
+  for (let j = 0; j < N_PROB; j++) {
+    const cls = j < c.k ? ' hecha' : (j === c.k && c.nActivas ? ' actual' : '');
+    cab += '<th scope="col" class="c-p' + cls + (j === 4 ? ' receso' : '') + '" title="Problema ' + (j + 1) + (j < c.k ? ': ronda completa' : '') + '">P' + (j + 1) + '</th>';
+  }
+  const filas = c.filas.map(function (f, r) {
+    const m = f.mesa;
+    let celdas = '';
+    for (let j = 0; j < N_PROB; j++) {
+      celdas += '<td class="c-p' + (j === 4 ? ' receso' : '') + (j >= c.k ? ' pend' : '') + '"><input type="text" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="Mesa ' + m.numero + ', problema ' + (j + 1) +
+        '" data-acc="punto" data-n="' + nv.id + '" data-id="' + esc(m.id) + '" data-r="' + r + '" data-c="' + j + '" value="' + (m.p[j] == null ? '' : m.p[j]) + '"></td>';
+    }
+    const apel = m.ap.indexOf('pendiente') >= 0 ? '<span class="marca-ap" title="Apelación pendiente">apelación</span>' : '';
+    return '<tr data-k="' + esc(m.id) + '"' + (f.activa ? '' : ' class="fila-dq"') + '>' +
+      '<th scope="row" class="c-mesa"><span class="num-mesa">' + m.numero + '</span>' + apel + '</th>' +
+      '<td class="col-escuela c-esc">' + nombreEscuela(f) + '</td>' + celdas +
+      '<td class="c-total">' + (c.k ? f.total : '<span class="pos-nula">—</span>') + '</td>' +
+      '<td class="c-pos">' + etiquetaPos(f) + '</td></tr>';
+  }).join('');
+  return '<section class="bloque" data-k="captura"><h3>Puntuaciones</h3>' +
+    '<p class="ayuda">Puntuaciones enteras de 0 a ' + MAX_PTS + ' por problema. El total y la posición cuentan las rondas calificadas para todas las mesas activas; las puntuaciones de las demás rondas se muestran en gris. La tecla Intro y las flechas desplazan el cursor entre casillas.</p>' +
+    '<div class="tabla-desliz ajustada"><table class="hoja fija captura"><thead><tr><th scope="col" class="c-mesa">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th>' + cab +
+    '<th scope="col" class="c-total" title="' + (c.k ? 'Total tras la ronda ' + c.k : 'Total de las rondas completas') + '">Total</th><th scope="col" class="c-pos" title="' + (c.k ? 'Posición tras la ronda ' + c.k : 'Posición') + '">Posición</th></tr></thead>' +
+    '<tbody>' + filas + '</tbody></table></div></section>';
+}
+function grupoDesempate(nv, g) {
+  const hayD2 = g.filas.some(function (f) { return f.pideD2; });
+  const hayDJ = g.filas.some(function (f) { return f.pideDJ; });
+  const campo = function (f, acc, i, sig, valor, etiqueta) {
+    return '<input type="text" inputmode="numeric" maxlength="2" autocomplete="off" class="campo num" aria-label="' + etiqueta + ' de la mesa ' + f.mesa.numero +
+      '" data-acc="' + acc + '" data-n="' + nv.id + '" data-id="' + esc(f.mesa.id) + '"' + (i == null ? '' : ' data-i="' + i + '"') + ' data-sig="' + esc(sig) + '" value="' + (valor == null ? '' : valor) + '">';
+  };
+  const raya = '<span class="tenue">—</span>';
+  const filas = g.filas.map(function (f) {
+    return '<tr data-k="' + esc(f.mesa.id) + '"><th scope="row" class="c-mesa"><span class="num-mesa">' + f.mesa.numero + '</span></th>' +
+      '<td class="col-escuela c-esc">' + nombreEscuela(f) + '</td>' +
+      '<td class="c-d">' + (f.pideD1 ? campo(f, 'desempate', 0, f.sig1, f.d1, 'Desempate 1') : raya) + '</td>' +
+      (hayD2 ? '<td class="c-d">' + (f.pideD2 ? campo(f, 'desempate', 1, f.sig2, f.d2, 'Desempate 2') : raya) + '</td>' : '') +
+      (hayDJ ? '<td class="c-d">' + (f.pideDJ ? campo(f, 'jueces', null, f.sigJ, f.dj, 'Orden asignado por los jueces') : raya) + '</td>' : '') +
+      '<td class="c-pos">' + etiquetaPos(f) + '</td><td class="c-crit">' + esc(criterioTexto(f)) + '</td></tr>';
+  }).join('');
+  const notas = notasDesempate(g);
+  const resuelto = !g.pendientes.length && !g.sinResolver.length;
+  const fin = g.inicio + g.filas.length - 1;
+  return '<div class="grupo" data-k="g-' + g.inicio + '-' + g.total + '">' +
+    '<h4>Empate con ' + g.total + ' puntos: posiciones ' + g.inicio + ' a ' + fin + '</h4>' +
+    '<div class="tabla-desliz ajustada"><table class="hoja"><thead><tr><th scope="col" class="c-mesa">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th>' +
+    '<th scope="col">Desempate 1</th>' + (hayD2 ? '<th scope="col">Desempate 2</th>' : '') + (hayDJ ? '<th scope="col">Orden de los jueces</th>' : '') +
+    '<th scope="col" class="c-pos">Posición</th><th scope="col" class="c-crit">Criterio</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+    '<ul>' + (resuelto ? '<li>Empate resuelto.</li>' : '') + notas.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') +
+    (hayDJ ? '<li>Orden de los jueces: 1 para la mesa que ocupa la posición superior del grupo, 2 para la siguiente, y así sucesivamente.</li>' : '') + '</ul></div>';
+}
+function seccionDesempates(nv, c) {
+  const grupos = c.grupos.filter(function (g) { return g.premiado; });
+  if (!grupos.length) return '';
+  return '<section class="bloque" data-k="desempates"><h3>Desempates</h3>' +
+    '<p class="ayuda">Las rondas de desempate ordenan a las mesas empatadas en posiciones premiadas; sus puntuaciones, de 0 a ' + MAX_PTS + ', no se suman al total (reglas 22 y 23).</p>' +
+    grupos.map(function (g) { return grupoDesempate(nv, g); }).join('') + '</section>';
+}
+// escuelas: 'no' (sin columna), 'col' (columna sujeta a «Ocultar escuelas») o 'fija' (columna siempre visible)
+function tablaResultados(c, o) {
+  const filas = o.orden === 'mesa' ? c.filas : c.orden;
+  let cab = '<th scope="col" class="c-pos">Posición</th><th scope="col" class="c-mesa">Mesa</th>';
+  if (o.escuelas !== 'no') cab += '<th scope="col" class="c-esc' + (o.escuelas === 'col' ? ' col-escuela' : '') + '">Escuela</th>';
+  for (let j = 0; j < N_PROB; j++) {
+    cab += '<th scope="col" class="c-p' + (j === 4 ? ' receso' : '') + '" title="' + (o.acumulado ? 'Acumulado tras el problema ' : 'Problema ') + (j + 1) + '">' + (o.acumulado ? 'A' : 'P') + (j + 1) + '</th>';
+  }
+  cab += '<th scope="col" class="c-total">Total</th>';
+  if (c.hayPremiado) {
+    cab += o.ancho ? '<th scope="col">Desempate 1</th><th scope="col">Desempate 2</th>'
+      : '<th scope="col" title="Primera ronda de desempate">D1</th><th scope="col" title="Segunda ronda de desempate">D2</th>';
+  }
+  if (o.criterio) cab += '<th scope="col" class="c-crit">Criterio de desempate</th>';
+  const cuerpo = filas.map(function (f) {
+    const m = f.mesa;
+    let tds = '';
+    let ac = 0;
+    for (let j = 0; j < N_PROB; j++) {
+      let txt = '';
+      if (j < c.k && m.p[j] != null) { ac += m.p[j]; txt = o.acumulado ? ac : m.p[j]; }
+      tds += '<td class="c-p' + (j === 4 ? ' receso' : '') + '">' + txt + '</td>';
+    }
+    const premio = f.activa && f.pos != null && f.pos <= PREMIADAS;
+    return '<tr' + (f.activa ? (premio ? ' class="premio"' : '') : ' class="fila-dq"') + '>' +
+      '<td class="c-pos">' + etiquetaPos(f) + '</td>' +
+      '<th scope="row" class="c-mesa"><span class="num-mesa">' + m.numero + '</span></th>' +
+      (o.escuelas !== 'no' ? '<td class="c-esc' + (o.escuelas === 'col' ? ' col-escuela' : '') + '">' + nombreEscuela(f) + '</td>' : '') +
+      tds + '<td class="c-total">' + (c.k ? f.total : '<span class="pos-nula">—</span>') + '</td>' +
+      (c.hayPremiado ? '<td class="c-d">' + (f.d1 == null ? '' : f.d1) + '</td><td class="c-d">' + (f.d2 == null ? '' : f.d2) + '</td>' : '') +
+      (o.criterio ? '<td class="c-crit">' + esc(criterioTexto(f)) + '</td>' : '') + '</tr>';
+  }).join('');
+  return '<div class="tabla-desliz' + (o.ancho ? '' : ' ajustada') + '"><table class="hoja' + (o.ancho ? '' : ' fija') + '"><thead><tr>' + cab + '</tr></thead><tbody>' + cuerpo + '</tbody></table></div>';
+}
+function seccionClasificacion(nv, c) {
+  let ayuda;
+  if (!c.k) ayuda = 'La clasificación se calcula a partir de la primera ronda calificada para todas las mesas activas.';
+  else if (c.k < N_PROB) ayuda = 'Clasificación tras la ronda ' + c.k + '. Solo cuentan las rondas calificadas para todas las mesas activas.';
+  else if (c.estado === 'desempate') ayuda = 'Clasificación con desempate pendiente.';
+  else ayuda = 'Clasificación final.';
+  return '<section class="bloque" data-k="clasificacion"><div class="fila-titulo"><h3>Clasificación</h3>' +
+    '<label class="interruptor no-imprimir"><input type="checkbox" data-acc="acumulado"' + (ui.acumulado ? ' checked' : '') + '> Mostrar la puntuación acumulada por ronda</label></div>' +
+    '<p class="ayuda">' + ayuda + '</p>' +
+    (c.k ? tablaResultados(c, { escuelas: 'col', acumulado: ui.acumulado, orden: 'posicion', criterio: true }) : '') + '</section>';
+}
+function seccionIncidencias(nv, c) {
+  const nDq = c.filas.filter(function (f) { return !f.activa; }).length;
+  const resumen = [];
+  if (c.apelacionesPendientes) resumen.push(c.apelacionesPendientes + ' ' + plural(c.apelacionesPendientes, 'apelación pendiente', 'apelaciones pendientes'));
+  if (nDq) resumen.push(nDq + ' ' + plural(nDq, 'mesa descalificada', 'mesas descalificadas'));
+  const opciones = function (v) {
+    return ESTADOS_APELACION.map(function (e) { return '<option value="' + e + '"' + (e === v ? ' selected' : '') + '>' + TEXTO_APELACION[e] + '</option>'; }).join('');
+  };
+  const filas = c.filas.map(function (f) {
+    const m = f.mesa;
+    const comun = ' data-n="' + nv.id + '" data-id="' + esc(m.id) + '"';
+    return '<tr data-k="' + esc(m.id) + '"' + (f.activa ? '' : ' class="fila-dq"') + '>' +
+      '<th scope="row" class="c-mesa"><span class="num-mesa">' + m.numero + '</span></th>' +
+      '<td class="col-escuela c-esc">' + nombreEscuela(f) + '</td>' +
+      '<td><select class="campo" aria-label="Apelación de la mesa ' + m.numero + ', problemas 1 a 5" data-acc="apelacion" data-i="0"' + comun + '>' + opciones(m.ap[0]) + '</select></td>' +
+      '<td><select class="campo" aria-label="Apelación de la mesa ' + m.numero + ', problemas 6 a 10" data-acc="apelacion" data-i="1"' + comun + '>' + opciones(m.ap[1]) + '</select></td>' +
+      '<td>' + (f.dqEscuela ? '<span class="pos-dq">Escuela descalificada</span>'
+        : '<input type="checkbox" aria-label="Descalificar la mesa ' + m.numero + '" data-acc="dq-mesa"' + comun + (m.dq ? ' checked' : '') + '>') + '</td>' +
+      '<td class="c-obs"><input type="text" class="campo" maxlength="300" aria-label="Observaciones de la mesa ' + m.numero + '" data-acc="obs"' + comun + ' value="' + esc(m.obs) + '"></td></tr>';
+  }).join('');
+  return '<details class="bloque" data-k="incidencias"' + (resumen.length ? ' open' : '') + '>' +
+    '<summary>Apelaciones, descalificaciones y observaciones' + (resumen.length ? '<span class="cuenta">' + resumen.join('; ') + '</span>' : '') + '</summary>' +
+    '<p class="ayuda">Cada mesa dispone de una apelación para los problemas 1 a 5 y otra para los problemas 6 a 10 (regla 18). Una mesa descalificada conserva sus puntuaciones, pero queda fuera de la clasificación y de la Copa.</p>' +
+    '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col" class="c-mesa">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th>' +
+    '<th scope="col">Apelación, problemas 1 a 5</th><th scope="col">Apelación, problemas 6 a 10</th><th scope="col">Descalificada</th><th scope="col" class="c-obs">Observaciones</th></tr></thead>' +
+    '<tbody>' + filas + '</tbody></table></div></details>';
+}
+function vistaNivel(nv, c) {
+  const cuerpo = c.nMesas
+    ? '<p class="estado-nivel">' + textoEstadoNivel(c) + '</p>' + seccionCaptura(nv, c) + seccionDesempates(nv, c) + seccionClasificacion(nv, c) + seccionIncidencias(nv, c)
+    : '<p class="vacio">No hay mesas registradas en el nivel ' + nv.nombre + '. <a href="#config" data-tab="config">Registrar mesas y escuelas</a></p>';
+  return '<div class="vista" data-k="v-' + nv.id + '">' +
+    '<div class="encabezado-vista"><h2>Nivel ' + nv.nombre + '</h2>' + (c.nMesas ? pistaRondas(c) : '') + '</div>' + cuerpo + '</div>';
+}
+
+/* ---------- Vista: Copa ---------- */
+function tablaCopa(copa) {
+  const filas = copa.filas.map(function (a) {
+    const dq = a.escuela.descalificada;
+    const nivel = function (id) { return !dq && a.mesasNivel[id] ? a.porNivel[id] : '<span class="tenue">—</span>'; };
+    let pos;
+    if (dq) pos = '<span class="pos-dq">Descalificada</span>';
+    else if (a.pos == null) pos = '<span class="pos-nula">—</span>';
+    else pos = '<span class="pos' + (a.pos <= 3 ? ' p' + a.pos : '') + '">' + a.pos + '</span>' + (a.empate ? ' <span class="emp">empate</span>' : '');
+    return '<tr' + (dq ? ' class="fila-dq"' : (a.pos != null && a.pos <= 3 ? ' class="premio"' : '')) + '>' +
+      '<td class="c-pos">' + pos + '</td><td class="c-esc">' + esc(a.escuela.nombre) + '</td>' +
+      '<td class="c-p">' + nivel('elemental') + '</td><td class="c-p">' + nivel('intermedia') + '</td><td class="c-p">' + nivel('superior') + '</td>' +
+      '<td class="c-total">' + (dq ? '<span class="tenue">—</span>' : a.total) + '</td>' +
+      '<td>' + a.mesas + (a.mesasDq ? ' <span class="tenue">(' + a.mesasDq + ' ' + plural(a.mesasDq, 'descalificada', 'descalificadas') + ')</span>' : '') + '</td></tr>';
+  }).join('');
+  return '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col" class="c-pos">Posición</th><th scope="col" class="c-esc">Escuela</th>' +
+    '<th scope="col">Elemental</th><th scope="col">Intermedia</th><th scope="col">Superior</th><th scope="col" class="c-total">Total</th><th scope="col">Mesas</th></tr></thead>' +
+    '<tbody>' + filas + '</tbody></table></div>';
+}
+function textoEstadoCopa(copa) {
+  if (!copa.hayDatos) return 'Sin rondas completadas.';
+  if (copa.provisional) return 'Resultados provisionales: hay niveles con rondas pendientes.';
+  if (copa.apelaciones) return 'Resultados sujetos a apelaciones pendientes.';
+  return 'Resultados finales.';
+}
+function vistaCopa(copa) {
+  let cuerpo;
+  if (ui.ocultarEscuelas) cuerpo = '<p class="aviso-linea">La Copa no se muestra mientras las escuelas están ocultas.</p>';
+  else if (!copa.filas.length) cuerpo = '<p class="vacio">No hay mesas con escuela asignada. <a href="#config" data-tab="config">Registrar mesas y escuelas</a></p>';
+  else {
+    cuerpo = '<p class="ayuda">Total de cada escuela: suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición. ' + textoEstadoCopa(copa) + '</p>' +
+      (copa.sinEscuela ? '<p class="aviso-linea atencion">' + copa.sinEscuela + ' ' + plural(copa.sinEscuela, 'mesa activa no tiene escuela asignada; sus puntos no cuentan', 'mesas activas no tienen escuela asignada; sus puntos no cuentan') + ' para la Copa.</p>' : '') +
+      '<section class="bloque" data-k="copa-tabla">' + tablaCopa(copa) + '</section>';
+  }
+  return '<div class="vista" data-k="v-copa"><div class="encabezado-vista"><h2>Copa de escuelas</h2></div>' + cuerpo + '</div>';
+}
+
+/* ---------- Vista pública ---------- */
+function vistaPublica(clas, copa) {
+  const nivelId = ui.pubNivel === 'copa' && !ui.pubEscuelas ? 'elemental' : ui.pubNivel;
+  const botones = NIVELES.map(function (nv) {
+    return '<button type="button" data-acc="pub-nivel" data-v="' + nv.id + '" aria-pressed="' + (nivelId === nv.id) + '"' + (nivelId === nv.id ? ' class="activo"' : '') + '>' + nv.nombre + '</button>';
+  }).join('') +
+    '<button type="button" data-acc="pub-nivel" data-v="copa" aria-pressed="' + (nivelId === 'copa') + '"' + (nivelId === 'copa' ? ' class="activo"' : '') +
+    (ui.pubEscuelas ? '' : ' disabled title="Disponible al mostrar las escuelas"') + '>Copa</button>';
+  let titulo;
+  let estadoTxt;
+  let tabla;
+  let notas = '';
+  if (nivelId === 'copa') {
+    titulo = 'Copa de escuelas';
+    estadoTxt = textoEstadoCopa(copa);
+    tabla = copa.filas.length ? tablaCopa(copa) : '<p class="vacio">No hay mesas con escuela asignada.</p>';
+  } else {
+    const nv = NIVELES.find(function (x) { return x.id === nivelId; });
+    const c = clas[nivelId];
+    titulo = 'Nivel ' + nv.nombre;
+    if (!c.nMesas) estadoTxt = '';
+    else if (c.k === 0) estadoTxt = 'Sin rondas completadas.';
+    else if (c.k < N_PROB) estadoTxt = 'Resultados tras la ronda ' + c.k + ' de ' + N_PROB + '.';
+    else if (c.estado === 'desempate') estadoTxt = 'Diez rondas completadas. Desempate pendiente.';
+    else estadoTxt = c.apelacionesPendientes ? 'Resultados sujetos a apelaciones pendientes.' : 'Resultados finales.';
+    tabla = c.nMesas
+      ? tablaResultados(c, { escuelas: ui.pubEscuelas ? 'fija' : 'no', acumulado: false, orden: ui.pubOrden, criterio: false, ancho: true })
+      : '<p class="vacio">No hay mesas registradas en este nivel.</p>';
+    const lista = [];
+    c.grupos.filter(function (g) { return g.premiado; }).forEach(function (g) { notasDesempate(g).forEach(function (t) { lista.push(t); }); });
+    if (lista.length) notas = '<ul class="notas-publicas">' + lista.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>';
+  }
+  return '<div class="vista" data-k="v-publica">' +
+    '<div class="barra-publica no-imprimir">' +
+    '<div class="segmento" role="group" aria-label="Resultados que se muestran">' + botones + '</div>' +
+    '<label class="etiqueta-campo">Orden <select class="campo" data-acc="pub-orden"' + (nivelId === 'copa' ? ' disabled' : '') + '>' +
+    '<option value="posicion"' + (ui.pubOrden === 'posicion' ? ' selected' : '') + '>Por posición</option>' +
+    '<option value="mesa"' + (ui.pubOrden === 'mesa' ? ' selected' : '') + '>Por número de mesa</option></select></label>' +
+    '<label class="interruptor"><input type="checkbox" data-acc="pub-escuelas"' + (ui.pubEscuelas ? ' checked' : '') + '> Mostrar escuelas</label>' +
+    '<button type="button" class="btn" data-acc="pantalla-completa">Pantalla completa</button></div>' +
+    '<div class="lienzo-publico" id="lienzo-publico">' +
+    '<div class="cab-publica"><p class="evento">' + esc(estado.evento) + '</p><h2>' + titulo + '</h2><p class="estado">' + estadoTxt + '</p></div>' +
+    tabla + notas + '</div></div>';
+}
+
+/* ---------- Vista: datos y reglas ---------- */
+function seccionSinc() {
+  if (!sincActiva()) {
+    return '<section class="bloque" data-k="sinc"><h3>Sincronización en línea</h3>' +
+      '<p class="ayuda">Con un servicio de sincronización, los equipos conectados comparten los mismos datos y los cambios de cada uno aparecen en los demás en unos segundos. Sin él, cada equipo conserva sus propios datos.</p>' +
+      '<div class="acciones"><label class="etiqueta-campo larga">Dirección del servicio <input type="url" class="campo ancho" id="sinc-url" data-libre autocomplete="off" placeholder="https://script.google.com/macros/s/…/exec"></label></div>' +
+      '<div class="acciones"><label class="etiqueta-campo">Clave <input type="text" class="campo" id="sinc-clave" data-libre autocomplete="off"></label>' +
+      '<button type="button" class="btn primario" data-acc="sinc-conectar">Conectar</button></div></section>';
+  }
+  const n = sinc.cola.length;
+  const problema = guardadoConProblema();
+  let linea = 'Equipo conectado al servicio alojado en «' + esc(servidorDe(sinc.url)) + '». ';
+  if (sinc.detenida) linea += 'El servicio no contiene los datos con los que se conectó este equipo: la sincronización está detenida. Para reanudarla, desconecte el equipo y conéctelo de nuevo.';
+  else {
+    linea += sinc.ultimaSinc ? 'Última sincronización: ' + horaTexto(sinc.ultimaSinc) + '. ' : 'Conectando. ';
+    linea += n ? 'Cambios pendientes de enviar: ' + n + '.' : 'Sin cambios pendientes de enviar.';
+    if (sinc.error) linea += ' ' + esc(sinc.error) + '; la captura continúa en este equipo y los cambios se envían al recuperarse la conexión.';
+  }
+  return '<section class="bloque" data-k="sinc"><h3>Sincronización en línea</h3>' +
+    '<p class="aviso-linea' + (problema ? ' atencion' : '') + '">' + linea + '</p>' +
+    '<p class="ayuda">El enlace de invitación conecta otro equipo con estos mismos datos; quien lo reciba puede ver y modificar los resultados.</p>' +
+    '<div class="acciones"><button type="button" class="btn primario" data-acc="sinc-invitar">Copiar enlace de invitación</button>' +
+    '<button type="button" class="btn" data-acc="sinc-ahora"' + (sinc.detenida ? ' disabled' : '') + '>Sincronizar ahora</button>' +
+    '<button type="button" class="btn peligro" data-acc="sinc-desconectar">Desconectar este equipo</button></div></section>';
+}
+function vistaDatos() {
+  return '<div class="vista" data-k="v-datos"><div class="encabezado-vista"><h2>Datos y reglas</h2></div>' +
+    seccionSinc() +
+    '<section class="bloque" data-k="respaldo"><h3>Respaldo</h3>' +
+    '<p class="ayuda">Los datos se guardan automáticamente en este navegador. El respaldo es un archivo que permite conservarlos, trasladarlos a otro equipo o reunir en uno solo los niveles capturados en equipos sin sincronización.</p>' +
+    '<div class="acciones"><button type="button" class="btn primario" data-acc="exportar-json">Descargar respaldo</button>' +
+    '<button type="button" class="btn" data-acc="importar-json">Cargar respaldo</button></div></section>' +
+    '<section class="bloque" data-k="exportacion"><h3>Exportación de resultados</h3>' +
+    '<p class="ayuda">Archivos CSV con la clasificación de cada nivel y de la Copa, para Excel u otra hoja de cálculo.</p>' +
+    '<div class="acciones">' + NIVELES.map(function (nv) { return '<button type="button" class="btn" data-acc="csv" data-v="' + nv.id + '">' + nv.nombre + '</button>'; }).join('') +
+    '<button type="button" class="btn" data-acc="csv" data-v="copa">Copa</button></div></section>' +
+    '<section class="bloque" data-k="criterios"><h3>Criterios de clasificación</h3><ul class="criterios">' +
+    '<li><strong>Puntuación.</strong> Cada nivel consta de diez problemas con valor de 0 a 10 puntos enteros, para un máximo de 100 (regla 8). La casilla sin calificar se distingue del cero: una ronda cuenta para la clasificación cuando todas las mesas activas tienen puntuación en ella.</li>' +
+    '<li><strong>Orden.</strong> Las mesas se ordenan por total de puntos, de mayor a menor.</li>' +
+    '<li><strong>Empates en posiciones premiadas</strong> (primera a quinta; reglas 22 y 23). Se resuelven en este orden:<ol>' +
+    '<li>Primera ronda de desempate entre las mesas empatadas.</li>' +
+    '<li>Segunda ronda de desempate entre las mesas que sigan empatadas.</li>' +
+    '<li>Comparación de las puntuaciones de la competencia regular desde el Problema 10 hasta el Problema 1: ocupa la posición superior la mesa con mayor puntuación en el primer problema en que difieran.</li></ol>' +
+    'Las puntuaciones de desempate solo ordenan a las mesas empatadas; no se suman al total. Cada una vale para el grupo de mesas con el que se registró: si el grupo cambia por una corrección posterior, se registra de nuevo.</li>' +
+    '<li><strong>Empates fuera de las posiciones premiadas.</strong> Se aplica directamente la comparación desde el Problema 10 hasta el Problema 1, sin rondas de desempate. Lo mismo ocurre cuando, tras la primera ronda, el empate que persiste ya no afecta posiciones premiadas.</li>' +
+    '<li><strong>Empate total.</strong> Las mesas que coinciden en todas las puntuaciones comparten la posición, salvo determinación de los jueces (regla 21).</li>' +
+    '<li><strong>Descalificación</strong> (reglas 3 y 7). La mesa o la escuela descalificada conserva sus puntuaciones registradas, queda fuera de la clasificación y sus puntos no cuentan para la Copa.</li>' +
+    '<li><strong>Apelaciones</strong> (regla 18). Cada mesa dispone de una apelación para los problemas 1 a 5 y otra para los problemas 6 a 10.</li>' +
+    '<li><strong>Copa de escuelas.</strong> El total de cada escuela es la suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición y la siguiente recibe el número consecutivo.</li>' +
+    '<li><strong>Cambios simultáneos.</strong> Con la sincronización activa, si dos equipos modifican el mismo dato, se conserva el último cambio recibido por el servicio.</li>' +
+    '</ul></section>' +
+    '<section class="bloque" data-k="reinicio"><h3>Reinicio</h3>' +
+    '<p class="ayuda">Los datos de ejemplo sirven para ensayar el manejo de la página antes de la competencia.</p>' +
+    '<div class="acciones"><button type="button" class="btn" data-acc="ejemplo">Cargar datos de ejemplo</button>' +
+    '<button type="button" class="btn peligro" data-acc="borrar-todo">Borrar todos los datos</button></div></section></div>';
+}
+
+/* ---------- Render ---------- */
+function clasificarTodo() {
+  const clas = {};
+  NIVELES.forEach(function (nv) { clas[nv.id] = clasificarNivel(estado, nv.id); });
+  return clas;
+}
+function render() {
+  const clas = clasificarTodo();
+  const copa = clasificarCopa(estado, clas);
+  document.documentElement.setAttribute('data-tema', ui.tema);
+  document.body.classList.toggle('sin-escuelas', ui.ocultarEscuelas);
+  morph(document.getElementById('marco'), htmlMarco(clas));
+  let html;
+  if (ui.tab === 'config') html = vistaConfig();
+  else if (ui.tab === 'copa') html = vistaCopa(copa);
+  else if (ui.tab === 'publica') html = vistaPublica(clas, copa);
+  else if (ui.tab === 'datos') html = vistaDatos();
+  else html = vistaNivel(NIVELES.find(function (nv) { return nv.id === ui.tab; }), clas[ui.tab]);
+  morph(document.getElementById('vista'), html);
+}
+// Actualiza solo la cabecera (estado de guardado y de sincronización); en «Datos y reglas» ese estado también está en la vista.
+function renderMarco() {
+  if (ui.tab === 'datos') { render(); return; }
+  morph(document.getElementById('marco'), htmlMarco(clasificarTodo()));
+}
+function irA(tab) {
+  if (PESTANAS.indexOf(tab) < 0) return;
+  ui.tab = tab;
+  try { history.replaceState(null, '', '#' + tab); } catch (e) { /* sin historial disponible */ }
+  render();
+  window.scrollTo(0, 0);
+}
+function leerHash() {
+  const h = location.hash.replace(/^#\/?/, '');
+  return PESTANAS.indexOf(h) >= 0 ? h : null;
+}
+
+/* ---------- Acciones ---------- */
+function alEscribirPunto(el) {
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  const col = +el.dataset.c;
+  const m = buscarMesa(n, id);
+  if (!m) return;
+  const leido = leerPunto(el.value);
+  const nuevo = leido === undefined ? null : leido;
+  el.classList.toggle('invalido', leido === undefined);
+  if (leido === undefined) aviso('Valor no admitido: la puntuación es un entero de 0 a ' + MAX_PTS + '.');
+  if (m.p[col] !== nuevo) ejecutar([{ t: 'punto', n: n, id: id, c: col, v: nuevo }], 'p:' + n + ':' + id + ':' + col);
+}
+function sincronizarPunto(el) {
+  const m = buscarMesa(el.dataset.n, el.dataset.id);
+  const v = m ? m.p[+el.dataset.c] : null;
+  el.value = v == null ? '' : String(v);
+  el.classList.remove('invalido');
+}
+function anadirEscuelaDesdeCampo() {
+  const campo = document.getElementById('nueva-escuela');
+  if (!campo) return;
+  const nombre = limpiarNombre(campo.value);
+  if (!nombre) { aviso('Escriba el nombre de la escuela.'); campo.focus(); return; }
+  if (escuelaPorNombre(nombre)) { aviso('La escuela «' + nombre + '» ya está registrada.'); campo.select(); return; }
+  ejecutar([{ t: 'escNueva', id: nuevoId('e'), nombre: nombre }]);
+  campo.value = '';
+  campo.focus();
+}
+function renombrarEscuela(el) {
+  const id = el.dataset.id;
+  const e = escuelaPorId(id);
+  if (!e) return;
+  const nombre = limpiarNombre(el.value);
+  if (!nombre) { aviso('El nombre de la escuela no puede quedar vacío.'); el.value = e.nombre; return; }
+  if (nombre === e.nombre) { el.value = e.nombre; return; }
+  const otra = escuelaPorNombre(nombre, id);
+  if (!otra) { ejecutar([{ t: 'esc', id: id, campo: 'nombre', v: nombre }]); return; }
+  const otraId = otra.id;
+  el.value = e.nombre;
+  dialogo({
+    titulo: 'Combinar escuelas',
+    cuerpoHtml: '<p>Ya existe la escuela «' + esc(otra.nombre) + '». Al combinarlas, las mesas de «' + esc(e.nombre) + '» pasan a «' + esc(otra.nombre) + '».</p>',
+    aceptar: 'Combinar'
+  }).then(function (ok) {
+    if (ok) ejecutar([{ t: 'escCombinar', de: id, a: otraId }]);
+    else render();
+  });
+}
+function asignarEscuela(el) {
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  const m = buscarMesa(n, id);
+  if (!m) return;
+  const nombre = limpiarNombre(el.value);
+  if (!nombre) {
+    if (m.escuelaId) ejecutar([{ t: 'mesaEsc', n: n, id: id, nombre: '' }]);
+    else el.value = '';
+    return;
+  }
+  const existente = escuelaPorNombre(nombre);
+  if (!existente || m.escuelaId !== existente.id) ejecutar([{ t: 'mesaEsc', n: n, id: id, nombre: nombre, eid: nuevoId('e') }]);
+  const asignada = escuelaPorNombre(nombre);
+  if (asignada) el.value = asignada.nombre;
+  if (!existente && asignada) aviso('Escuela nueva registrada: «' + asignada.nombre + '».');
+}
+function eliminarEscuela(id) {
+  const e = escuelaPorId(id);
+  if (!e) return;
+  let enUso = 0;
+  NIVELES.forEach(function (nv) { enUso += estado.niveles[nv.id].mesas.filter(function (m) { return m.escuelaId === id; }).length; });
+  if (!enUso) { ejecutar([{ t: 'escBorrar', id: id }]); return; }
+  dialogo({
+    titulo: 'Eliminar escuela',
+    cuerpoHtml: '<p>«' + esc(e.nombre) + '» está asignada a ' + enUso + ' ' + plural(enUso, 'mesa', 'mesas') + '. Al eliminarla, ' + plural(enUso, 'esa mesa queda', 'esas mesas quedan') + ' sin escuela asignada.</p>',
+    aceptar: 'Eliminar', peligro: true
+  }).then(function (ok) { if (ok) ejecutar([{ t: 'escBorrar', id: id }]); });
+}
+function anadirMesas(n) {
+  const campo = document.getElementById('cantidad-' + n);
+  let cantidad = campo ? parseInt(campo.value, 10) : 1;
+  if (!(cantidad >= 1)) cantidad = 1;
+  if (cantidad > 100) cantidad = 100;
+  const lista = estado.niveles[n].mesas;
+  if (lista.length + cantidad > 300) { aviso('El nivel admite un máximo de 300 mesas.'); return; }
+  let siguiente = lista.reduce(function (mx, m) { return Math.max(mx, m.numero); }, 0) + 1;
+  const ops = [];
+  for (let i = 0; i < cantidad; i++) { ops.push({ t: 'mesaNueva', n: n, mesa: nuevaMesa(siguiente) }); siguiente += 1; }
+  ejecutar(ops);
+  if (campo) campo.value = '1';
+}
+function cambiarNumeroMesa(el) {
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  const m = buscarMesa(n, id);
+  if (!m) return;
+  const t = el.value.trim();
+  const v = /^\d{1,4}$/.test(t) ? parseInt(t, 10) : NaN;
+  if (!(v >= 1)) { aviso('El número de mesa es un entero de 1 a 9999.'); el.value = m.numero; return; }
+  if (v === m.numero) { el.value = m.numero; return; }
+  if (estado.niveles[n].mesas.some(function (x) { return x.id !== id && x.numero === v; })) {
+    aviso('Ya existe la mesa ' + v + ' en este nivel.');
+    el.value = m.numero;
+    return;
+  }
+  ejecutar([{ t: 'mesa', n: n, id: id, campo: 'numero', v: v }]);
+}
+function eliminarMesa(n, id) {
+  const m = buscarMesa(n, id);
+  if (!m) return;
+  const conDatos = m.p.some(function (v) { return v != null; }) || m.d.some(function (v) { return v != null; }) || m.dq || m.obs || m.ap.some(function (a) { return a; });
+  if (!conDatos) { ejecutar([{ t: 'mesaBorrar', n: n, id: id }]); return; }
+  const nv = NIVELES.find(function (x) { return x.id === n; });
+  dialogo({
+    titulo: 'Eliminar mesa',
+    cuerpoHtml: '<p>La mesa ' + m.numero + ' del nivel ' + nv.nombre + ' tiene datos registrados. Al eliminarla se pierden sus puntuaciones e incidencias.</p>',
+    aceptar: 'Eliminar', peligro: true
+  }).then(function (ok) { if (ok) ejecutar([{ t: 'mesaBorrar', n: n, id: id }]); });
+}
+function cambiarDesempate(el) {
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  const m = buscarMesa(n, id);
+  if (!m) return;
+  const sig = el.dataset.sig;
+  if (el.dataset.acc === 'jueces') {
+    const t = el.value.trim();
+    let v = null;
+    if (t !== '') {
+      v = /^\d{1,2}$/.test(t) && parseInt(t, 10) >= 1 ? parseInt(t, 10) : undefined;
+      if (v === undefined) { aviso('El orden asignado por los jueces es un entero a partir de 1.'); el.value = ''; v = null; }
+    }
+    const actual = m.dgs[2] === sig ? m.dj : null;
+    if (actual === v) { render(); return; }
+    ejecutar([{ t: 'jue', n: n, id: id, v: v, sig: sig }]);
+    return;
+  }
+  const i = +el.dataset.i;
+  let v = leerPunto(el.value);
+  if (v === undefined) { aviso('Valor no admitido: la puntuación de desempate es un entero de 0 a ' + MAX_PTS + '.'); el.value = ''; v = null; }
+  const actual = m.dgs[i] === sig ? m.d[i] : null;
+  if (actual === v) { render(); return; }
+  ejecutar([{ t: 'des', n: n, id: id, i: i, v: v, sig: sig }]);
+}
+
+function sello() {
+  const d = new Date();
+  return d.getFullYear() + '-' + dosDigitos(d.getMonth() + 1) + '-' + dosDigitos(d.getDate()) + '_' + dosDigitos(d.getHours()) + dosDigitos(d.getMinutes());
+}
+function descargar(nombre, contenido, tipo) {
+  try {
+    const url = URL.createObjectURL(new Blob([contenido], { type: tipo }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nombre;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    return true;
+  } catch (e) {
+    aviso('El navegador no permitió la descarga.');
+    return false;
+  }
+}
+function exportarRespaldo() {
+  const paquete = { aplicacion: 'priml-resultados', formato: 1, exportado: new Date().toISOString(), estado: estado };
+  if (descargar('priml_respaldo_' + sello() + '.json', JSON.stringify(paquete, null, 1), 'application/json')) {
+    cambiosSinRespaldo = false;
+    aviso('Respaldo descargado.');
+  }
+}
+function exportarCsv(cual) {
+  const texto = cual === 'copa' ? csvCopa(estado) : csvNivel(estado, cual);
+  if (descargar('priml_' + cual + '_' + sello() + '.csv', texto, 'text/csv;charset=utf-8')) aviso('Archivo CSV descargado.');
+}
+function avisoDeEquipos() {
+  return sincActiva() ? ' El cambio se aplica en todos los equipos conectados.' : '';
+}
+function importarRespaldo(texto) {
+  let bruto;
+  try { bruto = JSON.parse(texto); } catch (e) { bruto = null; }
+  const nuevo = sanear(bruto && bruto.estado ? bruto.estado : bruto);
+  if (!nuevo) { aviso('El archivo no corresponde a un respaldo de esta página.'); return; }
+  let fecha = '';
+  if (bruto && typeof bruto.exportado === 'string' && !isNaN(Date.parse(bruto.exportado))) {
+    const d = new Date(bruto.exportado);
+    fecha = ' generado el ' + dosDigitos(d.getDate()) + '/' + dosDigitos(d.getMonth() + 1) + '/' + d.getFullYear() + ' a las ' + dosDigitos(d.getHours()) + ':' + dosDigitos(d.getMinutes());
+  }
+  const resumen = NIVELES.map(function (nv) { return nv.nombre + ', ' + nuevo.niveles[nv.id].mesas.length; }).join('; ');
+  dialogo({
+    titulo: 'Cargar respaldo',
+    cuerpoHtml: '<p>Respaldo' + fecha + '. Contiene ' + nuevo.escuelas.length + ' ' + plural(nuevo.escuelas.length, 'escuela', 'escuelas') + ' y estas mesas por nivel: ' + resumen + '.' + avisoDeEquipos() + '</p>' +
+      '<fieldset><legend>Modo de carga</legend>' +
+      '<label><input type="radio" name="modo" value="todo" checked> Sustituir todos los datos actuales por los del respaldo</label>' +
+      '<label><input type="radio" name="modo" value="niveles"> Incorporar solo los niveles seleccionados y conservar el resto</label>' +
+      '<div class="sub">' + NIVELES.map(function (nv) { return '<label><input type="checkbox" name="nivel" value="' + nv.id + '"> ' + nv.nombre + '</label>'; }).join('') + '</div></fieldset>',
+    aceptar: 'Cargar',
+    leer: function (dlg) {
+      const modo = dlg.querySelector('input[name="modo"]:checked').value;
+      const niveles = Array.from(dlg.querySelectorAll('input[name="nivel"]:checked')).map(function (x) { return x.value; });
+      if (modo === 'niveles' && !niveles.length) { aviso('Seleccione al menos un nivel.'); return undefined; }
+      return { modo: modo, niveles: niveles };
+    }
+  }).then(function (r) {
+    if (!r) return;
+    const resultado = r.modo === 'todo' ? nuevo : incorporarNiveles(estado, nuevo, r.niveles);
+    ejecutar([{ t: 'todo', estado: resultado }]);
+    aviso('Respaldo cargado.');
+  });
+}
+function datosDeEjemplo() {
+  const e = estadoInicial();
+  e.evento = 'Competencia PRIML (datos de ejemplo)';
+  ['Escuela A', 'Escuela B', 'Escuela C', 'Escuela D', 'Escuela E', 'Escuela F', 'Escuela G', 'Escuela H'].forEach(function (nombre) {
+    e.escuelas.push({ id: nuevoId('e'), nombre: nombre, descalificada: false });
+  });
+  const escuela = function (i) { return e.escuelas[i % e.escuelas.length].id; };
+  const elemental = [
+    [10, 9, 8, 9, 7, 10, 6, 9, 8, 9], [9, 8, 8, 7, 7, 9, 6, 8, 8, 8], [8, 9, 7, 8, 6, 9, 7, 8, 7, 9], [7, 7, 6, 8, 5, 8, 5, 7, 6, 7],
+    [6, 8, 7, 6, 6, 7, 4, 6, 5, 6], [5, 6, 5, 7, 4, 6, 5, 5, 4, 5], [5, 6, 4, 7, 5, 6, 5, 5, 5, 4], [4, 5, 3, 6, 2, 5, 3, 4, 3, 4]
+  ];
+  elemental.forEach(function (p, i) {
+    const m = nuevaMesa(i + 1);
+    m.p = p.slice();
+    m.escuelaId = escuela(i);
+    e.niveles.elemental.mesas.push(m);
+  });
+  let semilla = 20262027;
+  const azar = function () { semilla = (semilla * 1103515245 + 12345) % 2147483648; return semilla / 2147483648; };
+  for (let i = 0; i < 8; i++) {
+    const m = nuevaMesa(i + 1);
+    m.escuelaId = escuela(i + 3);
+    for (let j = 0; j < 6; j++) m.p[j] = 3 + Math.floor(azar() * 8);
+    if (i < 5) m.p[6] = 3 + Math.floor(azar() * 8);
+    e.niveles.intermedia.mesas.push(m);
+  }
+  const superior = [
+    [10, 9, 9, 8, 8, 10, 9, 8, 9, 8], [9, 10, 8, 9, 8, 9, 9, 9, 8, 9], [8, 8, 9, 7, 7, 9, 8, 7, 8, 7],
+    [7, 9, 6, 8, 6, 8, 7, 8, 6, 7], [9, 9, 9, 9, 9, 9, 9, 9, 9, 9], [6, 7, 5, 7, 5, 7, 6, 6, 5, 6]
+  ];
+  superior.forEach(function (p, i) {
+    const m = nuevaMesa(i + 1);
+    m.p = p.slice();
+    m.escuelaId = escuela(i + 5);
+    e.niveles.superior.mesas.push(m);
+  });
+  const sup = e.niveles.superior.mesas;
+  sup[4].dq = true;
+  sup[4].obs = 'Uso de un dispositivo electrónico (regla 3).';
+  sup[2].ap[0] = 'aceptada';
+  sup[2].obs = 'Apelación del problema 3: error de suma corregido.';
+  sup[3].ap[1] = 'pendiente';
+  const c = clasificarNivel(e, 'superior');
+  c.filas.forEach(function (f) {
+    if (!f.pideD1) return;
+    f.mesa.d[0] = f.mesa.numero === 1 ? 9 : 6;
+    f.mesa.dgs[0] = f.sig1;
+  });
+  return e;
+}
+
+/* ---------- Eventos ---------- */
+function alCambiar(ev) {
+  const el = ev.target;
+  if (!el || !el.dataset) return;
+  if (el.id === 'archivo-respaldo') {
+    const archivo = el.files && el.files[0];
+    if (!archivo) return;
+    const lector = new FileReader();
+    lector.onload = function () { importarRespaldo(String(lector.result)); };
+    lector.onerror = function () { aviso('No fue posible leer el archivo.'); };
+    lector.readAsText(archivo);
+    el.value = '';
+    return;
+  }
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  switch (el.dataset.acc) {
+    case 'desempate':
+    case 'jueces':
+      cambiarDesempate(el);
+      break;
+    case 'apelacion':
+      ejecutar([{ t: 'mesa', n: n, id: id, campo: 'ap' + el.dataset.i, v: el.value }]);
+      break;
+    case 'dq-mesa':
+      ejecutar([{ t: 'mesa', n: n, id: id, campo: 'dq', v: el.checked }]);
+      break;
+    case 'obs': {
+      const texto = el.value.replace(/\s+/g, ' ').trim().slice(0, 300);
+      const m = buscarMesa(n, id);
+      if (m && m.obs !== texto) ejecutar([{ t: 'mesa', n: n, id: id, campo: 'obs', v: texto }]);
+      else if (m) el.value = m.obs;
+      break;
+    }
+    case 'evento': {
+      const nombre = limpiarNombre(el.value);
+      if (!nombre) { aviso('El nombre del evento no puede quedar vacío.'); el.value = estado.evento; break; }
+      if (nombre !== estado.evento) ejecutar([{ t: 'evento', v: nombre }]);
+      else el.value = estado.evento;
+      break;
+    }
+    case 'escuela-nombre': renombrarEscuela(el); break;
+    case 'escuela-dq':
+      ejecutar([{ t: 'esc', id: id, campo: 'descalificada', v: el.checked }]);
+      break;
+    case 'mesa-numero': cambiarNumeroMesa(el); break;
+    case 'mesa-escuela': asignarEscuela(el); break;
+    case 'ocultar-escuelas': ui.ocultarEscuelas = el.checked; guardarUi(); render(); break;
+    case 'acumulado': ui.acumulado = el.checked; guardarUi(); render(); break;
+    case 'pub-orden': ui.pubOrden = el.value === 'mesa' ? 'mesa' : 'posicion'; guardarUi(); render(); break;
+    case 'pub-escuelas':
+      ui.pubEscuelas = el.checked;
+      if (!el.checked && ui.pubNivel === 'copa') ui.pubNivel = 'elemental';
+      guardarUi();
+      render();
+      break;
+    default:
+  }
+}
+function alPulsar(ev) {
+  const enlace = ev.target.closest('a[data-tab]');
+  if (enlace) { ev.preventDefault(); irA(enlace.dataset.tab); return; }
+  const b = ev.target.closest('button[data-acc]');
+  if (!b || b.disabled) return;
+  const d = b.dataset;
+  switch (d.acc) {
+    case 'deshacer': deshacer(); break;
+    case 'rehacer': rehacer(); break;
+    case 'tema': ui.tema = ui.tema === 'noche' ? 'claro' : 'noche'; guardarUi(); render(); break;
+    case 'imprimir': window.print(); break;
+    case 'add-escuela': anadirEscuelaDesdeCampo(); break;
+    case 'del-escuela': eliminarEscuela(d.id); break;
+    case 'add-mesas': anadirMesas(d.n); break;
+    case 'del-mesa': eliminarMesa(d.n, d.id); break;
+    case 'pub-nivel': ui.pubNivel = d.v; guardarUi(); render(); break;
+    case 'pantalla-completa': {
+      const lienzo = document.getElementById('lienzo-publico');
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (lienzo && lienzo.requestFullscreen) lienzo.requestFullscreen().catch(function () { aviso('El navegador no permitió la pantalla completa.'); });
+      else aviso('El navegador no permite la pantalla completa.');
+      break;
+    }
+    case 'exportar-json': exportarRespaldo(); break;
+    case 'importar-json': document.getElementById('archivo-respaldo').click(); break;
+    case 'csv': exportarCsv(d.v); break;
+    case 'ejemplo': {
+      const cargar = function () { ejecutar([{ t: 'todo', estado: datosDeEjemplo() }]); aviso('Datos de ejemplo cargados.'); };
+      if (!hayDatos()) { cargar(); break; }
+      dialogo({ titulo: 'Cargar datos de ejemplo', cuerpoHtml: '<p>Los datos de ejemplo sustituyen las mesas, escuelas y puntuaciones actuales.' + avisoDeEquipos() + '</p>', aceptar: 'Sustituir', peligro: true })
+        .then(function (ok) { if (ok) cargar(); });
+      break;
+    }
+    case 'borrar-todo':
+      dialogo({
+        titulo: 'Borrar todos los datos',
+        cuerpoHtml: '<p>Se eliminan todas las mesas, escuelas, puntuaciones e incidencias' + (sincActiva() ? ' en todos los equipos conectados.' : ' guardadas en este navegador.') + '</p>',
+        aceptar: 'Borrar todo', peligro: true
+      }).then(function (ok) { if (ok) { ejecutar([{ t: 'todo', estado: estadoInicial() }]); aviso('Datos borrados.'); } });
+      break;
+    case 'sinc-conectar': {
+      const u = document.getElementById('sinc-url');
+      const k = document.getElementById('sinc-clave');
+      conectar(u ? u.value : '', k ? k.value : '');
+      break;
+    }
+    case 'sinc-invitar': copiarInvitacion(); break;
+    case 'sinc-ahora': aviso('Sincronizando…'); programar(0); break;
+    case 'sinc-desconectar': desconectar(); break;
+    default:
+  }
+}
+function alTeclear(ev) {
+  if (!document.getElementById('capa-dialogo').hidden) return;
+  const el = ev.target;
+  if (!el || !el.matches) return;
+  if (el.matches('input[data-acc="punto"]')) {
+    const r = +el.dataset.r;
+    const c = +el.dataset.c;
+    let nr = r;
+    let nc = c;
+    if (ev.key === 'ArrowUp') nr -= 1;
+    else if (ev.key === 'ArrowDown' || ev.key === 'Enter') nr += 1;
+    else if (ev.key === 'ArrowLeft') nc -= 1;
+    else if (ev.key === 'ArrowRight') nc += 1;
+    else return;
+    ev.preventDefault();
+    const tabla = el.closest('table');
+    let destino = tabla.querySelector('input[data-acc="punto"][data-r="' + nr + '"][data-c="' + nc + '"]');
+    if (!destino && ev.key === 'Enter') destino = tabla.querySelector('input[data-acc="punto"][data-r="0"][data-c="' + (c + 1) + '"]');
+    if (destino) destino.focus();
+    return;
+  }
+  if (ev.key !== 'Enter') return;
+  if (el.id === 'nueva-escuela') { ev.preventDefault(); anadirEscuelaDesdeCampo(); return; }
+  if (el.id && el.id.indexOf('cantidad-') === 0) { ev.preventDefault(); anadirMesas(el.id.slice(9)); return; }
+  if (el.matches('input[data-acc="desempate"], input[data-acc="jueces"], input[data-acc="obs"], input[data-acc="mesa-numero"], input[data-acc="escuela-nombre"], input[data-acc="evento"]')) {
+    ev.preventDefault();
+    const tabla = el.closest('table');
+    if (tabla) {
+      const selector = 'input[data-acc="' + el.dataset.acc + '"]' + (el.dataset.i != null ? '[data-i="' + el.dataset.i + '"]' : '');
+      const lista = Array.from(tabla.querySelectorAll(selector));
+      const siguiente = lista[lista.indexOf(el) + 1];
+      if (siguiente) { siguiente.focus(); return; }
+    }
+    el.blur();
+  }
+}
+
+function iniciar() {
+  leerUi();
+  guardadoOk = probarAlmacen();
+  try {
+    const texto = localStorage.getItem(CLAVE);
+    const cargado = texto ? sanear(JSON.parse(texto)) : null;
+    if (cargado) estado = cargado;
+  } catch (e) { /* sin datos guardados */ }
+  leerSinc();
+  const conMesas = NIVELES.find(function (nv) { return estado.niveles[nv.id].mesas.length > 0; });
+  ui.tab = leerHash() || (conMesas ? conMesas.id : 'config');
+
+  document.addEventListener('input', function (ev) {
+    if (ev.target.matches && ev.target.matches('input[data-acc="punto"]')) alEscribirPunto(ev.target);
+  });
+  document.addEventListener('change', alCambiar);
+  document.addEventListener('click', alPulsar);
+  document.addEventListener('keydown', alTeclear);
+  document.addEventListener('focusin', function (ev) {
+    if (ev.target.matches && ev.target.matches('input[data-acc="punto"], input[data-acc="desempate"], input[data-acc="jueces"], input[data-acc="mesa-numero"], input[data-acc="mesa-escuela"]')) ev.target.select();
+  });
+  document.addEventListener('focusout', function (ev) {
+    if (ev.target.matches && ev.target.matches('input[data-acc="punto"]')) sincronizarPunto(ev.target);
+  });
+  window.addEventListener('hashchange', function () {
+    if (/^#conectar=/.test(location.hash)) { atenderInvitacion(); return; }
+    const t = leerHash();
+    if (t && t !== ui.tab) { ui.tab = t; render(); window.scrollTo(0, 0); }
+  });
+  // Otra ventana del mismo navegador modificó los datos o la conexión: se adopta lo guardado.
+  window.addEventListener('storage', function (ev) {
+    if (ev.key === CLAVE && ev.newValue) {
+      let nuevo = null;
+      try { nuevo = sanear(JSON.parse(ev.newValue)); } catch (e) { nuevo = null; }
+      if (!nuevo) return;
+      estado = nuevo;
+      ultimaClave = '';
+      render();
+    } else if (ev.key === CLAVE_SINC) {
+      const antes = sinc.url;
+      leerSinc();
+      if (sinc.url !== antes) { sinc.error = ''; sinc.reintentos = 0; sinc.ultimaSinc = null; programar(sincActiva() ? 500 : undefined); }
+      render();
+    }
+  });
+  window.addEventListener('online', function () { if (sincActiva()) programar(0); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && sincActiva()) programar(0); });
+  window.addEventListener('beforeunload', function (ev) {
+    const sinEnviar = sincActiva() && sinc.cola.length > 0 && !guardadoOk;
+    if ((!guardadoOk && cambiosSinRespaldo && !sincActiva()) || sinEnviar) { ev.preventDefault(); ev.returnValue = ''; }
+  });
+  render();
+  if (sincActiva()) programar(0);
+  atenderInvitacion();
+}
+
+iniciar();
+})();
+</script>
+</body>
+</html>
