@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Resultados de competencia PRIML</title>
+<title>Resultados de competencia: Grupo MATHCOM PR</title>
 <style>
 :root {
   --papel: #EEF1F7;
@@ -325,7 +325,7 @@ function nuevaMesa(numero) {
   return { id: nuevoId('m'), numero: numero, escuelaId: null, p: p, d: [null, null], dj: null, dgs: [null, null, null], dq: false, ap: ['', ''], obs: '' };
 }
 function estadoInicial() {
-  return { v: 1, evento: 'Competencia PRIML', escuelas: [], niveles: { elemental: { mesas: [] }, intermedia: { mesas: [] }, superior: { mesas: [] } } };
+  return { v: 1, evento: 'Grupo MATHCOM PR', escuelas: [], niveles: { elemental: { mesas: [] }, intermedia: { mesas: [] }, superior: { mesas: [] } } };
 }
 
 // Orden alfabético sin distinguir mayúsculas ni tildes, con los números en orden numérico.
@@ -1008,6 +1008,25 @@ function escuelaPorNombre(nombre, exceptoId) {
   const clave = normalizarNombre(nombre);
   return estado.escuelas.find(function (e) { return e.id !== exceptoId && normalizarNombre(e.nombre) === clave; }) || null;
 }
+// Los datos guardados con versiones anteriores llevan el nombre de evento que entonces era el predeterminado
+// (solo o con la marca de los datos de ejemplo). Se sustituye por el vigente; con la sincronización activa,
+// el cambio se envía también al servicio.
+const NOMBRE_ANTERIOR = 'Competencia PRIML';
+const MARCA_EJEMPLO = ' (datos de ejemplo)';
+function nombreVigente(nombre) {
+  if (nombre === NOMBRE_ANTERIOR) return estadoInicial().evento;
+  if (nombre === NOMBRE_ANTERIOR + MARCA_EJEMPLO) return estadoInicial().evento + MARCA_EJEMPLO;
+  return nombre;
+}
+function actualizarNombrePredeterminado() {
+  const vigente = nombreVigente(estado.evento);
+  if (vigente === estado.evento) return false;
+  const ops = [{ t: 'evento', v: vigente }];
+  if (!aplicarOps(estado, ops).length) return false;
+  if (sincActiva()) modificarCola(function (cola) { return cola.concat([{ id: nuevoId('b'), ops: ops }]); });
+  guardar();
+  return true;
+}
 function hayDatos() {
   return estado.escuelas.length > 0 || NIVELES.some(function (nv) { return estado.niveles[nv.id].mesas.length > 0; });
 }
@@ -1206,6 +1225,7 @@ function adoptar(r) {
       sinc.cola.forEach(function (l) { aplicarOps(nuevo, l.ops); });
       cambio = JSON.stringify(nuevo) !== JSON.stringify(estado);
       estado = nuevo;
+      if (actualizarNombrePredeterminado()) cambio = true;
     }
   }
   if (Number.isInteger(r.rev)) sinc.rev = r.rev;
@@ -1323,7 +1343,7 @@ function conectar(url, clave) {
       sinc.detenida = false;
       sinc.ultimaSinc = new Date();
       sinc.ultimoCambio = Date.now();
-      if (!subir) estado = remoto;
+      if (!subir) { estado = remoto; actualizarNombrePredeterminado(); }
       pilaDeshacer.length = 0;
       pilaRehacer.length = 0;
       ultimaClave = '';
@@ -2190,6 +2210,7 @@ function importarRespaldo(texto) {
   try { bruto = JSON.parse(texto); } catch (e) { bruto = null; }
   const nuevo = sanear(bruto && bruto.estado ? bruto.estado : bruto);
   if (!nuevo) { aviso('El archivo no corresponde a un respaldo de esta página.'); return; }
+  nuevo.evento = nombreVigente(nuevo.evento);
   let fecha = '';
   if (bruto && typeof bruto.exportado === 'string' && !isNaN(Date.parse(bruto.exportado))) {
     const d = new Date(bruto.exportado);
@@ -2219,7 +2240,7 @@ function importarRespaldo(texto) {
 }
 function datosDeEjemplo() {
   const e = estadoInicial();
-  e.evento = 'Competencia PRIML (datos de ejemplo)';
+  e.evento = e.evento + MARCA_EJEMPLO;
   ['Escuela A', 'Escuela B', 'Escuela C', 'Escuela D', 'Escuela E', 'Escuela F', 'Escuela G', 'Escuela H'].forEach(function (nombre) {
     e.escuelas.push({ id: nuevoId('e'), nombre: nombre, descalificada: false });
   });
@@ -2425,6 +2446,7 @@ function iniciar() {
     if (cargado) estado = cargado;
   } catch (e) { /* sin datos guardados */ }
   leerSinc();
+  actualizarNombrePredeterminado();
   const conMesas = NIVELES.find(function (nv) { return estado.niveles[nv.id].mesas.length > 0; });
   ui.tab = leerHash() || (conMesas ? conMesas.id : 'config');
 
