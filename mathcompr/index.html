@@ -312,8 +312,9 @@ function esPunto(v) {
 }
 // '' -> null (sin calificar); entero de 0 a MAX_PTS -> número; cualquier otro texto -> undefined
 function leerPunto(texto) {
-  const t = String(texto == null ? '' : texto).trim();
-  if (t === '') return null;
+  const entrada = String(texto == null ? '' : texto);
+  if (entrada === '') return null;
+  const t = entrada.trim();
   if (!/^\d{1,2}$/.test(t)) return undefined;
   const n = parseInt(t, 10);
   return n <= MAX_PTS ? n : undefined;
@@ -322,7 +323,7 @@ function leerPunto(texto) {
 function nuevaMesa(numero) {
   const p = [];
   for (let j = 0; j < N_PROB; j++) p.push(null);
-  return { id: nuevoId('m'), numero: numero, escuelaId: null, p: p, d: [null, null], dj: null, dgs: [null, null, null], dq: false, ap: ['', ''], obs: '' };
+  return { id: nuevoId('m'), numero: numero, escuelaId: null, p: p, d: [null, null], dj: null, dgs: [null, null, null], dq: false, ap: ['', ''], resoluciones: [], obs: '' };
 }
 function estadoInicial() {
   return { v: 1, evento: 'Grupo MATHCOM PR', escuelas: [], niveles: { elemental: { mesas: [] }, intermedia: { mesas: [] }, superior: { mesas: [] } } };
@@ -349,6 +350,29 @@ function ordenarEscuelas(estado) {
   estado.escuelas.sort(function (a, b) { return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0); });
 }
 
+function retirarEscuelasSinMesas(estado) {
+  const usadas = new Set();
+  NIVELES.forEach(function (nivel) {
+    estado.niveles[nivel.id].mesas.forEach(function (mesa) { usadas.add(mesa.escuelaId); });
+  });
+  const retiradas = estado.escuelas.filter(function (e) { return !usadas.has(e.id); });
+  if (retiradas.length) estado.escuelas = estado.escuelas.filter(function (e) { return usadas.has(e.id); });
+  return retiradas;
+}
+
+function resolucionValida(r) {
+  return r && typeof r.id === 'string' && /^[a-zA-Z0-9_-]{1,60}$/.test(r.id) &&
+    (r.decision === 'aceptada' || r.decision === 'denegada') &&
+    Number.isInteger(r.problema) && r.problema >= 1 && r.problema <= N_PROB &&
+    (r.anterior === null || esPunto(r.anterior)) && esPunto(r.final) &&
+    typeof r.fecha === 'string' && r.fecha.length <= 30 && Number.isFinite(Date.parse(r.fecha));
+}
+function textoResolucion(r) {
+  const antes = r.anterior === null ? 'sin calificar' : String(r.anterior);
+  const puntos = r.anterior === r.final ? (r.final === 1 ? 'se ratifica 1 punto' : (r.final === 1 ? 'se ratifica 1 punto' : 'se ratifican ' + r.final + ' puntos')) : antes + ' → ' + r.final;
+  return 'P' + r.problema + ' · ' + TEXTO_APELACION[r.decision] + ' · ' + puntos;
+}
+
 // Devuelve una mesa válida a partir de un objeto cualquiera (número 0 si no trae uno admisible); null si no es un objeto.
 function mesaSaneada(x, idEscuela) {
   if (!x || typeof x !== 'object') return null;
@@ -362,6 +386,7 @@ function mesaSaneada(x, idEscuela) {
   if (Array.isArray(x.dgs)) for (let j = 0; j < 3; j++) m.dgs[j] = typeof x.dgs[j] === 'string' ? x.dgs[j].slice(0, 6000) : null;
   m.dq = !!x.dq;
   if (Array.isArray(x.ap)) for (let j = 0; j < 2; j++) m.ap[j] = ESTADOS_APELACION.indexOf(x.ap[j]) >= 0 ? x.ap[j] : '';
+  if (Array.isArray(x.resoluciones)) m.resoluciones = x.resoluciones.filter(resolucionValida);
   m.obs = typeof x.obs === 'string' ? x.obs.slice(0, 300) : '';
   return m;
 }
@@ -417,6 +442,7 @@ function sanear(obj) {
     });
     e.niveles[nv.id].mesas.sort(function (a, b) { return a.numero - b.numero; });
   });
+  retirarEscuelasSinMesas(e);
   ordenarEscuelas(e);
   return e;
 }
@@ -627,10 +653,13 @@ function clasificarCopa(estado, clasPorNivel) {
   const clas = clasPorNivel || {};
   NIVELES.forEach(function (nv) { if (!clas[nv.id]) clas[nv.id] = clasificarNivel(estado, nv.id); });
   const acumulado = new Map();
-  let sinEscuela = 0;
+  const mesasSinEscuela = [];
   NIVELES.forEach(function (nv) {
     clas[nv.id].filas.forEach(function (f) {
-      if (!f.escuela) { if (f.activa) sinEscuela += 1; return; }
+      if (!f.escuela) {
+        if (f.activa) mesasSinEscuela.push({ nivel: nv.nombre, numero: f.mesa.numero, puntos: f.total, rondas: clas[nv.id].k });
+        return;
+      }
       let a = acumulado.get(f.escuela.id);
       if (!a) {
         a = { escuela: f.escuela, porNivel: { elemental: 0, intermedia: 0, superior: 0 }, mesasNivel: { elemental: 0, intermedia: 0, superior: 0 }, total: 0, mesas: 0, mesasDq: 0, pos: null, empate: false };
@@ -656,9 +685,24 @@ function clasificarCopa(estado, clasPorNivel) {
     activas.forEach(function (a) { a.empate = activas.filter(function (b) { return b.pos === a.pos; }).length > 1; });
   }
   const descalificadas = lista.filter(function (a) { return a.escuela.descalificada; }).sort(porNombre);
-  const provisional = NIVELES.some(function (nv) { const c = clas[nv.id]; return c.nActivas > 0 && c.k < N_PROB; });
+  const rondasPendientes = NIVELES.some(function (nv) { const c = clas[nv.id]; return c.nActivas > 0 && c.k < N_PROB; });
   const apelaciones = NIVELES.reduce(function (n, nv) { return n + clas[nv.id].apelacionesPendientes; }, 0);
-  return { filas: activas.concat(descalificadas), sinEscuela: sinEscuela, provisional: provisional, hayDatos: hayDatos, apelaciones: apelaciones };
+  return {
+    filas: activas.concat(descalificadas), sinEscuela: mesasSinEscuela.length, mesasSinEscuela: mesasSinEscuela,
+    provisional: rondasPendientes || apelaciones > 0 || mesasSinEscuela.length > 0,
+    rondasPendientes: rondasPendientes, hayDatos: hayDatos, apelaciones: apelaciones
+  };
+}
+
+function textoEstadoCopa(copa) {
+  const partes = [];
+  if (!copa.hayDatos) partes.push('Sin rondas completadas.');
+  else if (copa.provisional) partes.push('Resultados provisionales.');
+  else return 'Resultados finales.';
+  if (copa.hayDatos && copa.rondasPendientes) partes.push('Hay rondas pendientes.');
+  if (copa.apelaciones) partes.push(copa.apelaciones === 1 ? 'Hay una apelación pendiente.' : 'Hay ' + copa.apelaciones + ' apelaciones pendientes.');
+  if (copa.sinEscuela) partes.push(copa.sinEscuela === 1 ? 'Falta asignar escuela a una mesa.' : 'Falta asignar escuela a ' + copa.sinEscuela + ' mesas.');
+  return partes.join(' ');
 }
 
 // Sustituye en `actual` los niveles indicados por los de `importado`; las escuelas se emparejan por nombre.
@@ -697,7 +741,7 @@ function matrizNivel(estado, nivelId) {
   const c = clasificarNivel(estado, nivelId);
   const cab = ['Posición', 'Mesa', 'Escuela'];
   for (let j = 0; j < N_PROB; j++) cab.push('P' + (j + 1));
-  cab.push('Total', 'Desempate 1', 'Desempate 2', 'Criterio de desempate', 'Estado', 'Apelación (problemas 1 a 5)', 'Apelación (problemas 6 a 10)', 'Observaciones', 'Rondas completas');
+  cab.push('Total', 'Desempate 1', 'Desempate 2', 'Criterio de desempate', 'Estado', 'Apelación (problemas 1 a 5)', 'Apelación (problemas 6 a 10)', 'Observaciones', 'Rondas completas', 'Historial de apelaciones');
   const filas = [cab];
   c.orden.forEach(function (f) {
     const m = f.mesa;
@@ -705,20 +749,23 @@ function matrizNivel(estado, nivelId) {
     for (let j = 0; j < N_PROB; j++) fila.push(m.p[j] == null ? '' : m.p[j]);
     fila.push(f.total, f.d1 == null ? '' : f.d1, f.d2 == null ? '' : f.d2, criterioTexto(f),
       f.activa ? 'Activa' : (f.dqEscuela ? 'Escuela descalificada' : 'Descalificada'),
-      TEXTO_APELACION[m.ap[0]], TEXTO_APELACION[m.ap[1]], m.obs, c.k);
+      TEXTO_APELACION[m.ap[0]], TEXTO_APELACION[m.ap[1]], m.obs, c.k,
+      (m.resoluciones || []).map(function (r) { return r.fecha + ' ' + textoResolucion(r); }).join('\n'));
     filas.push(fila);
   });
   return filas;
 }
 function matrizCopa(estado) {
   const copa = clasificarCopa(estado);
-  const filas = [['Posición', 'Escuela', 'Elemental', 'Intermedia', 'Superior', 'Total', 'Mesas', 'Estado']];
+  const filas = [['Posición', 'Escuela', 'Elemental', 'Intermedia', 'Superior', 'Total', 'Mesas', 'Estado', 'Estado de la Copa']];
+  const estadoCopa = textoEstadoCopa(copa);
   copa.filas.forEach(function (a) {
     const dq = a.escuela.descalificada;
     filas.push([dq || a.pos == null ? '' : a.pos, a.escuela.nombre,
       dq ? '' : a.porNivel.elemental, dq ? '' : a.porNivel.intermedia, dq ? '' : a.porNivel.superior, dq ? '' : a.total,
-      a.mesas, dq ? 'Descalificada' : 'Activa']);
+      a.mesas, dq ? 'Descalificada' : 'Activa', estadoCopa]);
   });
+  if (!copa.filas.length && copa.sinEscuela) filas.push(['', '', '', '', '', '', '', '', estadoCopa]);
   return filas;
 }
 // Un texto que comienza con =, +, - o @ se antepone con un apóstrofo para que una hoja de cálculo no lo tome por fórmula.
@@ -801,9 +848,20 @@ function aplicarOp(estado, op) {
         const i = op.campo === 'ap0' ? 0 : 1;
         if (ESTADOS_APELACION.indexOf(op.v) < 0) return [];
         const previo = mesa.ap[i];
-        if (previo === op.v) return [];
+        const inv = inversa(previo);
+        if (resolucionValida(op.registro) && Math.floor((op.registro.problema - 1) / 5) === i) {
+          const indice = mesa.resoluciones.findIndex(function (r) { return r.id === op.registro.id; });
+          if (op.quitarRegistro && indice >= 0) {
+            inv[0].registro = mesa.resoluciones.splice(indice, 1)[0];
+          } else if (!op.quitarRegistro && indice < 0) {
+            mesa.resoluciones.push(op.registro);
+            inv[0].registro = op.registro;
+            inv[0].quitarRegistro = true;
+          }
+        }
+        if (previo === op.v && !inv[0].registro) return [];
         mesa.ap[i] = op.v;
-        return inversa(previo);
+        return inv;
       }
       if (op.campo === 'numero') {
         const v = op.v;
@@ -834,7 +892,6 @@ function aplicarOp(estado, op) {
         e = { id: eid, nombre: nombre, descalificada: false };
         estado.escuelas.push(e);
         ordenarEscuelas(estado);
-        inv.push({ t: 'escBorrar', id: eid });
       }
       if (previo !== e.id) {
         mesa.escuelaId = e.id;
@@ -949,6 +1006,13 @@ function aplicarOp(estado, op) {
 function aplicarOps(estado, ops) {
   let inversas = [];
   (Array.isArray(ops) ? ops : []).forEach(function (op) { inversas = aplicarOp(estado, op).concat(inversas); });
+  // Se limpia al terminar el lote: Deshacer puede recrear una escuela y asignarla
+  // a una mesa mediante dos operaciones sucesivas.
+  if (inversas.length && ops.some(function (op) { return op && /^(mesaEsc|mesaEscId|mesaBorrar|escNueva)$/.test(op.t); })) {
+    retirarEscuelasSinMesas(estado).forEach(function (e) {
+      inversas.unshift({ t: 'escNueva', id: e.id, nombre: e.nombre, descalificada: e.descalificada });
+    });
+  }
   return inversas;
 }
 
@@ -978,6 +1042,7 @@ const pilaRehacer = [];
 let ultimaClave = '';
 let ultimaHora = 0;
 let temporizadorAviso = null;
+let puntoEnEdicion = null;
 const ui = { tab: 'config', tema: 'claro', ocultarEscuelas: false, acumulado: false, pubNivel: 'elemental', pubOrden: 'posicion', pubEscuelas: false };
 const sinc = { url: '', clave: '', rev: -1, epoca: '', cola: [], enviando: false, consultando: false, detenida: false, error: '', reintentos: 0, ultimaSinc: null, ultimoCambio: Date.now(), temporizador: null };
 
@@ -1222,6 +1287,18 @@ function adoptar(r) {
   if (r.estado) {
     const nuevo = sanear(r.estado);
     if (nuevo) {
+      // Los servicios anteriores a la incorporación de la bitácora devuelven mesas sin ese campo.
+      // En ese caso se conserva el historial de esta mesa en este equipo.
+      NIVELES.forEach(function (nv) {
+        const origen = r.estado.niveles[nv.id];
+        if (!origen || !Array.isArray(origen.mesas)) return;
+        const sinBitacora = new Set(origen.mesas.filter(function (m) { return m && !Array.isArray(m.resoluciones); }).map(function (m) { return m.id; }));
+        nuevo.niveles[nv.id].mesas.forEach(function (m) {
+          if (!sinBitacora.has(m.id)) return;
+          const local = buscarMesa(nv.id, m.id);
+          if (local) m.resoluciones = local.resoluciones.slice();
+        });
+      });
       sinc.cola.forEach(function (l) { aplicarOps(nuevo, l.ops); });
       cambio = JSON.stringify(nuevo) !== JSON.stringify(estado);
       estado = nuevo;
@@ -1231,11 +1308,10 @@ function adoptar(r) {
   if (Number.isInteger(r.rev)) sinc.rev = r.rev;
   return cambio;
 }
-// La casilla en edición no se toca al actualizar la página. Si todo lo escrito en ella ya fue recibido por el
-// servicio y otro equipo la cambió, se muestra el valor común.
+// Mientras se escribe una nota se conserva el borrador. Entre ediciones se muestra el valor compartido.
 function sincronizarCasillaActiva() {
   const el = document.activeElement;
-  if (!el || !el.matches || !el.matches('input[data-acc="punto"]') || el.classList.contains('invalido') || sinc.cola.length) return;
+  if (!el || !el.matches || !el.matches('input[data-acc="punto"]') || el === puntoEnEdicion || sinc.cola.length) return;
   const m = buscarMesa(el.dataset.n, el.dataset.id);
   const v = m ? m.p[+el.dataset.c] : null;
   const texto = v == null ? '' : String(v);
@@ -1566,7 +1642,8 @@ function dialogo(opc) {
       if (ev.shiftKey && document.activeElement === primero) { ev.preventDefault(); ultimo.focus(); }
       else if (!ev.shiftKey && document.activeElement === ultimo) { ev.preventDefault(); primero.focus(); }
     };
-    capa.querySelector('[data-dlg="cancelar"]').focus();
+    if (opc.preparar) opc.preparar(capa.firstElementChild);
+    else capa.querySelector('[data-dlg="cancelar"]').focus();
   });
 }
 
@@ -1664,7 +1741,7 @@ function vistaConfig() {
     ? '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col" class="c-esc">Escuela</th>' +
       '<th scope="col" title="Mesas en el nivel Elemental">Elemental</th><th scope="col" title="Mesas en el nivel Intermedia">Intermedia</th><th scope="col" title="Mesas en el nivel Superior">Superior</th>' +
       '<th scope="col">Descalificada</th><th scope="col"><span class="tenue">Acción</span></th></tr></thead><tbody>' + filasEsc + '</tbody></table></div>'
-    : '<p class="vacio">No hay escuelas registradas.</p>';
+    : '<p class="vacio">Todavía no hay mesas con escuela asignada.</p>';
 
   const niveles = NIVELES.map(function (nv) {
     const mesas = estado.niveles[nv.id].mesas;
@@ -1687,15 +1764,13 @@ function vistaConfig() {
 
   return '<div class="vista" data-k="v-config">' +
     '<div class="encabezado-vista"><h2>Mesas y escuelas</h2></div>' +
-    '<p class="aviso-linea solo-oculto">Las escuelas están ocultas. Para registrarlas o asignarlas a las mesas, desactive «Ocultar escuelas».</p>' +
+    '<p class="aviso-linea solo-oculto">Las escuelas están ocultas. Para asignarlas a las mesas, desactive «Ocultar escuelas».</p>' +
     '<section class="bloque" data-k="cfg-evento"><h3>Evento</h3>' +
     '<label class="etiqueta-campo larga">Nombre del evento <input type="text" class="campo ancho" maxlength="120" data-acc="evento" value="' + esc(estado.evento) + '"></label></section>' +
-    '<p class="ayuda nota-niveles solo-visible">La escuela de cada mesa se escribe en su fila; un nombre nuevo queda registrado automáticamente.</p>' +
+    '<p class="ayuda nota-niveles solo-visible">En la fila de cada mesa, escriba el nombre de la escuela o seleccione uno de la lista.</p>' +
     '<div class="rejilla-niveles">' + niveles + '</div>' +
-    '<section class="bloque panel-escuelas solo-visible" data-k="cfg-escuelas"><h3>Registro de escuelas<span class="cuenta">' + escuelas.length + ' ' + plural(escuelas.length, 'registrada', 'registradas') + '</span></h3>' +
-    '<p class="ayuda">Desde aquí se registran escuelas por adelantado, se corrigen nombres y se descalifica una escuela. Al cambiar un nombre por el de otra escuela registrada, ambas se combinan.</p>' +
-    '<div class="acciones"><input type="text" class="campo ancho" id="nueva-escuela" data-libre maxlength="120" placeholder="Nombre de la escuela" aria-label="Nombre de la escuela nueva">' +
-    '<button type="button" class="btn" data-acc="add-escuela">Añadir escuela</button></div>' + tablaEsc + '</section>' +
+    '<details class="bloque panel-escuelas solo-visible" data-k="cfg-escuelas"><summary>Administrar escuelas<span class="cuenta">' + escuelas.length + ' ' + plural(escuelas.length, 'escuela', 'escuelas') + '</span></summary>' +
+    (escuelas.length ? '<p class="ayuda">Los cambios de nombre y las descalificaciones se aplican a todas las mesas de la escuela. Para combinar dos escuelas, cambie el nombre de una por el de la otra.</p>' : '') + tablaEsc + '</details>' +
     '<datalist id="lista-escuelas">' + escuelas.map(function (e) { return '<option value="' + esc(e.nombre) + '"></option>'; }).join('') + '</datalist>' +
     '</div>';
 }
@@ -1720,7 +1795,7 @@ function seccionCaptura(nv, c) {
     const m = f.mesa;
     let celdas = '';
     for (let j = 0; j < N_PROB; j++) {
-      celdas += '<td class="c-p' + (j === 4 ? ' receso' : '') + (j >= c.k ? ' pend' : '') + '"><input type="text" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="Mesa ' + m.numero + ', problema ' + (j + 1) +
+      celdas += '<td class="c-p' + (j === 4 ? ' receso' : '') + (j >= c.k ? ' pend' : '') + '"><input type="text" inputmode="numeric" autocomplete="off" aria-label="Mesa ' + m.numero + ', problema ' + (j + 1) +
         '" data-acc="punto" data-n="' + nv.id + '" data-id="' + esc(m.id) + '" data-r="' + r + '" data-c="' + j + '" value="' + (m.p[j] == null ? '' : m.p[j]) + '"></td>';
     }
     const apel = m.ap.indexOf('pendiente') >= 0 ? '<span class="marca-ap" title="Apelación pendiente">apelación</span>' : '';
@@ -1731,7 +1806,7 @@ function seccionCaptura(nv, c) {
       '<td class="c-pos">' + etiquetaPos(f) + '</td></tr>';
   }).join('');
   return '<section class="bloque" data-k="captura"><h3>Puntuaciones</h3>' +
-    '<p class="ayuda">Puntuaciones enteras de 0 a ' + MAX_PTS + ' por problema. El total y la posición cuentan las rondas calificadas para todas las mesas activas; las puntuaciones de las demás rondas se muestran en gris. La tecla Intro y las flechas desplazan el cursor entre casillas.</p>' +
+    '<p class="ayuda">Puntuaciones enteras de 0 a ' + MAX_PTS + ' por problema. La nota se guarda al salir de la casilla o pulsar Intro. Para borrar una nota, deje la casilla vacía y salga de ella. Intro y las flechas permiten pasar de una casilla a otra. El total y la posición cuentan las rondas calificadas para todas las mesas activas. Las puntuaciones de las demás rondas se muestran en gris.</p>' +
     '<div class="tabla-desliz ajustada"><table class="hoja fija captura"><thead><tr><th scope="col" class="c-mesa">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th>' + cab +
     '<th scope="col" class="c-total" title="' + (c.k ? 'Total tras la ronda ' + c.k : 'Total de las rondas completas') + '">Total</th><th scope="col" class="c-pos" title="' + (c.k ? 'Posición tras la ronda ' + c.k : 'Posición') + '">Posición</th></tr></thead>' +
     '<tbody>' + filas + '</tbody></table></div></section>';
@@ -1740,7 +1815,7 @@ function grupoDesempate(nv, g) {
   const hayD2 = g.filas.some(function (f) { return f.pideD2; });
   const hayDJ = g.filas.some(function (f) { return f.pideDJ; });
   const campo = function (f, acc, i, sig, valor, etiqueta) {
-    return '<input type="text" inputmode="numeric" maxlength="2" autocomplete="off" class="campo num" aria-label="' + etiqueta + ' de la mesa ' + f.mesa.numero +
+    return '<input type="text" inputmode="numeric" autocomplete="off" class="campo num" aria-label="' + etiqueta + ' de la mesa ' + f.mesa.numero +
       '" data-acc="' + acc + '" data-n="' + nv.id + '" data-id="' + esc(f.mesa.id) + '"' + (i == null ? '' : ' data-i="' + i + '"') + ' data-sig="' + esc(sig) + '" value="' + (valor == null ? '' : valor) + '">';
   };
   const raya = '<span class="tenue">—</span>';
@@ -1809,6 +1884,7 @@ function seccionClasificacion(nv, c) {
   if (!c.k) ayuda = 'La clasificación se calcula a partir de la primera ronda calificada para todas las mesas activas.';
   else if (c.k < N_PROB) ayuda = 'Clasificación tras la ronda ' + c.k + '. Solo cuentan las rondas calificadas para todas las mesas activas.';
   else if (c.estado === 'desempate') ayuda = 'Clasificación con desempate pendiente.';
+  else if (c.apelacionesPendientes) ayuda = 'Clasificación sujeta a apelaciones pendientes.';
   else ayuda = 'Clasificación final.';
   return '<section class="bloque" data-k="clasificacion"><div class="fila-titulo"><h3>Clasificación</h3>' +
     '<label class="interruptor no-imprimir"><input type="checkbox" data-acc="acumulado"' + (ui.acumulado ? ' checked' : '') + '> Mostrar la puntuación acumulada por ronda</label></div>' +
@@ -1823,6 +1899,12 @@ function seccionIncidencias(nv, c) {
   const opciones = function (v) {
     return ESTADOS_APELACION.map(function (e) { return '<option value="' + e + '"' + (e === v ? ' selected' : '') + '>' + TEXTO_APELACION[e] + '</option>'; }).join('');
   };
+  const historial = c.filas.flatMap(function (f) {
+    return (f.mesa.resoluciones || []).map(function (r) {
+      return '<li>Mesa ' + f.mesa.numero + ' · ' + esc(textoResolucion(r)) + ' · <time datetime="' + esc(r.fecha) + '">' +
+        esc(new Date(r.fecha).toLocaleString('es-PR')) + '</time></li>';
+    });
+  });
   const filas = c.filas.map(function (f) {
     const m = f.mesa;
     const comun = ' data-n="' + nv.id + '" data-id="' + esc(m.id) + '"';
@@ -1840,7 +1922,9 @@ function seccionIncidencias(nv, c) {
     '<p class="ayuda">Cada mesa dispone de una apelación para los problemas 1 a 5 y otra para los problemas 6 a 10 (regla 18). Una mesa descalificada conserva sus puntuaciones, pero queda fuera de la clasificación y de la Copa.</p>' +
     '<div class="tabla-desliz"><table class="hoja"><thead><tr><th scope="col" class="c-mesa">Mesa</th><th scope="col" class="col-escuela c-esc">Escuela</th>' +
     '<th scope="col">Apelación, problemas 1 a 5</th><th scope="col">Apelación, problemas 6 a 10</th><th scope="col">Descalificada</th><th scope="col" class="c-obs">Observaciones</th></tr></thead>' +
-    '<tbody>' + filas + '</tbody></table></div></details>';
+    '<tbody>' + filas + '</tbody></table></div>' +
+    (historial.length ? '<details data-k="historial-apelaciones"><summary>Historial de apelaciones</summary><ul>' + historial.join('') + '</ul></details>' : '') +
+    '</details>';
 }
 function vistaNivel(nv, c) {
   const cuerpo = c.nMesas
@@ -1869,20 +1953,23 @@ function tablaCopa(copa) {
     '<th scope="col">Elemental</th><th scope="col">Intermedia</th><th scope="col">Superior</th><th scope="col" class="c-total">Total</th><th scope="col">Mesas</th></tr></thead>' +
     '<tbody>' + filas + '</tbody></table></div>';
 }
-function textoEstadoCopa(copa) {
-  if (!copa.hayDatos) return 'Sin rondas completadas.';
-  if (copa.provisional) return 'Resultados provisionales: hay niveles con rondas pendientes.';
-  if (copa.apelaciones) return 'Resultados sujetos a apelaciones pendientes.';
-  return 'Resultados finales.';
+function detalleMesasSinEscuela(copa) {
+  if (!copa.sinEscuela) return '';
+  const detalles = copa.mesasSinEscuela.map(function (m) {
+    const puntos = m.rondas ? m.puntos + ' ' + plural(m.puntos, 'punto', 'puntos') : 'sin rondas completadas';
+    return 'Mesa ' + m.numero + ' de ' + m.nivel + ' (' + puntos + ')';
+  });
+  return '<div class="aviso-linea atencion"><strong>Pendientes de asignar a una escuela</strong><br>' + detalles.join(' · ') + '</div>';
 }
 function vistaCopa(copa) {
   let cuerpo;
   if (ui.ocultarEscuelas) cuerpo = '<p class="aviso-linea">La Copa no se muestra mientras las escuelas están ocultas.</p>';
-  else if (!copa.filas.length) cuerpo = '<p class="vacio">No hay mesas con escuela asignada. <a href="#config" data-tab="config">Registrar mesas y escuelas</a></p>';
   else {
-    cuerpo = '<p class="ayuda">Total de cada escuela: suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición. ' + textoEstadoCopa(copa) + '</p>' +
-      (copa.sinEscuela ? '<p class="aviso-linea atencion">' + copa.sinEscuela + ' ' + plural(copa.sinEscuela, 'mesa activa no tiene escuela asignada; sus puntos no cuentan', 'mesas activas no tienen escuela asignada; sus puntos no cuentan') + ' para la Copa.</p>' : '') +
-      '<section class="bloque" data-k="copa-tabla">' + tablaCopa(copa) + '</section>';
+    cuerpo = '<p class="estado-nivel">' + textoEstadoCopa(copa) + '</p>' +
+      '<p class="ayuda">El total de cada escuela es la suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición.</p>' +
+      detalleMesasSinEscuela(copa) +
+      (copa.filas.length ? '<section class="bloque" data-k="copa-tabla">' + tablaCopa(copa) + '</section>'
+        : '<p class="vacio">No hay mesas con escuela asignada. <a href="#config" data-tab="config">Registrar mesas y escuelas</a></p>');
   }
   return '<div class="vista" data-k="v-copa"><div class="encabezado-vista"><h2>Copa de escuelas</h2></div>' + cuerpo + '</div>';
 }
@@ -1902,7 +1989,7 @@ function vistaPublica(clas, copa) {
   if (nivelId === 'copa') {
     titulo = 'Copa de escuelas';
     estadoTxt = textoEstadoCopa(copa);
-    tabla = copa.filas.length ? tablaCopa(copa) : '<p class="vacio">No hay mesas con escuela asignada.</p>';
+    tabla = detalleMesasSinEscuela(copa) + (copa.filas.length ? tablaCopa(copa) : '<p class="vacio">No hay mesas con escuela asignada.</p>');
   } else {
     const nv = NIVELES.find(function (x) { return x.id === nivelId; });
     const c = clas[nivelId];
@@ -1980,7 +2067,7 @@ function vistaDatos() {
     '<li><strong>Empate total.</strong> Las mesas que coinciden en todas las puntuaciones comparten la posición, salvo determinación de los jueces (regla 21).</li>' +
     '<li><strong>Descalificación</strong> (reglas 3 y 7). La mesa o la escuela descalificada conserva sus puntuaciones registradas, queda fuera de la clasificación y sus puntos no cuentan para la Copa.</li>' +
     '<li><strong>Apelaciones</strong> (regla 18). Cada mesa dispone de una apelación para los problemas 1 a 5 y otra para los problemas 6 a 10.</li>' +
-    '<li><strong>Copa de escuelas.</strong> El total de cada escuela es la suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición y la siguiente recibe el número consecutivo.</li>' +
+    '<li><strong>Copa de escuelas.</strong> El total de cada escuela es la suma de los totales de sus mesas activas en los tres niveles. Las escuelas con el mismo total comparten posición y la siguiente recibe el número consecutivo. Los resultados son provisionales mientras haya rondas pendientes, apelaciones pendientes o mesas activas sin escuela asignada.</li>' +
     '<li><strong>Cambios simultáneos.</strong> Con la sincronización activa, si dos equipos modifican el mismo dato, se conserva el último cambio recibido por el servicio.</li>' +
     '</ul></section>' +
     '<section class="bloque" data-k="reinicio"><h3>Reinicio</h3>' +
@@ -2028,32 +2115,24 @@ function leerHash() {
 
 /* ---------- Acciones ---------- */
 function alEscribirPunto(el) {
+  puntoEnEdicion = el;
+  const invalido = leerPunto(el.value) === undefined;
+  el.classList.toggle('invalido', invalido);
+  if (invalido) aviso('Escriba un entero de 0 a ' + MAX_PTS + '. Se conserva la puntuación anterior.');
+}
+function confirmarPunto(el) {
+  if (el !== puntoEnEdicion) return;
+  puntoEnEdicion = null;
+  el.classList.remove('invalido');
   const n = el.dataset.n;
   const id = el.dataset.id;
   const col = +el.dataset.c;
   const m = buscarMesa(n, id);
   if (!m) return;
-  const leido = leerPunto(el.value);
-  const nuevo = leido === undefined ? null : leido;
-  el.classList.toggle('invalido', leido === undefined);
-  if (leido === undefined) aviso('Valor no admitido: la puntuación es un entero de 0 a ' + MAX_PTS + '.');
-  if (m.p[col] !== nuevo) ejecutar([{ t: 'punto', n: n, id: id, c: col, v: nuevo }], 'p:' + n + ':' + id + ':' + col);
-}
-function sincronizarPunto(el) {
-  const m = buscarMesa(el.dataset.n, el.dataset.id);
-  const v = m ? m.p[+el.dataset.c] : null;
-  el.value = v == null ? '' : String(v);
-  el.classList.remove('invalido');
-}
-function anadirEscuelaDesdeCampo() {
-  const campo = document.getElementById('nueva-escuela');
-  if (!campo) return;
-  const nombre = limpiarNombre(campo.value);
-  if (!nombre) { aviso('Escriba el nombre de la escuela.'); campo.focus(); return; }
-  if (escuelaPorNombre(nombre)) { aviso('La escuela «' + nombre + '» ya está registrada.'); campo.select(); return; }
-  ejecutar([{ t: 'escNueva', id: nuevoId('e'), nombre: nombre }]);
-  campo.value = '';
-  campo.focus();
+  const valor = leerPunto(el.value);
+  const previo = m.p[col];
+  if (valor !== undefined && valor !== previo) ejecutar([{ t: 'punto', n: n, id: id, c: col, v: valor }]);
+  el.value = m.p[col] == null ? '' : String(m.p[col]);
 }
 function renombrarEscuela(el) {
   const id = el.dataset.id;
@@ -2087,10 +2166,17 @@ function asignarEscuela(el) {
     return;
   }
   const existente = escuelaPorNombre(nombre);
-  if (!existente || m.escuelaId !== existente.id) ejecutar([{ t: 'mesaEsc', n: n, id: id, nombre: nombre, eid: nuevoId('e') }]);
+  if (existente && m.escuelaId === existente.id && nombre !== existente.nombre) {
+    const compartida = NIVELES.some(function (nv) {
+      return estado.niveles[nv.id].mesas.some(function (otra) { return otra !== m && otra.escuelaId === existente.id; });
+    });
+    if (!compartida) ejecutar([{ t: 'esc', id: existente.id, campo: 'nombre', v: nombre }]);
+    else aviso('Para corregir el nombre en todas sus mesas, use «Administrar escuelas».');
+  } else if (!existente || m.escuelaId !== existente.id) {
+    ejecutar([{ t: 'mesaEsc', n: n, id: id, nombre: nombre, eid: nuevoId('e') }]);
+  }
   const asignada = escuelaPorNombre(nombre);
   if (asignada) el.value = asignada.nombre;
-  if (!existente && asignada) aviso('Escuela nueva registrada: «' + asignada.nombre + '».');
 }
 function eliminarEscuela(id) {
   const e = escuelaPorId(id);
@@ -2136,7 +2222,7 @@ function cambiarNumeroMesa(el) {
 function eliminarMesa(n, id) {
   const m = buscarMesa(n, id);
   if (!m) return;
-  const conDatos = m.p.some(function (v) { return v != null; }) || m.d.some(function (v) { return v != null; }) || m.dq || m.obs || m.ap.some(function (a) { return a; });
+  const conDatos = m.p.some(function (v) { return v != null; }) || m.d.some(function (v) { return v != null; }) || m.dq || m.obs || m.resoluciones.length || m.ap.some(function (a) { return a; });
   if (!conDatos) { ejecutar([{ t: 'mesaBorrar', n: n, id: id }]); return; }
   const nv = NIVELES.find(function (x) { return x.id === n; });
   dialogo({
@@ -2144,6 +2230,99 @@ function eliminarMesa(n, id) {
     cuerpoHtml: '<p>La mesa ' + m.numero + ' del nivel ' + nv.nombre + ' tiene datos registrados. Al eliminarla se pierden sus puntuaciones e incidencias.</p>',
     aceptar: 'Eliminar', peligro: true
   }).then(function (ok) { if (ok) ejecutar([{ t: 'mesaBorrar', n: n, id: id }]); });
+}
+function cambiarApelacion(el) {
+  const n = el.dataset.n;
+  const id = el.dataset.id;
+  const bloque = Number(el.dataset.i);
+  const mesa = buscarMesa(n, id);
+  if (!mesa) return;
+  const decision = el.value;
+  const estadoPrevio = mesa.ap[bloque];
+  const campo = 'ap' + bloque;
+  if (decision !== 'aceptada' && decision !== 'denegada') {
+    ejecutar([{ t: 'mesa', n: n, id: id, campo: campo, v: decision }]);
+    return;
+  }
+  el.value = estadoPrevio;
+  const inicio = 5 * bloque;
+  const puntos = mesa.p.slice();
+  let opciones = '<option value="">Seleccione el problema</option>';
+  for (let c = inicio; c < inicio + 5; c++) opciones += '<option value="' + c + '">Problema ' + (c + 1) + '</option>';
+  const aceptada = decision === 'aceptada';
+  const textoCompartido = function (obs, registro) {
+    return (obs ? obs + ' | ' : '') + textoResolucion(registro);
+  };
+  dialogo({
+    titulo: (aceptada ? 'Aceptar' : 'Denegar') + ' apelación · Mesa ' + mesa.numero,
+    aceptar: 'Guardar decisión',
+    cuerpoHtml: '<p>' + NIVELES.find(function (nv) { return nv.id === n; }).nombre + ' · Problemas ' + (inicio + 1) + ' a ' + (inicio + 5) + '</p>' +
+      '<label>Problema apelado <select class="campo" name="problema">' + opciones + '</select></label>' +
+      '<p data-nota-actual></p>' +
+      (aceptada ? '<label>Puntuación que confirma el jurado <input class="campo num" type="text" inputmode="numeric" name="puntuacion"></label>' : '') +
+      '<p class="ayuda" data-nota-sinc></p><p role="alert" data-error></p>',
+    preparar: function (dlg) {
+      const selector = dlg.querySelector('[name="problema"]');
+      const nota = dlg.querySelector('[name="puntuacion"]');
+      const actualizar = function () {
+        const elegida = selector.value !== '';
+        const anterior = elegida ? puntos[Number(selector.value)] : null;
+        dlg.querySelector('[data-error]').textContent = '';
+        dlg.querySelector('[data-nota-actual]').textContent = !elegida ? '' : anterior === null ? 'Problema sin calificar.' :
+          (aceptada ? 'Puntuación actual: ' : 'Se ratifica la puntuación actual: ') + anterior + '.';
+        if (nota) {
+          nota.disabled = !elegida;
+          nota.value = anterior === null ? '' : String(anterior);
+        }
+        const advertir = function () {
+          const muestra = { problema: Number(selector.value) + 1, decision: decision, anterior: anterior, final: nota ? leerPunto(nota.value) : anterior };
+          const conEspacio = textoCompartido(mesa.obs, muestra).length <= 300;
+          dlg.querySelector('[data-nota-sinc]').textContent = sincActiva() && elegida ?
+            (conEspacio ? 'La decisión también se añadirá a Observaciones para los equipos con versiones anteriores.' :
+              'Las observaciones están llenas. Los equipos con versiones anteriores recibirán la decisión y la puntuación. El detalle quedará en el historial de este equipo.') : '';
+        };
+        if (nota) nota.oninput = advertir;
+        advertir();
+      };
+      selector.onchange = actualizar;
+      actualizar();
+      selector.focus();
+    },
+    leer: function (dlg) {
+      const selector = dlg.querySelector('[name="problema"]');
+      const c = Number(selector.value);
+      const nota = dlg.querySelector('[name="puntuacion"]');
+      const final = aceptada ? leerPunto(nota.value) : puntos[c];
+      const error = dlg.querySelector('[data-error]');
+      if (selector.value === '') { error.textContent = 'Seleccione el problema apelado.'; selector.focus(); return; }
+      if (!esPunto(final)) {
+        error.textContent = aceptada ? 'Escriba la puntuación definitiva, un entero de 0 a 10.' : 'El problema seleccionado aún está sin calificar.';
+        (nota || selector).focus();
+        return;
+      }
+      return { c: c, final: final };
+    }
+  }).then(function (r) {
+    const actual = buscarMesa(n, id);
+    if (actual && document.contains(el)) el.value = actual.ap[bloque];
+    if (!r) return;
+    if (!actual || actual.ap[bloque] !== estadoPrevio || actual.p[r.c] !== puntos[r.c]) {
+      aviso('La mesa cambió mientras revisaba la apelación. Abra la decisión para verificar los datos actualizados.');
+      return;
+    }
+    const registro = { id: nuevoId('a'), fecha: new Date().toISOString(), decision: decision,
+      problema: r.c + 1, anterior: puntos[r.c], final: r.final };
+    const ops = [];
+    if (actual.p[r.c] !== r.final) ops.push({ t: 'punto', n: n, id: id, c: r.c, v: r.final });
+    ops.push({ t: 'mesa', n: n, id: id, campo: campo, v: decision, registro: registro });
+    if (sincActiva()) {
+      const observacion = textoCompartido(actual.obs, registro);
+      if (observacion.length <= 300) ops.push({ t: 'mesa', n: n, id: id, campo: 'obs', v: observacion });
+    }
+    ejecutar(ops);
+    if (document.contains(el)) el.value = decision;
+    aviso('Mesa ' + actual.numero + ' · ' + textoResolucion(registro));
+  });
 }
 function cambiarDesempate(el) {
   const n = el.dataset.n;
@@ -2156,17 +2335,25 @@ function cambiarDesempate(el) {
     let v = null;
     if (t !== '') {
       v = /^\d{1,2}$/.test(t) && parseInt(t, 10) >= 1 ? parseInt(t, 10) : undefined;
-      if (v === undefined) { aviso('El orden asignado por los jueces es un entero a partir de 1.'); el.value = ''; v = null; }
     }
     const actual = m.dgs[2] === sig ? m.dj : null;
+    if (v === undefined) {
+      aviso('El orden asignado por los jueces es un entero a partir de 1. Se conserva el orden anterior.');
+      el.value = actual == null ? '' : String(actual);
+      return;
+    }
     if (actual === v) { render(); return; }
     ejecutar([{ t: 'jue', n: n, id: id, v: v, sig: sig }]);
     return;
   }
   const i = +el.dataset.i;
-  let v = leerPunto(el.value);
-  if (v === undefined) { aviso('Valor no admitido: la puntuación de desempate es un entero de 0 a ' + MAX_PTS + '.'); el.value = ''; v = null; }
+  const v = leerPunto(el.value);
   const actual = m.dgs[i] === sig ? m.d[i] : null;
+  if (v === undefined) {
+    aviso('La puntuación de desempate es un entero de 0 a ' + MAX_PTS + '. Se conserva la puntuación anterior.');
+    el.value = actual == null ? '' : String(actual);
+    return;
+  }
   if (actual === v) { render(); return; }
   ejecutar([{ t: 'des', n: n, id: id, i: i, v: v, sig: sig }]);
 }
@@ -2306,12 +2493,15 @@ function alCambiar(ev) {
   const n = el.dataset.n;
   const id = el.dataset.id;
   switch (el.dataset.acc) {
+    case 'punto':
+      confirmarPunto(el);
+      break;
     case 'desempate':
     case 'jueces':
       cambiarDesempate(el);
       break;
     case 'apelacion':
-      ejecutar([{ t: 'mesa', n: n, id: id, campo: 'ap' + el.dataset.i, v: el.value }]);
+      cambiarApelacion(el);
       break;
     case 'dq-mesa':
       ejecutar([{ t: 'mesa', n: n, id: id, campo: 'dq', v: el.checked }]);
@@ -2359,7 +2549,6 @@ function alPulsar(ev) {
     case 'rehacer': rehacer(); break;
     case 'tema': ui.tema = ui.tema === 'noche' ? 'claro' : 'noche'; guardarUi(); render(); break;
     case 'imprimir': window.print(); break;
-    case 'add-escuela': anadirEscuelaDesdeCampo(); break;
     case 'del-escuela': eliminarEscuela(d.id); break;
     case 'add-mesas': anadirMesas(d.n); break;
     case 'del-mesa': eliminarMesa(d.n, d.id); break;
@@ -2419,10 +2608,10 @@ function alTeclear(ev) {
     let destino = tabla.querySelector('input[data-acc="punto"][data-r="' + nr + '"][data-c="' + nc + '"]');
     if (!destino && ev.key === 'Enter') destino = tabla.querySelector('input[data-acc="punto"][data-r="0"][data-c="' + (c + 1) + '"]');
     if (destino) destino.focus();
+    else if (ev.key === 'Enter') el.blur();
     return;
   }
   if (ev.key !== 'Enter') return;
-  if (el.id === 'nueva-escuela') { ev.preventDefault(); anadirEscuelaDesdeCampo(); return; }
   if (el.id && el.id.indexOf('cantidad-') === 0) { ev.preventDefault(); anadirMesas(el.id.slice(9)); return; }
   if (el.matches('input[data-acc="desempate"], input[data-acc="jueces"], input[data-acc="obs"], input[data-acc="mesa-numero"], input[data-acc="escuela-nombre"], input[data-acc="evento"]')) {
     ev.preventDefault();
@@ -2460,9 +2649,10 @@ function iniciar() {
     if (ev.target.matches && ev.target.matches('input[data-acc="punto"], input[data-acc="desempate"], input[data-acc="jueces"], input[data-acc="mesa-numero"], input[data-acc="mesa-escuela"]')) ev.target.select();
   });
   document.addEventListener('focusout', function (ev) {
-    if (ev.target.matches && ev.target.matches('input[data-acc="punto"]')) sincronizarPunto(ev.target);
+    if (ev.target === puntoEnEdicion) confirmarPunto(ev.target);
   });
   window.addEventListener('hashchange', function () {
+    if (puntoEnEdicion) confirmarPunto(puntoEnEdicion);
     if (/^#conectar=/.test(location.hash)) { atenderInvitacion(); return; }
     const t = leerHash();
     if (t && t !== ui.tab) { ui.tab = t; render(); window.scrollTo(0, 0); }
@@ -2476,6 +2666,7 @@ function iniciar() {
       estado = nuevo;
       ultimaClave = '';
       render();
+      sincronizarCasillaActiva();
     } else if (ev.key === CLAVE_SINC) {
       const antes = sinc.url;
       leerSinc();
@@ -2486,6 +2677,7 @@ function iniciar() {
   window.addEventListener('online', function () { if (sincActiva()) programar(0); });
   document.addEventListener('visibilitychange', function () { if (!document.hidden && sincActiva()) programar(0); });
   window.addEventListener('beforeunload', function (ev) {
+    if (puntoEnEdicion) confirmarPunto(puntoEnEdicion);
     const sinEnviar = sincActiva() && sinc.cola.length > 0 && !guardadoOk;
     if ((!guardadoOk && cambiosSinRespaldo && !sincActiva()) || sinEnviar) { ev.preventDefault(); ev.returnValue = ''; }
   });
